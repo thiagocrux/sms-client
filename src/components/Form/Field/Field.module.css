@@ -1,0 +1,34 @@
+.field {
+  border: none;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 1.4rem;
+}
+
+.field > label {
+  margin-bottom: 0.4rem;
+}
+
+.field > input,
+.field > select,
+.field > textarea {
+  font-family: inherit;
+  font-size: 1.5rem;
+  padding: 0.6rem 0.4rem;
+  max-width: 100%;
+  width: 100%;
+  background-color: #f2f3f5;
+  border: none;
+  border-radius: 0.2rem;
+}
+
+.field > textarea {
+  min-width: 100%;
+  min-height: 20rem;
+}
+
+.field > input:focus,
+.field > select:focus,
+.field > textarea:focus {
+  outline: 0.2rem solid palevioletred;
+}

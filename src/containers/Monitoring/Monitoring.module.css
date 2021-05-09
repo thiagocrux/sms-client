@@ -1,0 +1,45 @@
+.grid-container {
+  min-width: 100%;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: auto auto auto;
+  grid-gap: 0 2rem;
+  grid-template-areas:
+    'first-vdrl-heading second-vdrl-heading third-vdrl-heading'
+    'first-vdrl-date second-vdrl-date third-vdrl-date';
+}
+
+.grid-container > *:nth-child(1) {
+  grid-area: first-vdrl-heading;
+}
+
+.grid-container > div:nth-child(2) {
+  grid-area: first-vdrl-date;
+}
+
+.grid-container > *:nth-child(3) {
+  grid-area: second-vdrl-heading;
+}
+
+.grid-container > *:nth-child(4) {
+  grid-area: second-vdrl-date;
+}
+
+.grid-container > *:nth-child(5) {
+  grid-area: third-vdrl-heading;
+}
+
+.grid-container > *:nth-child(6) {
+  grid-area: third-vdrl-date;
+}
+
+.flex-container {
+  display: flex;
+  width: 100%;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.flex-container > label {
+  margin-right: 2rem;
+}

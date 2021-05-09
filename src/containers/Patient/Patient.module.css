@@ -1,0 +1,86 @@
+.grid-container {
+  display: grid;
+  gap: 2rem;
+}
+
+/* Informações pessoais */
+
+.first-grid-container {
+  grid-template-columns: repeat(9, 1fr);
+  grid-template-rows: repeat(4, auto);
+  grid-template-areas:
+    'sus-code sus-code sus-code patient-name patient-name patient-name patient-name patient-name patient-name'
+    'notification-type notification-type notification-type  social-name social-name social-name social-name social-name social-name'
+    'gender gender gender nationality nationality nationality phone phone phone'
+    'email email email mother-name mother-name mother-name mother-name mother-name mother-name';
+}
+
+.first-grid-container > fieldset:nth-child(1) {
+  grid-area: sus-code;
+}
+
+.first-grid-container > fieldset:nth-child(2) {
+  grid-area: patient-name;
+}
+
+.first-grid-container > fieldset:nth-child(3) {
+  grid-area: notification-type;
+}
+
+.first-grid-container > fieldset:nth-child(4) {
+  grid-area: social-name;
+}
+
+.first-grid-container > fieldset:nth-child(5) {
+  grid-area: gender;
+}
+
+.first-grid-container > fieldset:nth-child(6) {
+  grid-area: nationality;
+}
+
+.first-grid-container > fieldset:nth-child(7) {
+  grid-area: phone;
+}
+
+.first-grid-container > fieldset:nth-child(8) {
+  grid-area: email;
+}
+
+.first-grid-container > fieldset:nth-child(9) {
+  grid-area: mother-name;
+}
+
+/* Informações de endereço */
+
+.second-grid-container {
+  grid-template-columns: repeat(9, 1fr);
+  grid-template-rows: repeat(2, auto);
+  grid-template-areas:
+    'zip-code zip-code zip-code state state state city city city'
+    'neighbourhood neighbourhood neighbourhood street street street street house-number house-number';
+}
+
+.second-grid-container > fieldset:nth-child(1) {
+  grid-area: zip-code;
+}
+
+.second-grid-container > fieldset:nth-child(2) {
+  grid-area: state;
+}
+
+.second-grid-container > fieldset:nth-child(3) {
+  grid-area: city;
+}
+
+.second-grid-container > fieldset:nth-child(4) {
+  grid-area: neighbourhood;
+}
+
+.second-grid-container > fieldset:nth-child(5) {
+  grid-area: street;
+}
+
+.second-grid-container > fieldset:nth-child(6) {
+  grid-area: house-number;
+}

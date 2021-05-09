@@ -1,0 +1,47 @@
+.container {
+  min-width: 100%;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: auto auto auto;
+  grid-gap: 0 2rem;
+  grid-template-areas:
+    'first-dose-heading second-dose-heading third-dose-heading'
+    'first-dose-location second-dose-location third-dose-location'
+    'first-dose-date second-dose-date third-dose-date';
+}
+
+.container > *:nth-child(1) {
+  grid-area: first-dose-heading;
+}
+
+.container > div:nth-child(2) {
+  grid-area: first-dose-location;
+}
+
+.container > *:nth-child(3) {
+  grid-area: first-dose-date;
+}
+
+.container > *:nth-child(4) {
+  grid-area: second-dose-heading;
+}
+
+.container > *:nth-child(5) {
+  grid-area: second-dose-location;
+}
+
+.container > *:nth-child(6) {
+  grid-area: second-dose-date;
+}
+
+.container > *:nth-child(7) {
+  grid-area: third-dose-heading;
+}
+
+.container > *:nth-child(8) {
+  grid-area: third-dose-location;
+}
+
+.container > *:nth-child(9) {
+  grid-area: third-dose-date;
+}
