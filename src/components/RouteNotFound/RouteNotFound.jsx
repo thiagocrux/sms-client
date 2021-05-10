@@ -2,7 +2,7 @@ import React from 'react';
 
 import Heading from '../Heading/Heading';
 
-import style from './RouteNotFound.module.css';
+// import style from './RouteNotFound.module.css';
 
 export default function RouteNotFound() {
   return (

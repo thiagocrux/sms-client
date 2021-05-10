@@ -15,12 +15,16 @@ export default function App() {
       <Section>
         <Switch>
           <Route exact path="/" component={Home} />
-          <Route path="/monitoramento" component={Monitoring} />
-          {/* <Route path="/monitoramento/:id" exact component={Monitoring} /> */}
+
+          <Route exact path="/monitoramento" component={Monitoring} />
+          <Route path="/monitoramento/:id" exact component={Monitoring} />
+
+          <Route path="/paciente/:id" component={Patient} />
           <Route path="/paciente" component={Patient} />
-          {/* <Route path="/paciente/:id" component={Patient} /> */}
-          <Route path="/tratamento" component={Treatment} />
-          {/* <Route path="/tratamento/:id" component={Treatment} /> */}
+
+          <Route exact path="/tratamento" component={Treatment} />
+          <Route path="/tratamento/:id" component={Treatment} />
+
           <Route component={RouteNotFound} />
         </Switch>
       </Section>

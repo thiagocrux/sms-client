@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { useParams } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 
 import Button from '../../components/Button/Button';
@@ -8,6 +9,15 @@ import Heading from '../../components/Heading/Heading';
 
 import style from './Treatment.module.css';
 
+/* TODO: Replace this logic for an API call with values coming from database */
+const MONITORING_DATA = {
+  firstVDRLDate: '1917-03-08',
+  secondVDRLDate: '1917-03-08',
+  thirdVDRLDate: '1917-03-08',
+  partnerTreatment: true,
+  observations: 'Substituir por conteúdo dinâmico',
+};
+
 export default function Treatment() {
   const [treatmentInformation, setTreatmentInformation] = useState();
 
@@ -15,11 +25,14 @@ export default function Treatment() {
 
   const onSubmit = (data) => setTreatmentInformation(data);
 
+  const { id } = useParams();
+
   useEffect(() => console.log('Componente montado: [Treatment]'), []);
 
-  useEffect(() => treatmentInformation && console.log(treatmentInformation), [
-    treatmentInformation,
-  ]);
+  useEffect(
+    () => treatmentInformation && console.log(treatmentInformation),
+    [treatmentInformation]
+  );
 
   return (
     <>

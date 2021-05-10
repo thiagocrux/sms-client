@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { useParams } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 
 import Button from '../../components/Button/Button';
@@ -8,18 +9,60 @@ import Heading from '../../components/Heading/Heading';
 
 import style from './Monitoring.module.css';
 
+/* TODO: Replace this logic for an API call with values coming from database */
+const MONITORING_DATA = {
+  firstVDRLDate: '1917-03-08',
+  secondVDRLDate: '1917-03-08',
+  thirdVDRLDate: '1917-03-08',
+  partnerTreatment: true,
+  observations: 'Substituir por conteúdo dinâmico',
+};
+
 export default function Monitoring() {
+  const [formType, setFormType] = useState('create');
+
   const [monitoringInformation, setMonitoringInformation] = useState();
 
-  const { register, handleSubmit } = useForm();
+  const { register, handleSubmit, setValue } = useForm();
 
   const onSubmit = (data) => setMonitoringInformation(data);
 
-  useEffect(() => console.log('Componente montado: [Monitoring]'), []);
+  const { id } = useParams();
 
-  useEffect(() => monitoringInformation && console.log(monitoringInformation), [
-    monitoringInformation,
-  ]);
+  /* Set the type of form on the first render */
+  useEffect(() => {
+    console.clear();
+    console.log(`>> Component [Monitoring] mounted`);
+    handleFormType();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  /* LOG: Show all the submitted information on the console */
+  useEffect(
+    () => monitoringInformation && console.log(monitoringInformation),
+    [monitoringInformation]
+  );
+
+  /* Check the existence of params and set the type of form */
+  function handleFormType() {
+    if (id && formType !== 'update') {
+      setFormType('update');
+      setInputValues();
+      console.log(formType);
+    } else if (!id && formType !== 'create') {
+      setFormType('create');
+      console.log(formType);
+    }
+  }
+
+  /* Insert the values of the object in the input for updating */
+  function setInputValues() {
+    setValue('firstVDRLDate', MONITORING_DATA.firstVDRLDate);
+    setValue('secondVDRLDate', MONITORING_DATA.secondVDRLDate);
+    setValue('thirdVDRLDate', MONITORING_DATA.thirdVDRLDate);
+    setValue('partnerTreatment', MONITORING_DATA.partnerTreatment);
+    setValue('observations', MONITORING_DATA.observations);
+  }
 
   return (
     <>
@@ -61,7 +104,7 @@ export default function Monitoring() {
             ></textarea>
           </Field>
         </Divider>
-        <Button type="submit">Cadastrar</Button>
+        <Button type="submit">{formType === 'create' ? 'Cadastrar' : 'Salvar'}</Button>
       </form>
     </>
   );

@@ -11,6 +11,9 @@ export default function Navigation() {
 
   return (
     <nav className={style.navigation}>
+      <NavLink exact to="/" activeStyle={active}>
+        Página inicial
+      </NavLink>
       <NavLink to="/paciente" activeStyle={active}>
         Paciente
       </NavLink>

@@ -2,7 +2,7 @@ import React from 'react';
 
 import Heading from '../../components/Heading/Heading';
 
-import style from './Home.module.css';
+// import style from './Home.module.css';
 
 export default function Home() {
   return (

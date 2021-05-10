@@ -8,3 +8,7 @@
   background-color: slateblue; /* Escolher cor de destaque do app */
   color: white;
 }
+
+.button:hover {
+  cursor: pointer;
+}
