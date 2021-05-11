@@ -1,10 +1,11 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import { useForm } from 'react-hook-form';
 
 import Button from '../../components/Button/Button';
 import Divider from '../../components/Form/Divider/Divider';
 import Field from '../../components/Form/Field/Field';
+import Form from '../../components/Form/Form';
+import SubmitContainer from '../../components/Form/SubmitContainer/SubmitContainer';
 import Heading from '../../components/Heading/Heading';
 
 import style from './Monitoring.module.css';
@@ -20,14 +21,13 @@ const MONITORING_DATA = {
 
 export default function Monitoring() {
   const [formType, setFormType] = useState('create');
-
   const [monitoringInformation, setMonitoringInformation] = useState();
-
-  const { register, handleSubmit, setValue } = useForm();
-
-  const onSubmit = (data) => setMonitoringInformation(data);
-
   const { id } = useParams();
+  const firstVDRLDateInputRef = useRef();
+  const secondVDRLDateInputRef = useRef();
+  const thirdVDRLDateInputRef = useRef();
+  const partnerTreatmentInputRef = useRef();
+  const observationsInputRef = useRef();
 
   /* Set the type of form on the first render */
   useEffect(() => {
@@ -55,42 +55,65 @@ export default function Monitoring() {
     }
   }
 
-  /* Insert the values of the object in the input for updating */
+  /* Get all the values from the form inputs */
+  function getInputValues() {
+    return {
+      firstVDRLDate: firstVDRLDateInputRef.current.value,
+      secondVDRLDate: secondVDRLDateInputRef.current.value,
+      thirdVDRLDate: thirdVDRLDateInputRef.current.value,
+      partnerTreatment: partnerTreatmentInputRef.current.checked,
+      observations: observationsInputRef.current.value,
+    };
+  }
+
+  /* Insert the values of the object in the inputs in case of an update */
   function setInputValues() {
-    setValue('firstVDRLDate', MONITORING_DATA.firstVDRLDate);
-    setValue('secondVDRLDate', MONITORING_DATA.secondVDRLDate);
-    setValue('thirdVDRLDate', MONITORING_DATA.thirdVDRLDate);
-    setValue('partnerTreatment', MONITORING_DATA.partnerTreatment);
-    setValue('observations', MONITORING_DATA.observations);
+    firstVDRLDateInputRef.current.value = MONITORING_DATA.firstVDRLDate;
+    secondVDRLDateInputRef.current.value = MONITORING_DATA.secondVDRLDate;
+    thirdVDRLDateInputRef.current.value = MONITORING_DATA.thirdVDRLDate;
+    partnerTreatmentInputRef.current.checked = MONITORING_DATA.partnerTreatment;
+    observationsInputRef.current.value = MONITORING_DATA.observations;
+  }
+
+  /* Save the input values in the state and then send to the database */
+  function handleButtonClick(action) {
+    if (action === 'submit') {
+      const data = getInputValues();
+      setMonitoringInformation(data);
+      // TODO: Send values to database, according to the request (CREATE or UPDATE).
+    } else if (action === 'cancel') {
+      // TODO: Create logic for the form abortion.
+      console.log('Action cancelled!');
+    }
   }
 
   return (
     <>
       <Heading type="primary">Cadastro de monitoramento</Heading>
-      <form className={style.form} onSubmit={handleSubmit(onSubmit)}>
+      <Form>
         <Divider>
           <Heading type="secondary">Pós-tratamento</Heading>
           <div className={style['grid-container']}>
             <Heading type="tertiary">1ª VDRL</Heading>
             <Field>
               <label htmlFor="firstVDRLDate">Data</label>
-              <input {...register('firstVDRLDate')} type="date" name="firstVDRLDate" />
+              <input ref={firstVDRLDateInputRef} type="date" name="firstVDRLDate" />
             </Field>
             <Heading type="tertiary">2ª VDRL</Heading>
             <Field>
               <label htmlFor="secondVDRLDate">Data</label>
-              <input {...register('secondVDRLDate')} type="date" name="secondVDRLDate" />
+              <input ref={secondVDRLDateInputRef} type="date" name="secondVDRLDate" />
             </Field>
             <Heading type="tertiary">3ª VDRL</Heading>
             <Field>
               <label htmlFor="thirdVDRLDate">Data</label>
-              <input {...register('thirdVDRLDate')} type="date" name="thirdVDRLDate" />
+              <input ref={thirdVDRLDateInputRef} type="date" name="thirdVDRLDate" />
             </Field>
           </div>
           <Field>
             <div className={style['flex-container']}>
               <label htmlFor="partnerTreatment">Tratamento de parceiro</label>
-              <input {...register('partnerTreatment')} type="checkbox" name="partnerTreatment" />
+              <input ref={partnerTreatmentInputRef} type="checkbox" name="partnerTreatment" />
             </div>
           </Field>
         </Divider>
@@ -98,14 +121,21 @@ export default function Monitoring() {
           <Heading type="secondary">Outras observações</Heading>
           <Field>
             <textarea
-              {...register('observations')}
+              ref={observationsInputRef}
               name="observations"
               placeholder="Insira as observações sobre o monitoramento"
             ></textarea>
           </Field>
         </Divider>
-        <Button type="submit">{formType === 'create' ? 'Cadastrar' : 'Salvar'}</Button>
-      </form>
+        <SubmitContainer>
+          <Button type="button" action="cancel" click={handleButtonClick}>
+            Cancelar
+          </Button>
+          <Button type="button" action="submit" click={handleButtonClick}>
+            {formType === 'create' ? 'Cadastrar' : 'Salvar'}
+          </Button>
+        </SubmitContainer>
+      </Form>
     </>
   );
 }

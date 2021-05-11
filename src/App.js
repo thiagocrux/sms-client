@@ -19,8 +19,8 @@ export default function App() {
           <Route exact path="/monitoramento" component={Monitoring} />
           <Route path="/monitoramento/:id" exact component={Monitoring} />
 
+          <Route exact path="/paciente" component={Patient} />
           <Route path="/paciente/:id" component={Patient} />
-          <Route path="/paciente" component={Patient} />
 
           <Route exact path="/tratamento" component={Treatment} />
           <Route path="/tratamento/:id" component={Treatment} />

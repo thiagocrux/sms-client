@@ -14,14 +14,14 @@ export default function Navigation() {
       <NavLink exact to="/" activeStyle={active}>
         Página inicial
       </NavLink>
-      <NavLink to="/paciente" activeStyle={active}>
-        Paciente
+      <NavLink exact to="/paciente" activeStyle={active}>
+        Cadastrar paciente
       </NavLink>
-      <NavLink to="/tratamento" activeStyle={active}>
-        Tratamento
+      <NavLink exact to="/tratamento" activeStyle={active}>
+        Criar tratamento
       </NavLink>
-      <NavLink to="/monitoramento" activeStyle={active}>
-        Monitoramento
+      <NavLink exact to="/monitoramento" activeStyle={active}>
+        Criar monitoramento
       </NavLink>
     </nav>
   );
