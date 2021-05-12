@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 
 import Button from '../../components/Button/Button';
@@ -10,7 +10,7 @@ import Heading from '../../components/Heading/Heading';
 
 import style from './Exam.module.css';
 
-// FIXME: Delete when database is acessible
+// STUB: Delete when database is acessible.
 const TEST_EXAM_VALUES = {
   quickTest: 'Não reagente',
   FTA_ABS: 'Reagente',
@@ -81,7 +81,7 @@ export default function Exam() {
   /* Set the type of form on the first render */
   useEffect(() => {
     console.clear();
-    console.log(`>> Component [Exam] mounted`);
+    console.log(`>> Component [EXAM] mounted`);
     handleFormType();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
@@ -136,14 +136,13 @@ export default function Exam() {
       <Form>
         <Divider>
           <Heading type="secondary">Teste treponêmico</Heading>
-
           <div className={`${style['grid-container']} ${style['first-grid-container']}`}>
             <Field>
               <label htmlFor="quickTest">Teste rápido</label>
               <select
                 name="quickTest"
                 onChange={handleQuickTestInputChange}
-                value={formType === 'update' ? examInformation.quickTest : ''}
+                value={examInformation.quickTest}
               >
                 <option value="" disabled selected hidden>
                   Selecione uma opção
@@ -152,13 +151,12 @@ export default function Exam() {
                 <option value="Não reagente">Não reagente</option>
               </select>
             </Field>
-
             <Field>
               <label htmlFor="fta-abs">FTA-ABS</label>
               <select
                 name="fta-abs"
                 onChange={handleFTAABSInputChange}
-                value={formType === 'update' ? examInformation.FTA_ABS : ''}
+                value={examInformation.FTA_ABS}
               >
                 <option value="" disabled selected hidden>
                   Selecione uma opção
@@ -169,12 +167,10 @@ export default function Exam() {
             </Field>
           </div>
         </Divider>
-
         <Divider>
           <Heading type="secondary">Teste não treponêmico</Heading>
           <div className={`${style['grid-container']} ${style['second-grid-container']}`}>
             <Heading type="tertiary">1ª VDRL</Heading>
-
             <Field>
               <label htmlFor="firstVDRLDate">Data</label>
               <input
@@ -184,7 +180,6 @@ export default function Exam() {
                 value={examInformation.firstVDRLDate}
               />
             </Field>
-
             <Field>
               <label htmlFor="firstVDRLTitration">Titulação</label>
               <input
@@ -195,9 +190,7 @@ export default function Exam() {
                 value={examInformation.firstVDRLTitration}
               />
             </Field>
-
             <Heading type="tertiary">2ª VDRL</Heading>
-
             <Field>
               <label htmlFor="secondVDRLDate">Data</label>
               <input
@@ -207,7 +200,6 @@ export default function Exam() {
                 value={examInformation.secondVDRLDate}
               />
             </Field>
-
             <Field>
               <label htmlFor="secondVDRLTitration">Titulação</label>
               <input
@@ -218,9 +210,7 @@ export default function Exam() {
                 value={examInformation.secondVDRLTitration}
               />
             </Field>
-
             <Heading type="tertiary">3ª VDRL</Heading>
-
             <Field>
               <label htmlFor="thirdVDRLDate">Data</label>
               <input
@@ -230,7 +220,6 @@ export default function Exam() {
                 value={examInformation.thirdVDRLDate}
               />
             </Field>
-
             <Field>
               <label htmlFor="thirdVDRLTitration">Titulação</label>
               <input
@@ -243,10 +232,8 @@ export default function Exam() {
             </Field>
           </div>
         </Divider>
-
         <Divider>
           <Heading type="secondary">Observação sobre a referência e a contra-referência</Heading>
-
           <Field>
             <textarea
               name="observationReferences"
@@ -258,7 +245,6 @@ export default function Exam() {
         </Divider>
         <Divider>
           <Heading type="secondary">Classificação clínica</Heading>
-
           <div className={style['flex-container']}>
             <Field>
               <div className={style['checkbox-container']}>
@@ -271,7 +257,6 @@ export default function Exam() {
                 />
               </div>
             </Field>
-
             <Field>
               <div className={style['checkbox-container']}>
                 <label htmlFor="onObservation">Em observação</label>
@@ -289,7 +274,6 @@ export default function Exam() {
           <Button type="button" action="cancel" click={handleButtonClick}>
             Cancelar
           </Button>
-
           <Button type="button" action="submit" click={handleButtonClick}>
             {formType === 'create' ? 'Cadastrar' : 'Salvar'}
           </Button>

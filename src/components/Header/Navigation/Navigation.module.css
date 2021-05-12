@@ -15,7 +15,3 @@
 .navigation > a:not(:last-child) {
   margin-right: 4rem;
 }
-
-.active {
-  color: palevioletred;
-}

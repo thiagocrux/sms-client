@@ -3,9 +3,10 @@ import React from 'react';
 import style from './Button.module.css';
 
 export default function Button(props) {
+  // FIXME: Change to the css module aproach.
   const conditionalStyling = {
     color: '#FFFFFF',
-    backgroundColor: props.action === 'submit' ? 'slateblue' : 'palevioletred',
+    backgroundColor: props.action === 'submit' ? '#41436A' : '#984063',
   };
 
   return (

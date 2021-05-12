@@ -1,6 +1,5 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import Joi from 'joi';
 
 import Button from '../../components/Button/Button';
 import Divider from '../../components/Form/Divider/Divider';
@@ -11,8 +10,8 @@ import SubmitContainer from '../../components/Form/SubmitContainer/SubmitContain
 
 import style from './Patient.module.css';
 
-/* TODO: Replace this logic for an API call with values coming from database */
-const MONITORING_DATA = {
+// FIXME: Delete when database is acessible.
+const TEST_PATIENT_VALUES = {
   susCardNumber: '136549846',
   name: 'Fulano Detail',
   notificationType: 'Sífilis adquirida',
@@ -30,134 +29,121 @@ const MONITORING_DATA = {
   houseNumber: '12',
 };
 
-/* Validation schema for the form inputs */
-const schema = Joi.object({
-  susCardNumber: Joi.string().pattern(/^[0-9]+$/),
-  name: Joi.string()
-    .pattern(/^[A-Za-z\s]+$/)
-    .required(),
-  notificationType: Joi.string()
-    .allow('Sífilis congênita', 'Sífilis adquirida', 'Sífilis gestante')
-    .required(),
-  socialName: Joi.string()
-    .pattern(/^[A-Za-z\s]+$/)
-    .allow(''), // REVIEW: Required?
-  gender: Joi.string().allow('Feminino', 'Masculino', 'Outro').allow(''), // REVIEW: Required?
-  nationality: Joi.string().allow('Brasileiro', 'Naturalizado', 'Outro').allow(''), // REVIEW: Required?
-  phone: Joi.string()
-    .pattern(/^[0-9]+$/)
-    .allow(''),
-  email: Joi.string().allow(''), // FIXME: Try email validation.
-  motherName: Joi.string()
-    .pattern(/^[A-Za-z\s]+$/)
-    .allow(''),
-  zipCode: Joi.string()
-    .pattern(/^[0-9]+$/)
-    .allow(''), // REVIEW: It is really integer or it's a string?
-  state: Joi.string()
-    .pattern(/^[A-Za-z\s]+$/)
-    .allow(''),
-  city: Joi.string()
-    .pattern(/^[A-Za-z\s]+$/)
-    .allow(''),
-  neighbourhood: Joi.string().alphanum().allow(''),
-  street: Joi.string().alphanum().allow(''),
-  houseNumber: Joi.string().alphanum().allow(''),
-});
+const INITIAL_PATIENT_VALUES = {
+  susCardNumber: '',
+  name: '',
+  notificationType: '',
+  socialName: '',
+  gender: '',
+  nationality: '',
+  phone: '',
+  email: '',
+  motherName: '',
+  zipCode: '',
+  state: '',
+  city: '',
+  neighbourhood: '',
+  street: '',
+  houseNumber: '',
+};
 
 export default function Patient() {
   const [formType, setFormType] = useState('create');
-  const [patientInformation, setPatientInformation] = useState();
-  const { id } = useParams();
-  const susCardNumberInputRef = useRef();
-  const nameInputRef = useRef();
-  const notificationTypeInputRef = useRef();
-  const socialNameInputRef = useRef();
-  const genderInputRef = useRef();
-  const nationalityInputRef = useRef();
-  const phoneInputRef = useRef();
-  const emailInputRef = useRef();
-  const motherNameInputRef = useRef();
-  const zipCodeInputRef = useRef();
-  const stateInputRef = useRef();
-  const cityInputRef = useRef();
-  const neighbourhoodInputRef = useRef();
-  const streetInputRef = useRef();
-  const houseNumberInputRef = useRef();
+  const [patientInformation, setPatientInformation] = useState(INITIAL_PATIENT_VALUES);
+  const { patientID } = useParams();
+
+  /* Input handlers */
+  const handleSUSCardNumberInputChange = (event) =>
+    setPatientInformation({ ...patientInformation, susCardNumber: event.target.value });
+
+  const handleNameInputChange = (event) =>
+    setPatientInformation({ ...patientInformation, name: event.target.value });
+
+  const handleNotificationTypeInputChange = (event) =>
+    setPatientInformation({ ...patientInformation, notificationType: event.target.value });
+
+  const handleSocialNameInputChange = (event) =>
+    setPatientInformation({ ...patientInformation, socialName: event.target.value });
+
+  const handleGenderInputChange = (event) =>
+    setPatientInformation({ ...patientInformation, gender: event.target.value });
+
+  const handleNationalityInputChange = (event) =>
+    setPatientInformation({ ...patientInformation, nationality: event.target.value });
+
+  const handlePhoneInputChange = (event) =>
+    setPatientInformation({ ...patientInformation, phone: event.target.value });
+
+  const handleEmailInputChange = (event) =>
+    setPatientInformation({ ...patientInformation, email: event.target.value });
+
+  const handleMotherNameInputChange = (event) =>
+    setPatientInformation({ ...patientInformation, motherName: event.target.value });
+
+  const handleZipCodeInputChange = (event) =>
+    setPatientInformation({ ...patientInformation, zipCode: event.target.value });
+
+  const handleStateInputChange = (event) =>
+    setPatientInformation({ ...patientInformation, state: event.target.value });
+
+  const handleCityInputChange = (event) =>
+    setPatientInformation({ ...patientInformation, city: event.target.value });
+
+  const handleNeighbourhoodInputChange = (event) =>
+    setPatientInformation({ ...patientInformation, neighbourhood: event.target.value });
+
+  const handleStreetInputChange = (event) =>
+    setPatientInformation({ ...patientInformation, street: event.target.value });
+
+  const handleHouseNumberInputChange = (event) =>
+    setPatientInformation({ ...patientInformation, houseNumber: event.target.value });
 
   /* Set the type of form on the first render */
   useEffect(() => {
     console.clear();
-    console.log(`>> Component [Patient] mounted`);
+    console.log(`>> Component [PATIENT] mounted`);
     handleFormType();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   /* LOG: Show all the submitted information on the console */
-  useEffect(() => patientInformation && console.log(patientInformation), [patientInformation]);
+  useEffect(() => {
+    if (patientInformation) {
+      console.log(`FORM TYPE: ${formType}`);
+      console.log(patientInformation);
+    }
+  }, [patientInformation, formType]);
 
   /* Check the existence of params and set the type of form */
   function handleFormType() {
-    if (id && formType !== 'update') {
+    if (patientID && formType !== 'update') {
       setFormType('update');
       setInputValues();
       console.log(formType);
-    } else if (!id && formType !== 'create') {
+    } else if (!patientID && formType !== 'create') {
       setFormType('create');
       console.log(formType);
     }
   }
 
-  /* Get all the values from the form inputs */
-  function getInputValues() {
-    return {
-      susCardNumber: susCardNumberInputRef.current.value,
-      name: nameInputRef.current.value,
-      notificationType: notificationTypeInputRef.current.value,
-      socialName: socialNameInputRef.current.value,
-      gender: genderInputRef.current.value,
-      nationality: nationalityInputRef.current.value,
-      phone: phoneInputRef.current.value,
-      email: emailInputRef.current.value,
-      motherName: motherNameInputRef.current.value,
-      zipCode: zipCodeInputRef.current.value,
-      state: stateInputRef.current.value,
-      city: cityInputRef.current.value,
-      neighbourhood: neighbourhoodInputRef.current.value,
-      street: streetInputRef.current.value,
-      houseNumber: houseNumberInputRef.current.value,
-    };
-  }
-
   /* Insert the values of the object in the inputs in case of an update */
   function setInputValues() {
-    susCardNumberInputRef.current.value = MONITORING_DATA.susCardNumber;
-    nameInputRef.current.value = MONITORING_DATA.name;
-    notificationTypeInputRef.current.value = MONITORING_DATA.notificationType;
-    socialNameInputRef.current.value = MONITORING_DATA.socialName;
-    genderInputRef.current.value = MONITORING_DATA.gender;
-    nationalityInputRef.current.value = MONITORING_DATA.nationality;
-    phoneInputRef.current.value = MONITORING_DATA.phone;
-    emailInputRef.current.value = MONITORING_DATA.email;
-    motherNameInputRef.current.value = MONITORING_DATA.motherName;
-    zipCodeInputRef.current.value = MONITORING_DATA.zipCode;
-    stateInputRef.current.value = MONITORING_DATA.state;
-    cityInputRef.current.value = MONITORING_DATA.city;
-    neighbourhoodInputRef.current.value = MONITORING_DATA.neighbourhood;
-    streetInputRef.current.value = MONITORING_DATA.street;
-    houseNumberInputRef.current.value = MONITORING_DATA.houseNumber;
+    // FIXME: Get the data from the database and set the state with it.
+    setPatientInformation(TEST_PATIENT_VALUES);
   }
 
   /* Save the input values in the state and then send to the database */
   function handleButtonClick(action) {
     if (action === 'submit') {
-      const data = getInputValues();
-      const { error, value } = schema.validate(data);
-      // TODO: Treat the error dinamically by the type
-      !error ? setPatientInformation(data) : console.log(typeof error);
-      // TODO: Send values to database, according to the request (CREATE or UPDATE).
+      /* TODO:
+        1. Validate the data before saving it in the database.
+        2. Send values to database, according to the request (CREATE or UPDATE).
+      */
+      console.log(patientInformation);
     } else if (action === 'cancel') {
-      // TODO: Create logic for the form abortion.
+      /* TODO:
+        1. Create logic for the form abortion.
+      */
       console.log('Action cancelled!');
     }
   }
@@ -171,16 +157,30 @@ export default function Patient() {
           <div className={`${style['grid-container']} ${style['first-grid-container']}`}>
             <Field>
               <label htmlFor="susCardNumber">Código do SUS</label>
-              <input ref={susCardNumberInputRef} placeholder="Insira o número do cartão do SUS" />
+              <input
+                name="susCardNumber"
+                onChange={handleSUSCardNumberInputChange}
+                value={patientInformation.susCardNumber}
+                placeholder="Insira o número do cartão do SUS"
+              />
             </Field>
             <Field>
               <label htmlFor="name">Nome</label>
-              <input ref={nameInputRef} placeholder="Insira o nome do paciente" />
+              <input
+                name="name"
+                onChange={handleNameInputChange}
+                value={patientInformation.name}
+                placeholder="Insira o nome do paciente"
+              />
             </Field>
             <Field>
               <label htmlFor="notificationType">Tipo de notificação</label>
-              <select ref={notificationTypeInputRef}>
-                <option value="" disabled hidden>
+              <select
+                name="notificationType"
+                onChange={handleNotificationTypeInputChange}
+                value={patientInformation.notificationType}
+              >
+                <option value="" disabled selected hidden>
                   Selecione uma opção
                 </option>
                 <option value="Sífilis adquirida">Sífilis adquirida</option>
@@ -190,12 +190,21 @@ export default function Patient() {
             </Field>
             <Field>
               <label htmlFor="socialName">Nome social</label>
-              <input ref={socialNameInputRef} placeholder="Insira o nome do paciente" />
+              <input
+                name="socialName"
+                onChange={handleSocialNameInputChange}
+                value={patientInformation.socialName}
+                placeholder="Insira o nome do paciente"
+              />
             </Field>
             <Field>
               <label htmlFor="gender">Sexo</label>
-              <select ref={genderInputRef}>
-                <option value="" disabled hidden>
+              <select
+                name="gender"
+                onChange={handleGenderInputChange}
+                value={patientInformation.gender}
+              >
+                <option value="" disabled selected hidden>
                   Selecione uma opção
                 </option>
                 <option value="Feminino">Feminino</option>
@@ -205,7 +214,11 @@ export default function Patient() {
             </Field>
             <Field>
               <label htmlFor="nationality">Naturalidade</label>
-              <select ref={nationalityInputRef}>
+              <select
+                name="nationality"
+                onChange={handleNationalityInputChange}
+                value={patientInformation.nationality}
+              >
                 <option value="" disabled hidden>
                   Selecione uma opção
                 </option>
@@ -216,15 +229,31 @@ export default function Patient() {
             </Field>
             <Field>
               <label htmlFor="phone">Telefone</label>
-              <input ref={phoneInputRef} placeholder="Insira o telefone do paciente" />
+              <input
+                name="phone"
+                onChange={handlePhoneInputChange}
+                value={patientInformation.phone}
+                placeholder="Insira o telefone do paciente"
+              />
             </Field>
             <Field>
               <label htmlFor="email">E-mail</label>
-              <input ref={emailInputRef} type="email" placeholder="Insira o e-mail do paciente" />
+              <input
+                name="email"
+                onChange={handleEmailInputChange}
+                value={patientInformation.email}
+                type="email"
+                placeholder="Insira o e-mail do paciente"
+              />
             </Field>
             <Field>
               <label htmlFor="motherName">Nome da mãe do paciente</label>
-              <input ref={motherNameInputRef} placeholder="Insira o nome da mãe do paciente" />
+              <input
+                name="motherName"
+                onChange={handleMotherNameInputChange}
+                value={patientInformation.motherName}
+                placeholder="Insira o nome da mãe do paciente"
+              />
             </Field>
           </div>
         </Divider>
@@ -233,27 +262,57 @@ export default function Patient() {
           <div className={`${style['grid-container']} ${style['second-grid-container']}`}>
             <Field>
               <label htmlFor="zipCode">CEP</label>
-              <input ref={zipCodeInputRef} placeholder="Insira o CEP da residência" />
+              <input
+                name="zipCode"
+                onChange={handleZipCodeInputChange}
+                value={patientInformation.zipCode}
+                placeholder="Insira o CEP da residência"
+              />
             </Field>
             <Field>
               <label htmlFor="state">Estado</label>
-              <input ref={stateInputRef} placeholder="Insira o estado de residência" />
+              <input
+                name="state"
+                onChange={handleStateInputChange}
+                value={patientInformation.state}
+                placeholder="Insira o estado de residência"
+              />
             </Field>
             <Field>
               <label htmlFor="city">Cidade</label>
-              <input ref={cityInputRef} placeholder="Insira a cidade de residência" />
+              <input
+                name="city"
+                onChange={handleCityInputChange}
+                value={patientInformation.city}
+                placeholder="Insira a cidade de residência"
+              />
             </Field>
             <Field>
               <label htmlFor="neighbourhood">Bairro</label>
-              <input ref={neighbourhoodInputRef} placeholder="Insira o bairro de residência" />
+              <input
+                name="neighbourhood"
+                onChange={handleNeighbourhoodInputChange}
+                value={patientInformation.neighbourhood}
+                placeholder="Insira o bairro de residência"
+              />
             </Field>
             <Field>
               <label htmlFor="street">Logradouro</label>
-              <input ref={streetInputRef} placeholder="Insira o CEP da residência" />
+              <input
+                name="street"
+                onChange={handleStreetInputChange}
+                value={patientInformation.street}
+                placeholder="Insira a rua de residência"
+              />
             </Field>
             <Field>
               <label htmlFor="houseNumber">Número da residência</label>
-              <input ref={houseNumberInputRef} placeholder="Insira o número da residência" />
+              <input
+                name="houseNumber"
+                onChange={handleHouseNumberInputChange}
+                value={patientInformation.houseNumber}
+                placeholder="Insira o número da residência"
+              />
             </Field>
           </div>
         </Divider>

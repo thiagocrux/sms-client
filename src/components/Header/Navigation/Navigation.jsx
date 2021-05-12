@@ -5,8 +5,8 @@ import style from './Navigation.module.css';
 
 export default function Navigation() {
   const active = {
-    color: 'palevioletred',
-    borderBottom: '2px solid palevioletred',
+    color: '#f64668',
+    borderBottom: '2px solid #f64668',
   };
 
   return (
