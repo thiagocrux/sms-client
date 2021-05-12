@@ -1,5 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { useParams } from 'react-router-dom';
+import Joi from 'joi';
 
 import Button from '../../components/Button/Button';
 import Divider from '../../components/Form/Divider/Divider';
@@ -29,6 +30,41 @@ const MONITORING_DATA = {
   houseNumber: '12',
 };
 
+/* Validation schema for the form inputs */
+const schema = Joi.object({
+  susCardNumber: Joi.string().pattern(/^[0-9]+$/),
+  name: Joi.string()
+    .pattern(/^[A-Za-z\s]+$/)
+    .required(),
+  notificationType: Joi.string()
+    .allow('Sífilis congênita', 'Sífilis adquirida', 'Sífilis gestante')
+    .required(),
+  socialName: Joi.string()
+    .pattern(/^[A-Za-z\s]+$/)
+    .allow(''), // REVIEW: Required?
+  gender: Joi.string().allow('Feminino', 'Masculino', 'Outro').allow(''), // REVIEW: Required?
+  nationality: Joi.string().allow('Brasileiro', 'Naturalizado', 'Outro').allow(''), // REVIEW: Required?
+  phone: Joi.string()
+    .pattern(/^[0-9]+$/)
+    .allow(''),
+  email: Joi.string().allow(''), // FIXME: Try email validation.
+  motherName: Joi.string()
+    .pattern(/^[A-Za-z\s]+$/)
+    .allow(''),
+  zipCode: Joi.string()
+    .pattern(/^[0-9]+$/)
+    .allow(''), // REVIEW: It is really integer or it's a string?
+  state: Joi.string()
+    .pattern(/^[A-Za-z\s]+$/)
+    .allow(''),
+  city: Joi.string()
+    .pattern(/^[A-Za-z\s]+$/)
+    .allow(''),
+  neighbourhood: Joi.string().alphanum().allow(''),
+  street: Joi.string().alphanum().allow(''),
+  houseNumber: Joi.string().alphanum().allow(''),
+});
+
 export default function Patient() {
   const [formType, setFormType] = useState('create');
   const [patientInformation, setPatientInformation] = useState();
@@ -52,7 +88,7 @@ export default function Patient() {
   /* Set the type of form on the first render */
   useEffect(() => {
     console.clear();
-    console.log(`>> Component [Monitoring] mounted`);
+    console.log(`>> Component [Patient] mounted`);
     handleFormType();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
@@ -116,7 +152,9 @@ export default function Patient() {
   function handleButtonClick(action) {
     if (action === 'submit') {
       const data = getInputValues();
-      setPatientInformation(data);
+      const { error, value } = schema.validate(data);
+      // TODO: Treat the error dinamically by the type
+      !error ? setPatientInformation(data) : console.log(typeof error);
       // TODO: Send values to database, according to the request (CREATE or UPDATE).
     } else if (action === 'cancel') {
       // TODO: Create logic for the form abortion.
@@ -142,7 +180,9 @@ export default function Patient() {
             <Field>
               <label htmlFor="notificationType">Tipo de notificação</label>
               <select ref={notificationTypeInputRef}>
-                <option value="">Selecione uma opção</option>
+                <option value="" disabled hidden>
+                  Selecione uma opção
+                </option>
                 <option value="Sífilis adquirida">Sífilis adquirida</option>
                 <option value="Sífilis congênita">Sífilis congênita</option>
                 <option value="Sífilis gestante">Sífilis gestante</option>
@@ -155,7 +195,9 @@ export default function Patient() {
             <Field>
               <label htmlFor="gender">Sexo</label>
               <select ref={genderInputRef}>
-                <option value="">Selecione uma opção</option>
+                <option value="" disabled hidden>
+                  Selecione uma opção
+                </option>
                 <option value="Feminino">Feminino</option>
                 <option value="Masculino">Masculino</option>
                 <option value="Outro">Outro</option>
@@ -164,7 +206,9 @@ export default function Patient() {
             <Field>
               <label htmlFor="nationality">Naturalidade</label>
               <select ref={nationalityInputRef}>
-                <option value="">Selecione uma opção</option>
+                <option value="" disabled hidden>
+                  Selecione uma opção
+                </option>
                 <option value="Brasileiro">Brasileiro</option>
                 <option value="Naturalizado">Naturalizado</option>
                 <option value="Outro">Outro</option>

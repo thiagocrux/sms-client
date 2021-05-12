@@ -36,7 +36,7 @@ export default function Treatment() {
   /* Set the type of form on the first render */
   useEffect(() => {
     console.clear();
-    console.log(`>> Component [Monitoring] mounted`);
+    console.log(`>> Component [Treatment] mounted`);
     handleFormType();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);

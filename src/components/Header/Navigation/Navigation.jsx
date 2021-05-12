@@ -23,6 +23,9 @@ export default function Navigation() {
       <NavLink exact to="/monitoramento" activeStyle={active}>
         Criar monitoramento
       </NavLink>
+      <NavLink exact to="/exame/" activeStyle={active}>
+        Criar exame
+      </NavLink>
     </nav>
   );
 }

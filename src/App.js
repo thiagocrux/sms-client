@@ -1,5 +1,6 @@
 import { Route, Switch } from 'react-router-dom';
 
+import Exam from './containers/Exam/Exam';
 import Header from './components/Header/Header';
 import Home from './containers/Home/Home';
 import Monitoring from './containers/Monitoring/Monitoring';
@@ -15,6 +16,9 @@ export default function App() {
       <Section>
         <Switch>
           <Route exact path="/" component={Home} />
+
+          <Route exact path="/exame" component={Exam} />
+          <Route path="/exame/:examID" exact component={Exam} />
 
           <Route exact path="/monitoramento" component={Monitoring} />
           <Route path="/monitoramento/:id" exact component={Monitoring} />

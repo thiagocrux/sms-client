@@ -1,0 +1,61 @@
+.grid-container {
+  display: grid;
+  column-gap: 2rem;
+}
+
+.first-grid-container {
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: auto;
+}
+
+.second-grid-container {
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(3, auto);
+  grid-template-areas:
+    'firstVDRLHeading secondVDRLHeading thirdVDRLHeading'
+    'firstVDRLDate secondVDRLDate thirdVDRLDate'
+    'firstVDRLTitration secondVDRLTitration thirdVDRLTitration';
+}
+
+.second-grid-container > *:nth-child(1) {
+  grid-area: firstVDRLHeading;
+}
+.second-grid-container > *:nth-child(2) {
+  grid-area: firstVDRLDate;
+}
+.second-grid-container > *:nth-child(3) {
+  grid-area: firstVDRLTitration;
+}
+.second-grid-container > *:nth-child(4) {
+  grid-area: secondVDRLHeading;
+}
+.second-grid-container > *:nth-child(5) {
+  grid-area: secondVDRLDate;
+}
+.second-grid-container > *:nth-child(6) {
+  grid-area: secondVDRLTitration;
+}
+.second-grid-container > *:nth-child(7) {
+  grid-area: thirdVDRLHeading;
+}
+.second-grid-container > *:nth-child(8) {
+  grid-area: thirdVDRLDate;
+}
+.second-grid-container > *:nth-child(9) {
+  grid-area: thirdVDRLTitration;
+}
+
+.flex-container {
+  display: flex;
+  width: 100%;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.flex-container > * {
+  margin-right: 6rem;
+}
+
+.checkbox-container > label {
+  margin-right: 1rem;
+}

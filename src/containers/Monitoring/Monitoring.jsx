@@ -1,5 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { useParams } from 'react-router-dom';
+import Joi from 'joi';
 
 import Button from '../../components/Button/Button';
 import Divider from '../../components/Form/Divider/Divider';
@@ -19,10 +20,21 @@ const MONITORING_DATA = {
   observations: 'Substituir por conteúdo dinâmico',
 };
 
+/* Validation schema for the form inputs */
+const schema = Joi.object({
+  firstVDRLDate: Joi.date().required(),
+  secondVDRLDate: Joi.date().required(),
+  thirdVDRLDate: Joi.date().required(),
+  partnerTreatment: Joi.boolean().default(false),
+  observations: Joi.string().allow(''),
+});
+
 export default function Monitoring() {
   const [formType, setFormType] = useState('create');
   const [monitoringInformation, setMonitoringInformation] = useState();
   const { id } = useParams();
+
+  /* Refs */
   const firstVDRLDateInputRef = useRef();
   const secondVDRLDateInputRef = useRef();
   const thirdVDRLDateInputRef = useRef();
@@ -79,7 +91,8 @@ export default function Monitoring() {
   function handleButtonClick(action) {
     if (action === 'submit') {
       const data = getInputValues();
-      setMonitoringInformation(data);
+      const { error, value } = schema.validate(data);
+      !error ? setMonitoringInformation(data) : console.log(error);
       // TODO: Send values to database, according to the request (CREATE or UPDATE).
     } else if (action === 'cancel') {
       // TODO: Create logic for the form abortion.
