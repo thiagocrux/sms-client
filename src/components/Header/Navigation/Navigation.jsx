@@ -1,31 +1,36 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
+import { House, JournalMedical, People, PeopleFill, PersonLinesFill } from 'react-bootstrap-icons';
 
 import style from './Navigation.module.css';
 
 export default function Navigation() {
-  const active = {
-    color: '#f64668',
-    borderBottom: '2px solid #f64668',
+  /* FIXME: Pick the right color for the active link */
+  const activeStyle = {
+    color: '#1976d2',
+    borderBottom: '.1rem solid #1976d2',
   };
 
   return (
     <nav className={style.navigation}>
-      <NavLink exact to="/" activeStyle={active}>
-        Página inicial
-      </NavLink>
-      <NavLink exact to="/paciente" activeStyle={active}>
-        Cadastrar paciente
-      </NavLink>
-      <NavLink exact to="/tratamento" activeStyle={active}>
-        Criar tratamento
-      </NavLink>
-      <NavLink exact to="/monitoramento" activeStyle={active}>
-        Criar monitoramento
-      </NavLink>
-      <NavLink exact to="/exame/" activeStyle={active}>
-        Criar exame
-      </NavLink>
+      <div className={style['div-container']}>
+        <NavLink exact to="/" className={style.link} activeStyle={activeStyle}>
+          <House className={style.icon} />
+          Página inicial
+        </NavLink>
+      </div>
+      <div className={style['div-container']}>
+        <NavLink exact to="/patient" className={style.link} activeStyle={activeStyle}>
+          <PeopleFill className={style.icon} />
+          Pacientes
+        </NavLink>
+      </div>
+      <div className={style['div-container']}>
+        <NavLink exact to="/notification" className={style.link} activeStyle={activeStyle}>
+          <JournalMedical className={style.icon} />
+          Notificações
+        </NavLink>
+      </div>
     </nav>
   );
 }
