@@ -115,7 +115,9 @@ export default function Monitoring() {
 
   return (
     <>
-      <Heading type="primary">Cadastro de monitoramento</Heading>
+      <Heading type="primary">
+        {formType === 'update' ? 'Atualização' : 'Cadastro'} de monitoramento
+      </Heading>
       <Form>
         <Divider>
           <Heading type="secondary">Pós-tratamento</Heading>
