@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { ClipboardPlus, DropletFill, Eye } from 'react-bootstrap-icons';
+import { ClipboardPlus, DropletHalf, Eye } from 'react-bootstrap-icons';
 
 import Heading from '../../Heading/Heading';
 
@@ -20,7 +20,7 @@ export default function NotificationTabs() {
           Novo monitoramento
         </Link>
         <Link exact to="/exam" className={style.tab}>
-          <DropletFill className={style.icon} />
+          <DropletHalf className={style.icon} />
           Novo exame
         </Link>
       </nav>
