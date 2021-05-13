@@ -150,7 +150,9 @@ export default function Patient() {
 
   return (
     <>
-      <Heading type="primary">Cadastro de paciente</Heading>
+      <Heading type="primary">
+        {formType === 'update' ? 'Atualização' : 'Cadastro'} de paciente
+      </Heading>
       <Form>
         <Divider>
           <Heading type="secondary">Dados do paciente</Heading>
