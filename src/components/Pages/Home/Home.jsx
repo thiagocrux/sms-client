@@ -1,6 +1,6 @@
 import React from 'react';
 
-import Heading from '../../components/Layout/Heading/Heading';
+import Heading from '../../Layout/Heading/Heading';
 
 // import style from './Home.module.css';
 

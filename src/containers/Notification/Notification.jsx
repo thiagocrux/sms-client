@@ -1,7 +1,7 @@
 import React from 'react';
 
 import Tabs from '../../components/Notifications/Tabs/Tabs';
-import PatientSearchForm from '../../components/Patients/SearchForm/SearchForm';
+import SearchForm from '../../components/Patients/SearchForm/SearchForm';
 
 import style from './Notification.module.css';
 
@@ -18,7 +18,7 @@ export default function Notification() {
 
   return (
     <div className={style.notification}>
-      <PatientSearchForm />
+      <SearchForm />
       <Tabs />
     </div>
   );

@@ -2,7 +2,7 @@ import { Route, Switch } from 'react-router-dom';
 
 import Exam from './containers/Exam/Exam';
 import Header from './components/Layout/Header/Header';
-import Home from './containers/Home/Home';
+import Home from './components/Pages/Home/Home';
 import Monitoring from './containers/Monitoring/Monitoring';
 import Notification from './containers/Notification/Notification';
 import Patient from './containers/Patient/Patient';

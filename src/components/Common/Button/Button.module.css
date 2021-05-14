@@ -17,17 +17,17 @@
 }
 
 .continue {
-  background-color: #1976d2;
+  background-color: #124e8a;
 }
 
 .continue:hover {
-  background-color: #2196f3;
+  background-color: #2570ad;
 }
 
 .cancel {
-  background-color: #d32f2f;
+  background-color: #862d2d;
 }
 
 .cancel:hover {
-  background-color: #f44336;
+  background-color: #b1372f;
 }

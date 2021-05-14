@@ -1,3 +1,7 @@
+:root {
+  --color-a: #fff;
+}
+
 *,
 *::before,
 *::after {
