@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 
-import Button from '../../components/Button/Button';
-import Divider from '../../components/Form/Divider/Divider';
-import Field from '../../components/Form/Field/Field';
-import Form from '../../components/Form/Form';
-import SubmitContainer from '../../components/Form/SubmitContainer/SubmitContainer';
-import Heading from '../../components/Heading/Heading';
+import Button from '../../components/Common/Button/Button';
+import Divider from '../../components/Layout/Form/Divider/Divider';
+import Field from '../../components/Layout/Form/Field/Field';
+import Form from '../../components/Layout/Form/Form';
+import Heading from '../../components/Layout/Heading/Heading';
+import SubmitContainer from '../../components/Layout/Form/SubmitContainer/SubmitContainer';
 
 import style from './Monitoring.module.css';
 

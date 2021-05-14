@@ -1,10 +1,10 @@
 import React from 'react';
 
-import Heading from '../Heading/Heading';
+import Heading from '../../Layout/Heading/Heading';
 
 // import style from './RouteNotFound.module.css';
 
-export default function RouteNotFound() {
+export default function PageNotFound() {
   return (
     <>
       <Heading type="primary">

@@ -6,6 +6,10 @@
   margin: 0;
 }
 
+*:focus {
+  outline: none;
+}
+
 html {
   font-size: 62.5%;
   font-family: 'Nunito Sans', sans-serif;
@@ -17,4 +21,8 @@ body {
 
 p {
   line-height: 2.4rem;
+}
+
+button {
+  font-family: inherit;
 }

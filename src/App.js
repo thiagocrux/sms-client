@@ -1,12 +1,13 @@
 import { Route, Switch } from 'react-router-dom';
 
 import Exam from './containers/Exam/Exam';
-import Header from './components/Header/Header';
+import Header from './components/Layout/Header/Header';
 import Home from './containers/Home/Home';
 import Monitoring from './containers/Monitoring/Monitoring';
+import Notification from './containers/Notification/Notification';
 import Patient from './containers/Patient/Patient';
-import RouteNotFound from './components/RouteNotFound/RouteNotFound';
-import Section from './components/Section/Section';
+import PageNotFound from './components/Pages/PageNotFound/PageNotFound';
+import Section from './components/Layout/Section/Section';
 import Treatment from './containers/Treatment/Treatment';
 
 export default function App() {
@@ -17,19 +18,21 @@ export default function App() {
         <Switch>
           <Route exact path="/" component={Home} />
 
-          <Route exact path="/exame" component={Exam} />
-          <Route path="/exame/:examID" exact component={Exam} />
+          <Route exact path="/notification" component={Notification} />
 
-          <Route exact path="/monitoramento" component={Monitoring} />
-          <Route path="/monitoramento/:monitoringID" exact component={Monitoring} />
+          <Route exact path="/exam" component={Exam} />
+          <Route path="/exam/:examID" exact component={Exam} />
 
-          <Route exact path="/paciente" component={Patient} />
-          <Route path="/paciente/:patientID" component={Patient} />
+          <Route exact path="/monitoring" component={Monitoring} />
+          <Route path="/monitoring/:monitoringID" exact component={Monitoring} />
 
-          <Route exact path="/tratamento" component={Treatment} />
-          <Route path="/tratamento/:treatmentID" component={Treatment} />
+          <Route exact path="/patient" component={Patient} />
+          <Route path="/patient/:patientID" component={Patient} />
 
-          <Route component={RouteNotFound} />
+          <Route exact path="/treatment" component={Treatment} />
+          <Route path="/treatment/:treatmentID" component={Treatment} />
+
+          <Route component={PageNotFound} />
         </Switch>
       </Section>
     </>

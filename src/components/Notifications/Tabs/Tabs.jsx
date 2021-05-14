@@ -2,9 +2,9 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { ClipboardPlus, DropletHalf, Eye } from 'react-bootstrap-icons';
 
-import Heading from '../../Heading/Heading';
+import Heading from '../../Layout/Heading/Heading';
 
-import style from './NotificationTabs.module.css';
+import style from './Tabs.module.css';
 
 export default function NotificationTabs() {
   return (

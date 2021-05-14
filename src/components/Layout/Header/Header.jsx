@@ -1,7 +1,7 @@
 import React from 'react';
 import { Gear, PersonCircle } from 'react-bootstrap-icons';
 
-import Navigation from './Navigation/Navigation';
+import Navigation from '../Navigation/Navigation';
 
 import style from './Header.module.css';
 

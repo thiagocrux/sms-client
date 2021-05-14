@@ -1,6 +1,6 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
-import { House, JournalMedical, People, PeopleFill, PersonLinesFill } from 'react-bootstrap-icons';
+import { House, JournalMedical, PeopleFill } from 'react-bootstrap-icons';
 
 import style from './Navigation.module.css';
 
