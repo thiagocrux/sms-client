@@ -32,7 +32,7 @@
   cursor: pointer;
 }
 
-/* FIXME: Set the button focus outline */
+/* FIXME: Definir o outline de foco dos botões */
 
 .button:hover {
   background-color: #1976d2;

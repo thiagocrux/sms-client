@@ -5,7 +5,7 @@ import { House, JournalMedical, PeopleFill } from 'react-bootstrap-icons';
 import style from './Navigation.module.css';
 
 export default function Navigation() {
-  /* FIXME: Pick the right color for the active link */
+  /* FIXME: Ao definir padrão do layout, definir a cor correta */
   const activeStyle = {
     color: '#1976d2',
     borderBottom: '.1rem solid #1976d2',

@@ -10,7 +10,7 @@ import SubmitContainer from '../../components/Layout/Form/SubmitContainer/Submit
 
 import style from './Exam.module.css';
 
-// STUB: Delete when database is acessible.
+// FIXME: Deletar objeto quando o banco de dados estiver acessível.
 const TEST_EXAM_VALUES = {
   quickTest: 'Não reagente',
   FTA_ABS: 'Reagente',
@@ -86,7 +86,7 @@ export default function Exam() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  /* LOG: Show all the submitted information on the console */
+  /* LOG: Mostra todas as informações submetidas pelo formulário no console */
   useEffect(() => {
     if (examInformation) {
       console.log(`FORM TYPE: ${formType}`);
@@ -108,7 +108,7 @@ export default function Exam() {
 
   /* Insert the values of the object in the inputs in case of an update */
   function setInputValues() {
-    // FIXME: Get the data from the database and set the state with it.
+    // FIXME: Buscar informações no banco de dados e substituir o objeto abaixo.
     setExamInformation(TEST_EXAM_VALUES);
   }
 
@@ -116,13 +116,13 @@ export default function Exam() {
   function handleButtonClick(action) {
     if (action === 'submit') {
       /* TODO:
-        1. Validate the data before saving it in the database.
-        2. Send values to database, according to the request (CREATE or UPDATE).
+        1. Validar os dados antes de salvar no banco de dados;
+        2. Salvar valores no banco de dados de acordo com o método (criação ou atualização);
       */
       console.log(examInformation);
     } else if (action === 'cancel') {
       /* TODO:
-        1. Create logic for the form abortion.
+        1. Criar lógica para o botão de cancelar.
       */
       console.log('Action cancelled!');
     }
