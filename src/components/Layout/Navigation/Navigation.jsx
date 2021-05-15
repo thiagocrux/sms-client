@@ -1,6 +1,6 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
-import { House, JournalMedical, PeopleFill } from 'react-bootstrap-icons';
+import { ClipboardData, House, JournalMedical, PeopleFill } from 'react-bootstrap-icons';
 
 import style from './Navigation.module.css';
 
@@ -29,6 +29,12 @@ export default function Navigation() {
         <NavLink exact to="/notification" className={style.link} activeStyle={activeStyle}>
           <JournalMedical className={style.icon} />
           Notificações
+        </NavLink>
+      </div>
+      <div className={style['div-container']}>
+        <NavLink exact to="/report" className={style.link} activeStyle={activeStyle}>
+          <ClipboardData className={style.icon} />
+          Relatórios
         </NavLink>
       </div>
     </nav>
