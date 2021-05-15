@@ -2,7 +2,10 @@ import React from 'react';
 
 import Tabs from '../../components/Notifications/Tabs/Tabs';
 import SearchForm from '../../components/Patients/SearchForm/SearchForm';
+<<<<<<< HEAD
 import List from '../../components/Patients/List/List';
+=======
+>>>>>>> 793d2f2aec960d1bc542f6030b64d1e6b645955b
 
 import style from './Notification.module.css';
 
