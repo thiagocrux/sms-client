@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import { treatmentMockedValues, treatmentResetValues } from '../../utils/mock';
+import { treatmentMockedValues, treatmentInitialValues } from '../../utils/mock';
 
 import Button from '../../components/Common/Button/Button';
 import Divider from '../../components/Layout/Form/Divider/Divider';
@@ -13,7 +13,7 @@ import style from './Treatment.module.css';
 
 // FIXME: Deletar objeto quando o banco de dados estiver acessível.
 const MOCK_VALUES = treatmentMockedValues;
-const INITIAL_VALUES = treatmentResetValues;
+const INITIAL_VALUES = treatmentInitialValues;
 
 export default function Treatment() {
   const [formType, setFormType] = useState('create');

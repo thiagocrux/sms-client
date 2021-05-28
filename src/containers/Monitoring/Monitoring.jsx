@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
+import { monitoringMockValues, monitoringInitialValues } from '../../utils';
 
 import Button from '../../components/Common/Button/Button';
 import Divider from '../../components/Layout/Form/Divider/Divider';
@@ -11,25 +12,12 @@ import SubmitContainer from '../../components/Layout/Form/SubmitContainer/Submit
 import style from './Monitoring.module.css';
 
 // FIXME: Deletar objeto quando o banco de dados estiver acessível.
-const TEST_MONITORING_VALUES = {
-  firstVDRLDate: '1917-03-08',
-  secondVDRLDate: '1917-03-08',
-  thirdVDRLDate: '1917-03-08',
-  partnerTreatment: true,
-  observations: 'Substituir por conteúdo dinâmico',
-};
-
-const INITIAL_MONITORING_VALUES = {
-  firstVDRLDate: '',
-  secondVDRLDate: '',
-  thirdVDRLDate: '',
-  partnerTreatment: false,
-  observations: '',
-};
+const MOCK_VALUES = monitoringMockValues;
+const INITIAL_VALUES = monitoringInitialValues;
 
 export default function Monitoring() {
   const [formType, setFormType] = useState('create');
-  const [monitoringInformation, setMonitoringInformation] = useState(INITIAL_MONITORING_VALUES);
+  const [monitoringInformation, setMonitoringInformation] = useState(INITIAL_VALUES);
   const { monitoringID } = useParams();
 
   /* Input handlers */
@@ -94,7 +82,7 @@ export default function Monitoring() {
   /* Insert the values of the object in the inputs in case of an update */
   function setInputValues() {
     // FIXME: Buscar informações no banco de dados e substituir o objeto abaixo.
-    setMonitoringInformation(TEST_MONITORING_VALUES);
+    setMonitoringInformation(MOCK_VALUES);
   }
 
   /* Save the input values in the state and then send to the database */
