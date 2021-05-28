@@ -1,0 +1,22 @@
+.search-item-not-found {
+  width: 90rem;
+  text-align: center;
+  border-radius: 0.6rem;
+  margin: 0 auto;
+  border: 2px solid #ff1d58;
+  background-color: #ffa9c0;
+  color: #ff1d58;
+  font-size: 1.8rem;
+  font-weight: 600;
+  margin-top: 3rem;
+  padding: 2rem 5rem;
+}
+
+.search-item-not-found > p {
+  display: flex;
+  align-items: center;
+}
+
+.icon {
+  margin-right: 1rem;
+}

@@ -1,18 +1,17 @@
 .grid-container {
   display: grid;
-  gap: 2rem;
+  gap: 2rem 3rem;
 }
 
 /* Informações pessoais */
 
 .first-grid-container {
-  grid-template-columns: repeat(9, 1fr);
-  grid-template-rows: repeat(4, auto);
+  grid-template-columns: repeat(12, 1fr);
+  grid-template-rows: repeat(3, auto);
   grid-template-areas:
-    'sus-code sus-code sus-code patient-name patient-name patient-name patient-name patient-name patient-name'
-    'notification-type notification-type notification-type  social-name social-name social-name social-name social-name social-name'
-    'gender gender gender nationality nationality nationality phone phone phone'
-    'email email email mother-name mother-name mother-name mother-name mother-name mother-name';
+    'sus-code sus-code sus-code patient-name patient-name patient-name patient-name patient-name patient-name cpf cpf cpf'
+    'social-name social-name social-name social-name social-name social-name birth-date birth-date gender gender nationality nationality'
+    'phone phone phone email email email mother-name mother-name mother-name mother-name mother-name mother-name';
 }
 
 .first-grid-container > *:nth-child(1) {
@@ -24,7 +23,7 @@
 }
 
 .first-grid-container > *:nth-child(3) {
-  grid-area: notification-type;
+  grid-area: cpf;
 }
 
 .first-grid-container > *:nth-child(4) {
@@ -32,22 +31,26 @@
 }
 
 .first-grid-container > *:nth-child(5) {
-  grid-area: gender;
+  grid-area: birth-date;
 }
 
 .first-grid-container > *:nth-child(6) {
-  grid-area: nationality;
+  grid-area: gender;
 }
 
 .first-grid-container > *:nth-child(7) {
-  grid-area: phone;
+  grid-area: nationality;
 }
 
 .first-grid-container > *:nth-child(8) {
-  grid-area: email;
+  grid-area: phone;
 }
 
 .first-grid-container > *:nth-child(9) {
+  grid-area: email;
+}
+
+.first-grid-container > *:nth-child(10) {
   grid-area: mother-name;
 }
 

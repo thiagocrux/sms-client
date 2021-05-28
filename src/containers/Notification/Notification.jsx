@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import axios from 'axios';
 
 import Tabs from '../../components/Notifications/Tabs/Tabs';
 import SearchForm from '../../components/Patients/SearchForm/SearchForm';
@@ -7,6 +8,8 @@ import List from '../../components/Patients/List/List';
 import style from './Notification.module.css';
 
 export default function Notification() {
+  const [patients, setPatients] = useState([]);
+
   /* TODO:
     1. De início, ao buscar o paciente, o componente <SearchForm /> deve ser o único à mostra
       1.1 Se a busca der algum resultado, mostrar a lista de pacientes;
@@ -19,10 +22,23 @@ export default function Notification() {
     3. Ao clicar numa das abas de notificação, o usuário será encaminhado a sua respectiva página;
   */
 
+  useEffect(() => {
+    getPatients();
+  }, []);
+
+  const getPatients = async () => {
+    try {
+      const getRequest = await await axios.get('http://localhost:8000/api/v1/patients/');
+      setPatients(getRequest.data);
+    } catch (error) {
+      console.log(`Error: ${error}`);
+    }
+  };
+
   return (
     <div className={style.notification}>
       <SearchForm />
-      <List />
+      <List patients={patients} />
       <Tabs />
     </div>
   );

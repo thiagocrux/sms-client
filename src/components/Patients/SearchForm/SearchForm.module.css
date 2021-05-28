@@ -1,9 +1,12 @@
-@import '../../../index.css';
-
 .patient-search {
   width: 90rem;
   margin: 0 auto;
   padding: 0 3rem;
+}
+
+.patient-search input,
+.patient-search select {
+  background-color: #ffffff;
 }
 
 .grid-container {

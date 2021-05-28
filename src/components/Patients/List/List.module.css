@@ -1,0 +1,23 @@
+.list-container {
+  width: 90rem;
+  margin: 0 auto;
+  padding: 2rem;
+}
+
+.list-header {
+  background-color: #3a3a3a;
+  border-radius: 0.4rem;
+  padding: 1.6rem 2rem;
+  display: grid;
+  column-gap: 5rem;
+  grid-template-columns: 2fr 2fr 6fr;
+  color: #ffffff;
+  margin-bottom: 1.2rem;
+  font-weight: 300;
+}
+
+.list {
+  border-radius: 0.4rem;
+  margin-top: 4rem;
+  margin: 0 auto;
+}

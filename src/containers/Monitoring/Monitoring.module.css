@@ -3,7 +3,7 @@
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   grid-template-rows: auto auto auto;
-  grid-gap: 0 2rem;
+  gap: 2rem 3rem;
   grid-template-areas:
     'first-vdrl-heading second-vdrl-heading third-vdrl-heading'
     'first-vdrl-date second-vdrl-date third-vdrl-date';

@@ -1,15 +1,18 @@
 .button {
-  font-size: 1.6rem;
-  font-weight: 400;
-  letter-spacing: 0.1rem;
-  border-radius: 0.3rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 1.2rem 4rem;
   border: none;
-  padding: 0.8rem 1.4rem;
-  min-width: 18rem;
-  width: 18rem;
-  margin-bottom: 8rem;
-  color: #ffffff;
+  border-radius: 0.6rem;
+  font-size: 1.7rem;
+  font-weight: 400;
+  letter-spacing: 0.03rem;
+  text-decoration: none;
+  --webkit-box-shadow: 0px 3px 7px -4px #757575;
+  box-shadow: 0px 3px 7px -4px #757575;
   transition: all 0.3s;
+  cursor: pointer;
 }
 
 .button:hover {
@@ -17,17 +20,21 @@
 }
 
 .continue {
-  background-color: #124e8a;
+  background-color: #1976d2;
+  color: white;
 }
 
 .continue:hover {
-  background-color: #2570ad;
+  background-color: #50a1e4;
 }
 
 .cancel {
-  background-color: #862d2d;
+  border: 1px solid #ff1d58;
+  background-color: #ffffff;
+  color: #ff1d58;
 }
 
 .cancel:hover {
-  background-color: #b1372f;
+  background-color: #ff1d58;
+  color: #ffffff;
 }

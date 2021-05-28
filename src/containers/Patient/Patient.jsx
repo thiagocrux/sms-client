@@ -14,8 +14,9 @@ import style from './Patient.module.css';
 const TEST_PATIENT_VALUES = {
   susCardNumber: '136549846',
   name: 'Fulano Detail',
-  notificationType: 'Sífilis adquirida',
+  cpf: '15623858989',
   socialName: 'Fulano',
+  birthDate: '1978-12-03',
   gender: 'Masculino',
   nationality: 'Brasileiro',
   phone: '(87) 98804-6895',
@@ -24,16 +25,17 @@ const TEST_PATIENT_VALUES = {
   zipCode: '56300000',
   state: 'Pernambuco',
   city: 'Petrolina',
-  neighbourhood: 'Rua 49',
-  street: 'Jardim São Paulo',
+  neighbourhood: 'Jardim São Paulo',
+  street: 'Rua 49',
   houseNumber: '12',
 };
 
 const INITIAL_PATIENT_VALUES = {
   susCardNumber: '',
   name: '',
-  notificationType: '',
+  cpf: '',
   socialName: '',
+  birthDate: '',
   gender: '',
   nationality: '',
   phone: '',
@@ -59,8 +61,11 @@ export default function Patient() {
   const handleNameInputChange = (event) =>
     setPatientInformation({ ...patientInformation, name: event.target.value });
 
-  const handleNotificationTypeInputChange = (event) =>
-    setPatientInformation({ ...patientInformation, notificationType: event.target.value });
+  const handleCPFInputChange = (event) =>
+    setPatientInformation({ ...patientInformation, cpf: event.target.value });
+
+  const handleBirthDateInputChange = (event) =>
+    setPatientInformation({ ...patientInformation, birthDate: event.target.value });
 
   const handleSocialNameInputChange = (event) =>
     setPatientInformation({ ...patientInformation, socialName: event.target.value });
@@ -176,19 +181,13 @@ export default function Patient() {
               />
             </Field>
             <Field>
-              <label htmlFor="notificationType">Tipo de notificação</label>
-              <select
-                name="notificationType"
-                onChange={handleNotificationTypeInputChange}
-                value={patientInformation.notificationType}
-              >
-                <option value="" disabled selected hidden>
-                  Selecione uma opção
-                </option>
-                <option value="Sífilis adquirida">Sífilis adquirida</option>
-                <option value="Sífilis congênita">Sífilis congênita</option>
-                <option value="Sífilis gestante">Sífilis gestante</option>
-              </select>
+              <label htmlFor="cpf">CPF</label>
+              <input
+                name="cpf"
+                onChange={handleCPFInputChange}
+                value={patientInformation.cpf}
+                placeholder="Insira o CPF do paciente"
+              />
             </Field>
             <Field>
               <label htmlFor="socialName">Nome social</label>
@@ -197,6 +196,15 @@ export default function Patient() {
                 onChange={handleSocialNameInputChange}
                 value={patientInformation.socialName}
                 placeholder="Insira o nome do paciente"
+              />
+            </Field>
+            <Field>
+              <label htmlFor="birthDate">Data de nascimento</label>
+              <input
+                type="date"
+                name="birthDate"
+                onChange={handleBirthDateInputChange}
+                value={patientInformation.birthDate}
               />
             </Field>
             <Field>

@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
+import { treatmentMockedValues, treatmentResetValues } from '../../utils/mock';
 
 import Button from '../../components/Common/Button/Button';
 import Divider from '../../components/Layout/Form/Divider/Divider';
@@ -11,53 +12,33 @@ import SubmitContainer from '../../components/Layout/Form/SubmitContainer/Submit
 import style from './Treatment.module.css';
 
 // FIXME: Deletar objeto quando o banco de dados estiver acessível.
-const TEST_TREATMENT_VALUES = {
-  firstDoseLocation: 'Cohab Massangano',
-  firstDoseDate: '1917-03-08',
-  secondDoseLocation: 'Gercino Coelho',
-  secondDoseDate: '1917-03-08',
-  thirdDoseLocation: 'Dom Avelar',
-  thirdDoseDate: '1917-03-08',
-  otherTreatments: 'Substituir por valores dinâmicos!',
-};
-
-const INITIAL_TREATMENT_VALUES = {
-  firstDoseLocation: '',
-  firstDoseDate: '',
-  secondDoseLocation: '',
-  secondDoseDate: '',
-  thirdDoseLocation: '',
-  thirdDoseDate: '',
-  otherTreatments: '',
-};
+const MOCK_VALUES = treatmentMockedValues;
+const INITIAL_VALUES = treatmentResetValues;
 
 export default function Treatment() {
   const [formType, setFormType] = useState('create');
-  const [treatmentInformation, setTreatmentInformation] = useState(INITIAL_TREATMENT_VALUES);
+  const [treatmentInformation, setTreatmentInformation] = useState(INITIAL_VALUES);
   const { treatmentID } = useParams();
 
   /* Input handlers */
 
-  const handleFirstDoseLocationInputChange = (event) =>
-    setTreatmentInformation({ ...treatmentInformation, firstDoseLocation: event.target.value });
+  const handleMedicationInputChange = (event) =>
+    setTreatmentInformation({ ...treatmentInformation, medication: event.target.value });
 
-  const handleFirstDoseDateInputChange = (event) =>
-    setTreatmentInformation({ ...treatmentInformation, firstDoseDate: event.target.value });
+  const handleUBSLocationInputChange = (event) =>
+    setTreatmentInformation({ ...treatmentInformation, ubsLocation: event.target.value });
 
-  const handleSecondDoseLocationInputChange = (event) =>
-    setTreatmentInformation({ ...treatmentInformation, secondDoseLocation: event.target.value });
+  const handleStartDateInputChange = (event) =>
+    setTreatmentInformation({ ...treatmentInformation, startDate: event.target.value });
 
-  const handleSecondDoseDateInputChange = (event) =>
-    setTreatmentInformation({ ...treatmentInformation, secondDoseDate: event.target.value });
+  const handleDosageInputChange = (event) =>
+    setTreatmentInformation({ ...treatmentInformation, dosage: event.target.value });
 
-  const handleThirdDoseLocationInputChange = (event) =>
-    setTreatmentInformation({ ...treatmentInformation, thirdDoseLocation: event.target.value });
+  const handleObservationsInputChange = (event) =>
+    setTreatmentInformation({ ...treatmentInformation, observations: event.target.value });
 
-  const handleThirdDoseDateInputChange = (event) =>
-    setTreatmentInformation({ ...treatmentInformation, thirdDoseDate: event.target.value });
-
-  const handleOtherTreatmentsInputChange = (event) =>
-    setTreatmentInformation({ ...treatmentInformation, otherTreatments: event.target.value });
+  const handlePartnerInfoInputChange = (event) =>
+    setTreatmentInformation({ ...treatmentInformation, partnerInfo: event.target.value });
 
   /* Set the type of form on the first render */
   useEffect(() => {
@@ -90,7 +71,7 @@ export default function Treatment() {
   /* Insert the values of the object in the inputs in case of an update */
   function setInputValues() {
     // FIXME: Buscar informações no banco de dados e substituir o objeto abaixo.
-    setTreatmentInformation(TEST_TREATMENT_VALUES);
+    setTreatmentInformation(MOCK_VALUES);
   }
 
   /* Save the input values in the state and then send to the database */
@@ -116,80 +97,70 @@ export default function Treatment() {
       </Heading>
       <Form>
         <Divider>
-          <Heading type="secondary">Penicilina BZ</Heading>
+          <Heading type="secondary">Informações sobre o tratamento</Heading>
           <div className={style.container}>
-            <Heading type="tertiary">1ª Dose</Heading>
             <Field>
-              <label htmlFor="firstDoseLocation">Local UBS</label>
+              <label htmlFor="medication">Medicamento</label>
+              <select
+                name="medication"
+                onChange={handleMedicationInputChange}
+                value={treatmentInformation.medication}
+              >
+                <option value="" disabled selected hidden>
+                  Selecione uma opção
+                </option>
+                <option value="Penicilina">Penicilina</option>
+                <option value="Doxiciclina">Doxiciclina</option>
+                <option value="Ceftriaxona">Ceftriaxona</option>
+              </select>
+            </Field>
+            <Field>
+              <label htmlFor="ubsLocation">Localização da UBS</label>
               <input
                 type="text"
-                name="firstDoseLocation"
-                placeholder="Insira o local da primeira dose"
-                value={treatmentInformation.firstDoseLocation}
-                onChange={handleFirstDoseLocationInputChange}
+                name="ubsLocation"
+                placeholder="Insira a localização da UBS"
+                value={treatmentInformation.ubsLocation}
+                onChange={handleUBSLocationInputChange}
               />
             </Field>
             <Field>
-              <label htmlFor="firstDoseDate">Data</label>
+              <label htmlFor="startDate">Data</label>
               <input
                 type="date"
-                name="firstDoseDate"
-                onChange={handleFirstDoseDateInputChange}
-                value={treatmentInformation.firstDoseDate}
-              />
-            </Field>
-            <Heading type="tertiary">2ª Dose</Heading>
-            <Field>
-              <label htmlFor="secondDoseLocation">Local UBS</label>
-              <input
-                type="text"
-                name="secondDoseLocation"
-                placeholder="Insira o local da segunda dose"
-                value={treatmentInformation.secondDoseLocation}
-                onChange={handleSecondDoseLocationInputChange}
+                name="startDate"
+                onChange={handleStartDateInputChange}
+                value={treatmentInformation.startDate}
               />
             </Field>
             <Field>
-              <label htmlFor="secondDoseDate">Data</label>
+              <label htmlFor="dosage">Dosagem</label>
               <input
-                type="date"
-                name="secondDoseDate"
-                value={treatmentInformation.secondDoseDate}
-                onChange={handleSecondDoseDateInputChange}
-              />
-            </Field>
-            <Heading type="tertiary">3ª Dose</Heading>
-            <Field>
-              <label htmlFor="thirdDoseLocation">Local UBS</label>
-              <input
-                type="text"
-                name="thirdDoseLocation"
-                placeholder="Insira o local da terceira dose"
-                value={treatmentInformation.thirdDoseLocation}
-                onChange={handleThirdDoseLocationInputChange}
+                name="dosage"
+                placeholder="Insira as informações sobre dosagem"
+                onChange={handleDosageInputChange}
+                value={treatmentInformation.dosage}
               />
             </Field>
             <Field>
-              <label htmlFor="thirdDoseDate">Data</label>
-              <input
-                type="date"
-                name="thirdDoseDate"
-                value={treatmentInformation.thirdDoseDate}
-                onChange={handleThirdDoseDateInputChange}
-              />
+              <label htmlFor="observations">Observações sobre o tratamento</label>
+              <textarea
+                name="observations"
+                placeholder="Insira as observações sobre o tratamento"
+                value={treatmentInformation.observations}
+                onChange={handleObservationsInputChange}
+              ></textarea>
+            </Field>
+            <Field>
+              <label htmlFor="parnerInfo">Informações sobre parceiro</label>
+              <textarea
+                name="partnerInfo"
+                placeholder="Insira as informações sobre o parceiro"
+                value={treatmentInformation.partnerInfo}
+                onChange={handlePartnerInfoInputChange}
+              ></textarea>
             </Field>
           </div>
-        </Divider>
-        <Divider>
-          <Heading type="secondary">Outro tratamento</Heading>
-          <Field>
-            <textarea
-              name="otherTreatments"
-              placeholder="Descreva o tratamento"
-              value={treatmentInformation.otherTreatments}
-              onChange={handleOtherTreatmentsInputChange}
-            ></textarea>
-          </Field>
         </Divider>
         <SubmitContainer>
           <Button type="button" action="cancel" click={handleButtonClick}>

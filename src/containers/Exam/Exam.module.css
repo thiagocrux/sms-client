@@ -1,6 +1,6 @@
 .grid-container {
   display: grid;
-  column-gap: 2rem;
+  gap: 2rem 3rem;
 }
 
 .first-grid-container {
