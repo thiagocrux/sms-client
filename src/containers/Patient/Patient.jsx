@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import { patientMockValues, patientInitialValues } from '../../utils/mock';
+import { patientMockedValues, patientInitialValues } from '../../utils/mock';
 
 import Button from '../../components/Common/Button/Button';
 import Divider from '../../components/Layout/Form/Divider/Divider';
@@ -12,7 +12,7 @@ import SubmitContainer from '../../components/Layout/Form/SubmitContainer/Submit
 import style from './Patient.module.css';
 
 // FIXME: Deletar objeto quando o banco de dados estiver acessível.
-const MOCK_VALUES = patientMockValues;
+const MOCK_VALUES = patientMockedValues;
 const INITIAL_VALUES = patientInitialValues;
 
 export default function Patient() {

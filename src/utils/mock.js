@@ -1,22 +1,23 @@
 /* PACIENTE */
 
 export const patientMockedValues = {
-  susCardNumber: '136549846',
-  name: 'Fulano Detail',
-  cpf: '15623858989',
-  socialName: 'Fulano',
+  susCardNumber: '[NÚMERO DO CARTÃO DO SUS]',
+  name: '[NOME]',
+  cpf: '[CPF]',
+  socialName: '[NOME SOCIAL]',
   birthDate: '1978-12-03',
   gender: 'Masculino',
   nationality: 'Brasileiro',
-  phone: '(87) 98804-6895',
-  email: 'fulanodetail@email.com',
+  phone: '[TELEFONE]',
+  email: 'email@email.com',
   motherName: 'Fulana Detail',
-  zipCode: '56300000',
-  state: 'Pernambuco',
-  city: 'Petrolina',
-  neighbourhood: 'Jardim São Paulo',
-  street: 'Rua 49',
-  houseNumber: '12',
+  zipCode: '[CEP]',
+  state: '[ESTADO]',
+  city: '[CIDADE]',
+  neighbourhood: '[BAIRRO]',
+  street: '[RUA]',
+  houseNumber: '[NÚMERO]',
+  complement: '[COMPLEMENTO]',
 };
 
 export const patientInitialValues = {
@@ -36,6 +37,7 @@ export const patientInitialValues = {
   neighbourhood: '',
   street: '',
   houseNumber: '',
+  complement: '',
 };
 
 /* TRATAMENTO */
@@ -58,13 +60,13 @@ export const treatmentInitialValues = {
   partnerInfo: '',
 };
 
-/* EXAME */
+/* EXAME ############### */
 
-export const examMockValues = {
+export const examMockedValues = {
   quickTest: 'Não reagente',
   FTA_ABS: 'Reagente',
   firstVDRLDate: '1993-08-30',
-  firstVDRLTitration: 'Primeira',
+  firstVDRLTitration: '[]',
   secondVDRLDate: '1993-08-31',
   secondVDRLTitration: 'Segunda',
   thirdVDRLDate: '1993-08-29',
@@ -90,17 +92,24 @@ export const examInitialValues = {
 
 /* MONITORAMENTO */
 
-export const monitoringMockValues = {
+export const monitoringMockedValues = {
   firstVDRLDate: '1917-03-08',
+  firstVDRLTitration: '[TITULAÇÃO]',
   secondVDRLDate: '1917-03-08',
+  secondVDRLTitration: '[TITULAÇÃO]',
   thirdVDRLDate: '1917-03-08',
+  thirdVDRLTitration: '[TITULAÇÃO]',
   partnerTreatment: true,
-  observations: 'Substituir por conteúdo dinâmico',
+  observations: '[OBSERVAÇÕES]',
 };
+
 export const monitoringInitialValues = {
   firstVDRLDate: '',
+  firstVDRLTitration: '',
   secondVDRLDate: '',
+  secondVDRLTitration: '',
   thirdVDRLDate: '',
+  thirdVDRLTitration: '',
   partnerTreatment: false,
   observations: '',
 };

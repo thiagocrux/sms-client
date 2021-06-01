@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import { examInitialValues, examMockValues } from '../../utils/mock';
+import { examInitialValues, examMockedValues } from '../../utils/mock';
 
 import Button from '../../components/Common/Button/Button';
 import Divider from '../../components/Layout/Form/Divider/Divider';
@@ -12,7 +12,7 @@ import SubmitContainer from '../../components/Layout/Form/SubmitContainer/Submit
 import style from './Exam.module.css';
 
 // FIXME: Deletar objeto quando o banco de dados estiver acessível.
-const MOCK_VALUES = examMockValues;
+const MOCK_VALUES = examMockedValues;
 const INITIAL_VALUES = examInitialValues;
 
 export default function Exam() {
