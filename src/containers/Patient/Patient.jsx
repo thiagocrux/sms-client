@@ -33,12 +33,12 @@ export default function Patient() {
   }, []);
 
   /* LOG: Mostra todas as informações submetidas pelo formulário no console */
-  useEffect(() => {
-    if (patientInformation) {
-      console.log(`FORM TYPE: ${formType}`);
-      console.log(patientInformation);
-    }
-  }, [patientInformation, formType]);
+  // useEffect(() => {
+  //   if (patientInformation) {
+  //     console.log(`FORM TYPE: ${formType}`);
+  //     console.log(patientInformation);
+  //   }
+  // }, [patientInformation, formType]);
 
   /* Check the existence of params and set the type of form */
   function handleFormType() {

@@ -28,7 +28,9 @@ export default function Notification() {
 
   const getPatients = async () => {
     try {
-      const getRequest = await await axios.get('http://localhost:8000/api/v1/patients/');
+      const getRequest = await await axios.get(
+        'http://localhost:8000/api/v1/patients/'
+      );
       setPatients(getRequest.data);
     } catch (error) {
       console.log(`Error: ${error}`);

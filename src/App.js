@@ -11,29 +11,37 @@ import PageNotFound from './components/Pages/PageNotFound/PageNotFound';
 import Section from './components/Layout/Section/Section';
 import Treatment from './containers/Treatment/Treatment';
 
+import { PatientProvider } from './context/patientsContext';
+
 export default function App() {
   return (
     <>
       <Header />
       <Section>
         <Switch>
-          <Route exact path="/" component={Home} />
+          <Route exact path='/' component={Home} />
 
-          <Route exact path="/login" component={Login} />
+          <Route exact path='/login' component={Login} />
 
-          <Route exact path="/notification" component={Notification} />
+          <PatientProvider>
+            <Route exact path='/notification' component={Notification} />
+          </PatientProvider>
 
-          <Route exact path="/exam" component={Exam} />
-          <Route path="/exam/:examID" exact component={Exam} />
+          <Route exact path='/exam' component={Exam} />
+          <Route path='/exam/:examID' exact component={Exam} />
 
-          <Route exact path="/monitoring" component={Monitoring} />
-          <Route path="/monitoring/:monitoringID" exact component={Monitoring} />
+          <Route exact path='/monitoring' component={Monitoring} />
+          <Route
+            path='/monitoring/:monitoringID'
+            exact
+            component={Monitoring}
+          />
 
-          <Route exact path="/patient" component={Patient} />
-          <Route path="/patient/:patientID" component={Patient} />
+          <Route exact path='/patient' component={Patient} />
+          <Route path='/patient/:patientID' component={Patient} />
 
-          <Route exact path="/treatment" component={Treatment} />
-          <Route path="/treatment/:treatmentID" component={Treatment} />
+          <Route exact path='/treatment' component={Treatment} />
+          <Route path='/treatment/:treatmentID' component={Treatment} />
 
           <Route component={PageNotFound} />
         </Switch>
