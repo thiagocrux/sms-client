@@ -21,53 +21,9 @@ export default function Monitoring() {
   const { monitoringID } = useParams();
 
   /* Input handlers */
-  const handleFirstVDRLDateInputChange = (event) =>
-    setMonitoringInformation({
-      ...monitoringInformation,
-      firstVDRLDate: event.target.value,
-    });
-
-  const handleFirstVDRLTitrationInputChange = (event) =>
-    setMonitoringInformation({
-      ...monitoringInformation,
-      firstVDRLTitration: event.target.value,
-    });
-
-  const handleSecondVDRLDateInputChange = (event) =>
-    setMonitoringInformation({
-      ...monitoringInformation,
-      secondVDRLDate: event.target.value,
-    });
-
-  const handleSecondVDRLTitrationInputChange = (event) =>
-    setMonitoringInformation({
-      ...monitoringInformation,
-      secondVDRLTitration: event.target.value,
-    });
-
-  const handleThirdVDRLDateInputChange = (event) =>
-    setMonitoringInformation({
-      ...monitoringInformation,
-      thirdVDRLDate: event.target.value,
-    });
-
-  const handleThirdVDRLTitrationInputChange = (event) =>
-    setMonitoringInformation({
-      ...monitoringInformation,
-      thirdVDRLTitration: event.target.value,
-    });
-
-  const handlePartnerTreatmentInputChange = (event) =>
-    setMonitoringInformation({
-      ...monitoringInformation,
-      partnerTreatment: event.target.checked,
-    });
-
-  const handleObservationsInputChange = (event) =>
-    setMonitoringInformation({
-      ...monitoringInformation,
-      observations: event.target.value,
-    });
+  const handleChange = (field, value) => {
+    setMonitoringInformation({ ...monitoringInformation, [field]: value });
+  };
 
   /* Set the type of form on the first render */
   useEffect(() => {
@@ -78,12 +34,12 @@ export default function Monitoring() {
   }, []);
 
   /* LOG: Mostra todas as informações submetidas pelo formulário no console */
-  useEffect(() => {
-    if (monitoringInformation) {
-      console.log(`FORM TYPE: ${formType}`);
-      console.log(monitoringInformation);
-    }
-  }, [monitoringInformation, formType]);
+  // useEffect(() => {
+  //   if (monitoringInformation) {
+  //     console.log(`FORM TYPE: ${formType}`);
+  //     console.log(monitoringInformation);
+  //   }
+  // }, [monitoringInformation, formType]);
 
   /* Check the existence of params and set the type of form */
   function handleFormType() {
@@ -134,17 +90,17 @@ export default function Monitoring() {
               <input
                 type="date"
                 name="firstVDRLDate"
-                onChange={handleFirstVDRLDateInputChange}
+                onChange={(event) => handleChange('firstVDRLDate', event.currentTarget.value)}
                 value={monitoringInformation.firstVDRLDate}
               />
             </Field>
             <Field>
-              <label htmlFor="firstVDRLTituladion">Titulação</label>
+              <label htmlFor="firstVDRLTitration">Titulação</label>
               <input
                 type="text"
                 name="firstVDRLTitration"
                 placeholder="Insira a titulação"
-                onChange={handleFirstVDRLTitrationInputChange}
+                onChange={(event) => handleChange('firstVDRLTitration', event.currentTarget.value)}
                 value={monitoringInformation.firstVDRLTitration}
               />
             </Field>
@@ -154,17 +110,17 @@ export default function Monitoring() {
               <input
                 type="date"
                 name="secondVDRLDate"
-                onChange={handleSecondVDRLDateInputChange}
+                onChange={(event) => handleChange('secondVDRLDate', event.currentTarget.value)}
                 value={monitoringInformation.secondVDRLDate}
               />
             </Field>
             <Field>
-              <label htmlFor="secondVDRLTituladion">Titulação</label>
+              <label htmlFor="secondVDRLTitration">Titulação</label>
               <input
                 type="text"
                 name="secondVDRLTitration"
                 placeholder="Insira a titulação"
-                onChange={handleSecondVDRLTitrationInputChange}
+                onChange={(event) => handleChange('secondVDRLTitration', event.currentTarget.value)}
                 value={monitoringInformation.secondVDRLTitration}
               />
             </Field>
@@ -174,7 +130,7 @@ export default function Monitoring() {
               <input
                 type="date"
                 name="thirdVDRLDate"
-                onChange={handleThirdVDRLDateInputChange}
+                onChange={(event) => handleChange('thirdVDRLDate', event.currentTarget.value)}
                 value={monitoringInformation.thirdVDRLDate}
               />
             </Field>
@@ -184,7 +140,7 @@ export default function Monitoring() {
                 type="text"
                 name="thirdVDRLTitration"
                 placeholder="Insira a titulação"
-                onChange={handleThirdVDRLTitrationInputChange}
+                onChange={(event) => handleChange('thirdVDRLTitration', event.currentTarget.value)}
                 value={monitoringInformation.thirdVDRLTitration}
               />
             </Field>
@@ -195,7 +151,7 @@ export default function Monitoring() {
               <input
                 type="checkbox"
                 name="partnerTreatment"
-                onChange={handlePartnerTreatmentInputChange}
+                onChange={(event) => handleChange('partnerTreatment', event.currentTarget.checked)}
                 value={monitoringInformation.partnerTreatment}
               />
             </div>
@@ -206,7 +162,7 @@ export default function Monitoring() {
           <Field>
             <textarea
               name="observations"
-              onChange={handleObservationsInputChange}
+              onChange={(event) => handleChange('observations', event.currentTarget.value)}
               value={monitoringInformation.observations}
               placeholder="Insira as observações sobre o monitoramento"
             ></textarea>
