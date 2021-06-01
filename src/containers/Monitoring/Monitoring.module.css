@@ -1,12 +1,14 @@
 .grid-container {
   min-width: 100%;
+  margin-bottom: 2rem;
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   grid-template-rows: auto auto auto;
   gap: 2rem 3rem;
   grid-template-areas:
     'first-vdrl-heading second-vdrl-heading third-vdrl-heading'
-    'first-vdrl-date second-vdrl-date third-vdrl-date';
+    'first-vdrl-date second-vdrl-date third-vdrl-date'
+    'first-vdrl-titration second-vdrl-titration third-vdrl-titration';
 }
 
 .grid-container > *:nth-child(1) {
@@ -18,19 +20,31 @@
 }
 
 .grid-container > *:nth-child(3) {
-  grid-area: second-vdrl-heading;
+  grid-area: first-vdrl-titration;
 }
 
 .grid-container > *:nth-child(4) {
-  grid-area: second-vdrl-date;
+  grid-area: second-vdrl-heading;
 }
 
 .grid-container > *:nth-child(5) {
-  grid-area: third-vdrl-heading;
+  grid-area: second-vdrl-date;
 }
 
 .grid-container > *:nth-child(6) {
+  grid-area: second-vdrl-titration;
+}
+
+.grid-container > *:nth-child(7) {
+  grid-area: third-vdrl-heading;
+}
+
+.grid-container > *:nth-child(8) {
   grid-area: third-vdrl-date;
+}
+
+.grid-container > *:nth-child(9) {
+  grid-area: third-vdrl-titration;
 }
 
 .flex-container {
