@@ -7,7 +7,7 @@ export default function FlexContainer(props) {
     margin: props.margin || 0,
     flexDirection: props.direction || 'row',
     justifyContent: props.justify || null,
-    alignContent: props.align || null,
+    alignItems: props.align || null,
   };
 
   return (
