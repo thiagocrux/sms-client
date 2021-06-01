@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
+import { monitoringMockedValues, monitoringInitialValues } from '../../utils/mock';
 
 import Button from '../../components/Common/Button/Button';
 import Divider from '../../components/Layout/Form/Divider/Divider';
@@ -11,25 +12,12 @@ import SubmitContainer from '../../components/Layout/Form/SubmitContainer/Submit
 import style from './Monitoring.module.css';
 
 // FIXME: Deletar objeto quando o banco de dados estiver acessível.
-const TEST_MONITORING_VALUES = {
-  firstVDRLDate: '1917-03-08',
-  secondVDRLDate: '1917-03-08',
-  thirdVDRLDate: '1917-03-08',
-  partnerTreatment: true,
-  observations: 'Substituir por conteúdo dinâmico',
-};
-
-const INITIAL_MONITORING_VALUES = {
-  firstVDRLDate: '',
-  secondVDRLDate: '',
-  thirdVDRLDate: '',
-  partnerTreatment: false,
-  observations: '',
-};
+const MOCK_VALUES = monitoringMockedValues;
+const INITIAL_VALUES = monitoringInitialValues;
 
 export default function Monitoring() {
   const [formType, setFormType] = useState('create');
-  const [monitoringInformation, setMonitoringInformation] = useState(INITIAL_MONITORING_VALUES);
+  const [monitoringInformation, setMonitoringInformation] = useState(INITIAL_VALUES);
   const { monitoringID } = useParams();
 
   /* Input handlers */
@@ -39,16 +27,34 @@ export default function Monitoring() {
       firstVDRLDate: event.target.value,
     });
 
+  const handleFirstVDRLTitrationInputChange = (event) =>
+    setMonitoringInformation({
+      ...monitoringInformation,
+      firstVDRLTitration: event.target.value,
+    });
+
   const handleSecondVDRLDateInputChange = (event) =>
     setMonitoringInformation({
       ...monitoringInformation,
       secondVDRLDate: event.target.value,
     });
 
+  const handleSecondVDRLTitrationInputChange = (event) =>
+    setMonitoringInformation({
+      ...monitoringInformation,
+      secondVDRLTitration: event.target.value,
+    });
+
   const handleThirdVDRLDateInputChange = (event) =>
     setMonitoringInformation({
       ...monitoringInformation,
       thirdVDRLDate: event.target.value,
+    });
+
+  const handleThirdVDRLTitrationInputChange = (event) =>
+    setMonitoringInformation({
+      ...monitoringInformation,
+      thirdVDRLTitration: event.target.value,
     });
 
   const handlePartnerTreatmentInputChange = (event) =>
@@ -94,7 +100,7 @@ export default function Monitoring() {
   /* Insert the values of the object in the inputs in case of an update */
   function setInputValues() {
     // FIXME: Buscar informações no banco de dados e substituir o objeto abaixo.
-    setMonitoringInformation(TEST_MONITORING_VALUES);
+    setMonitoringInformation(MOCK_VALUES);
   }
 
   /* Save the input values in the state and then send to the database */
@@ -132,6 +138,16 @@ export default function Monitoring() {
                 value={monitoringInformation.firstVDRLDate}
               />
             </Field>
+            <Field>
+              <label htmlFor="firstVDRLTituladion">Titulação</label>
+              <input
+                type="text"
+                name="firstVDRLTitration"
+                placeholder="Insira a titulação"
+                onChange={handleFirstVDRLTitrationInputChange}
+                value={monitoringInformation.firstVDRLTitration}
+              />
+            </Field>
             <Heading type="tertiary">2ª VDRL</Heading>
             <Field>
               <label htmlFor="secondVDRLDate">Data</label>
@@ -142,6 +158,16 @@ export default function Monitoring() {
                 value={monitoringInformation.secondVDRLDate}
               />
             </Field>
+            <Field>
+              <label htmlFor="secondVDRLTituladion">Titulação</label>
+              <input
+                type="text"
+                name="secondVDRLTitration"
+                placeholder="Insira a titulação"
+                onChange={handleSecondVDRLTitrationInputChange}
+                value={monitoringInformation.secondVDRLTitration}
+              />
+            </Field>
             <Heading type="tertiary">3ª VDRL</Heading>
             <Field>
               <label htmlFor="thirdVDRLDate">Data</label>
@@ -150,6 +176,16 @@ export default function Monitoring() {
                 name="thirdVDRLDate"
                 onChange={handleThirdVDRLDateInputChange}
                 value={monitoringInformation.thirdVDRLDate}
+              />
+            </Field>
+            <Field>
+              <label htmlFor="thirdVDRLTituladion">Titulação</label>
+              <input
+                type="text"
+                name="thirdVDRLTitration"
+                placeholder="Insira a titulação"
+                onChange={handleThirdVDRLTitrationInputChange}
+                value={monitoringInformation.thirdVDRLTitration}
               />
             </Field>
           </div>

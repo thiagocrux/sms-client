@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
+import { patientMockedValues, patientInitialValues } from '../../utils/mock';
 
 import Button from '../../components/Common/Button/Button';
 import Divider from '../../components/Layout/Form/Divider/Divider';
@@ -11,49 +12,12 @@ import SubmitContainer from '../../components/Layout/Form/SubmitContainer/Submit
 import style from './Patient.module.css';
 
 // FIXME: Deletar objeto quando o banco de dados estiver acessível.
-const TEST_PATIENT_VALUES = {
-  susCardNumber: '136549846',
-  name: 'Fulano Detail',
-  cpf: '15623858989',
-  socialName: 'Fulano',
-  birthDate: '1978-12-03',
-  gender: 'Masculino',
-  nationality: 'Brasileiro',
-  phone: '(87) 98804-6895',
-  email: 'fulanodetail@email.com',
-  motherName: 'Fulana Detail',
-  zipCode: '56300000',
-  state: 'Pernambuco',
-  city: 'Petrolina',
-  neighbourhood: 'Jardim São Paulo',
-  street: 'Rua 49',
-  houseNumber: '12',
-};
-
-const INITIAL_PATIENT_VALUES = {
-  susCardNumber: '',
-  name: '',
-  cpf: '',
-  socialName: '',
-  birthDate: '',
-  gender: '',
-  nationality: '',
-  phone: '',
-  email: '',
-  motherName: '',
-  zipCode: '',
-  state: '',
-  city: '',
-  neighbourhood: '',
-  street: '',
-  houseNumber: '',
-};
+const MOCK_VALUES = patientMockedValues;
+const INITIAL_VALUES = patientInitialValues;
 
 export default function Patient() {
   const [formType, setFormType] = useState('create');
-  const [patientInformation, setPatientInformation] = useState(
-    INITIAL_PATIENT_VALUES
-  );
+  const [patientInformation, setPatientInformation] = useState(INITIAL_VALUES);
   const { patientID } = useParams();
 
   /* Input handlers */
@@ -91,7 +55,7 @@ export default function Patient() {
   /* Insert the values of the object in the inputs in case of an update */
   function setInputValues() {
     // FIXME: Buscar informações no banco de dados e substituir o objeto abaixo.
-    setPatientInformation(TEST_PATIENT_VALUES);
+    setPatientInformation(MOCK_VALUES);
   }
 
   /* Save the input values in the state and then send to the database */

@@ -3,6 +3,7 @@ import { Route, Switch } from 'react-router-dom';
 import Exam from './containers/Exam/Exam';
 import Header from './components/Layout/Header/Header';
 import Home from './components/Pages/Home/Home';
+import Login from './containers/Login/Login';
 import Monitoring from './containers/Monitoring/Monitoring';
 import Notification from './containers/Notification/Notification';
 import Patient from './containers/Patient/Patient';
@@ -17,6 +18,8 @@ export default function App() {
       <Section>
         <Switch>
           <Route exact path="/" component={Home} />
+
+          <Route exact path="/login" component={Login} />
 
           <Route exact path="/notification" component={Notification} />
 

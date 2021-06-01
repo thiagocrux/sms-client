@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
+import { examInitialValues, examMockedValues } from '../../utils/mock';
 
 import Button from '../../components/Common/Button/Button';
 import Divider from '../../components/Layout/Form/Divider/Divider';
@@ -11,37 +12,12 @@ import SubmitContainer from '../../components/Layout/Form/SubmitContainer/Submit
 import style from './Exam.module.css';
 
 // FIXME: Deletar objeto quando o banco de dados estiver acessível.
-const TEST_EXAM_VALUES = {
-  quickTest: 'Não reagente',
-  FTA_ABS: 'Reagente',
-  firstVDRLDate: '1993-08-30',
-  firstVDRLTitration: 'Primeira',
-  secondVDRLDate: '1993-08-31',
-  secondVDRLTitration: 'Segunda',
-  thirdVDRLDate: '1993-08-29',
-  thirdVDRLTitration: 'Terceira',
-  observationReferences: 'Colocar material dinâmico',
-  onTreatment: true,
-  onObservation: false,
-};
-
-const INITIAL_EXAM_VALUES = {
-  quickTest: '',
-  FTA_ABS: '',
-  firstVDRLDate: '',
-  firstVDRLTitration: '',
-  secondVDRLDate: '',
-  secondVDRLTitration: '',
-  thirdVDRLDate: '',
-  thirdVDRLTitration: '',
-  observationReferences: '',
-  onTreatment: false,
-  onObservation: false,
-};
+const MOCK_VALUES = examMockedValues;
+const INITIAL_VALUES = examInitialValues;
 
 export default function Exam() {
   const [formType, setFormType] = useState('create');
-  const [examInformation, setExamInformation] = useState(INITIAL_EXAM_VALUES);
+  const [examInformation, setExamInformation] = useState(INITIAL_VALUES);
   const { examID } = useParams();
 
   /* Input handlers */
@@ -109,7 +85,7 @@ export default function Exam() {
   /* Insert the values of the object in the inputs in case of an update */
   function setInputValues() {
     // FIXME: Buscar informações no banco de dados e substituir o objeto abaixo.
-    setExamInformation(TEST_EXAM_VALUES);
+    setExamInformation(MOCK_VALUES);
   }
 
   /* Save the input values in the state and then send to the database */
