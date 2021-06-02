@@ -62,7 +62,7 @@ const MOCK_PATIENTS = [
 
 export const patientsContext = createContext();
 
-const PatientProvider = ({ children }) => {
+const PatientsProvider = ({ children }) => {
   const [patients, setPatients] = useState(MOCK_PATIENTS);
 
   return (
@@ -72,4 +72,4 @@ const PatientProvider = ({ children }) => {
   );
 };
 
-export default PatientProvider;
+export default PatientsProvider;

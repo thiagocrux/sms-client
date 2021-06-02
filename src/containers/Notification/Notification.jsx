@@ -1,15 +1,15 @@
-import React, { useEffect, useState } from 'react';
-import axios from 'axios';
+import React, { useContext, useState } from 'react';
+// import axios from 'axios';
 
 import Tabs from '../../components/Notifications/Tabs/Tabs';
 import SearchForm from '../../components/Patients/SearchForm/SearchForm';
 import List from '../../components/Patients/List/List';
 
+import { patientsContext } from '../../context/patientsContext.js';
+
 import style from './Notification.module.css';
 
 export default function Notification() {
-  const [patients, setPatients] = useState([]);
-
   /* TODO:
     1. De início, ao buscar o paciente, o componente <SearchForm /> deve ser o único à mostra
       1.1 Se a busca der algum resultado, mostrar a lista de pacientes;
@@ -22,24 +22,47 @@ export default function Notification() {
     3. Ao clicar numa das abas de notificação, o usuário será encaminhado a sua respectiva página;
   */
 
-  useEffect(() => {
-    getPatients();
-  }, []);
+  // useEffect(() => {
+  //   getPatients();
+  // }, []);
 
-  const getPatients = async () => {
-    try {
-      const getRequest = await await axios.get(
-        'http://localhost:8000/api/v1/patients/'
-      );
-      setPatients(getRequest.data);
-    } catch (error) {
-      console.log(`Error: ${error}`);
-    }
+  // const getPatients = async () => {
+  //   try {
+  //     const getRequest = await await axios.get(
+  //       'http://localhost:8000/api/v1/patients/'
+  //     );
+  //     setPatients(getRequest.data);
+  //   } catch (error) {
+  //     console.log(`Error: ${error}`);
+  //   }
+  // };
+
+  const { patients } = useContext(patientsContext);
+  const [search, setSearch] = useState({
+    criterion: 'sus-card-number',
+    inputValue: '',
+  });
+
+  const handleSubmit = () => {
+    const { criterion, inputValue } = search;
+
+    const patient = patients.filter(patient => {
+      const key = Object.keys(patient).filter(key => key === criterion);
+      return patient[key] === inputValue;
+    });
+
+    console.log(patient);
+
+    setSearch({ ...search, inputValue: '' });
   };
 
   return (
     <div className={style.notification}>
-      <SearchForm />
+      <SearchForm
+        handleSubmit={handleSubmit}
+        search={search}
+        setSearch={setSearch}
+      />
       <List patients={patients} />
       <Tabs />
     </div>

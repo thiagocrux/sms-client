@@ -6,25 +6,28 @@ import SearchItemNotFound from '../../Common/SearchItemNotFound/SearchItemNotFou
 
 import style from './List.module.css';
 
-export default function List(props) {
-  const patients = Object.values(props.patients)[0];
+export default function List({ patients }) {
+  // const patients = Object.values(props.patients)[0];
 
   return (
     <div className={style['list-container']}>
       {patients ? (
         <>
-          <Heading type="primary">Resultado da busca:</Heading>
+          <Heading type='primary'>Resultado da busca:</Heading>
           <div className={style['list-header']}>
             <span>Cartão do SUS</span>
             <span>CPF</span>
             <span>Nome do paciente</span>
           </div>
           <ul className={style.list}>
-            {patients && patients.map((patient) => <ListItem patient={patient} />)}
+            {patients &&
+              patients.map(patient => (
+                <ListItem key={patient.cpf} patient={patient} />
+              ))}
           </ul>
         </>
       ) : (
-        <SearchItemNotFound subject="paciente" link="/patient" />
+        <SearchItemNotFound subject='paciente' link='/patient' />
       )}
     </div>
   );
