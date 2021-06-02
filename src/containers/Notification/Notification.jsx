@@ -44,32 +44,28 @@ export default function Notification() {
   });
   const [filteredPatients, setFilteredPatients] = useState([]);
 
-  useEffect(() => {
-    const handleChange = () => {
-      const { criterion, inputValue } = search;
-      const filter = patients.filter(filteredPatients => {
-        const key = Object.keys(filteredPatients).filter(
-          key => key === criterion
-        );
-        return filteredPatients[key].toLowerCase().includes(inputValue);
-      });
-      setFilteredPatients(filter);
-      console.log(filter);
-    };
-
-    handleChange();
-  }, [patients, search]);
-
   const handleSubmit = () => {
     const { criterion, inputValue } = search;
 
     const filteredPatient = patients.filter(patient => {
       const key = Object.keys(patient).filter(key => key === criterion);
-      return patient[key] === inputValue;
+      return patient[key].toLowerCase() === inputValue.toLowerCase();
     });
-    setSearch({ ...search, inputValue: '' });
+    console.log('Patient:', filteredPatient);
     setFilteredPatients(filteredPatient);
   };
+
+  useEffect(() => {
+    const { criterion, inputValue } = search;
+
+    const filter = patients.filter(filteredPatients => {
+      const key = Object.keys(filteredPatients).filter(
+        key => key === criterion
+      );
+      return filteredPatients[key].toLowerCase().includes(inputValue);
+    });
+    setFilteredPatients(filter);
+  }, [patients, search]);
 
   return (
     <div className={style.notification}>
