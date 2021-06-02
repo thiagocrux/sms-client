@@ -76,218 +76,182 @@ export default function Patient() {
 
   return (
     <>
-      <Heading type='primary'>
+      <Heading type="primary">
         {formType === 'update' ? 'Atualização' : 'Cadastro'} de paciente
       </Heading>
       <Form>
         <Divider>
-          <Heading type='secondary'>Dados do paciente</Heading>
-          <div
-            className={`${style['grid-container']} ${style['first-grid-container']}`}
-          >
+          <Heading type="secondary">Dados do paciente</Heading>
+          <div className={`${style['grid-container']} ${style['first-grid-container']}`}>
             <Field>
-              <label htmlFor='susCardNumber'>Código do SUS</label>
+              <label htmlFor="susCardNumber">Código do SUS</label>
               <input
-                name='susCardNumber'
-                onChange={event =>
-                  handleChange('susCardNumber', event.currentTarget.value)
-                }
+                name="susCardNumber"
+                onChange={(event) => handleChange('susCardNumber', event.currentTarget.value)}
                 value={patientInformation.susCardNumber}
-                placeholder='Insira o número do cartão do SUS'
+                placeholder="Insira o número do cartão do SUS"
               />
             </Field>
             <Field>
-              <label htmlFor='name'>Nome</label>
+              <label htmlFor="name">Nome</label>
               <input
-                name='name'
-                onChange={event =>
-                  handleChange('name', event.currentTarget.value)
-                }
+                name="name"
+                onChange={(event) => handleChange('name', event.currentTarget.value)}
                 value={patientInformation.name}
-                placeholder='Insira o nome do paciente'
+                placeholder="Insira o nome do paciente"
               />
             </Field>
             <Field>
-              <label htmlFor='cpf'>CPF</label>
+              <label htmlFor="cpf">CPF</label>
               <input
-                name='cpf'
-                onChange={event =>
-                  handleChange('cpf', event.currentTarget.value)
-                }
+                name="cpf"
+                onChange={(event) => handleChange('cpf', event.currentTarget.value)}
                 value={patientInformation.cpf}
-                placeholder='Insira o CPF do paciente'
+                placeholder="Insira o CPF do paciente"
               />
             </Field>
             <Field>
-              <label htmlFor='socialName'>Nome social</label>
+              <label htmlFor="socialName">Nome social</label>
               <input
-                name='socialName'
-                onChange={event =>
-                  handleChange('socialName', event.currentTarget.value)
-                }
+                name="socialName"
+                onChange={(event) => handleChange('socialName', event.currentTarget.value)}
                 value={patientInformation.socialName}
-                placeholder='Insira o nome do paciente'
+                placeholder="Insira o nome do paciente"
               />
             </Field>
             <Field>
-              <label htmlFor='birthDate'>Data de nascimento</label>
+              <label htmlFor="birthDate">Data de nascimento</label>
               <input
-                type='date'
-                name='birthDate'
-                onChange={event =>
-                  handleChange('birthDate', event.currentTarget.value)
-                }
+                type="date"
+                name="birthDate"
+                onChange={(event) => handleChange('birthDate', event.currentTarget.value)}
                 value={patientInformation.birthDate}
               />
             </Field>
             <Field>
-              <label htmlFor='gender'>Sexo</label>
+              <label htmlFor="gender">Sexo</label>
               <select
-                name='gender'
-                onChange={event =>
-                  handleChange('gender', event.currentTarget.value)
-                }
+                name="gender"
+                onChange={(event) => handleChange('gender', event.currentTarget.value)}
                 value={patientInformation.gender}
               >
-                <option value='' disabled selected hidden>
+                <option value="" disabled selected hidden>
                   Selecione uma opção
                 </option>
-                <option value='Feminino'>Feminino</option>
-                <option value='Masculino'>Masculino</option>
-                <option value='Outro'>Outro</option>
+                <option value="Feminino">Feminino</option>
+                <option value="Masculino">Masculino</option>
+                <option value="Outro">Outro</option>
               </select>
             </Field>
             <Field>
-              <label htmlFor='nationality'>Naturalidade</label>
+              <label htmlFor="nationality">Naturalidade</label>
               <select
-                name='nationality'
-                onChange={event =>
-                  handleChange('nationality', event.currentTarget.value)
-                }
+                name="nationality"
+                onChange={(event) => handleChange('nationality', event.currentTarget.value)}
                 value={patientInformation.nationality}
               >
-                <option value='' disabled hidden>
+                <option value="" disabled hidden>
                   Selecione uma opção
                 </option>
-                <option value='Brasileiro'>Brasileiro</option>
-                <option value='Naturalizado'>Naturalizado</option>
-                <option value='Outro'>Outro</option>
+                <option value="Brasileiro">Brasileiro</option>
+                <option value="Naturalizado">Naturalizado</option>
+                <option value="Outro">Outro</option>
               </select>
             </Field>
             <Field>
-              <label htmlFor='phone'>Telefone</label>
+              <label htmlFor="phone">Telefone</label>
               <input
-                name='phone'
-                onChange={event =>
-                  handleChange('phone', event.currentTarget.value)
-                }
+                name="phone"
+                onChange={(event) => handleChange('phone', event.currentTarget.value)}
                 value={patientInformation.phone}
-                placeholder='Insira o telefone do paciente'
+                placeholder="Insira o telefone do paciente"
               />
             </Field>
             <Field>
-              <label htmlFor='email'>E-mail</label>
+              <label htmlFor="email">E-mail</label>
               <input
-                name='email'
-                onChange={event =>
-                  handleChange('email', event.currentTarget.value)
-                }
+                name="email"
+                onChange={(event) => handleChange('email', event.currentTarget.value)}
                 value={patientInformation.email}
-                type='email'
-                placeholder='Insira o e-mail do paciente'
+                type="email"
+                placeholder="Insira o e-mail do paciente"
               />
             </Field>
             <Field>
-              <label htmlFor='motherName'>Nome da mãe do paciente</label>
+              <label htmlFor="motherName">Nome da mãe do paciente</label>
               <input
-                name='motherName'
-                onChange={event =>
-                  handleChange('motherName', event.currentTarget.value)
-                }
+                name="motherName"
+                onChange={(event) => handleChange('motherName', event.currentTarget.value)}
                 value={patientInformation.motherName}
-                placeholder='Insira o nome da mãe do paciente'
+                placeholder="Insira o nome da mãe do paciente"
               />
             </Field>
           </div>
         </Divider>
         <Divider>
-          <Heading type='secondary'>Endereço do paciente</Heading>
-          <div
-            className={`${style['grid-container']} ${style['second-grid-container']}`}
-          >
+          <Heading type="secondary">Endereço do paciente</Heading>
+          <div className={`${style['grid-container']} ${style['second-grid-container']}`}>
             <Field>
-              <label htmlFor='zipCode'>CEP</label>
+              <label htmlFor="zipCode">CEP</label>
               <input
-                name='zipCode'
-                onChange={event =>
-                  handleChange('zipCode', event.currentTarget.value)
-                }
+                name="zipCode"
+                onChange={(event) => handleChange('zipCode', event.currentTarget.value)}
                 value={patientInformation.zipCode}
-                placeholder='Insira o CEP da residência'
+                placeholder="Insira o CEP da residência"
               />
             </Field>
             <Field>
-              <label htmlFor='state'>Estado</label>
+              <label htmlFor="state">Estado</label>
               <input
-                name='state'
-                onChange={event =>
-                  handleChange('state', event.currentTarget.value)
-                }
+                name="state"
+                onChange={(event) => handleChange('state', event.currentTarget.value)}
                 value={patientInformation.state}
-                placeholder='Insira o estado de residência'
+                placeholder="Insira o estado de residência"
               />
             </Field>
             <Field>
-              <label htmlFor='city'>Cidade</label>
+              <label htmlFor="city">Cidade</label>
               <input
-                name='city'
-                onChange={event =>
-                  handleChange('city', event.currentTarget.value)
-                }
+                name="city"
+                onChange={(event) => handleChange('city', event.currentTarget.value)}
                 value={patientInformation.city}
-                placeholder='Insira a cidade de residência'
+                placeholder="Insira a cidade de residência"
               />
             </Field>
             <Field>
-              <label htmlFor='neighbourhood'>Bairro</label>
+              <label htmlFor="neighbourhood">Bairro</label>
               <input
-                name='neighbourhood'
-                onChange={event =>
-                  handleChange('neighbourhood', event.currentTarget.value)
-                }
+                name="neighbourhood"
+                onChange={(event) => handleChange('neighbourhood', event.currentTarget.value)}
                 value={patientInformation.neighbourhood}
-                placeholder='Insira o bairro de residência'
+                placeholder="Insira o bairro de residência"
               />
             </Field>
             <Field>
-              <label htmlFor='street'>Logradouro</label>
+              <label htmlFor="street">Logradouro</label>
               <input
-                name='street'
-                onChange={event =>
-                  handleChange('street', event.currentTarget.value)
-                }
+                name="street"
+                onChange={(event) => handleChange('street', event.currentTarget.value)}
                 value={patientInformation.street}
-                placeholder='Insira a rua de residência'
+                placeholder="Insira a rua de residência"
               />
             </Field>
             <Field>
-              <label htmlFor='houseNumber'>Número da residência</label>
+              <label htmlFor="houseNumber">Número da residência</label>
               <input
-                name='houseNumber'
-                onChange={event =>
-                  handleChange('houseNumber', event.currentTarget.value)
-                }
+                name="houseNumber"
+                onChange={(event) => handleChange('houseNumber', event.currentTarget.value)}
                 value={patientInformation.houseNumber}
-                placeholder='Insira o número da residência'
+                placeholder="Insira o número da residência"
               />
             </Field>
           </div>
         </Divider>
         <SubmitContainer>
-          <Button type='button' action='cancel' click={handleButtonClick}>
+          <Button type="button" action="cancel" click={handleButtonClick}>
             Cancelar
           </Button>
-          <Button type='button' action='submit' click={handleButtonClick}>
+          <Button type="button" action="submit" click={handleButtonClick}>
             {formType === 'create' ? 'Cadastrar' : 'Salvar'}
           </Button>
         </SubmitContainer>

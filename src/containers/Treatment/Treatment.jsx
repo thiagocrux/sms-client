@@ -21,24 +21,8 @@ export default function Treatment() {
   const { treatmentID } = useParams();
 
   /* Input handlers */
-
-  const handleMedicationInputChange = (event) =>
-    setTreatmentInformation({ ...treatmentInformation, medication: event.target.value });
-
-  const handleUBSLocationInputChange = (event) =>
-    setTreatmentInformation({ ...treatmentInformation, ubsLocation: event.target.value });
-
-  const handleStartDateInputChange = (event) =>
-    setTreatmentInformation({ ...treatmentInformation, startDate: event.target.value });
-
-  const handleDosageInputChange = (event) =>
-    setTreatmentInformation({ ...treatmentInformation, dosage: event.target.value });
-
-  const handleObservationsInputChange = (event) =>
-    setTreatmentInformation({ ...treatmentInformation, observations: event.target.value });
-
-  const handlePartnerInfoInputChange = (event) =>
-    setTreatmentInformation({ ...treatmentInformation, partnerInfo: event.target.value });
+  const changeHandler = (field, value) =>
+    setTreatmentInformation({ ...treatmentInformation, [field]: value });
 
   /* Set the type of form on the first render */
   useEffect(() => {
@@ -103,7 +87,7 @@ export default function Treatment() {
               <label htmlFor="medication">Medicamento</label>
               <select
                 name="medication"
-                onChange={handleMedicationInputChange}
+                onChange={(event) => changeHandler('medication', event.currentTarget.value)}
                 value={treatmentInformation.medication}
               >
                 <option value="" disabled selected hidden>
@@ -120,8 +104,8 @@ export default function Treatment() {
                 type="text"
                 name="ubsLocation"
                 placeholder="Insira a localização da UBS"
+                onChange={(event) => changeHandler('ubsLocation', event.currentTarget.value)}
                 value={treatmentInformation.ubsLocation}
-                onChange={handleUBSLocationInputChange}
               />
             </Field>
             <Field>
@@ -129,7 +113,7 @@ export default function Treatment() {
               <input
                 type="date"
                 name="startDate"
-                onChange={handleStartDateInputChange}
+                onChange={(event) => changeHandler('startDate', event.currentTarget.value)}
                 value={treatmentInformation.startDate}
               />
             </Field>
@@ -138,7 +122,7 @@ export default function Treatment() {
               <input
                 name="dosage"
                 placeholder="Insira as informações sobre dosagem"
-                onChange={handleDosageInputChange}
+                onChange={(event) => changeHandler('dosage', event.currentTarget.value)}
                 value={treatmentInformation.dosage}
               />
             </Field>
@@ -147,8 +131,8 @@ export default function Treatment() {
               <textarea
                 name="observations"
                 placeholder="Insira as observações sobre o tratamento"
+                onChange={(event) => changeHandler('observations', event.currentTarget.value)}
                 value={treatmentInformation.observations}
-                onChange={handleObservationsInputChange}
               ></textarea>
             </Field>
             <Field>
@@ -156,8 +140,8 @@ export default function Treatment() {
               <textarea
                 name="partnerInfo"
                 placeholder="Insira as informações sobre o parceiro"
+                onChange={(event) => changeHandler('partnerInfo', event.currentTarget.value)}
                 value={treatmentInformation.partnerInfo}
-                onChange={handlePartnerInfoInputChange}
               ></textarea>
             </Field>
           </div>
