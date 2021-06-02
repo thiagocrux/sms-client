@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 // import axios from 'axios';
 
 import Tabs from '../../components/Notifications/Tabs/Tabs';
@@ -39,21 +39,36 @@ export default function Notification() {
 
   const { patients } = useContext(patientsContext);
   const [search, setSearch] = useState({
-    criterion: 'sus-card-number',
+    criterion: 'susCardNumber',
     inputValue: '',
   });
+  const [filteredPatients, setFilteredPatients] = useState([]);
+
+  useEffect(() => {
+    const handleChange = () => {
+      const { criterion, inputValue } = search;
+      const filter = patients.filter(filteredPatients => {
+        const key = Object.keys(filteredPatients).filter(
+          key => key === criterion
+        );
+        return filteredPatients[key].toLowerCase().includes(inputValue);
+      });
+      setFilteredPatients(filter);
+      console.log(filter);
+    };
+
+    handleChange();
+  }, [patients, search]);
 
   const handleSubmit = () => {
     const { criterion, inputValue } = search;
 
-    const patient = patients.filter(patient => {
+    const filteredPatient = patients.filter(patient => {
       const key = Object.keys(patient).filter(key => key === criterion);
       return patient[key] === inputValue;
     });
-
-    console.log(patient);
-
     setSearch({ ...search, inputValue: '' });
+    setFilteredPatients(filteredPatient);
   };
 
   return (
@@ -63,7 +78,7 @@ export default function Notification() {
         search={search}
         setSearch={setSearch}
       />
-      <List patients={patients} />
+      <List patients={filteredPatients} />
       <Tabs />
     </div>
   );
