@@ -150,7 +150,7 @@ export default function Patient() {
                 onChange={(event) => handleChange('nationality', event.currentTarget.value)}
                 value={patientInformation.nationality}
               >
-                <option value="" disabled hidden>
+                <option value="" selected disabled hidden>
                   Selecione uma opção
                 </option>
                 <option value="Brasileiro">Brasileiro</option>
