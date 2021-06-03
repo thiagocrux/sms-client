@@ -22,21 +22,6 @@ export default function Notification() {
     3. Ao clicar numa das abas de notificação, o usuário será encaminhado a sua respectiva página;
   */
 
-  // useEffect(() => {
-  //   getPatients();
-  // }, []);
-
-  // const getPatients = async () => {
-  //   try {
-  //     const getRequest = await await axios.get(
-  //       'http://localhost:8000/api/v1/patients/'
-  //     );
-  //     setPatients(getRequest.data);
-  //   } catch (error) {
-  //     console.log(`Error: ${error}`);
-  //   }
-  // };
-
   const { patients } = useContext(patientsContext);
   const [search, setSearch] = useState({
     criterion: 'susCardNumber',

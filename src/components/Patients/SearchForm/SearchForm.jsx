@@ -6,7 +6,7 @@ import Heading from '../../Layout/Heading/Heading';
 
 import style from './SearchForm.module.css';
 
-export default function PatientSearch({ handleSubmit, search, setSearch }) {
+export default function SearchForm({ handleSubmit, search, setSearch }) {
   const { criterion, inputValue } = search;
 
   return (

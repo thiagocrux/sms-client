@@ -11,7 +11,7 @@ export default function List({ patients }) {
 
   return (
     <div className={style['list-container']}>
-      {patients ? (
+      {patients.length ? (
         <>
           <Heading type='primary'>Resultado da busca:</Heading>
           <div className={style['list-header']}>
