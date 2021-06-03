@@ -2,14 +2,16 @@ import React from 'react';
 
 import style from './Button.module.css';
 
-export default function Button(props) {
+export default function Button({ click, action, type, children }) {
   return (
     <button
-      type={props.type}
-      onClick={() => props.click(props.action)}
-      className={`${style.button} ${props.action === 'submit' ? style.continue : style.cancel}`}
+      type={type}
+      onClick={() => click(action)}
+      className={`${style.button} ${
+        action === 'submit' ? style.continue : style.cancel
+      }`}
     >
-      {props.children}
+      {children}
     </button>
   );
 }
