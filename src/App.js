@@ -31,35 +31,35 @@ export default function App() {
             <Route exact path='/notification'>
               <Notification />
             </Route>
-            <Route exact path='/notification/:patientId'>
+            <Route path='/notification/:patientID'>
               <Notification />
             </Route>
 
             <Route exact path='/exam'>
               <Exam />
             </Route>
-            <Route exact path='/exam/:examID'>
+            <Route path='/exam/:examID'>
               <Exam />
             </Route>
 
             <Route exact path='/monitoring'>
               <Monitoring />
             </Route>
-            <Route exact path='/monitoring/:monitoringID'>
+            <Route path='/monitoring/:monitoringID'>
               <Monitoring />
             </Route>
 
             <Route exact path='/patient'>
               <Patient />
             </Route>
-            <Route exact path='/patient/:patientID'>
+            <Route path='/patient/:patientID'>
               <Patient />
             </Route>
 
             <Route exact path='/treatment'>
               <Treatment />
             </Route>
-            <Route exact path='/treatment/:treatmentID'>
+            <Route path='/treatment/:treatmentID'>
               <Treatment />
             </Route>
 

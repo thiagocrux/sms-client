@@ -8,7 +8,7 @@ import List from '../../components/Patients/List/List';
 import { patientsContext } from '../../context/patientsContext.js';
 
 import style from './Notification.module.css';
-import { useHistory, useLocation, useParams } from 'react-router';
+import { useLocation, useParams } from 'react-router';
 import SelectedPatientInfo from '../../components/SelectedPatientInfo/SelectedPatientInfo';
 
 export default function Notification() {
@@ -53,7 +53,9 @@ export default function Notification() {
       const key = Object.keys(filteredPatients).filter(
         key => key === criterion
       );
-      return filteredPatients[key].toLowerCase().includes(inputValue);
+      return filteredPatients[key]
+        .toLowerCase()
+        .includes(inputValue.toLowerCase());
     });
     setFilteredPatients(filter);
   }, [patients, search]);
