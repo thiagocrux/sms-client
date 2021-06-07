@@ -2,6 +2,7 @@ import { createContext, useState } from 'react';
 
 const MOCK_PATIENTS = [
   {
+    id: 1,
     susCardNumber: '123456789',
     name: 'Arthos',
     cpf: '111111111',
@@ -21,6 +22,7 @@ const MOCK_PATIENTS = [
     complement: '[COMPLEMENTO]',
   },
   {
+    id: 2,
     susCardNumber: '222222222',
     name: 'Porthos',
     cpf: '222222222',
@@ -40,6 +42,7 @@ const MOCK_PATIENTS = [
     complement: '[COMPLEMENTO]',
   },
   {
+    id: 3,
     susCardNumber: '333333333',
     name: 'Aramis',
     cpf: '333333333',

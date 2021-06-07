@@ -20,25 +20,52 @@ export default function App() {
       <PatientsProvider>
         <Section>
           <Switch>
-            <Route exact path="/" component={HomePage} />
+            <Route exact path="/">
+              <HomePage />
+            </Route>
 
-            <Route exact path="/login" component={LoginPage} />
+            <Route exact path="/login">
+              <LoginPage />
+            </Route>
 
-            <Route exact path="/notification" component={NotificationPage} />
+            <Route exact path="/notification">
+              <NotificationPage />
+            </Route>
+            <Route path="/notification/:patientID">
+              <NotificationPage />
+            </Route>
 
-            <Route exact path="/exam" component={ExamForm} />
-            <Route path="/exam/:examID" exact component={ExamForm} />
+            <Route exact path="/exam">
+              <ExamForm />
+            </Route>
+            <Route path="/exam/:examID">
+              <ExamForm />
+            </Route>
 
-            <Route exact path="/monitoring" component={MonitoringForm} />
-            <Route path="/monitoring/:monitoringID" exact component={MonitoringForm} />
+            <Route exact path="/monitoring">
+              <MonitoringForm />
+            </Route>
+            <Route path="/monitoring/:monitoringID">
+              <MonitoringForm />
+            </Route>
 
-            <Route exact path="/patient" component={PatientForm} />
-            <Route path="/patient/:patientID" component={PatientForm} />
+            <Route exact path="/patient">
+              <PatientForm />
+            </Route>
+            <Route path="/patient/:patientID">
+              <PatientForm />
+            </Route>
 
-            <Route exact path="/treatment" component={TreatmentForm} />
-            <Route path="/treatment/:treatmentID" component={TreatmentForm} />
+            <Route exact path="/treatment">
+              <TreatmentForm />
+            </Route>
+            <Route path="/treatment/:treatmentID">
+              <TreatmentForm />
+            </Route>
 
-            <Route component={PageNotFound} />
+            <Route>
+              <PageNotFound />
+            </Route>
           </Switch>
         </Section>
       </PatientsProvider>

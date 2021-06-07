@@ -22,7 +22,8 @@ export default function ExamForm() {
   const { examID } = useParams();
 
   /* Input handlers */
-  const handleChange = (field, value) => setExamInformation({ ...examInformation, [field]: value });
+  const handleChange = (field, value) =>
+    setExamInformation({ ...examInformation, [field]: value });
 
   /* Set the type of form on the first render */
   useEffect(() => {
@@ -76,107 +77,126 @@ export default function ExamForm() {
 
   return (
     <>
-      <Heading type="primary">
+      <Heading type='primary'>
         {formType === 'update' ? 'Atualização' : 'Cadastro'} de exame
       </Heading>
       <Form>
         <Divider>
-          <Heading type="secondary">Teste treponêmico</Heading>
+          <Heading type='secondary'>Teste treponêmico</Heading>
           <div className={style.trepTestGridContainer}>
             <Field>
-              <label htmlFor="trepTestType">Tipo de teste</label>
+              <label htmlFor='trepTestType'>Tipo de teste</label>
               <select
-                name="trepTestType"
-                onChange={(event) => handleChange('trepTestType', event.currentTarget.value)}
+                name='trepTestType'
+                onChange={event =>
+                  handleChange('trepTestType', event.currentTarget.value)
+                }
                 value={examInformation.trepTestType}
               >
-                <option value="" selected disabled hidden>
+                <option value='' selected disabled hidden>
                   Selecione uma opção
                 </option>
-                <option value="Teste rápido">Teste rápido</option>
-                <option value="FTA-ABS IgM">FTA-ABS IgM</option>
-                <option value="FTA-ABS IgG">FTA-ABS IgG</option>
+                <option value='Teste rápido'>Teste rápido</option>
+                <option value='FTA-ABS IgM'>FTA-ABS IgM</option>
+                <option value='FTA-ABS IgG'>FTA-ABS IgG</option>
               </select>
             </Field>
             <Field>
-              <label htmlFor="trepTestResult">Resultado do teste</label>
+              <label htmlFor='trepTestResult'>Resultado do teste</label>
               <select
-                name="trepTestResult"
-                onChange={(event) => handleChange('trepTestResult', event.currentTarget.value)}
+                name='trepTestResult'
+                onChange={event =>
+                  handleChange('trepTestResult', event.currentTarget.value)
+                }
                 value={examInformation.trepTestResult}
               >
-                <option value="" selected disabled hidden>
+                <option value='' selected disabled hidden>
                   Selecione uma opção
                 </option>
-                <option value="Reagente">Reagente</option>
-                <option value="Não reagente">Não reagente</option>
+                <option value='Reagente'>Reagente</option>
+                <option value='Não reagente'>Não reagente</option>
               </select>
             </Field>
             <Field>
-              <label htmlFor="trepTestDate">Data do teste</label>
+              <label htmlFor='trepTestDate'>Data do teste</label>
               <input
-                type="date"
-                name="trepTestDate"
-                onChange={(event) => handleChange('trepTestDate', event.currentTarget.value)}
+                type='date'
+                name='trepTestDate'
+                onChange={event =>
+                  handleChange('trepTestDate', event.currentTarget.value)
+                }
                 value={examInformation.trepTestDate}
               />
             </Field>
             <Field>
-              <label htmlFor="trepTestLocation">Local do teste</label>
+              <label htmlFor='trepTestLocation'>Local do teste</label>
               <select
-                name="trepTestLocation"
-                onChange={(event) => handleChange('trepTestLocation', event.currentTarget.value)}
+                name='trepTestLocation'
+                onChange={event =>
+                  handleChange('trepTestLocation', event.currentTarget.value)
+                }
                 value={examInformation.trepTestLocation}
               >
-                <option value="" selected disabled hidden>
+                <option value='' selected disabled hidden>
                   Selecione uma opção
                 </option>
-                <option value="UBS">UBS</option>
-                <option value="CTA/SAE">CTA/SAE</option>
+                <option value='UBS'>UBS</option>
+                <option value='CTA/SAE'>CTA/SAE</option>
               </select>
             </Field>
           </div>
           <ThematicBreak />
-          <Heading type="secondary">Teste não-treponêmico</Heading>
+          <Heading type='secondary'>Teste não-treponêmico</Heading>
           <div className={style.nonTrepTestGridContainer}>
             <Field>
-              <label htmlFor="nonTrepTestVDRL">VDRL</label>
+              <label htmlFor='nonTrepTestVDRL'>VDRL</label>
               <input
-                type="text"
-                name="nonTrepTestVDRL"
-                placeholder="Insira o VDRL"
-                onChange={(event) => handleChange('nonTrepTestVDRL', event.currentTarget.value)}
+                type='text'
+                name='nonTrepTestVDRL'
+                placeholder='Insira o VDRL'
+                onChange={event =>
+                  handleChange('nonTrepTestVDRL', event.currentTarget.value)
+                }
                 value={examInformation.nonTrepTestVDRL}
               />
             </Field>
             <Field>
-              <label htmlFor="nonTrepTestTitration">Titulação</label>
+              <label htmlFor='nonTrepTestTitration'>Titulação</label>
               <input
-                type="text"
-                name="nonTrepTestTitration"
-                placeholder="Insira a titulação"
-                onChange={(event) =>
-                  handleChange('nonTrepTestTitration', event.currentTarget.value)
+                type='text'
+                name='nonTrepTestTitration'
+                placeholder='Insira a titulação'
+                onChange={event =>
+                  handleChange(
+                    'nonTrepTestTitration',
+                    event.currentTarget.value
+                  )
                 }
                 value={examInformation.nonTrepTestTitration}
               />
             </Field>
             <Field>
-              <label htmlFor="nonTrepTestDate">Data do teste</label>
+              <label htmlFor='nonTrepTestDate'>Data do teste</label>
               <input
-                type="date"
-                name="nonTrepTestDate"
-                onChange={(event) => handleChange('nonTrepTestDate', event.currentTarget.value)}
+                type='date'
+                name='nonTrepTestDate'
+                onChange={event =>
+                  handleChange('nonTrepTestDate', event.currentTarget.value)
+                }
                 value={examInformation.nonTrepTestDate}
               />
             </Field>
             <Field>
-              <label htmlFor="refObservations">Observações de referência e contra-referência</label>
+              <label htmlFor='refObservations'>
+                Observações de referência e contra-referência
+              </label>
               <textarea
-                type="date"
-                name="refObservations"
-                placeholder="Insira as observações"
-                onChange={(event) => handleChange('refObservations', event.currentTarget.value)}
+                type='date'
+                name='refObservations'
+                placeholder='Insira as observações'
+                onChange={event =>
+                  handleChange('refObservations', event.currentTarget.value)
+                }
                 value={examInformation.refObservations}
               />
             </Field>
@@ -184,22 +204,26 @@ export default function ExamForm() {
           <div className={style.nonTrepTestCheckboxContainer}>
             <Field>
               <div className={style.flexContainer}>
-                <label htmlFor="onTreatment">Em tratamento</label>
+                <label htmlFor='onTreatment'>Em tratamento</label>
                 <input
-                  type="checkbox"
-                  name="onTreatment"
-                  onChange={(event) => handleChange('onTreatment', event.currentTarget.checked)}
+                  type='checkbox'
+                  name='onTreatment'
+                  onChange={event =>
+                    handleChange('onTreatment', event.currentTarget.checked)
+                  }
                   value={examInformation.onTreatment}
                 />
               </div>
             </Field>
             <Field>
               <div className={style.flexContainer}>
-                <label htmlFor="onMonitoring">Em monitoramento</label>
+                <label htmlFor='onMonitoring'>Em monitoramento</label>
                 <input
-                  type="checkbox"
-                  name="onMonitoring"
-                  onChange={(event) => handleChange('onMonitoring', event.currentTarget.checked)}
+                  type='checkbox'
+                  name='onMonitoring'
+                  onChange={event =>
+                    handleChange('onMonitoring', event.currentTarget.checked)
+                  }
                   value={examInformation.onMonitoring}
                 />
               </div>
@@ -207,10 +231,10 @@ export default function ExamForm() {
           </div>
         </Divider>
         <SubmitContainer>
-          <Button type="button" action="cancel" click={handleButtonClick}>
+          <Button type='button' action='cancel' click={handleButtonClick}>
             Cancelar
           </Button>
-          <Button type="button" action="submit" click={handleButtonClick}>
+          <Button type='button' action='submit' click={handleButtonClick}>
             {formType === 'create' ? 'Cadastrar' : 'Salvar'}
           </Button>
         </SubmitContainer>

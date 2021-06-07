@@ -1,24 +1,31 @@
 import React from 'react';
 import { FileMedical, Person, PersonBadge } from 'react-bootstrap-icons';
+import { Link, useRouteMatch } from 'react-router-dom';
+
 import { formatCPF } from '../../../../utils/formatting';
 
 import style from './ListItem.module.css';
 
-export default function ListItem(props) {
+export default function ListItem({ patient }) {
+  const { url } = useRouteMatch();
+
   return (
-    <li className={style['list-item']}>
+    <Link
+      to={{ pathname: `${url}/${patient.id}`, state: patient }}
+      className={style['list-item']}
+    >
       <span className={style['inner-divider']}>
         <FileMedical className={style.icon} />
-        {props.patient.susCardNumber}
+        {patient.susCardNumber}
       </span>
       <span className={style['inner-divider']}>
         <PersonBadge className={style.icon} />
-        {formatCPF(props.patient.cpf)}
+        {formatCPF(patient.cpf)}
       </span>
       <span className={style['inner-divider']}>
         <Person className={style.icon} />
-        {props.patient.socialName ? props.patient.socialName : props.patient.name}
+        {patient.socialName ? patient.socialName : patient.name}
       </span>
-    </li>
+    </Link>
   );
 }
