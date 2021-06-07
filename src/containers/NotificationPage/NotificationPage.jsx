@@ -7,9 +7,9 @@ import List from '../../components/Patients/List/List';
 
 import { patientsContext } from '../../context/patientsContext.js';
 
-import style from './Notification.module.css';
+import style from './NotificationPage.module.css';
 
-export default function Notification() {
+export default function NotificationPage() {
   /* TODO:
     1. De início, ao buscar o paciente, o componente <SearchForm /> deve ser o único à mostra
       1.1 Se a busca der algum resultado, mostrar a lista de pacientes;
@@ -47,8 +47,8 @@ export default function Notification() {
   const handleSubmit = () => {
     const { criterion, inputValue } = search;
 
-    const filteredPatient = patients.filter(patient => {
-      const key = Object.keys(patient).filter(key => key === criterion);
+    const filteredPatient = patients.filter((patient) => {
+      const key = Object.keys(patient).filter((key) => key === criterion);
       return patient[key].toLowerCase() === inputValue.toLowerCase();
     });
     console.log('Patient:', filteredPatient);
@@ -58,10 +58,8 @@ export default function Notification() {
   useEffect(() => {
     const { criterion, inputValue } = search;
 
-    const filter = patients.filter(filteredPatients => {
-      const key = Object.keys(filteredPatients).filter(
-        key => key === criterion
-      );
+    const filter = patients.filter((filteredPatients) => {
+      const key = Object.keys(filteredPatients).filter((key) => key === criterion);
       return filteredPatients[key].toLowerCase().includes(inputValue);
     });
     setFilteredPatients(filter);
@@ -69,11 +67,7 @@ export default function Notification() {
 
   return (
     <div className={style.notification}>
-      <SearchForm
-        handleSubmit={handleSubmit}
-        search={search}
-        setSearch={setSearch}
-      />
+      <SearchForm handleSubmit={handleSubmit} search={search} setSearch={setSearch} />
       <List patients={filteredPatients} />
       <Tabs />
     </div>

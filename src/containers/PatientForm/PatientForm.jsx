@@ -9,13 +9,13 @@ import Form from '../../components/Layout/Form/Form';
 import Heading from '../../components/Layout/Heading/Heading';
 import SubmitContainer from '../../components/Layout/Form/SubmitContainer/SubmitContainer';
 
-import style from './Patient.module.css';
+import style from './PatientForm.module.css';
 
 // FIXME: Deletar objeto quando o banco de dados estiver acessível.
 const MOCK_VALUES = patientMockedValues;
 const INITIAL_VALUES = patientInitialValues;
 
-export default function Patient() {
+export default function PatientForm() {
   const [formType, setFormType] = useState('create');
   const [patientInformation, setPatientInformation] = useState(INITIAL_VALUES);
   const { patientID } = useParams();

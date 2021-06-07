@@ -2,9 +2,9 @@ import React from 'react';
 
 import Heading from '../../Layout/Heading/Heading';
 
-// import style from './Home.module.css';
+import style from './HomePage.module.css';
 
-export default function Home() {
+export default function HomePage() {
   return (
     <>
       <Heading type="primary">

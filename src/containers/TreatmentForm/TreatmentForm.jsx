@@ -9,13 +9,13 @@ import Form from '../../components/Layout/Form/Form';
 import Heading from '../../components/Layout/Heading/Heading';
 import SubmitContainer from '../../components/Layout/Form/SubmitContainer/SubmitContainer';
 
-import style from './Treatment.module.css';
+import style from './TreatmentForm.module.css';
 
 // FIXME: Deletar objeto quando o banco de dados estiver acessível.
 const MOCK_VALUES = treatmentMockedValues;
 const INITIAL_VALUES = treatmentInitialValues;
 
-export default function Treatment() {
+export default function TreatmentForm() {
   const [formType, setFormType] = useState('create');
   const [treatmentInformation, setTreatmentInformation] = useState(INITIAL_VALUES);
   const { treatmentID } = useParams();

@@ -9,13 +9,13 @@ import Form from '../../components/Layout/Form/Form';
 import Heading from '../../components/Layout/Heading/Heading';
 import SubmitContainer from '../../components/Layout/Form/SubmitContainer/SubmitContainer';
 
-import style from './Monitoring.module.css';
+import style from './MonitoringForm.module.css';
 
 // FIXME: Deletar objeto quando o banco de dados estiver acessível.
 const MOCK_VALUES = monitoringMockedValues;
 const INITIAL_VALUES = monitoringInitialValues;
 
-export default function Monitoring() {
+export default function MonitoringForm() {
   const [formType, setFormType] = useState('create');
   const [monitoringInformation, setMonitoringInformation] = useState(INITIAL_VALUES);
   const { monitoringID } = useParams();

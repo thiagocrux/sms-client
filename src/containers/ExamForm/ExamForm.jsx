@@ -10,13 +10,13 @@ import Heading from '../../components/Layout/Heading/Heading';
 import SubmitContainer from '../../components/Layout/Form/SubmitContainer/SubmitContainer';
 import ThematicBreak from '../../components/Common/ThematicBreak/ThematicBreak';
 
-import style from './Exam.module.css';
+import style from './ExamForm.module.css';
 
 // FIXME: Deletar objeto quando o banco de dados estiver acessível.
 const MOCK_VALUES = examMockedValues;
 const INITIAL_VALUES = examInitialValues;
 
-export default function Exam() {
+export default function ExamForm() {
   const [formType, setFormType] = useState('create');
   const [examInformation, setExamInformation] = useState(INITIAL_VALUES);
   const { examID } = useParams();
