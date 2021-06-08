@@ -245,6 +245,15 @@ export default function PatientForm() {
                 placeholder="Insira o número da residência"
               />
             </Field>
+            <Field>
+              <label htmlFor="complement">Complemento</label>
+              <input
+                name="complement"
+                onChange={(event) => handleChange('complement', event.currentTarget.value)}
+                value={patientInformation.complement}
+                placeholder="Insira as informações complementares"
+              />
+            </Field>
           </div>
         </Divider>
         <SubmitContainer>
