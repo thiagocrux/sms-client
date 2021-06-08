@@ -2,7 +2,7 @@ import React from "react";
 import { PenFill, PersonLinesFill, XCircleFill } from "react-bootstrap-icons";
 import { Link } from "react-router-dom";
 
-import { formatCPF } from "../../../../utils/formatting";
+import { formatCPF, formatSUS } from "../../../../utils/formatting";
 
 import style from "./ListItem.module.css";
 
@@ -18,7 +18,9 @@ export default function ListItem({ patient }) {
       }}
       className={style.listItem}
     >
-      <span className={style.innerDivider}>{patient.susCardNumber}</span>
+      <span className={style.innerDivider}>
+        {formatSUS(patient.susCardNumber)}
+      </span>
       <span className={style.innerDivider}>{formatCPF(patient.cpf)}</span>
       <span className={style.innerDivider}>
         {patient.socialName ? patient.socialName : patient.name}
