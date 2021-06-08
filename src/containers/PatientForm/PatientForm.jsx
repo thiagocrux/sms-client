@@ -8,6 +8,7 @@ import Field from '../../components/Layout/Form/Field/Field';
 import Form from '../../components/Layout/Form/Form';
 import Heading from '../../components/Layout/Heading/Heading';
 import SubmitContainer from '../../components/Layout/Form/SubmitContainer/SubmitContainer';
+import ThematicBreak from '../../components/Common/ThematicBreak/ThematicBreak';
 
 import style from './PatientForm.module.css';
 
@@ -187,8 +188,7 @@ export default function PatientForm() {
               />
             </Field>
           </div>
-        </Divider>
-        <Divider>
+          <ThematicBreak />
           <Heading type="secondary">Endereço do paciente</Heading>
           <div className={`${style['grid-container']} ${style['second-grid-container']}`}>
             <Field>
