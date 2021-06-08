@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import axios from 'axios';
 import { useParams } from 'react-router-dom';
 import { patientMockedValues, patientInitialValues } from '../../utils/mock';
 
@@ -67,6 +68,7 @@ export default function PatientForm() {
         2. Salvar valores no banco de dados de acordo com o método (criação ou atualização);
       */
       console.log(patientInformation);
+      axios.post('http://localhost:8000/api/v1/patients/', patientInformation);
     } else if (action === 'cancel') {
       /* TODO:
         1. Criar lógica para o botão de cancelar.
