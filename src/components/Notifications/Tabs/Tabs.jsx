@@ -6,20 +6,22 @@ import Heading from '../../Layout/Heading/Heading';
 
 import style from './Tabs.module.css';
 
-export default function NotificationTabs() {
+export default function NotificationTabs({ patient }) {
   return (
     <>
-      <Heading type="primary">Que tipo de notificação você deseja criar?</Heading>
+      <Heading type='primary'>
+        Que tipo de notificação você deseja criar?
+      </Heading>
       <nav className={style.navigation}>
-        <Link exact to="/treatment" className={style.tab}>
+        <Link to={`/treatments/patients/${patient._id}`} className={style.tab}>
           <ClipboardPlus className={style.icon} />
           Novo tratamento
         </Link>
-        <Link exact to="/monitoring" className={style.tab}>
+        <Link to={`/monitorings/patients/${patient._id}`} className={style.tab}>
           <Eye className={style.icon} />
           Novo monitoramento
         </Link>
-        <Link exact to="/exam" className={style.tab}>
+        <Link to={`/exams/patients/${patient._id}`} className={style.tab}>
           <DropletHalf className={style.icon} />
           Novo exame
         </Link>
