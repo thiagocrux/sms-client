@@ -14,15 +14,15 @@ export default function ListItem({ patient }) {
   return (
     <Link
       to={{ pathname: `${url}/patients/${patient.id}`, state: patient }}
-      className={style['list-item']}
+      className={style.listItem}
     >
-      <span className={style['inner-divider']}>{patient.susCardNumber}</span>
-      <span className={style['inner-divider']}>{formatCPF(patient.cpf)}</span>
-      <span className={style['inner-divider']}>
+      <span className={style.innerDivider}>{patient.susCardNumber}</span>
+      <span className={style.innerDivider}>{formatCPF(patient.cpf)}</span>
+      <span className={style.innerDivider}>
         {patient.socialName ? patient.socialName : patient.name}
       </span>
-      <span className={style['inner-divider']}>{dateFormatted}</span>
-      <span>
+      <span className={style.innerDivider}>{dateFormatted}</span>
+      <span className={style.controls}>
         <PersonLinesFill className={style.icon} />
         <PenFill className={style.icon} />
         <XCircleFill className={style.icon} />
