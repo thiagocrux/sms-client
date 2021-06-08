@@ -1,10 +1,8 @@
-import React, { useContext, useEffect, useState } from 'react';
-import { useLocation, useParams } from 'react-router';
+import React, { useEffect, useState } from 'react';
+import { useLocation } from 'react-router';
 import axios from 'axios';
 
-// import { patientsContext } from '../../context/patientsContext.js';
 import List from '../../components/Patients/List/List';
-import Tabs from '../../components/Notifications/Tabs/Tabs';
 import SearchForm from '../../components/Patients/SearchForm/SearchForm';
 import SelectedPatientInfo from '../../components/SelectedPatientInfo/SelectedPatientInfo';
 
@@ -23,7 +21,6 @@ export default function NotificationPage() {
   3. Ao clicar numa das abas de notificação, o usuário será encaminhado a sua respectiva página;
   */
 
-  // const { patients } = useContext(patientsContext);
   const [patients, setPatients] = useState([]);
   const [filteredPatients, setFilteredPatients] = useState([]);
   const [search, setSearch] = useState({
@@ -31,12 +28,11 @@ export default function NotificationPage() {
     inputValue: '',
   });
 
-  const { patientID } = useParams();
-  const location = useLocation();
-  const patientInfo = { ...location.state };
+  const { state } = useLocation();
+  const patientInfo = { ...state };
 
   useEffect(() => {
-    axios.get('http://localhost:8000/api/v1/patients/').then((response) => {
+    axios.get('http://localhost:8000/api/v1/patients/').then(response => {
       setPatients(response.data.patients);
     });
   }, []);
@@ -44,9 +40,13 @@ export default function NotificationPage() {
   useEffect(() => {
     const { criterion, inputValue } = search;
 
-    const filter = patients.filter((filteredPatients) => {
-      const key = Object.keys(filteredPatients).filter((key) => key === criterion);
-      return filteredPatients[key].toLowerCase().includes(inputValue.toLowerCase());
+    const filter = patients.filter(filteredPatients => {
+      const key = Object.keys(filteredPatients).filter(
+        key => key === criterion
+      );
+      return filteredPatients[key]
+        .toLowerCase()
+        .includes(inputValue.toLowerCase());
     });
 
     setFilteredPatients(filter);
@@ -55,8 +55,8 @@ export default function NotificationPage() {
   const handleSubmit = () => {
     const { criterion, inputValue } = search;
 
-    const filteredPatient = patients.filter((patient) => {
-      const key = Object.keys(patient).filter((key) => key === criterion);
+    const filteredPatient = patients.filter(patient => {
+      const key = Object.keys(patient).filter(key => key === criterion);
       return patient[key].toLowerCase() === inputValue.toLowerCase();
     });
 
@@ -66,14 +66,17 @@ export default function NotificationPage() {
 
   return (
     <div className={style.notification}>
-      {patientID ? (
+      {patientInfo._id ? (
         <>
           <SelectedPatientInfo patientInfo={patientInfo} />
-          <Tabs />
         </>
       ) : (
         <>
-          <SearchForm handleSubmit={handleSubmit} search={search} setSearch={setSearch} />
+          <SearchForm
+            handleSubmit={handleSubmit}
+            search={search}
+            setSearch={setSearch}
+          />
           <List patients={filteredPatients} />
         </>
       )}
