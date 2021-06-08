@@ -20,47 +20,47 @@ export default function App() {
       <PatientsProvider>
         <Section>
           <Switch>
-            <Route exact path="/">
+            <Route exact path='/'>
               <HomePage />
             </Route>
 
-            <Route exact path="/login">
+            <Route exact path='/login'>
               <LoginPage />
             </Route>
 
-            <Route exact path="/notification">
+            <Route path='/notifications'>
               <NotificationPage />
             </Route>
-            <Route path="/notification/:patientID">
+            <Route path='/notifications/patients/:patientID'>
               <NotificationPage />
             </Route>
 
-            <Route exact path="/exam">
+            <Route exact path='/exams'>
               <ExamForm />
             </Route>
-            <Route path="/exam/:examID">
+            <Route path='patients/:patientID/exams/:examID'>
               <ExamForm />
             </Route>
 
-            <Route exact path="/monitoring">
+            <Route exact path='/monitorings'>
               <MonitoringForm />
             </Route>
-            <Route path="/monitoring/:monitoringID">
+            <Route path='patients/:patientID/monitorings/:monitoringID'>
               <MonitoringForm />
             </Route>
 
-            <Route exact path="/patient">
-              <PatientForm />
+            <Route exact path='patients/:patientID/treatments'>
+              <TreatmentForm />
             </Route>
-            <Route path="/patient/:patientID">
-              <PatientForm />
+            <Route path='patients/:patientID/treatments/:treatmentID'>
+              <TreatmentForm />
             </Route>
 
-            <Route exact path="/treatment">
-              <TreatmentForm />
+            <Route exact path='/patients'>
+              <PatientForm />
             </Route>
-            <Route path="/treatment/:treatmentID">
-              <TreatmentForm />
+            <Route path='/patients/:patientID'>
+              <PatientForm />
             </Route>
 
             <Route>
