@@ -1,24 +1,30 @@
-import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
-import { monitoringMockedValues, monitoringInitialValues } from '../../utils/mock';
+import React, { useEffect, useState } from "react";
+import { useHistory, useParams } from "react-router-dom";
+import {
+  monitoringMockedValues,
+  monitoringInitialValues,
+} from "../../utils/mock";
 
-import Button from '../../components/Common/Button/Button';
-import Divider from '../../components/Layout/Form/Divider/Divider';
-import Field from '../../components/Layout/Form/Field/Field';
-import Form from '../../components/Layout/Form/Form';
-import Heading from '../../components/Layout/Heading/Heading';
-import SubmitContainer from '../../components/Layout/Form/SubmitContainer/SubmitContainer';
+import Button from "../../components/Common/Button/Button";
+import Divider from "../../components/Layout/Form/Divider/Divider";
+import Field from "../../components/Layout/Form/Field/Field";
+import Form from "../../components/Layout/Form/Form";
+import Heading from "../../components/Layout/Heading/Heading";
+import SubmitContainer from "../../components/Layout/Form/SubmitContainer/SubmitContainer";
 
-import style from './MonitoringForm.module.css';
+import style from "./MonitoringForm.module.css";
 
 // FIXME: Deletar objeto quando o banco de dados estiver acessível.
 const MOCK_VALUES = monitoringMockedValues;
 const INITIAL_VALUES = monitoringInitialValues;
 
 export default function MonitoringForm() {
-  const [formType, setFormType] = useState('create');
-  const [monitoringInformation, setMonitoringInformation] = useState(INITIAL_VALUES);
+  const [formType, setFormType] = useState("create");
+  const [monitoringInformation, setMonitoringInformation] =
+    useState(INITIAL_VALUES);
   const { monitoringID } = useParams();
+
+  const history = useHistory();
 
   /* Input handlers */
   const handleChange = (field, value) => {
@@ -43,12 +49,12 @@ export default function MonitoringForm() {
 
   /* Check the existence of params and set the type of form */
   function handleFormType() {
-    if (monitoringID && formType !== 'update') {
-      setFormType('update');
+    if (monitoringID && formType !== "update") {
+      setFormType("update");
       setInputValues();
       console.log(formType);
-    } else if (!monitoringID && formType !== 'create') {
-      setFormType('create');
+    } else if (!monitoringID && formType !== "create") {
+      setFormType("create");
       console.log(formType);
     }
   }
@@ -61,36 +67,38 @@ export default function MonitoringForm() {
 
   /* Save the input values in the state and then send to the database */
   function handleButtonClick(action) {
-    if (action === 'submit') {
+    if (action === "submit") {
       /* TODO:
         1. Validar os dados antes de salvar no banco de dados;
         2. Salvar valores no banco de dados de acordo com o método (criação ou atualização);
       */
       console.log(monitoringInformation);
-    } else if (action === 'cancel') {
+    } else if (action === "cancel") {
+      history.push("/notifications");
       /* TODO:
-        1. Criar lógica para o botão de cancelar.
+        1. Criar modal para confirmar cancelamento.
       */
-      console.log('Action cancelled!');
     }
   }
 
   return (
     <>
       <Heading type="primary">
-        {formType === 'update' ? 'Atualização' : 'Cadastro'} de monitoramento
+        {formType === "update" ? "Atualização" : "Cadastro"} de monitoramento
       </Heading>
       <Form>
         <Divider>
           <Heading type="secondary">Pós-tratamento</Heading>
-          <div className={style['grid-container']}>
+          <div className={style["grid-container"]}>
             <Heading type="tertiary">1ª VDRL</Heading>
             <Field>
               <label htmlFor="firstVDRLDate">Data</label>
               <input
                 type="date"
                 name="firstVDRLDate"
-                onChange={(event) => handleChange('firstVDRLDate', event.currentTarget.value)}
+                onChange={(event) =>
+                  handleChange("firstVDRLDate", event.currentTarget.value)
+                }
                 value={monitoringInformation.firstVDRLDate}
               />
             </Field>
@@ -100,7 +108,9 @@ export default function MonitoringForm() {
                 type="text"
                 name="firstVDRLTitration"
                 placeholder="Insira a titulação"
-                onChange={(event) => handleChange('firstVDRLTitration', event.currentTarget.value)}
+                onChange={(event) =>
+                  handleChange("firstVDRLTitration", event.currentTarget.value)
+                }
                 value={monitoringInformation.firstVDRLTitration}
               />
             </Field>
@@ -110,7 +120,9 @@ export default function MonitoringForm() {
               <input
                 type="date"
                 name="secondVDRLDate"
-                onChange={(event) => handleChange('secondVDRLDate', event.currentTarget.value)}
+                onChange={(event) =>
+                  handleChange("secondVDRLDate", event.currentTarget.value)
+                }
                 value={monitoringInformation.secondVDRLDate}
               />
             </Field>
@@ -120,7 +132,9 @@ export default function MonitoringForm() {
                 type="text"
                 name="secondVDRLTitration"
                 placeholder="Insira a titulação"
-                onChange={(event) => handleChange('secondVDRLTitration', event.currentTarget.value)}
+                onChange={(event) =>
+                  handleChange("secondVDRLTitration", event.currentTarget.value)
+                }
                 value={monitoringInformation.secondVDRLTitration}
               />
             </Field>
@@ -130,7 +144,9 @@ export default function MonitoringForm() {
               <input
                 type="date"
                 name="thirdVDRLDate"
-                onChange={(event) => handleChange('thirdVDRLDate', event.currentTarget.value)}
+                onChange={(event) =>
+                  handleChange("thirdVDRLDate", event.currentTarget.value)
+                }
                 value={monitoringInformation.thirdVDRLDate}
               />
             </Field>
@@ -140,18 +156,22 @@ export default function MonitoringForm() {
                 type="text"
                 name="thirdVDRLTitration"
                 placeholder="Insira a titulação"
-                onChange={(event) => handleChange('thirdVDRLTitration', event.currentTarget.value)}
+                onChange={(event) =>
+                  handleChange("thirdVDRLTitration", event.currentTarget.value)
+                }
                 value={monitoringInformation.thirdVDRLTitration}
               />
             </Field>
           </div>
           <Field>
-            <div className={style['flex-container']}>
+            <div className={style["flex-container"]}>
               <label htmlFor="partnerTreatment">Tratamento de parceiro</label>
               <input
                 type="checkbox"
                 name="partnerTreatment"
-                onChange={(event) => handleChange('partnerTreatment', event.currentTarget.checked)}
+                onChange={(event) =>
+                  handleChange("partnerTreatment", event.currentTarget.checked)
+                }
                 value={monitoringInformation.partnerTreatment}
               />
             </div>
@@ -162,7 +182,9 @@ export default function MonitoringForm() {
           <Field>
             <textarea
               name="observations"
-              onChange={(event) => handleChange('observations', event.currentTarget.value)}
+              onChange={(event) =>
+                handleChange("observations", event.currentTarget.value)
+              }
               value={monitoringInformation.observations}
               placeholder="Insira as observações sobre o monitoramento"
             ></textarea>
@@ -173,7 +195,7 @@ export default function MonitoringForm() {
             Cancelar
           </Button>
           <Button type="button" action="submit" click={handleButtonClick}>
-            {formType === 'create' ? 'Cadastrar' : 'Salvar'}
+            {formType === "create" ? "Cadastrar" : "Salvar"}
           </Button>
         </SubmitContainer>
       </Form>

@@ -8,3 +8,8 @@ export function formatDate(dateAsString) {
   const dateFormatted = Intl.DateTimeFormat("pt-BR").format(date);
   return dateFormatted;
 }
+
+export function formatSUS(susCardNumber) {
+  susCardNumber = susCardNumber.replace(/[^\d]/g, "");
+  return susCardNumber.replace(/(\d{3})(\d{4})(\d{4})(\d{4})/, "$1 $2 $3 $4");
+}

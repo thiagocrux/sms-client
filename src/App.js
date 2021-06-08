@@ -10,7 +10,10 @@ import PatientForm from "./containers/PatientForm/PatientForm";
 import PageNotFound from "./components/Pages/PageNotFound/PageNotFound";
 import Section from "./components/Layout/Section/Section";
 import TreatmentForm from "./containers/TreatmentForm/TreatmentForm";
+<<<<<<< HEAD
 import UserForm from "./containers/UserForm/UserForm";
+=======
+>>>>>>> 00861ede5895f74d1c7418337f18e4e173208020
 
 import PatientsProvider from "./context/patientsContext";
 

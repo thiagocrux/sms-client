@@ -1,24 +1,30 @@
-import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
-import { treatmentMockedValues, treatmentInitialValues } from '../../utils/mock';
+import React, { useEffect, useState } from "react";
+import { useHistory, useParams } from "react-router-dom";
+import {
+  treatmentMockedValues,
+  treatmentInitialValues,
+} from "../../utils/mock";
 
-import Button from '../../components/Common/Button/Button';
-import Divider from '../../components/Layout/Form/Divider/Divider';
-import Field from '../../components/Layout/Form/Field/Field';
-import Form from '../../components/Layout/Form/Form';
-import Heading from '../../components/Layout/Heading/Heading';
-import SubmitContainer from '../../components/Layout/Form/SubmitContainer/SubmitContainer';
+import Button from "../../components/Common/Button/Button";
+import Divider from "../../components/Layout/Form/Divider/Divider";
+import Field from "../../components/Layout/Form/Field/Field";
+import Form from "../../components/Layout/Form/Form";
+import Heading from "../../components/Layout/Heading/Heading";
+import SubmitContainer from "../../components/Layout/Form/SubmitContainer/SubmitContainer";
 
-import style from './TreatmentForm.module.css';
+import style from "./TreatmentForm.module.css";
 
 // FIXME: Deletar objeto quando o banco de dados estiver acessível.
 const MOCK_VALUES = treatmentMockedValues;
 const INITIAL_VALUES = treatmentInitialValues;
 
 export default function TreatmentForm() {
-  const [formType, setFormType] = useState('create');
-  const [treatmentInformation, setTreatmentInformation] = useState(INITIAL_VALUES);
+  const [formType, setFormType] = useState("create");
+  const [treatmentInformation, setTreatmentInformation] =
+    useState(INITIAL_VALUES);
   const { treatmentID } = useParams();
+
+  const history = useHistory();
 
   /* Input handlers */
   const changeHandler = (field, value) =>
@@ -42,12 +48,12 @@ export default function TreatmentForm() {
 
   /* Check the existence of params and set the type of form */
   function handleFormType() {
-    if (treatmentID && formType !== 'update') {
-      setFormType('update');
+    if (treatmentID && formType !== "update") {
+      setFormType("update");
       setInputValues();
       console.log(formType);
-    } else if (!treatmentID && formType !== 'create') {
-      setFormType('create');
+    } else if (!treatmentID && formType !== "create") {
+      setFormType("create");
       console.log(formType);
     }
   }
@@ -60,24 +66,25 @@ export default function TreatmentForm() {
 
   /* Save the input values in the state and then send to the database */
   function handleButtonClick(action) {
-    if (action === 'submit') {
+    if (action === "submit") {
       /* TODO:
         1. Validar os dados antes de salvar no banco de dados;
         2. Salvar valores no banco de dados de acordo com o método (criação ou atualização);
       */
       console.log(treatmentInformation);
-    } else if (action === 'cancel') {
+    } else if (action === "cancel") {
+      history.push("/notifications");
       /* TODO:
-        1. Criar lógica para o botão de cancelar.
+        1. Criar modal para confirmar cancelamento.
       */
-      console.log('Action cancelled!');
+      console.log("Action cancelled!");
     }
   }
 
   return (
     <>
       <Heading type="primary">
-        {formType === 'update' ? 'Atualização' : 'Cadastro'} de tratamento
+        {formType === "update" ? "Atualização" : "Cadastro"} de tratamento
       </Heading>
       <Form>
         <Divider>
@@ -87,7 +94,9 @@ export default function TreatmentForm() {
               <label htmlFor="medication">Medicamento</label>
               <select
                 name="medication"
-                onChange={(event) => changeHandler('medication', event.currentTarget.value)}
+                onChange={(event) =>
+                  changeHandler("medication", event.currentTarget.value)
+                }
                 value={treatmentInformation.medication}
               >
                 <option value="" disabled selected hidden>
@@ -104,7 +113,9 @@ export default function TreatmentForm() {
                 type="text"
                 name="ubsLocation"
                 placeholder="Insira a localização da UBS"
-                onChange={(event) => changeHandler('ubsLocation', event.currentTarget.value)}
+                onChange={(event) =>
+                  changeHandler("ubsLocation", event.currentTarget.value)
+                }
                 value={treatmentInformation.ubsLocation}
               />
             </Field>
@@ -113,7 +124,9 @@ export default function TreatmentForm() {
               <input
                 type="date"
                 name="startDate"
-                onChange={(event) => changeHandler('startDate', event.currentTarget.value)}
+                onChange={(event) =>
+                  changeHandler("startDate", event.currentTarget.value)
+                }
                 value={treatmentInformation.startDate}
               />
             </Field>
@@ -122,16 +135,22 @@ export default function TreatmentForm() {
               <input
                 name="dosage"
                 placeholder="Insira as informações sobre dosagem"
-                onChange={(event) => changeHandler('dosage', event.currentTarget.value)}
+                onChange={(event) =>
+                  changeHandler("dosage", event.currentTarget.value)
+                }
                 value={treatmentInformation.dosage}
               />
             </Field>
             <Field>
-              <label htmlFor="observations">Observações sobre o tratamento</label>
+              <label htmlFor="observations">
+                Observações sobre o tratamento
+              </label>
               <textarea
                 name="observations"
                 placeholder="Insira as observações sobre o tratamento"
-                onChange={(event) => changeHandler('observations', event.currentTarget.value)}
+                onChange={(event) =>
+                  changeHandler("observations", event.currentTarget.value)
+                }
                 value={treatmentInformation.observations}
               ></textarea>
             </Field>
@@ -140,7 +159,9 @@ export default function TreatmentForm() {
               <textarea
                 name="partnerInfo"
                 placeholder="Insira as informações sobre o parceiro"
-                onChange={(event) => changeHandler('partnerInfo', event.currentTarget.value)}
+                onChange={(event) =>
+                  changeHandler("partnerInfo", event.currentTarget.value)
+                }
                 value={treatmentInformation.partnerInfo}
               ></textarea>
             </Field>
@@ -151,7 +172,7 @@ export default function TreatmentForm() {
             Cancelar
           </Button>
           <Button type="button" action="submit" click={handleButtonClick}>
-            {formType === 'create' ? 'Cadastrar' : 'Salvar'}
+            {formType === "create" ? "Cadastrar" : "Salvar"}
           </Button>
         </SubmitContainer>
       </Form>

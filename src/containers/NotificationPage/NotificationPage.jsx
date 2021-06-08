@@ -1,12 +1,12 @@
-import React, { useEffect, useState } from 'react';
-import { useLocation } from 'react-router';
-import axios from 'axios';
+import React, { useEffect, useState } from "react";
+import { useHistory, useLocation, useParams } from "react-router";
+import axios from "axios";
 
-import List from '../../components/Patients/List/List';
-import SearchForm from '../../components/Patients/SearchForm/SearchForm';
-import SelectedPatientInfo from '../../components/SelectedPatientInfo/SelectedPatientInfo';
+import List from "../../components/Patients/List/List";
+import SearchForm from "../../components/Patients/SearchForm/SearchForm";
+import SelectedPatientInfo from "../../components/SelectedPatientInfo/SelectedPatientInfo";
 
-import style from './NotificationPage.module.css';
+import style from "./NotificationPage.module.css";
 
 export default function NotificationPage() {
   /* TODO:
@@ -24,15 +24,15 @@ export default function NotificationPage() {
   const [patients, setPatients] = useState([]);
   const [filteredPatients, setFilteredPatients] = useState([]);
   const [search, setSearch] = useState({
-    criterion: 'susCardNumber',
-    inputValue: '',
+    criterion: "susCardNumber",
+    inputValue: "",
   });
 
   const { state } = useLocation();
   const patientInfo = { ...state };
 
   useEffect(() => {
-    axios.get('http://localhost:8000/api/v1/patients/').then(response => {
+    axios.get("http://localhost:8000/api/v1/patients/").then((response) => {
       setPatients(response.data.patients);
     });
   }, []);
@@ -40,9 +40,9 @@ export default function NotificationPage() {
   useEffect(() => {
     const { criterion, inputValue } = search;
 
-    const filter = patients.filter(filteredPatients => {
+    const filter = patients.filter((filteredPatients) => {
       const key = Object.keys(filteredPatients).filter(
-        key => key === criterion
+        (key) => key === criterion
       );
       return filteredPatients[key]
         .toLowerCase()
@@ -55,12 +55,12 @@ export default function NotificationPage() {
   const handleSubmit = () => {
     const { criterion, inputValue } = search;
 
-    const filteredPatient = patients.filter(patient => {
-      const key = Object.keys(patient).filter(key => key === criterion);
+    const filteredPatient = patients.filter((patient) => {
+      const key = Object.keys(patient).filter((key) => key === criterion);
       return patient[key].toLowerCase() === inputValue.toLowerCase();
     });
 
-    console.log('Patient:', filteredPatient);
+    console.log("Patient:", filteredPatient);
     setFilteredPatients(filteredPatient);
   };
 
