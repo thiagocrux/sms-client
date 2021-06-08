@@ -6,12 +6,12 @@
 /* Informações pessoais */
 
 .first-grid-container {
-  grid-template-columns: repeat(12, 1fr);
+  grid-template-columns: repeat(10, 1fr);
   grid-template-rows: repeat(3, auto);
   grid-template-areas:
-    'sus-code sus-code sus-code patient-name patient-name patient-name patient-name patient-name patient-name cpf cpf cpf'
-    'social-name social-name social-name social-name social-name social-name birth-date birth-date gender gender nationality nationality'
-    'phone phone phone email email email mother-name mother-name mother-name mother-name mother-name mother-name';
+    'sus-code sus-code patient-name patient-name patient-name patient-name patient-name  cpf cpf cpf'
+    'social-name social-name social-name social-name   birth-date birth-date gender gender nationality nationality'
+    'phone phone email email email mother-name mother-name mother-name mother-name mother-name';
 }
 
 .first-grid-container > *:nth-child(1) {
@@ -60,8 +60,8 @@
   grid-template-columns: repeat(9, 1fr);
   grid-template-rows: repeat(2, auto);
   grid-template-areas:
-    'zip-code zip-code zip-code state state state city city city'
-    'neighbourhood neighbourhood neighbourhood street street street street house-number house-number';
+    'zip-code zip-code state state city city neighbourhood neighbourhood neighbourhood'
+    'street street street houseNumber houseNumber complement complement complement complement';
 }
 
 .second-grid-container > *:nth-child(1) {
@@ -85,5 +85,9 @@
 }
 
 .second-grid-container > *:nth-child(6) {
-  grid-area: house-number;
+  grid-area: houseNumber;
+}
+
+.second-grid-container > *:nth-child(7) {
+  grid-area: complement;
 }
