@@ -1,17 +1,18 @@
 import React from 'react';
 import { FileMedical, Person, PersonBadge } from 'react-bootstrap-icons';
-import { Link, useRouteMatch } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 import { formatCPF } from '../../../../utils/formatting';
 
 import style from './ListItem.module.css';
 
 export default function ListItem({ patient }) {
-  const { url } = useRouteMatch();
-
   return (
     <Link
-      to={{ pathname: `${url}/${patient.id}`, state: patient }}
+      to={{
+        pathname: `/notifications/patients/${patient._id}/`,
+        state: patient,
+      }}
       className={style['list-item']}
     >
       <span className={style['inner-divider']}>
