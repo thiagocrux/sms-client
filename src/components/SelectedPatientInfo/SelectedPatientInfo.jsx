@@ -1,8 +1,8 @@
-import React from 'react';
-import { useHistory, useLocation } from 'react-router';
+import React from "react";
+import { useHistory } from "react-router";
 
-import Button from '../Common/Button/Button';
-import Tabs from '../Notifications/Tabs/Tabs';
+import Button from "../Common/Button/Button";
+import Tabs from "../Notifications/Tabs/Tabs";
 
 function SelectedPatientInfo({ patientInfo }) {
   const { susCardNumber, cpf, name, socialName } = patientInfo;
@@ -12,13 +12,13 @@ function SelectedPatientInfo({ patientInfo }) {
     <div>
       <div>
         <p>SUS: {susCardNumber}</p>
-        <p>Nome: {socialName !== '' ? socialName : name}</p>
+        <p>Nome: {socialName !== "" ? socialName : name}</p>
         <p>CPF: {cpf}</p>
       </div>
       <Button
-        action='submit'
-        type='button'
-        click={() => history.push('/notifications')}
+        action="submit"
+        type="button"
+        click={() => history.push("/notifications")}
       >
         Escolher outro paciente
       </Button>

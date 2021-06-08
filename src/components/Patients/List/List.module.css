@@ -1,19 +1,33 @@
-.list-container {
-  width: 90rem;
+.listContainer {
+  width: 100%;
   margin: 0 auto;
   padding: 2rem;
 }
 
-.list-header {
+.listContainer span {
+  display: flex;
+  align-items: center;
+}
+
+.icon {
+  font-size: 1.6rem;
+  margin-right: 0.6rem;
+}
+
+.listHeader {
   background-color: #3a3a3a;
   border-radius: 0.4rem;
   padding: 1.6rem 2rem;
   display: grid;
-  column-gap: 5rem;
-  grid-template-columns: 2fr 2fr 6fr;
+  grid-template-columns: 2fr 2fr 5fr 2fr 1fr;
   color: #ffffff;
-  margin-bottom: 1.2rem;
+  margin-bottom: 0.4rem;
   font-weight: 300;
+}
+
+.listHeader > span {
+  font-size: 1.5rem;
+  font-weight: 500;
 }
 
 .list {
