@@ -1,17 +1,18 @@
-import { Route, Switch } from 'react-router-dom';
+import { Route, Switch } from "react-router-dom";
 
-import ExamForm from './containers/ExamForm/ExamForm';
-import Header from './components/Layout/Header/Header';
-import HomePage from './components/Pages/HomePage/HomePage';
-import LoginPage from './containers/LoginPage/LoginPage';
-import MonitoringForm from './containers/MonitoringForm/MonitoringForm';
-import NotificationPage from './containers/NotificationPage/NotificationPage';
-import PatientForm from './containers/PatientForm/PatientForm';
-import PageNotFound from './components/Pages/PageNotFound/PageNotFound';
-import Section from './components/Layout/Section/Section';
-import TreatmentForm from './containers/TreatmentForm/TreatmentForm';
+import ExamForm from "./containers/ExamForm/ExamForm";
+import Header from "./components/Layout/Header/Header";
+import HomePage from "./components/Pages/HomePage/HomePage";
+import LoginPage from "./containers/LoginPage/LoginPage";
+import MonitoringForm from "./containers/MonitoringForm/MonitoringForm";
+import NotificationPage from "./containers/NotificationPage/NotificationPage";
+import PatientForm from "./containers/PatientForm/PatientForm";
+import PageNotFound from "./components/Pages/PageNotFound/PageNotFound";
+import Section from "./components/Layout/Section/Section";
+import TreatmentForm from "./containers/TreatmentForm/TreatmentForm";
+import UserForm from "./containers/UserForm/UserForm";
 
-import PatientsProvider from './context/patientsContext';
+import PatientsProvider from "./context/patientsContext";
 
 export default function App() {
   return (
@@ -20,52 +21,37 @@ export default function App() {
       <PatientsProvider>
         <Section>
           <Switch>
-            <Route exact path='/'>
-              <HomePage />
-            </Route>
+            <Route exact path="/" component={HomePage} />
 
-            <Route exact path='/login'>
-              <LoginPage />
-            </Route>
+            <Route exact path="/login" component={LoginPage} />
 
-            <Route path='/notifications'>
-              <NotificationPage />
-            </Route>
-            <Route path='/notifications/patients/:patientID'>
-              <NotificationPage />
-            </Route>
+            <Route exact path="/notifications" component={NotificationPage} />
+            <Route
+              exact
+              path="/notifications/patients/:patientID"
+              component={NotificationPage}
+            />
 
-            <Route exact path='/exams'>
-              <ExamForm />
-            </Route>
-            <Route path='patients/:patientID/exams/:examID'>
-              <ExamForm />
-            </Route>
+            <Route
+              path="/notifications/patients/:patientID/exams/new"
+              component={ExamForm}
+            />
 
-            <Route exact path='/monitorings'>
-              <MonitoringForm />
-            </Route>
-            <Route path='patients/:patientID/monitorings/:monitoringID'>
-              <MonitoringForm />
-            </Route>
+            <Route
+              path="/notifications/patients/:patientID/monitorings/new"
+              component={MonitoringForm}
+            />
 
-            <Route exact path='patients/:patientID/treatments'>
-              <TreatmentForm />
-            </Route>
-            <Route path='patients/:patientID/treatments/:treatmentID'>
-              <TreatmentForm />
-            </Route>
+            <Route
+              path="/notifications/patients/:patientID/treatments/new"
+              component={TreatmentForm}
+            />
 
-            <Route exact path='/patients'>
-              <PatientForm />
-            </Route>
-            <Route path='/patients/:patientID'>
-              <PatientForm />
-            </Route>
+            <Route path="/patients/:patientID/new" component={PatientForm} />
 
-            <Route>
-              <PageNotFound />
-            </Route>
+            <Route path="/users/:patientID/new" component={UserForm} />
+
+            <Route component={PageNotFound} />
           </Switch>
         </Section>
       </PatientsProvider>
