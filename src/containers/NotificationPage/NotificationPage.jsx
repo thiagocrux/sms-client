@@ -1,15 +1,14 @@
 import React, { useContext, useEffect, useState } from 'react';
-// import axios from 'axios';
+import { useLocation, useParams } from 'react-router';
+import axios from 'axios';
 
+// import { patientsContext } from '../../context/patientsContext.js';
+import List from '../../components/Patients/List/List';
 import Tabs from '../../components/Notifications/Tabs/Tabs';
 import SearchForm from '../../components/Patients/SearchForm/SearchForm';
-import List from '../../components/Patients/List/List';
-
-import { patientsContext } from '../../context/patientsContext.js';
+import SelectedPatientInfo from '../../components/SelectedPatientInfo/SelectedPatientInfo';
 
 import style from './NotificationPage.module.css';
-import { useLocation, useParams } from 'react-router';
-import SelectedPatientInfo from '../../components/SelectedPatientInfo/SelectedPatientInfo';
 
 export default function NotificationPage() {
   /* TODO:
@@ -24,27 +23,23 @@ export default function NotificationPage() {
   3. Ao clicar numa das abas de notificação, o usuário será encaminhado a sua respectiva página;
   */
 
-  const { patients } = useContext(patientsContext);
+  // const { patients } = useContext(patientsContext);
+  const [patients, setPatients] = useState([]);
+  const [filteredPatients, setFilteredPatients] = useState([]);
   const [search, setSearch] = useState({
     criterion: 'susCardNumber',
     inputValue: '',
   });
-  const [filteredPatients, setFilteredPatients] = useState([]);
 
   const { patientID } = useParams();
   const location = useLocation();
   const patientInfo = { ...location.state };
 
-  const handleSubmit = () => {
-    const { criterion, inputValue } = search;
-
-    const filteredPatient = patients.filter((patient) => {
-      const key = Object.keys(patient).filter((key) => key === criterion);
-      return patient[key].toLowerCase() === inputValue.toLowerCase();
+  useEffect(() => {
+    axios.get('http://localhost:8000/api/v1/patients/').then((response) => {
+      setPatients(response.data.patients);
     });
-    console.log('Patient:', filteredPatient);
-    setFilteredPatients(filteredPatient);
-  };
+  }, []);
 
   useEffect(() => {
     const { criterion, inputValue } = search;
@@ -53,8 +48,21 @@ export default function NotificationPage() {
       const key = Object.keys(filteredPatients).filter((key) => key === criterion);
       return filteredPatients[key].toLowerCase().includes(inputValue.toLowerCase());
     });
+
     setFilteredPatients(filter);
   }, [patients, search]);
+
+  const handleSubmit = () => {
+    const { criterion, inputValue } = search;
+
+    const filteredPatient = patients.filter((patient) => {
+      const key = Object.keys(patient).filter((key) => key === criterion);
+      return patient[key].toLowerCase() === inputValue.toLowerCase();
+    });
+
+    console.log('Patient:', filteredPatient);
+    setFilteredPatients(filteredPatient);
+  };
 
   return (
     <div className={style.notification}>
