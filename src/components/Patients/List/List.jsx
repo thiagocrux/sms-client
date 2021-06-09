@@ -1,19 +1,23 @@
-import React from 'react';
+import React, { useEffect, useState } from "react";
 import {
   CalendarDateFill,
   FileMedicalFill,
   PersonBadgeFill,
   PersonFill,
-} from 'react-bootstrap-icons';
+} from "react-bootstrap-icons";
 
-import ListItem from './ListItem/ListItem';
-import Heading from '../../Layout/Heading/Heading';
-import SearchItemNotFound from '../../Common/SearchItemNotFound/SearchItemNotFound';
+import Heading from "../../Layout/Heading/Heading";
+import SearchItemNotFound from "../../Common/SearchItemNotFound/SearchItemNotFound";
 
-import style from './List.module.css';
+import style from "./List.module.css";
+import Pagination from "../../Layout/Pagination/Pagination";
 
-export default function List({ patients }) {
-  // const patients = Object.values(props.patients)[0];
+export default function List({ filteredPatients }) {
+  const [patients, setPatients] = useState([]);
+
+  useEffect(() => {
+    setPatients(filteredPatients);
+  }, [filteredPatients, patients]);
 
   return (
     <div className={style.listContainer}>
@@ -35,8 +39,7 @@ export default function List({ patients }) {
             </span>
           </div>
           <ul className={style.list}>
-            {patients &&
-              patients.map((patient) => <ListItem key={patient.cpf} patient={patient} />)}
+            {patients && <Pagination items={patients} />}
           </ul>
         </>
       ) : (
