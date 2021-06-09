@@ -1,19 +1,39 @@
-import React from 'react';
+import React, { useEffect, useState } from "react";
+import ReactPaginate from "react-paginate";
 import {
   CalendarDateFill,
   FileMedicalFill,
   PersonBadgeFill,
   PersonFill,
-} from 'react-bootstrap-icons';
+} from "react-bootstrap-icons";
 
-import ListItem from './ListItem/ListItem';
-import Heading from '../../Layout/Heading/Heading';
-import SearchItemNotFound from '../../Common/SearchItemNotFound/SearchItemNotFound';
+import ListItem from "./ListItem/ListItem";
+import Heading from "../../Layout/Heading/Heading";
+import SearchItemNotFound from "../../Common/SearchItemNotFound/SearchItemNotFound";
 
-import style from './List.module.css';
+import style from "./List.module.css";
 
-export default function List({ patients }) {
-  // const patients = Object.values(props.patients)[0];
+export default function List({ filteredPatients }) {
+  const [patients, setPatients] = useState([]);
+  const [pageNumber, setPageNumber] = useState(0);
+
+  const patientsPerPage = 2;
+  const pagesVisited = pageNumber * patientsPerPage;
+  const pageCount = filteredPatients.length / patientsPerPage;
+
+  useEffect(() => {
+    setPatients(filteredPatients);
+  }, [filteredPatients, patients]);
+
+  const displayPatients = patients
+    .slice(pagesVisited, pagesVisited + patientsPerPage)
+    .map((patient) => {
+      return <ListItem key={patient.cpf} patient={patient} />;
+    });
+
+  const changePage = ({ selected }) => {
+    setPageNumber(selected);
+  };
 
   return (
     <div className={style.listContainer}>
@@ -35,8 +55,22 @@ export default function List({ patients }) {
             </span>
           </div>
           <ul className={style.list}>
-            {patients &&
-              patients.map((patient) => <ListItem key={patient.cpf} patient={patient} />)}
+            {patients && (
+              <>
+                {displayPatients}
+                <ReactPaginate
+                  previousLabel="Anterior"
+                  nextLabel="Próximo"
+                  pageCount={pageCount}
+                  onPageChange={changePage}
+                  containerClassName="paginationButtons"
+                  previousLinkClassName="previousPaginationButton"
+                  nextLinkClassName="nextPaginationButton"
+                  disabledClassName="disabledPaginationButton"
+                  activeClassName="activePaginationButton"
+                />
+              </>
+            )}
           </ul>
         </>
       ) : (

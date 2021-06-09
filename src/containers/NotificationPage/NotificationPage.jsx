@@ -77,7 +77,7 @@ export default function NotificationPage() {
             search={search}
             setSearch={setSearch}
           />
-          <List patients={filteredPatients} />
+          <List filteredPatients={filteredPatients} />
         </>
       )}
     </div>
