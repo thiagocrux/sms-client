@@ -1,0 +1,71 @@
+.paginationContainer {
+  list-style: none;
+  padding: 1rem;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+
+.pagination {
+  border: 1px solid #1976d2;
+  color: #1976d2;
+  background-color: #fff;
+  padding: 0.5rem 1rem;
+  margin: 0 0.2rem;
+  --webkit-box-shadow: 0px 3px 7px -4px #757575;
+  box-shadow: 0px 3px 7px -4px #757575;
+  border-radius: 0.6rem;
+  cursor: pointer;
+}
+
+.paginationBreak {
+  background-color: #fff;
+  color: #1976d2;
+  border: 1px solid #1976d2;
+  padding: 0.5rem 1rem;
+  --webkit-box-shadow: 0px 3px 7px -4px #757575;
+  box-shadow: 0px 3px 7px -4px #757575;
+  border-radius: 0.6rem;
+  cursor: pointer;
+}
+
+.paginationPrevious,
+.paginationNext {
+  background-color: #fff;
+  color: #1976d2;
+  border: 1px solid #1976d2;
+  padding: 0.5rem 1rem;
+  --webkit-box-shadow: 0px 3px 7px -4px #757575;
+  box-shadow: 0px 3px 7px -4px #757575;
+  border-radius: 0.6rem;
+  cursor: pointer;
+}
+
+.paginationPreviousLink,
+.paginationNextLink {
+  width: 100%;
+  padding: 0.5rem 3rem;
+  cursor: pointer;
+}
+
+.paginationPrevious {
+  margin-right: 0.2rem;
+}
+
+.paginationNext {
+  margin-left: 0.2rem;
+}
+
+.paginationDisabled {
+  border: 1px solid #ccc;
+  color: #ccc;
+  cursor: pointer;
+}
+
+.paginationActive {
+  color: #fff;
+  background: #1976d2;
+  cursor: pointer;
+}

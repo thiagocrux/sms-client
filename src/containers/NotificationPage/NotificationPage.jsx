@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useHistory, useLocation, useParams } from "react-router";
+import { useLocation } from "react-router";
 import axios from "axios";
 
 import List from "../../components/Patients/List/List";
