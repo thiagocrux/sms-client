@@ -20,7 +20,7 @@ You need to have installed:
 Clone the repo
 
 ```sh
-  $ git clone https://github.com/thiagocrux/the-burger-builder.git
+  $ https://github.com/thiagocrux/sms-client.git
 ```
 
 Install the dependencies
