@@ -35,7 +35,7 @@ function Pagination({ items }) {
         pageRangeDisplayed={5}
         containerClassName="paginationContainer"
         breakClassName="paginationBreak"
-        pageLinkClassName="pagination"
+        pageLinkClassName="paginationLink"
         previousClassName="paginationPrevious"
         previousLinkClassName="paginationPreviousLink"
         nextClassName="paginationNext"
