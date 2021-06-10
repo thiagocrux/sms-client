@@ -1,8 +1,8 @@
-import React from 'react';
+import React from "react";
 
-import Heading from '../../Layout/Heading/Heading';
+import Heading from "../../Layout/Heading/Heading";
 
-import style from './HomePage.module.css';
+// import style from './HomePage.module.css';
 
 export default function HomePage() {
   return (

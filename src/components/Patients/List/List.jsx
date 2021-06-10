@@ -19,6 +19,8 @@ export default function List({ filteredResult }) {
     setItems(filteredResult);
   }, [filteredResult, items]);
 
+  console.log("[LIST]: " + { ...items });
+
   return (
     <div className={style.listContainer}>
       {items.length ? (

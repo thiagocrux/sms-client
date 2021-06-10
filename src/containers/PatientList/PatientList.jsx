@@ -1,12 +1,10 @@
 import React, { useEffect, useState } from "react";
-import { useLocation } from "react-router";
 import axios from "axios";
 
 import List from "../../components/Patients/List/List";
 import SearchForm from "../../components/Patients/SearchForm/SearchForm";
-import SelectedPatientInfo from "../../components/SelectedPatientInfo/SelectedPatientInfo";
 
-import style from "./Patient.module.css";
+import style from "./PatientList.module.css";
 
 export default function PatientPage() {
   const [patients, setPatients] = useState([]);
@@ -15,9 +13,6 @@ export default function PatientPage() {
     criterion: "susCardNumber",
     inputValue: "",
   });
-
-  const { state } = useLocation();
-  const patientInfo = { ...state };
 
   useEffect(() => {
     axios.get("http://localhost:8000/api/v1/patients/").then((response) => {
@@ -47,28 +42,20 @@ export default function PatientPage() {
       const key = Object.keys(patient).filter((key) => key === criterion);
       return patient[key].toLowerCase() === inputValue.toLowerCase();
     });
-
-    console.log("Patient:", filteredPatient);
     setFilteredPatients(filteredPatient);
   };
 
   return (
     <div className={style.patient}>
-      {patientInfo._id ? (
-        <>
-          <SelectedPatientInfo patientInfo={patientInfo} />
-        </>
-      ) : (
-        <>
-          <SearchForm
-            formHeader="Localize o paciente que deseja consultar"
-            handleSubmit={handleSubmit}
-            search={search}
-            setSearch={setSearch}
-          />
-          <List filteredResult={filteredPatients} />
-        </>
-      )}
+      <>
+        <SearchForm
+          formHeader="Localize o paciente que deseja consultar"
+          handleSubmit={handleSubmit}
+          search={search}
+          setSearch={setSearch}
+        />
+        <List filteredResult={filteredPatients} />
+      </>
     </div>
   );
 }

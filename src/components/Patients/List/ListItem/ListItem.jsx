@@ -1,6 +1,6 @@
 import React from "react";
 import { PenFill, PersonLinesFill, XCircleFill } from "react-bootstrap-icons";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 
 import {
   formatCPF,
@@ -10,13 +10,18 @@ import {
 
 import style from "./ListItem.module.css";
 
-export default function ListItem({ patient, path }) {
+export default function ListItem({ patient }) {
   const { _id, susCardNumber, cpf, name, socialName, birthDate } = patient;
   const { listItem, innerDivider, icon, controls } = style;
-  const url = path === "/patients" ? "" : "/notifications";
+
+  const location = useLocation();
+  const url = location.pathname === "/patients" ? "" : "/notifications";
+
+  console.log("[LIST ITEM]: " + patient._id);
 
   return (
     <Link
+      patient={patient}
       to={{
         pathname: `${url}/patients/${_id}/`,
         state: patient,

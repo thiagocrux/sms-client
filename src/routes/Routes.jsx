@@ -1,16 +1,21 @@
 import React from "react";
 import { Route, Switch } from "react-router-dom";
 
-import ExamForm from "../containers/ExamForm/ExamForm";
 import HomePage from "../components/Pages/HomePage/HomePage";
 import LoginPage from "../containers/LoginPage/LoginPage";
-import MonitoringForm from "../containers/MonitoringForm/MonitoringForm";
 import NotificationPage from "../containers/NotificationPage/NotificationPage";
-import PatientForm from "../containers/PatientForm/PatientForm";
-import PageNotFound from "../components/Pages/PageNotFound/PageNotFound";
+
+import PatientList from "../containers/PatientList/PatientList";
+import PatientInfo from "../components/PatientInfo/PatientInfo";
+import PatientNotification from "../components/Notifications/PatientNotification/PatientNotification";
+
+import MonitoringForm from "../containers/MonitoringForm/MonitoringForm";
 import TreatmentForm from "../containers/TreatmentForm/TreatmentForm";
+import PatientForm from "../containers/PatientForm/PatientForm";
+import ExamForm from "../containers/ExamForm/ExamForm";
 import UserForm from "../containers/UserForm/UserForm";
-import PatientPage from "../containers/PatientPage/PatientPage";
+
+import PageNotFound from "../components/Pages/PageNotFound/PageNotFound";
 
 function Routes() {
   return (
@@ -23,31 +28,34 @@ function Routes() {
       <Route
         exact
         path="/notifications/patients/:patientID"
-        component={NotificationPage}
+        component={PatientNotification}
       />
 
       <Route
+        exact
         path="/notifications/patients/:patientID/exams/new"
         component={ExamForm}
       />
 
       <Route
+        exact
         path="/notifications/patients/:patientID/monitorings/new"
         component={MonitoringForm}
       />
 
       <Route
+        exact
         path="/notifications/patients/:patientID/treatments/new"
         component={TreatmentForm}
       />
 
-      <Route path="/patients" component={PatientPage} />
+      <Route exact path="/patients" component={PatientList} />
 
-      <Route path="/patients/:patientID" component={PatientPage} />
+      <Route exact path="/patients/:patientID" component={PatientInfo} />
 
-      <Route path="/patients/:patientID/new" component={PatientForm} />
+      <Route exact path="/patients/:patientID/new" component={PatientForm} />
 
-      <Route path="/users/:patientID/new" component={UserForm} />
+      <Route exact path="/users/:patientID/new" component={UserForm} />
 
       <Route component={PageNotFound} />
     </Switch>
