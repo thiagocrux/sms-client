@@ -13,6 +13,7 @@ import TreatmentForm from "./containers/TreatmentForm/TreatmentForm";
 import UserForm from "./containers/UserForm/UserForm";
 
 import PatientsProvider from "./context/patientsContext";
+import PatientPage from "./containers/PatientPage/PatientPage";
 
 export default function App() {
   return (
@@ -46,6 +47,8 @@ export default function App() {
               path="/notifications/patients/:patientID/treatments/new"
               component={TreatmentForm}
             />
+
+            <Route path="/patients" component={PatientPage} />
 
             <Route path="/patients/:patientID/new" component={PatientForm} />
 
