@@ -66,7 +66,7 @@ export default function PatientPage() {
             search={search}
             setSearch={setSearch}
           />
-          <List filteredPatients={filteredPatients} />
+          <List filteredResult={filteredPatients} />
         </>
       )}
     </div>

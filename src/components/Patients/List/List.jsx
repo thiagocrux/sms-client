@@ -12,16 +12,16 @@ import SearchItemNotFound from "../../Common/SearchItemNotFound/SearchItemNotFou
 import style from "./List.module.css";
 import Pagination from "../../Layout/Pagination/Pagination";
 
-export default function List({ filteredPatients }) {
-  const [patients, setPatients] = useState([]);
+export default function List({ filteredResult }) {
+  const [items, setItems] = useState([]);
 
   useEffect(() => {
-    setPatients(filteredPatients);
-  }, [filteredPatients, patients]);
+    setItems(filteredResult);
+  }, [filteredResult, items]);
 
   return (
     <div className={style.listContainer}>
-      {patients.length ? (
+      {items.length ? (
         <>
           <Heading type="primary">Resultado da busca:</Heading>
           <div className={style.listHeader}>
@@ -39,7 +39,7 @@ export default function List({ filteredPatients }) {
             </span>
           </div>
           <ul className={style.list}>
-            {patients && <Pagination items={patients} />}
+            {items && <Pagination items={items} />}
           </ul>
         </>
       ) : (
