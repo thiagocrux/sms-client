@@ -79,8 +79,7 @@ export default function UserForm() {
   return (
     <>
       <Heading type="primary">
-        Esta é a página de cadastro/alteração de usuários, mas ainda não foi
-        implementada...
+        {formType === "update" ? "Atualização" : "Cadastro"} de paciente
       </Heading>
       <Form>
         <Divider>
