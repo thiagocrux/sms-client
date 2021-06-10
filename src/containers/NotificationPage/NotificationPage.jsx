@@ -73,6 +73,7 @@ export default function NotificationPage() {
       ) : (
         <>
           <SearchForm
+            formHeader="Localize o paciente que será notificado"
             handleSubmit={handleSubmit}
             search={search}
             setSearch={setSearch}
