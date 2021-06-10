@@ -10,29 +10,27 @@ import {
 
 import style from "./ListItem.module.css";
 
-export default function ListItem({ patient }) {
+export default function ListItem({ patient, path }) {
+  const { _id, susCardNumber, cpf, name, socialName, birthDate } = patient;
+  const { listItem, innerDivider, icon, controls } = style;
+  const url = path === "/patients" ? "" : "/notifications";
+
   return (
     <Link
       to={{
-        pathname: `/notifications/patients/${patient._id}/`,
+        pathname: `${url}/patients/${_id}/`,
         state: patient,
       }}
-      className={style.listItem}
+      className={listItem}
     >
-      <span className={style.innerDivider}>
-        {formatSUSCardNumber(patient.susCardNumber)}
-      </span>
-      <span className={style.innerDivider}>{formatCPF(patient.cpf)}</span>
-      <span className={style.innerDivider}>
-        {patient.socialName ? patient.socialName : patient.name}
-      </span>
-      <span className={style.innerDivider}>
-        {formatDate(patient.birthDate)}
-      </span>
-      <span className={style.controls}>
-        <PersonLinesFill className={style.icon} />
-        <PenFill className={style.icon} />
-        <XCircleFill className={style.icon} />
+      <span className={innerDivider}>{formatSUSCardNumber(susCardNumber)}</span>
+      <span className={innerDivider}>{formatCPF(cpf)}</span>
+      <span className={innerDivider}>{socialName ? socialName : name}</span>
+      <span className={innerDivider}>{formatDate(birthDate)}</span>
+      <span className={controls}>
+        <PersonLinesFill className={icon} />
+        <PenFill className={icon} />
+        <XCircleFill className={icon} />
       </span>
     </Link>
   );
