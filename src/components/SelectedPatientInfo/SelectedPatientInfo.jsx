@@ -15,11 +15,7 @@ function SelectedPatientInfo({ patientInfo }) {
         <p>Nome: {socialName !== "" ? socialName : name}</p>
         <p>CPF: {cpf}</p>
       </div>
-      <Button
-        action="submit"
-        type="button"
-        click={() => history.push("/notifications")}
-      >
+      <Button action="submit" type="button" click={() => history.goBack()}>
         Escolher outro paciente
       </Button>
       <Tabs patient={patientInfo} />

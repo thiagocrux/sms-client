@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import ReactPaginate from "react-paginate";
+import { useLocation } from "react-router";
 
 import ListItem from "../../Patients/List/ListItem/ListItem";
 
@@ -12,10 +13,14 @@ function Pagination({ items }) {
   const pagesVisited = pageNumber * itemsPerPage;
   const pageCount = items.length / itemsPerPage;
 
+  const location = useLocation();
+
   const displayItems = items
     .slice(pagesVisited, pagesVisited + itemsPerPage)
     .map((item) => {
-      return <ListItem key={item._id} patient={item} />;
+      return (
+        <ListItem key={item._id} patient={item} path={location.pathname} />
+      );
     });
 
   const changePage = ({ selected }) => {
