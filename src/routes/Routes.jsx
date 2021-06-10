@@ -43,6 +43,8 @@ function Routes() {
 
       <Route path="/patients" component={PatientPage} />
 
+      <Route path="/patients/:patientID" component={PatientPage} />
+
       <Route path="/patients/:patientID/new" component={PatientForm} />
 
       <Route path="/users/:patientID/new" component={UserForm} />
