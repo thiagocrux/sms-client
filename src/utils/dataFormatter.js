@@ -9,6 +9,28 @@ export function formatDate(dateAsString) {
   return dateFormatted;
 }
 
+export function formatDateTime(dateAsObject) {
+  const months = [
+    "janeiro",
+    "fevereiro",
+    "março",
+    "abril",
+    "maio",
+    "junho",
+    "julho",
+    "agosto",
+    "setembro",
+    "outubro",
+    "novembro",
+    "dezembro",
+  ];
+  const date = new Date(dateAsObject);
+
+  return `${date.getDate()} de ${
+    months[date.getMonth()]
+  } de ${date.getFullYear()}, ${date.getHours()}:${date.getMinutes()}:${date.getSeconds()}`;
+}
+
 export function formatSUSCardNumber(susCardNumber) {
   susCardNumber = susCardNumber.replace(/[^\d]/g, "");
   return susCardNumber.replace(/(\d{3})(\d{4})(\d{4})(\d{4})/, "$1 $2 $3 $4");

@@ -2,17 +2,18 @@ import React from "react";
 import { Route, Switch } from "react-router-dom";
 
 import HomePage from "../components/Pages/HomePage/HomePage";
-import LoginPage from "../containers/LoginPage/LoginPage";
-import NotificationPage from "../containers/NotificationPage/NotificationPage";
+import LoginPage from "../components/Pages/LoginPage/LoginPage";
+import NotificationPage from "../containers/Notifications/NotificationPage/NotificationPage";
 
-import PatientList from "../containers/PatientList/PatientList";
-import PatientInfo from "../components/PatientInfo/PatientInfo";
-import PatientNotification from "../components/Notifications/PatientNotification/PatientNotification";
+import PatientPage from "../containers/PatientPage/PatientPage";
+import PatientSelected from "../containers/PatientSelected/PatientSelected";
+import NotificationSelectedPatient from "../containers/Notifications/NotificationSelectedPatient/NotificationSelectedPatient";
 
-import MonitoringForm from "../containers/MonitoringForm/MonitoringForm";
-import TreatmentForm from "../containers/TreatmentForm/TreatmentForm";
+import MonitoringForm from "../containers/Notifications/NotificationForms/MonitoringForm/MonitoringForm";
+import TreatmentForm from "../containers/Notifications/NotificationForms/TreatmentForm/TreatmentForm";
+import ExamForm from "../containers/Notifications/NotificationForms/ExamForm/ExamForm";
+
 import PatientForm from "../containers/PatientForm/PatientForm";
-import ExamForm from "../containers/ExamForm/ExamForm";
 import UserForm from "../containers/UserForm/UserForm";
 
 import PageNotFound from "../components/Pages/PageNotFound/PageNotFound";
@@ -28,7 +29,7 @@ function Routes() {
       <Route
         exact
         path="/notifications/patients/:patientID"
-        component={PatientNotification}
+        component={NotificationSelectedPatient}
       />
 
       <Route
@@ -49,9 +50,9 @@ function Routes() {
         component={TreatmentForm}
       />
 
-      <Route exact path="/patients" component={PatientList} />
+      <Route exact path="/patients" component={PatientPage} />
 
-      <Route exact path="/patients/:patientID" component={PatientInfo} />
+      <Route exact path="/patients/:patientID" component={PatientSelected} />
 
       <Route exact path="/patients/:patientID/new" component={PatientForm} />
 

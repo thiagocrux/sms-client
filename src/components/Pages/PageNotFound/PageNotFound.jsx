@@ -1,6 +1,6 @@
-import React from 'react';
+import React from "react";
 
-import Heading from '../../Layout/Heading/Heading';
+import Heading from "../../Common/Heading/Heading";
 
 // import style from './RouteNotFound.module.css';
 

@@ -7,9 +7,9 @@ import {
   PersonFill,
 } from "react-bootstrap-icons";
 
-import Heading from "../../Common/Heading/Heading";
-import SearchItemNotFound from "../../Common/SearchItemNotFound/SearchItemNotFound";
-import PatientListItem from "../../../containers/PatientListItem/PatientListItem";
+import Heading from "../../components/Common/Heading/Heading";
+import SearchItemNotFound from "../../components/Common/SearchItemNotFound/SearchItemNotFound";
+import PatientListItem from "../PatientListItem/PatientListItem";
 
 import style from "./PatientList.module.css";
 
