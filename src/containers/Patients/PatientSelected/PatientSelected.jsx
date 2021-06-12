@@ -59,55 +59,53 @@ function PatientInfo() {
   return (
     <>
       <div className={style.selectedPatientCard}>
-        <div className={style.cardHeader}>
-          <div></div>
-          <h1 className={style.heading}>Informações do paciente selecionado</h1>
-          <button
-            className={`${style.button} ${style.closeButton}`}
-            onClick={() => history.goBack()}
-          >
-            <X className={style.icon} />
-          </button>
-        </div>
-        <div className={style.cardBody}>
-          <div className={style.infoContainer}>
-            <span className={style.label}>Número do cartão do SUS</span>
-            <span className={style.info}>{formatSUSCardNumber(susCardNumber)}</span>
+        <button className={`${style.button} ${style.closeButton}`} onClick={() => history.goBack()}>
+          <X className={style.icon} />
+        </button>
+        <div className={style.innerContainer}>
+          <div className={style.cardHeader}>
+            <h1 className={style.heading}>Informações do paciente selecionado</h1>
           </div>
-          <div className={style.infoContainer}>
-            <span className={style.label}>CPF</span>
-            <span className={style.info}>{formatCPF(cpf)}</span>
+          <div className={style.cardBody}>
+            <div className={style.infoContainer}>
+              <span className={style.label}>Número do cartão do SUS</span>
+              <span className={style.info}>{formatSUSCardNumber(susCardNumber)}</span>
+            </div>
+            <div className={style.infoContainer}>
+              <span className={style.label}>CPF</span>
+              <span className={style.info}>{formatCPF(cpf)}</span>
+            </div>
+            <div className={style.infoContainer}>
+              <span className={style.label}>Nome</span>
+              <span className={style.info}>{socialName !== '' ? socialName : name}</span>
+            </div>
           </div>
-          <div className={style.infoContainer}>
-            <span className={style.label}>Nome</span>
-            <span className={style.info}>{socialName !== '' ? socialName : name}</span>
+          <div className={style.cardFooter}>
+            <button
+              className={`${style.button} ${style.infoButton}`}
+              onClick={() => history.goBack()}
+            >
+              <PersonLinesFill className={style.icon} />
+              Mais informações
+            </button>
+            <button
+              className={`${style.button} ${style.editButton}`}
+              onClick={() => history.push(`/patients/${patientID}/edit`)}
+            >
+              <PencilFill className={style.icon} />
+              Editar paciente
+            </button>
+            <button className={`${style.button} ${style.deleteButton}`} onClick={deletePatient()}>
+              <TrashFill className={style.icon} />
+              Excluir paciente
+            </button>
           </div>
-        </div>
-        <div className={style.cardFooter}>
-          <button
-            className={`${style.button} ${style.infoButton}`}
-            onClick={() => history.goBack()}
-          >
-            <PersonLinesFill className={style.icon} />
-            Mais informações
-          </button>
-          <button
-            className={`${style.button} ${style.editButton}`}
-            onClick={() => history.push(`/patients/${patientID}/edit`)}
-          >
-            <PencilFill className={style.icon} />
-            Editar paciente
-          </button>
-          <button className={`${style.button} ${style.deleteButton}`} onClick={deletePatient()}>
-            <TrashFill className={style.icon} />
-            Excluir paciente
-          </button>
         </div>
       </div>
 
       {/* <ExamsList exams={patientExams} />
       <MonitoringsList monitorings={patientMonitorings} /> */}
-      <TreatmentsList treatments={patientTreatments} />
+      {/* <TreatmentsList treatments={patientTreatments} /> */}
     </>
   );
 }
