@@ -1,21 +1,21 @@
-import React, { useEffect, useState } from "react";
-import axios from "axios";
+import React, { useEffect, useState } from 'react';
+import axios from 'axios';
 
-import PatientList from "../../containers/PatientList/PatientList";
-import PatientSearchForm from "../../containers/PatientSearchForm/PatientSearchForm";
+import PatientList from '../PatientList/PatientList';
+import PatientSearchForm from '../PatientSearchForm/PatientSearchForm';
 
-import style from "./PatientPage.module.css";
+import style from './PatientPage.module.css';
 
 export default function PatientSelected() {
   const [patients, setPatients] = useState([]);
   const [filteredPatients, setFilteredPatients] = useState([]);
   const [search, setSearch] = useState({
-    criterion: "susCardNumber",
-    inputValue: "",
+    criterion: 'susCardNumber',
+    inputValue: '',
   });
 
   useEffect(() => {
-    axios.get("http://localhost:8000/api/v1/patients/").then((response) => {
+    axios.get('http://localhost:8000/api/v1/patients/').then((response) => {
       setPatients(response.data.patients);
     });
   }, []);
@@ -24,12 +24,8 @@ export default function PatientSelected() {
     const { criterion, inputValue } = search;
 
     const filter = patients.filter((filteredPatients) => {
-      const key = Object.keys(filteredPatients).filter(
-        (key) => key === criterion
-      );
-      return filteredPatients[key]
-        .toLowerCase()
-        .includes(inputValue.toLowerCase());
+      const key = Object.keys(filteredPatients).filter((key) => key === criterion);
+      return filteredPatients[key].toLowerCase().includes(inputValue.toLowerCase());
     });
 
     setFilteredPatients(filter);

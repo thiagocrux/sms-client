@@ -1,10 +1,10 @@
-import React from "react";
-import { PersonLinesFill, PenFill, XCircleFill } from "react-bootstrap-icons";
-import { formatDate, formatDateTime } from "../../utils/dataFormatter";
+import React from 'react';
+import { PersonLinesFill, PenFill, XCircleFill } from 'react-bootstrap-icons';
+import { formatDate, formatDateTime } from '../../../../utils/dataFormatter';
 
-import Heading from "../../components/Common/Heading/Heading";
+import Heading from '../../../../components/Common/Heading/Heading';
 
-import style from "./TreatmentsList.module.css";
+import style from './TreatmentsList.module.css';
 
 export default function TreatmentsList({ treatments }) {
   return treatments ? (
@@ -56,11 +56,7 @@ export default function TreatmentsList({ treatments }) {
               </div>
               <div className={style.footerInfo}>
                 <span>atualizado em:&nbsp;</span>
-                <p>
-                  {treatment.updatedAt
-                    ? formatDateTime(treatment.updatedAt)
-                    : "-"}
-                </p>
+                <p>{treatment.updatedAt ? formatDateTime(treatment.updatedAt) : '-'}</p>
               </div>
             </div>
           </li>

@@ -1,32 +1,25 @@
-import React from "react";
-import { Search } from "react-bootstrap-icons";
+import React from 'react';
+import { Search } from 'react-bootstrap-icons';
 
-import Field from "../../components/Layout/Form/Field/Field";
-import Heading from "../../components/Common/Heading/Heading";
+import Field from '../../../components/Layout/Form/Field/Field';
+import Heading from '../../../components/Common/Heading/Heading';
 
-import style from "./PatientSearchForm.module.css";
+import style from './PatientSearchForm.module.css';
 
-export default function PatientSearchForm({
-  handleSubmit,
-  search,
-  setSearch,
-  formHeader,
-}) {
+export default function PatientSearchForm({ handleSubmit, search, setSearch, formHeader }) {
   const { criterion, inputValue } = search;
 
   return (
-    <div className={style["patient-search"]}>
+    <div className={style['patient-search']}>
       <Heading type="primary">{formHeader}</Heading>
-      <div className={style["grid-container"]}>
+      <div className={style['grid-container']}>
         <Field>
           <label htmlFor="search-criterion">Critério de pesquisa</label>
           <select
             value={criterion}
             name="search-criterion"
-            className={style["search-criterion"]}
-            onChange={(event) =>
-              setSearch({ ...search, criterion: event.currentTarget.value })
-            }
+            className={style['search-criterion']}
+            onChange={(event) => setSearch({ ...search, criterion: event.currentTarget.value })}
           >
             <option value="susCardNumber">Número do cartão do SUS</option>
             <option value="cpf">Número do CPF</option>
@@ -40,20 +33,18 @@ export default function PatientSearchForm({
             name="search-input"
             type="text"
             placeholder={
-              criterion === "susCardNumber"
-                ? "Insira o número do cartão do SUS do paciente"
-                : criterion === "cpf"
-                ? "Insira o CPF do paciente"
-                : "Insira o nome do paciente"
+              criterion === 'susCardNumber'
+                ? 'Insira o número do cartão do SUS do paciente'
+                : criterion === 'cpf'
+                ? 'Insira o CPF do paciente'
+                : 'Insira o nome do paciente'
             }
-            className={style["search-input"]}
-            onChange={(event) =>
-              setSearch({ ...search, inputValue: event.currentTarget.value })
-            }
+            className={style['search-input']}
+            onChange={(event) => setSearch({ ...search, inputValue: event.currentTarget.value })}
           />
         </Field>
       </div>
-      <div className={style["flex-container"]}>
+      <div className={style['flex-container']}>
         <button className={style.button} onClick={handleSubmit}>
           <Search className={style.icon} />
           Pesquisar

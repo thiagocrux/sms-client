@@ -1,24 +1,24 @@
-import React, { useEffect, useState } from "react";
-import axios from "axios";
-import { useParams } from "react-router-dom";
-import { patientMockedValues, patientInitialValues } from "../../utils/mock";
+import React, { useEffect, useState } from 'react';
+import axios from 'axios';
+import { useParams } from 'react-router-dom';
+import { patientMockedValues, patientInitialValues } from '../../../utils/mock';
 
-import Button from "../../components/Common/Button/Button";
-import Divider from "../../components/Layout/Form/Divider/Divider";
-import Field from "../../components/Layout/Form/Field/Field";
-import Form from "../../components/Layout/Form/Form";
-import Heading from "../../components/Common/Heading/Heading";
-import SubmitContainer from "../../components/Layout/Form/SubmitContainer/SubmitContainer";
-import ThematicBreak from "../../components/Common/ThematicBreak/ThematicBreak";
+import Button from '../../../components/Common/Button/Button';
+import Divider from '../../../components/Layout/Form/Divider/Divider';
+import Field from '../../../components/Layout/Form/Field/Field';
+import Form from '../../../components/Layout/Form/Form';
+import Heading from '../../../components/Common/Heading/Heading';
+import SubmitContainer from '../../../components/Layout/Form/SubmitContainer/SubmitContainer';
+import ThematicBreak from '../../../components/Common/ThematicBreak/ThematicBreak';
 
-import style from "./PatientForm.module.css";
+import style from './PatientForm.module.css';
 
 // FIXME: Deletar objeto quando o banco de dados estiver acessível.
 const MOCK_VALUES = patientMockedValues;
 const INITIAL_VALUES = patientInitialValues;
 
 export default function PatientForm() {
-  const [formType, setFormType] = useState("create");
+  const [formType, setFormType] = useState('create');
   const [patientInformation, setPatientInformation] = useState(INITIAL_VALUES);
   const { patientID } = useParams();
 
@@ -44,12 +44,12 @@ export default function PatientForm() {
 
   /* Check the existence of params and set the type of form */
   function handleFormType() {
-    if (patientID && formType !== "update") {
-      setFormType("update");
+    if (patientID && formType !== 'update') {
+      setFormType('update');
       setInputValues();
       console.log(formType);
-    } else if (!patientID && formType !== "create") {
-      setFormType("create");
+    } else if (!patientID && formType !== 'create') {
+      setFormType('create');
       console.log(formType);
     }
   }
@@ -62,39 +62,35 @@ export default function PatientForm() {
 
   /* Save the input values in the state and then send to the database */
   function handleButtonClick(action) {
-    if (action === "submit") {
+    if (action === 'submit') {
       /* TODO:
         1. Validar os dados antes de salvar no banco de dados;
         2. Salvar valores no banco de dados de acordo com o método (criação ou atualização);
       */
       console.log(patientInformation);
-      axios.post("http://localhost:8000/api/v1/patients/", patientInformation);
-    } else if (action === "cancel") {
+      axios.post('http://localhost:8000/api/v1/patients/', patientInformation);
+    } else if (action === 'cancel') {
       /* TODO:
         1. Criar lógica para o botão de cancelar.
       */
-      console.log("Action cancelled!");
+      console.log('Action cancelled!');
     }
   }
 
   return (
     <>
       <Heading type="primary">
-        {formType === "update" ? "Atualização" : "Cadastro"} de paciente
+        {formType === 'update' ? 'Atualização' : 'Cadastro'} de paciente
       </Heading>
       <Form>
         <Divider>
           <Heading type="secondary">Dados do paciente</Heading>
-          <div
-            className={`${style["grid-container"]} ${style["first-grid-container"]}`}
-          >
+          <div className={`${style['grid-container']} ${style['first-grid-container']}`}>
             <Field>
               <label htmlFor="susCardNumber">Código do SUS</label>
               <input
                 name="susCardNumber"
-                onChange={(event) =>
-                  handleChange("susCardNumber", event.currentTarget.value)
-                }
+                onChange={(event) => handleChange('susCardNumber', event.currentTarget.value)}
                 value={patientInformation.susCardNumber}
                 placeholder="Insira o número do cartão do SUS"
               />
@@ -103,9 +99,7 @@ export default function PatientForm() {
               <label htmlFor="name">Nome</label>
               <input
                 name="name"
-                onChange={(event) =>
-                  handleChange("name", event.currentTarget.value)
-                }
+                onChange={(event) => handleChange('name', event.currentTarget.value)}
                 value={patientInformation.name}
                 placeholder="Insira o nome do paciente"
               />
@@ -114,9 +108,7 @@ export default function PatientForm() {
               <label htmlFor="cpf">CPF</label>
               <input
                 name="cpf"
-                onChange={(event) =>
-                  handleChange("cpf", event.currentTarget.value)
-                }
+                onChange={(event) => handleChange('cpf', event.currentTarget.value)}
                 value={patientInformation.cpf}
                 placeholder="Insira o CPF do paciente"
               />
@@ -125,9 +117,7 @@ export default function PatientForm() {
               <label htmlFor="socialName">Nome social</label>
               <input
                 name="socialName"
-                onChange={(event) =>
-                  handleChange("socialName", event.currentTarget.value)
-                }
+                onChange={(event) => handleChange('socialName', event.currentTarget.value)}
                 value={patientInformation.socialName}
                 placeholder="Insira o nome do paciente"
               />
@@ -137,9 +127,7 @@ export default function PatientForm() {
               <input
                 type="date"
                 name="birthDate"
-                onChange={(event) =>
-                  handleChange("birthDate", event.currentTarget.value)
-                }
+                onChange={(event) => handleChange('birthDate', event.currentTarget.value)}
                 value={patientInformation.birthDate}
               />
             </Field>
@@ -147,9 +135,7 @@ export default function PatientForm() {
               <label htmlFor="gender">Sexo</label>
               <select
                 name="gender"
-                onChange={(event) =>
-                  handleChange("gender", event.currentTarget.value)
-                }
+                onChange={(event) => handleChange('gender', event.currentTarget.value)}
                 value={patientInformation.gender}
               >
                 <option value="" disabled selected hidden>
@@ -164,9 +150,7 @@ export default function PatientForm() {
               <label htmlFor="nationality">Naturalidade</label>
               <select
                 name="nationality"
-                onChange={(event) =>
-                  handleChange("nationality", event.currentTarget.value)
-                }
+                onChange={(event) => handleChange('nationality', event.currentTarget.value)}
                 value={patientInformation.nationality}
               >
                 <option value="" selected disabled hidden>
@@ -181,9 +165,7 @@ export default function PatientForm() {
               <label htmlFor="phone">Telefone</label>
               <input
                 name="phone"
-                onChange={(event) =>
-                  handleChange("phone", event.currentTarget.value)
-                }
+                onChange={(event) => handleChange('phone', event.currentTarget.value)}
                 value={patientInformation.phone}
                 placeholder="Insira o telefone do paciente"
               />
@@ -192,9 +174,7 @@ export default function PatientForm() {
               <label htmlFor="email">E-mail</label>
               <input
                 name="email"
-                onChange={(event) =>
-                  handleChange("email", event.currentTarget.value)
-                }
+                onChange={(event) => handleChange('email', event.currentTarget.value)}
                 value={patientInformation.email}
                 type="email"
                 placeholder="Insira o e-mail do paciente"
@@ -204,9 +184,7 @@ export default function PatientForm() {
               <label htmlFor="motherName">Nome da mãe do paciente</label>
               <input
                 name="motherName"
-                onChange={(event) =>
-                  handleChange("motherName", event.currentTarget.value)
-                }
+                onChange={(event) => handleChange('motherName', event.currentTarget.value)}
                 value={patientInformation.motherName}
                 placeholder="Insira o nome da mãe do paciente"
               />
@@ -214,16 +192,12 @@ export default function PatientForm() {
           </div>
           <ThematicBreak />
           <Heading type="secondary">Endereço do paciente</Heading>
-          <div
-            className={`${style["grid-container"]} ${style["second-grid-container"]}`}
-          >
+          <div className={`${style['grid-container']} ${style['second-grid-container']}`}>
             <Field>
               <label htmlFor="zipCode">CEP</label>
               <input
                 name="zipCode"
-                onChange={(event) =>
-                  handleChange("zipCode", event.currentTarget.value)
-                }
+                onChange={(event) => handleChange('zipCode', event.currentTarget.value)}
                 value={patientInformation.zipCode}
                 placeholder="Insira o CEP da residência"
               />
@@ -232,9 +206,7 @@ export default function PatientForm() {
               <label htmlFor="state">Estado</label>
               <input
                 name="state"
-                onChange={(event) =>
-                  handleChange("state", event.currentTarget.value)
-                }
+                onChange={(event) => handleChange('state', event.currentTarget.value)}
                 value={patientInformation.state}
                 placeholder="Insira o estado de residência"
               />
@@ -243,9 +215,7 @@ export default function PatientForm() {
               <label htmlFor="city">Cidade</label>
               <input
                 name="city"
-                onChange={(event) =>
-                  handleChange("city", event.currentTarget.value)
-                }
+                onChange={(event) => handleChange('city', event.currentTarget.value)}
                 value={patientInformation.city}
                 placeholder="Insira a cidade de residência"
               />
@@ -254,9 +224,7 @@ export default function PatientForm() {
               <label htmlFor="neighbourhood">Bairro</label>
               <input
                 name="neighbourhood"
-                onChange={(event) =>
-                  handleChange("neighbourhood", event.currentTarget.value)
-                }
+                onChange={(event) => handleChange('neighbourhood', event.currentTarget.value)}
                 value={patientInformation.neighbourhood}
                 placeholder="Insira o bairro de residência"
               />
@@ -265,9 +233,7 @@ export default function PatientForm() {
               <label htmlFor="street">Logradouro</label>
               <input
                 name="street"
-                onChange={(event) =>
-                  handleChange("street", event.currentTarget.value)
-                }
+                onChange={(event) => handleChange('street', event.currentTarget.value)}
                 value={patientInformation.street}
                 placeholder="Insira a rua de residência"
               />
@@ -276,9 +242,7 @@ export default function PatientForm() {
               <label htmlFor="houseNumber">Número da residência</label>
               <input
                 name="houseNumber"
-                onChange={(event) =>
-                  handleChange("houseNumber", event.currentTarget.value)
-                }
+                onChange={(event) => handleChange('houseNumber', event.currentTarget.value)}
                 value={patientInformation.houseNumber}
                 placeholder="Insira o número da residência"
               />
@@ -287,9 +251,7 @@ export default function PatientForm() {
               <label htmlFor="complement">Complemento</label>
               <input
                 name="complement"
-                onChange={(event) =>
-                  handleChange("complement", event.currentTarget.value)
-                }
+                onChange={(event) => handleChange('complement', event.currentTarget.value)}
                 value={patientInformation.complement}
                 placeholder="Insira as informações complementares"
               />
@@ -301,7 +263,7 @@ export default function PatientForm() {
             Cancelar
           </Button>
           <Button type="button" action="submit" click={handleButtonClick}>
-            {formType === "create" ? "Cadastrar" : "Salvar"}
+            {formType === 'create' ? 'Cadastrar' : 'Salvar'}
           </Button>
         </SubmitContainer>
       </Form>

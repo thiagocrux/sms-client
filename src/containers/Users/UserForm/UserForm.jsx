@@ -1,29 +1,28 @@
-import React, { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
-import axios from "axios";
-import { userInitialValues, userMockedValues } from "../../utils/mock";
+import React, { useState, useEffect } from 'react';
+import { useParams } from 'react-router-dom';
+import axios from 'axios';
+import { userInitialValues, userMockedValues } from '../../../utils/mock';
 
-import Button from "../../components/Common/Button/Button";
-import Divider from "../../components/Layout/Form/Divider/Divider";
-import Field from "../../components/Layout/Form/Field/Field";
-import Form from "../../components/Layout/Form/Form";
-import Heading from "../../components/Common/Heading/Heading";
-import SubmitContainer from "../../components/Layout/Form/SubmitContainer/SubmitContainer";
+import Button from '../../../components/Common/Button/Button';
+import Divider from '../../../components/Layout/Form/Divider/Divider';
+import Field from '../../../components/Layout/Form/Field/Field';
+import Form from '../../../components/Layout/Form/Form';
+import Heading from '../../../components/Common/Heading/Heading';
+import SubmitContainer from '../../../components/Layout/Form/SubmitContainer/SubmitContainer';
 
-import style from "./UserForm.module.css";
+import style from './UserForm.module.css';
 
 // FIXME: Deletar objeto quando o banco de dados estiver acessível.
 const MOCK_VALUES = userMockedValues;
 const INITIAL_VALUES = userInitialValues;
 
 export default function UserForm() {
-  const [formType, setFormType] = useState("create");
+  const [formType, setFormType] = useState('create');
   const [userInformation, setUserInformation] = useState(INITIAL_VALUES);
   const { userID } = useParams();
 
   /* Input handlers */
-  const handleChange = (field, value) =>
-    setUserInformation({ ...userInformation, [field]: value });
+  const handleChange = (field, value) => setUserInformation({ ...userInformation, [field]: value });
 
   /* Set the type of form on the first render */
   useEffect(() => {
@@ -43,12 +42,12 @@ export default function UserForm() {
 
   /* Check the existence of params and set the type of form */
   function handleFormType() {
-    if (userID && formType !== "update") {
-      setFormType("update");
+    if (userID && formType !== 'update') {
+      setFormType('update');
       setInputValues();
       console.log(formType);
-    } else if (!userID && formType !== "create") {
-      setFormType("create");
+    } else if (!userID && formType !== 'create') {
+      setFormType('create');
       console.log(formType);
     }
   }
@@ -61,25 +60,25 @@ export default function UserForm() {
 
   /* Save the input values in the state and then send to the database */
   function handleButtonClick(action) {
-    if (action === "submit") {
+    if (action === 'submit') {
       /* TODO:
         1. Validar os dados antes de salvar no banco de dados;
         2. Salvar valores no banco de dados de acordo com o método (criação ou atualização);
       */
       console.log(userInformation);
-      axios.post("http://localhost:8000/api/v1/users/", userInformation);
-    } else if (action === "cancel") {
+      axios.post('http://localhost:8000/api/v1/users/', userInformation);
+    } else if (action === 'cancel') {
       /* TODO:
         1. Criar lógica para o botão de cancelar.
       */
-      console.log("Action cancelled!");
+      console.log('Action cancelled!');
     }
   }
 
   return (
     <>
       <Heading type="primary">
-        {formType === "update" ? "Atualização" : "Cadastro"} de paciente
+        {formType === 'update' ? 'Atualização' : 'Cadastro'} de paciente
       </Heading>
       <Form>
         <Divider>
@@ -87,9 +86,7 @@ export default function UserForm() {
             <label htmlFor="">Nome</label>
             <input
               name=""
-              onChange={(event) =>
-                handleChange("name", event.currentTarget.value)
-              }
+              onChange={(event) => handleChange('name', event.currentTarget.value)}
               value={userInformation.name}
               placeholder="Insira o nome do usuário"
             />
@@ -98,9 +95,7 @@ export default function UserForm() {
             <label htmlFor="">CPF</label>
             <input
               name=""
-              onChange={(event) =>
-                handleChange("name", event.currentTarget.value)
-              }
+              onChange={(event) => handleChange('name', event.currentTarget.value)}
               value={userInformation.cpf}
               placeholder=""
             />
@@ -109,9 +104,7 @@ export default function UserForm() {
             <label htmlFor="">Cargo</label>
             <input
               name=""
-              onChange={(event) =>
-                handleChange("name", event.currentTarget.value)
-              }
+              onChange={(event) => handleChange('name', event.currentTarget.value)}
               value={userInformation.role}
               placeholder=""
             />
@@ -120,9 +113,7 @@ export default function UserForm() {
             <label htmlFor="">Local de trabalho</label>
             <input
               name=""
-              onChange={(event) =>
-                handleChange("name", event.currentTarget.value)
-              }
+              onChange={(event) => handleChange('name', event.currentTarget.value)}
               value={userInformation.workLocation}
               placeholder=""
             />
@@ -132,9 +123,7 @@ export default function UserForm() {
             <input
               type="email"
               name=""
-              onChange={(event) =>
-                handleChange("name", event.currentTarget.value)
-              }
+              onChange={(event) => handleChange('name', event.currentTarget.value)}
               value={userInformation.email}
               placeholder=""
             />
@@ -144,9 +133,7 @@ export default function UserForm() {
             <input
               type="password"
               name=""
-              onChange={(event) =>
-                handleChange("name", event.currentTarget.value)
-              }
+              onChange={(event) => handleChange('name', event.currentTarget.value)}
               value={userInformation.password}
               placeholder=""
             />
@@ -156,9 +143,7 @@ export default function UserForm() {
             <input
               type=""
               name=""
-              onChange={(event) =>
-                handleChange("name", event.currentTarget.value)
-              }
+              onChange={(event) => handleChange('name', event.currentTarget.value)}
               value={userInformation.admin}
               placeholder=""
             />
@@ -169,7 +154,7 @@ export default function UserForm() {
             Cancelar
           </Button>
           <Button type="button" action="submit" click={handleButtonClick}>
-            {formType === "create" ? "Cadastrar" : "Salvar"}
+            {formType === 'create' ? 'Cadastrar' : 'Salvar'}
           </Button>
         </SubmitContainer>
       </Form>

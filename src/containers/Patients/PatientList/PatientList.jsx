@@ -1,17 +1,17 @@
-import React, { useEffect, useState } from "react";
-import ReactPaginate from "react-paginate";
+import React, { useEffect, useState } from 'react';
+import ReactPaginate from 'react-paginate';
 import {
   CalendarDateFill,
   FileMedicalFill,
   PersonBadgeFill,
   PersonFill,
-} from "react-bootstrap-icons";
+} from 'react-bootstrap-icons';
 
-import Heading from "../../components/Common/Heading/Heading";
-import SearchItemNotFound from "../../components/Common/SearchItemNotFound/SearchItemNotFound";
-import PatientListItem from "../PatientListItem/PatientListItem";
+import Heading from '../../../components/Common/Heading/Heading';
+import SearchItemNotFound from '../../../components/Common/SearchItemNotFound/SearchItemNotFound';
+import PatientListItem from '../PatientListItem/PatientListItem';
 
-import style from "./PatientList.module.css";
+import style from './PatientList.module.css';
 
 export default function PatientList({ filteredResult }) {
   const [items, setItems] = useState([]);
@@ -26,17 +26,15 @@ export default function PatientList({ filteredResult }) {
   const pagesVisited = pageNumber * itemsPerPage;
   const pageCount = items.length / itemsPerPage;
 
-  const displayItems = items
-    .slice(pagesVisited, pagesVisited + itemsPerPage)
-    .map((item) => {
-      return <PatientListItem key={item._id} patient={item} />;
-    });
+  const displayItems = items.slice(pagesVisited, pagesVisited + itemsPerPage).map((item) => {
+    return <PatientListItem key={item._id} patient={item} />;
+  });
 
   const changePage = ({ selected }) => {
     setPageNumber(selected);
   };
 
-  console.log("[LIST]: " + { ...items });
+  console.log('[LIST]: ' + { ...items });
 
   return (
     <div className={style.listContainer}>

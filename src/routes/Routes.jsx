@@ -1,22 +1,22 @@
-import React from "react";
-import { Route, Switch } from "react-router-dom";
+import React from 'react';
+import { Route, Switch } from 'react-router-dom';
 
-import HomePage from "../components/Pages/HomePage/HomePage";
-import LoginPage from "../components/Pages/LoginPage/LoginPage";
-import NotificationPage from "../containers/Notifications/NotificationPage/NotificationPage";
+import HomePage from '../components/Pages/HomePage/HomePage';
+import LoginPage from '../components/Pages/LoginPage/LoginPage';
+import NotificationPage from '../containers/Notifications/NotificationPage/NotificationPage';
 
-import PatientPage from "../containers/PatientPage/PatientPage";
-import PatientSelected from "../containers/PatientSelected/PatientSelected";
-import NotificationSelectedPatient from "../containers/Notifications/NotificationSelectedPatient/NotificationSelectedPatient";
+import PatientPage from '../containers/Patients/PatientPage/PatientPage';
+import PatientSelected from '../containers/Patients/PatientSelected/PatientSelected';
+import NotificationSelectedPatient from '../containers/Notifications/NotificationSelectedPatient/NotificationSelectedPatient';
 
-import MonitoringForm from "../containers/Notifications/NotificationForms/MonitoringForm/MonitoringForm";
-import TreatmentForm from "../containers/Notifications/NotificationForms/TreatmentForm/TreatmentForm";
-import ExamForm from "../containers/Notifications/NotificationForms/ExamForm/ExamForm";
+import MonitoringForm from '../containers/Notifications/NotificationForms/MonitoringForm/MonitoringForm';
+import TreatmentForm from '../containers/Notifications/NotificationForms/TreatmentForm/TreatmentForm';
+import ExamForm from '../containers/Notifications/NotificationForms/ExamForm/ExamForm';
 
-import PatientForm from "../containers/PatientForm/PatientForm";
-import UserForm from "../containers/UserForm/UserForm";
+import PatientForm from '../containers/Patients/PatientForm/PatientForm';
+import UserForm from '../containers/Users/UserForm/UserForm';
 
-import PageNotFound from "../components/Pages/PageNotFound/PageNotFound";
+import PageNotFound from '../components/Pages/PageNotFound/PageNotFound';
 
 function Routes() {
   return (
@@ -32,11 +32,7 @@ function Routes() {
         component={NotificationSelectedPatient}
       />
 
-      <Route
-        exact
-        path="/notifications/patients/:patientID/exams/new"
-        component={ExamForm}
-      />
+      <Route exact path="/notifications/patients/:patientID/exams/new" component={ExamForm} />
 
       <Route
         exact
