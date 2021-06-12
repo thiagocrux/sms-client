@@ -2,13 +2,21 @@ import React, { useEffect, useState } from 'react';
 import { useHistory, useLocation } from 'react-router-dom';
 import axios from 'axios';
 import { formatCPF, formatSUSCardNumber } from '../../../utils/dataFormatter';
+import {
+  PencilFill,
+  PersonLinesFill,
+  Trash,
+  TrashFill,
+  X,
+  XCircle,
+  XCircleFill,
+} from 'react-bootstrap-icons';
 
-import Button from '../../../components/Common/Button/Button';
 import ExamsList from '../../../containers/Notifications/NotificationList/ExamsList/ExamsList';
 import MonitoringsList from '../../../containers/Notifications/NotificationList/MonitoringsList/MonitoringsList';
 import TreatmentsList from '../../../containers/Notifications/NotificationList/TreatmentsList/TreatmentsList';
 
-import styles from './PatientSelected.module.css';
+import style from './PatientSelected.module.css';
 
 function PatientInfo() {
   const [patientExams, setPatientExams] = useState([]);
@@ -19,8 +27,6 @@ function PatientInfo() {
   const { state } = location;
   const { name, socialName, susCardNumber, cpf } = state;
   const patientID = state._id;
-
-  const { container, divider, label, item } = styles;
 
   useEffect(() => {
     axios.get(`http://localhost:8000/api/v1/patients/${patientID}/exams`).then((response) => {
@@ -43,32 +49,66 @@ function PatientInfo() {
     });
   }, [patientID]);
 
+  function deletePatient() {
+    console.log(`Paciente "${patientID}" deletado!`);
+  }
+
   console.log();
 
   console.log('[PATIENT INFO]: ' + state);
   return (
-    <div>
-      <div className={container}>
-        <div className={divider}>
-          <span className={label}>SUS</span>
-          <span className={item}>{formatSUSCardNumber(susCardNumber)}</span>
+    <>
+      <div className={style.selectedPatientCard}>
+        <div className={style.cardHeader}>
+          <div></div>
+          <h1 className={style.heading}>Informações do paciente selecionado</h1>
+          <button
+            className={`${style.button} ${style.closeButton}`}
+            onClick={() => history.goBack()}
+          >
+            <X className={style.icon} />
+          </button>
         </div>
-        <div className={divider}>
-          <span className={label}>Nome</span>
-          <span className={item}>{socialName !== '' ? socialName : name}</span>
+        <div className={style.cardBody}>
+          <div className={style.infoContainer}>
+            <span className={style.label}>Número do cartão do SUS</span>
+            <span className={style.info}>{formatSUSCardNumber(susCardNumber)}</span>
+          </div>
+          <div className={style.infoContainer}>
+            <span className={style.label}>CPF</span>
+            <span className={style.info}>{formatCPF(cpf)}</span>
+          </div>
+          <div className={style.infoContainer}>
+            <span className={style.label}>Nome</span>
+            <span className={style.info}>{socialName !== '' ? socialName : name}</span>
+          </div>
         </div>
-        <div className={divider}>
-          <span className={label}>CPF</span>
-          <span className={item}>{formatCPF(cpf)}</span>
+        <div className={style.cardFooter}>
+          <button
+            className={`${style.button} ${style.infoButton}`}
+            onClick={() => history.goBack()}
+          >
+            <PersonLinesFill className={style.icon} />
+            Mais informações
+          </button>
+          <button
+            className={`${style.button} ${style.editButton}`}
+            onClick={() => history.push(`/patients/${patientID}/edit`)}
+          >
+            <PencilFill className={style.icon} />
+            Editar paciente
+          </button>
+          <button className={`${style.button} ${style.deleteButton}`} onClick={deletePatient()}>
+            <TrashFill className={style.icon} />
+            Excluir paciente
+          </button>
         </div>
-        <Button action="submit" type="button" click={() => history.goBack()}>
-          Escolher outro paciente
-        </Button>
       </div>
+
       {/* <ExamsList exams={patientExams} />
       <MonitoringsList monitorings={patientMonitorings} /> */}
       <TreatmentsList treatments={patientTreatments} />
-    </div>
+    </>
   );
 }
 
