@@ -10,15 +10,15 @@ export default function PatientSearchForm({ handleSubmit, search, setSearch, for
   const { criterion, inputValue } = search;
 
   return (
-    <div className={style['patient-search']}>
+    <div className={style.patientSearchContainer}>
       <Heading type="primary">{formHeader}</Heading>
-      <div className={style['grid-container']}>
+      <div className={style.gridContainer}>
         <Field>
           <label htmlFor="search-criterion">Critério de pesquisa</label>
           <select
             value={criterion}
             name="search-criterion"
-            className={style['search-criterion']}
+            className={style.searchCriterion}
             onChange={(event) => setSearch({ ...search, criterion: event.currentTarget.value })}
           >
             <option value="susCardNumber">Número do cartão do SUS</option>
@@ -39,16 +39,16 @@ export default function PatientSearchForm({ handleSubmit, search, setSearch, for
                 ? 'Insira o CPF do paciente'
                 : 'Insira o nome do paciente'
             }
-            className={style['search-input']}
+            className={style.searchInput}
             onChange={(event) => setSearch({ ...search, inputValue: event.currentTarget.value })}
           />
         </Field>
-      </div>
-      <div className={style['flex-container']}>
-        <button className={style.button} onClick={handleSubmit}>
-          <Search className={style.icon} />
-          Pesquisar
-        </button>
+        <div className={style.buttonContainer}>
+          <div>&nbsp;</div>
+          <button className={style.button} onClick={handleSubmit}>
+            <Search className={style.icon} />
+          </button>
+        </div>
       </div>
     </div>
   );
