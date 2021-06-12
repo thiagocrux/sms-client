@@ -7,7 +7,7 @@ import NotificationPage from '../containers/Notifications/NotificationPage/Notif
 
 import PatientPage from '../containers/Patients/PatientPage/PatientPage';
 import PatientSelected from '../containers/Patients/PatientSelected/PatientSelected';
-import NotificationSelectedPatient from '../containers/Notifications/NotificationSelectedPatient/NotificationSelectedPatient';
+import NotificationPageForSelectedPatient from '../containers/Notifications/NotificationPageForSelectedPatient/NotificationPageForSelectedPatient';
 
 import MonitoringForm from '../containers/Notifications/NotificationForms/MonitoringForm/MonitoringForm';
 import TreatmentForm from '../containers/Notifications/NotificationForms/TreatmentForm/TreatmentForm';
@@ -26,10 +26,11 @@ function Routes() {
       <Route exact path="/login" component={LoginPage} />
 
       <Route exact path="/notifications" component={NotificationPage} />
+
       <Route
         exact
         path="/notifications/patients/:patientID"
-        component={NotificationSelectedPatient}
+        component={NotificationPageForSelectedPatient}
       />
 
       <Route exact path="/notifications/patients/:patientID/exams/new" component={ExamForm} />
