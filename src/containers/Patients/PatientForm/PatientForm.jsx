@@ -46,6 +46,9 @@ export default function PatientForm() {
   function handleFormType() {
     if (patientID && formType !== 'update') {
       setFormType('update');
+      axios
+        .get(`http://localhost:8000/api/v1/patients/${patientID}`)
+        .then((response) => setPatientInformation(response.data.patient));
       setInputValues();
       console.log(formType);
     } else if (!patientID && formType !== 'create') {
@@ -57,7 +60,7 @@ export default function PatientForm() {
   /* Insert the values of the object in the inputs in case of an update */
   function setInputValues() {
     // FIXME: Buscar informações no banco de dados e substituir o objeto abaixo.
-    setPatientInformation(MOCK_VALUES);
+    setPatientInformation(patientInformation);
   }
 
   /* Save the input values in the state and then send to the database */
