@@ -50,9 +50,11 @@ function Routes() {
 
       <Route exact path="/patients/:patientID" component={PatientSelected} />
 
-      <Route exact path="/patients/:patientID/new" component={PatientForm} />
+      <Route exact path="/patients/new" component={PatientForm} />
 
-      <Route exact path="/users/:patientID/new" component={UserForm} />
+      <Route exact path="/patients/:patientID/edit" component={PatientForm} />
+
+      <Route exact path="/users/new" component={UserForm} />
 
       <Route component={PageNotFound} />
     </Switch>
