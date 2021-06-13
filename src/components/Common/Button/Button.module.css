@@ -4,7 +4,7 @@
   align-items: center;
   padding: 1.2rem 4rem;
   border: none;
-  border-radius: 0.6rem;
+  border-radius: 10rem;
   font-size: 1.7rem;
   font-weight: 400;
   letter-spacing: 0.03rem;
@@ -19,22 +19,38 @@
   cursor: pointer;
 }
 
-.continue {
-  background-color: #1976d2;
-  color: white;
+/* Button types */
+
+.submit,
+.cancel,
+.default {
+  min-width: 20rem;
 }
 
-.continue:hover {
-  background-color: #50a1e4;
+.submit {
+  color: white;
+  background-color: #809bce;
+}
+
+.submit:hover {
+  background-color: #4873c4;
 }
 
 .cancel {
-  border: 1px solid #ff1d58;
-  background-color: #ffffff;
-  color: #ff1d58;
+  color: #ffffff;
+  background-color: #f67b75;
 }
 
 .cancel:hover {
-  background-color: #ff1d58;
-  color: #ffffff;
+  background-color: #f25757;
+}
+
+.default {
+  min-width: 25rem;
+  color: white;
+  background-color: #809bce;
+}
+
+.default:hover {
+  background-color: #4873c4;
 }
