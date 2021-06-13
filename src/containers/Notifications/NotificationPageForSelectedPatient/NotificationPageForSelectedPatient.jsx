@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { useParams } from 'react-router-dom';
+import { useParams, useHistory } from 'react-router-dom';
 
 import PatientSelected from '../../Patients/PatientSelected/PatientSelected';
 import NotificationOptions from '../NotificationOptions/NotificationOptions';
@@ -10,6 +10,7 @@ import NotificationOptions from '../NotificationOptions/NotificationOptions';
 export default function NotificationPageForSelectedPatient() {
   const [patient, setPatient] = useState();
   const { patientID } = useParams();
+  const history = useHistory();
 
   // Get the data of the patient whose ID is the same as the one received as a request parameter when the component is mounted
   useEffect(() => {
@@ -19,12 +20,16 @@ export default function NotificationPageForSelectedPatient() {
     });
   }, []);
 
+  function handleClick(url) {
+    history.push(url);
+  }
+
   return (
     <div>
       {patient && (
         <>
           <PatientSelected patient={patient} />
-          <NotificationOptions />
+          <NotificationOptions isCreation={true} click={handleClick} />
         </>
       )}
     </div>
