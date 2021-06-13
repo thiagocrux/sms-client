@@ -1,5 +1,5 @@
 import React from 'react';
-import { PenFill, PersonLinesFill, XCircleFill } from 'react-bootstrap-icons';
+import { PenFill, PersonLinesFill, TrashFill } from 'react-bootstrap-icons';
 import { Link, useLocation } from 'react-router-dom';
 
 import { formatCPF, formatDate, formatSUSCardNumber } from '../../../utils/dataFormatter';
@@ -31,7 +31,7 @@ export default function PatientListItem({ patient }) {
       <span className={controls}>
         <PersonLinesFill className={icon} />
         <PenFill className={icon} />
-        <XCircleFill className={icon} />
+        <TrashFill className={icon} />
       </span>
     </Link>
   );
