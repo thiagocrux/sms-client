@@ -3,12 +3,12 @@ import { Route, Switch } from 'react-router-dom';
 
 import HomePage from '../components/Pages/HomePage/HomePage';
 import LoginPage from '../components/Pages/LoginPage/LoginPage';
-import NotificationPage from '../containers/Notifications/NotificationPage/NotificationPage';
 
 import PatientPage from '../containers/Patients/PatientPage/PatientPage';
-import PatientSelected from '../containers/Patients/PatientSelected/PatientSelected';
-import NotificationPageForSelectedPatient from '../containers/Notifications/NotificationPageForSelectedPatient/NotificationPageForSelectedPatient';
+import PatientPageForSelectedPatient from '../containers/Patients/PatientPageForSelectedPatient/PatientPageForSelectedPatient';
 
+import NotificationPage from '../containers/Notifications/NotificationPage/NotificationPage';
+import NotificationPageForSelectedPatient from '../containers/Notifications/NotificationPageForSelectedPatient/NotificationPageForSelectedPatient';
 import MonitoringForm from '../containers/Notifications/NotificationForms/MonitoringForm/MonitoringForm';
 import TreatmentForm from '../containers/Notifications/NotificationForms/TreatmentForm/TreatmentForm';
 import ExamForm from '../containers/Notifications/NotificationForms/ExamForm/ExamForm';
@@ -49,7 +49,7 @@ function Routes() {
 
       <Route exact path="/patients" component={PatientPage} />
 
-      <Route exact path="/patients/:patientID" component={PatientSelected} />
+      <Route exact path="/patients/:patientID" component={PatientPageForSelectedPatient} />
 
       <Route exact path="/patients/new" component={PatientForm} />
 
