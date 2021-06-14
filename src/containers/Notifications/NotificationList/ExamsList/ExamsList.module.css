@@ -1,0 +1,142 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@300;400&display=swap');
+
+.listContainer {
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.list {
+  list-style: none;
+}
+
+.item {
+  background-color: #ffffff;
+  margin-bottom: 2rem;
+  padding: 2rem 6rem;
+  border-radius: 0.6rem;
+  box-shadow: 2px 1px 8px -4px #757575;
+  --webkit-box-shadow: 0px 3px 7px -4px #757575;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 3rem;
+}
+
+.itemID {
+  font-size: 1.4rem;
+  font-weight: 300;
+  color: #b1b1b1;
+  display: flex;
+  align-items: center;
+}
+
+.controls {
+  display: flex;
+  align-items: center;
+  font-size: 1.5rem;
+}
+
+.icon:not(:last-child) {
+  margin-right: 1rem;
+}
+
+.infoContainer {
+  display: grid;
+  column-gap: 2rem;
+  row-gap: 2.2rem;
+  grid-template-columns: repeat(8, 1fr);
+  grid-template-rows: repeat(5, auto);
+  grid-template-areas:
+    'trepTestHeading trepTestHeading trepTestHeading trepTestHeading trepTestHeading trepTestHeading trepTestHeading trepTestHeading'
+    'trepTestType trepTestType trepTestResult trepTestResult trepTestLocation trepTestLocation trepTestDate trepTestDate'
+    'nonTrepTestHeading nonTrepTestHeading nonTrepTestHeading nonTrepTestHeading nonTrepTestHeading nonTrepTestHeading nonTrepTestHeading nonTrepTestHeading'
+    'nonTrepTestVDRL nonTrepTestVDRL nonTrepTestTitration nonTrepTestTitration onTreatment onTreatment onObservation onObservation'
+    'nonTrepTestDate nonTrepTestDate refObservations refObservations refObservations refObservations refObservations refObservations';
+}
+
+.infoContainer > *:nth-child(1) {
+  grid-area: trepTestHeading;
+}
+
+.infoContainer > *:nth-child(2) {
+  grid-area: trepTestType;
+}
+
+.infoContainer > *:nth-child(3) {
+  grid-area: trepTestResult;
+}
+
+.infoContainer > *:nth-child(4) {
+  grid-area: trepTestDate;
+}
+
+.infoContainer > *:nth-child(5) {
+  grid-area: trepTestLocation;
+}
+
+.infoContainer > *:nth-child(6) {
+  grid-area: nonTrepTestHeading;
+}
+
+.infoContainer > *:nth-child(7) {
+  grid-area: nonTrepTestVDRL;
+}
+
+.infoContainer > *:nth-child(8) {
+  grid-area: nonTrepTestTitration;
+}
+
+.infoContainer > *:nth-child(9) {
+  grid-area: nonTrepTestDate;
+}
+
+.infoContainer > *:nth-child(10) {
+  grid-area: refObservations;
+}
+
+.infoContainer > *:nth-child(11) {
+  grid-area: onTreatment;
+}
+
+.infoContainer > *:nth-child(12) {
+  grid-area: onObservation;
+}
+
+.infoContainer > * > p {
+  font-weight: 300;
+}
+
+.info > span {
+  font-size: 1.3rem;
+  font-weight: 700;
+  letter-spacing: 0.1rem;
+  /* color: #555555; */
+  text-transform: uppercase;
+}
+
+.footer {
+  border-top: 1px solid #f2f3f5;
+  color: #b1b1b1;
+  margin-top: 2rem;
+  padding-top: 2.2rem;
+  display: flex;
+  justify-content: space-between;
+}
+
+.footerInfo {
+  display: flex;
+  align-items: center;
+  /* font-size: 1.5rem; */
+}
+
+/* .footerInfo:not(:last-child) {
+  margin-right: 4rem;
+} */
+
+.header,
+.footer {
+  font-family: 'Roboto Mono', monospace;
+  font-size: 1.3rem;
+}
