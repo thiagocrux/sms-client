@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-import style from './ConfirmationModal.module.css';
+import style from './MessageModal.module.css';
 
 function MessageModal({ open, header, body, closeModal }) {
   if (!open) return null;
