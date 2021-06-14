@@ -11,10 +11,11 @@ import Field from '../../../../components/Layout/Form/Field/Field';
 import Form from '../../../../components/Layout/Form/Form';
 import Heading from '../../../../components/Common/Heading/Heading';
 import SubmitContainer from '../../../../components/Layout/Form/SubmitContainer/SubmitContainer';
+import ConfirmationModal from '../../../../components/Layout/Modals/ConfirmationModal/ConfirmationModal';
+
+import api from '../../../../utils/api';
 
 import style from './MonitoringForm.module.css';
-import axios from 'axios';
-import ConfirmationModal from '../../../../components/Layout/Modals/ConfirmationModal/ConfirmationModal';
 
 // FIXME: Deletar objeto quando o banco de dados estiver acessível.
 const MOCK_VALUES = monitoringMockedValues;
@@ -67,6 +68,7 @@ export default function MonitoringForm() {
         1. Validar os dados antes de salvar no banco de dados;
         2. Salvar valores no banco de dados de acordo com o método (criação ou atualização);
       */
+
       setOpenModal(true);
       console.log(monitoringInformation);
     } else if (action === 'cancel') {
@@ -78,10 +80,9 @@ export default function MonitoringForm() {
   }
 
   function handleSubmit() {
-    axios.post(
-      `http://localhost:8000/api/v1/patients/${patientID}/monitorings`,
-      monitoringInformation
-    );
+    api
+      .post(`/patients/${patientID}/monitorings`, monitoringInformation)
+      .then(response => console.log(response));
     setOpenModal(false);
     history.goBack();
   }
@@ -196,10 +197,18 @@ export default function MonitoringForm() {
           </Field>
         </Divider>
         <SubmitContainer>
-          <Button type='button' action='cancel' click={handleButtonClick}>
+          <Button
+            type='button'
+            action='cancel'
+            click={() => handleButtonClick('cancel')}
+          >
             Cancelar
           </Button>
-          <Button type='button' action='submit' click={handleButtonClick}>
+          <Button
+            type='button'
+            action='submit'
+            click={() => handleButtonClick('submit')}
+          >
             {formType === 'create' ? 'Cadastrar' : 'Salvar'}
           </Button>
         </SubmitContainer>
