@@ -14,7 +14,6 @@ import api from '../../../utils/api';
 
 import style from './PatientForm.module.css';
 
-// FIXME: Deletar objeto quando o banco de dados estiver acessível.
 const INITIAL_VALUES = patientInitialValues;
 
 export default function PatientForm() {

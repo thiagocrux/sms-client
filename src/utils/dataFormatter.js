@@ -1,28 +1,28 @@
 export function formatCPF(cpf) {
-  cpf = cpf.replace(/[^\d]/g, "");
-  return cpf.replace(/(\d{3})(\d{3})(\d{3})(\d{2})/, "$1.$2.$3-$4");
+  cpf = cpf.replace(/[^\d]/g, '');
+  return cpf.replace(/(\d{3})(\d{3})(\d{3})(\d{2})/, '$1.$2.$3-$4');
 }
 
 export function formatDate(dateAsString) {
   const date = new Date(dateAsString);
-  const dateFormatted = Intl.DateTimeFormat("pt-BR").format(date);
+  const dateFormatted = Intl.DateTimeFormat('pt-BR').format(date);
   return dateFormatted;
 }
 
 export function formatDateTime(dateAsObject) {
   const months = [
-    "janeiro",
-    "fevereiro",
-    "março",
-    "abril",
-    "maio",
-    "junho",
-    "julho",
-    "agosto",
-    "setembro",
-    "outubro",
-    "novembro",
-    "dezembro",
+    'janeiro',
+    'fevereiro',
+    'março',
+    'abril',
+    'maio',
+    'junho',
+    'julho',
+    'agosto',
+    'setembro',
+    'outubro',
+    'novembro',
+    'dezembro',
   ];
   const date = new Date(dateAsObject);
 
@@ -31,25 +31,35 @@ export function formatDateTime(dateAsObject) {
   } de ${date.getFullYear()}, ${date.getHours()}:${date.getMinutes()}:${date.getSeconds()}`;
 }
 
+export function formatDateToInput(dateAsObject) {
+  const date = new Date(dateAsObject);
+  const day = date.getDate();
+  const month = date.getMonth();
+
+  return `${date.getFullYear()}-${month >= 10 ? month : '0' + month}-${
+    day >= 10 ? day : '0' + day
+  }`;
+}
+
 export function formatSUSCardNumber(susCardNumber) {
-  susCardNumber = susCardNumber.replace(/[^\d]/g, "");
-  return susCardNumber.replace(/(\d{3})(\d{4})(\d{4})(\d{4})/, "$1 $2 $3 $4");
+  susCardNumber = susCardNumber.replace(/[^\d]/g, '');
+  return susCardNumber.replace(/(\d{3})(\d{4})(\d{4})(\d{4})/, '$1 $2 $3 $4');
 }
 
 export function formatPhoneNumber(number) {
-  var cleanedNumber = ("" + number).replace(/\D/g, "");
+  var cleanedNumber = ('' + number).replace(/\D/g, '');
 
   if (number.length === 11) {
     var match = cleanedNumber.match(/^(\d{2})(\d{5})(\d{4})$/);
-    return "(" + match[1] + ") " + match[2] + "-" + match[3];
+    return '(' + match[1] + ') ' + match[2] + '-' + match[3];
   } else if (number.length === 10) {
     match = cleanedNumber.match(/^(\d{2})(\d{4})(\d{4})$/);
-    return "(" + match[1] + ") " + match[2] + "-" + match[3];
+    return '(' + match[1] + ') ' + match[2] + '-' + match[3];
   } else if (number.length === 9) {
     match = cleanedNumber.match(/^(\d{5})(\d{4})$/);
-    return match[1] + "-" + match[2];
+    return match[1] + '-' + match[2];
   } else if (number.length === 8) {
     match = cleanedNumber.match(/^(\d{4})(\d{4})$/);
-    return match[1] + "-" + match[2];
+    return match[1] + '-' + match[2];
   } else return number;
 }

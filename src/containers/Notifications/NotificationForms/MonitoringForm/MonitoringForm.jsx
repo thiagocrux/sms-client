@@ -1,10 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { useHistory, useParams } from 'react-router-dom';
-import {
-  monitoringMockedValues,
-  monitoringInitialValues,
-} from '../../../../utils/mock';
+import { monitoringInitialValues } from '../../../../utils/mock';
 import api from '../../../../utils/api';
+import { formatDateToInput } from '../../../../utils/dataFormatter';
 
 import Button from '../../../../components/Common/Button/Button';
 import ConfirmationModal from '../../../../components/Layout/Modals/ConfirmationModal/ConfirmationModal';
@@ -17,8 +15,6 @@ import SubmitContainer from '../../../../components/Layout/Form/SubmitContainer/
 
 import style from './MonitoringForm.module.css';
 
-// FIXME: Deletar objeto quando o banco de dados estiver acessível.
-const MOCK_VALUES = monitoringMockedValues;
 const INITIAL_VALUES = monitoringInitialValues;
 
 export default function MonitoringForm() {
@@ -47,7 +43,10 @@ export default function MonitoringForm() {
   function handleFormType() {
     if (monitoringID && formType !== 'update') {
       setFormType('update');
-      setInputValues();
+      api
+        .get(`/patients/${patientID}/monitorings/${monitoringID}`)
+        .then(response => setMonitoringInformation(response.data.monitoring));
+      setInputValues(monitoringInformation);
       console.log(formType);
     } else if (!monitoringID && formType !== 'create') {
       setFormType('create');
@@ -57,8 +56,7 @@ export default function MonitoringForm() {
 
   /* Insert the values of the object in the inputs in case of an update */
   function setInputValues() {
-    // FIXME: Buscar informações no banco de dados e substituir o objeto abaixo.
-    setMonitoringInformation(MOCK_VALUES);
+    setMonitoringInformation(monitoringInformation);
   }
 
   /* Save the input values in the state and then send to the database */
@@ -105,7 +103,7 @@ export default function MonitoringForm() {
                 onChange={event =>
                   handleChange('vdrl1Date', event.currentTarget.value)
                 }
-                value={monitoringInformation.vdrl1Date}
+                value={formatDateToInput(monitoringInformation.vdrl1Date)}
               />
             </Field>
             <Field>
@@ -129,7 +127,7 @@ export default function MonitoringForm() {
                 onChange={event =>
                   handleChange('vdrl2Date', event.currentTarget.value)
                 }
-                value={monitoringInformation.vdrl2Date}
+                value={formatDateToInput(monitoringInformation.vdrl2Date)}
               />
             </Field>
             <Field>
@@ -153,7 +151,7 @@ export default function MonitoringForm() {
                 onChange={event =>
                   handleChange('vdrl3Date', event.currentTarget.value)
                 }
-                value={monitoringInformation.vdrl3Date}
+                value={formatDateToInput(monitoringInformation.vdrl3Date)}
               />
             </Field>
             <Field>

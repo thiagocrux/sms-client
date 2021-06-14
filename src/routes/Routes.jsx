@@ -21,43 +21,57 @@ import PageNotFound from '../components/Pages/PageNotFound/PageNotFound';
 function Routes() {
   return (
     <Switch>
-      <Route exact path="/" component={HomePage} />
+      <Route exact path='/' component={HomePage} />
 
-      <Route exact path="/login" component={LoginPage} />
+      <Route exact path='/login' component={LoginPage} />
 
-      <Route exact path="/notifications" component={NotificationPage} />
+      <Route exact path='/notifications' component={NotificationPage} />
 
       <Route
         exact
-        path="/notifications/patients/:patientID"
+        path='/notifications/patients/:patientID'
         component={NotificationPageForSelectedPatient}
       />
 
-      <Route exact path="/notifications/patients/:patientID/exams/new" component={ExamForm} />
+      <Route
+        exact
+        path='/notifications/patients/:patientID/exams/new'
+        component={ExamForm}
+      />
 
       <Route
         exact
-        path="/notifications/patients/:patientID/monitorings/new"
+        path='/notifications/patients/:patientID/monitorings/new'
         component={MonitoringForm}
       />
 
       <Route
         exact
-        path="/notifications/patients/:patientID/treatments/new"
+        path='/notifications/patients/:patientID/monitorings/:monitoringID/edit'
+        component={MonitoringForm}
+      />
+
+      <Route
+        exact
+        path='/notifications/patients/:patientID/treatments/new'
         component={TreatmentForm}
       />
 
-      <Route exact path="/patients" component={PatientPage} />
+      <Route exact path='/patients' component={PatientPage} />
 
-      <Route exact path="/patients/new" component={PatientForm} />
+      <Route exact path='/patients/new' component={PatientForm} />
 
-      <Route exact path="/patients/:patientID" component={PatientPageForSelectedPatient} />
+      <Route
+        exact
+        path='/patients/:patientID'
+        component={PatientPageForSelectedPatient}
+      />
 
-      <Route exact path="/patients/:patientID/edit" component={PatientForm} />
+      <Route exact path='/patients/:patientID/edit' component={PatientForm} />
 
-      <Route exact path="/users/new" component={UserForm} />
+      <Route exact path='/users/new' component={UserForm} />
 
-      <Route exact path="/users/:userID/edit" component={UserForm} />
+      <Route exact path='/users/:userID/edit' component={UserForm} />
 
       <Route component={PageNotFound} />
     </Switch>
