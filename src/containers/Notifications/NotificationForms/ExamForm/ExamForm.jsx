@@ -240,10 +240,18 @@ export default function ExamForm() {
           </div>
         </Divider>
         <SubmitContainer>
-          <Button type='button' action='cancel' click={handleButtonClick}>
+          <Button
+            type='button'
+            action='cancel'
+            handler={() => handleButtonClick('cancel')}
+          >
             Cancelar
           </Button>
-          <Button type='button' action='submit' click={handleButtonClick}>
+          <Button
+            type='button'
+            action='submit'
+            handler={() => handleButtonClick('submit')}
+          >
             {formType === 'create' ? 'Cadastrar' : 'Salvar'}
           </Button>
         </SubmitContainer>

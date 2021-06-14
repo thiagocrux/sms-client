@@ -27,7 +27,7 @@ export default function PatientSearchForm({
     document.addEventListener('keydown', inputListener);
 
     return () => document.removeEventListener('keydown', inputListener);
-  }, [handleSubmit]);
+  }, []);
 
   return (
     <div className={style.patientSearchContainer}>
