@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
 import { Search } from 'react-bootstrap-icons';
 
 import Field from '../../../components/Layout/Form/Field/Field';
@@ -6,32 +6,56 @@ import Heading from '../../../components/Common/Heading/Heading';
 
 import style from './PatientSearchForm.module.css';
 
-export default function PatientSearchForm({ handleSubmit, search, setSearch, formHeader }) {
+export default function PatientSearchForm({
+  handleSubmit,
+  search,
+  setSearch,
+  formHeader,
+}) {
   const { criterion, inputValue } = search;
+  const inputRef = useRef(null);
+
+  useEffect(() => {
+    console.log(inputRef);
+    const inputListener = event => {
+      if (
+        document.activeElement === inputRef.current &&
+        (event.code === 'Enter' || event.code === 'NumpadEnter')
+      ) {
+        return handleSubmit;
+      }
+    };
+    document.addEventListener('keydown', inputListener);
+
+    return () => document.removeEventListener('keydown', inputListener);
+  }, [handleSubmit]);
 
   return (
     <div className={style.patientSearchContainer}>
-      <Heading type="primary">{formHeader}</Heading>
+      <Heading type='primary'>{formHeader}</Heading>
       <div className={style.gridContainer}>
         <Field>
-          <label htmlFor="search-criterion">Critério de pesquisa</label>
+          <label htmlFor='search-criterion'>Critério de pesquisa</label>
           <select
             value={criterion}
-            name="search-criterion"
+            name='search-criterion'
             className={style.searchCriterion}
-            onChange={(event) => setSearch({ ...search, criterion: event.currentTarget.value })}
+            onChange={event =>
+              setSearch({ ...search, criterion: event.currentTarget.value })
+            }
           >
-            <option value="susCardNumber">Número do cartão do SUS</option>
-            <option value="cpf">Número do CPF</option>
-            <option value="name">Nome do paciente</option>
+            <option value='susCardNumber'>Número do cartão do SUS</option>
+            <option value='cpf'>Número do CPF</option>
+            <option value='name'>Nome do paciente</option>
           </select>
         </Field>
         <Field>
-          <label htmlFor="search-input">&nbsp;</label>
+          <label htmlFor='search-input'>&nbsp;</label>
           <input
+            ref={inputRef}
             value={inputValue}
-            name="search-input"
-            type="text"
+            name='search-input'
+            type='text'
             placeholder={
               criterion === 'susCardNumber'
                 ? 'Insira o número do cartão do SUS do paciente'
@@ -40,7 +64,9 @@ export default function PatientSearchForm({ handleSubmit, search, setSearch, for
                 : 'Insira o nome do paciente'
             }
             className={style.searchInput}
-            onChange={(event) => setSearch({ ...search, inputValue: event.currentTarget.value })}
+            onChange={event =>
+              setSearch({ ...search, inputValue: event.currentTarget.value })
+            }
           />
         </Field>
         <div className={style.buttonContainer}>

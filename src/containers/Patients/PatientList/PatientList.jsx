@@ -26,21 +26,23 @@ export default function PatientList({ filteredResult }) {
   const pagesVisited = pageNumber * itemsPerPage;
   const pageCount = items.length / itemsPerPage;
 
-  const displayItems = items.slice(pagesVisited, pagesVisited + itemsPerPage).map((item) => {
-    return <PatientListItem key={item._id} patient={item} />;
-  });
+  const displayItems = items
+    .slice(pagesVisited, pagesVisited + itemsPerPage)
+    .map(item => {
+      return <PatientListItem key={item._id} patient={item} />;
+    });
 
   const changePage = ({ selected }) => {
     setPageNumber(selected);
   };
 
-  console.log('[LIST]: ' + { ...items });
+  // console.log('[LIST]: ' + { ...items });
 
   return (
     <div className={style.listContainer}>
       {items.length ? (
         <>
-          <Heading type="primary">Resultado da busca:</Heading>
+          <Heading type='primary'>Resultado da busca:</Heading>
           <div className={style.listHeader}>
             <span>
               <FileMedicalFill className={style.icon} /> Cartão do SUS
@@ -60,9 +62,9 @@ export default function PatientList({ filteredResult }) {
               <>
                 {displayItems}
                 <ReactPaginate
-                  previousLabel="Anterior"
-                  nextLabel="Próximo"
-                  breakLabel="..."
+                  previousLabel='Anterior'
+                  nextLabel='Próximo'
+                  breakLabel='...'
                   pageCount={pageCount}
                   onPageChange={changePage}
                   marginPagesDisplayed={2}
@@ -82,7 +84,7 @@ export default function PatientList({ filteredResult }) {
           </ul>
         </>
       ) : (
-        <SearchItemNotFound subject="paciente" link="/patient" />
+        <SearchItemNotFound subject='paciente' link='/patient' />
       )}
     </div>
   );

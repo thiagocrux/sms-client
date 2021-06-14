@@ -1,17 +1,17 @@
-import React, { useEffect, useState } from "react";
-import ReactPaginate from "react-paginate";
+import React, { useEffect, useState } from 'react';
+import ReactPaginate from 'react-paginate';
 import {
   CalendarDateFill,
   FileMedicalFill,
   PersonBadgeFill,
   PersonFill,
-} from "react-bootstrap-icons";
+} from 'react-bootstrap-icons';
 
-import Heading from "../../Common/Heading/Heading";
-import SearchItemNotFound from "../../Common/SearchItemNotFound/SearchItemNotFound";
-import PatientListItem from "../../../containers/PatientListItem/PatientListItem";
+import Heading from '../../Common/Heading/Heading';
+import SearchItemNotFound from '../../Common/SearchItemNotFound/SearchItemNotFound';
+import PatientListItem from '../../../containers/PatientListItem/PatientListItem';
 
-import style from "./PatientList.module.css";
+import style from './PatientList.module.css';
 
 export default function PatientList({ filteredResult }) {
   const [items, setItems] = useState([]);
@@ -28,7 +28,7 @@ export default function PatientList({ filteredResult }) {
 
   const displayItems = items
     .slice(pagesVisited, pagesVisited + itemsPerPage)
-    .map((item) => {
+    .map(item => {
       return <PatientListItem key={item._id} patient={item} />;
     });
 
@@ -36,13 +36,13 @@ export default function PatientList({ filteredResult }) {
     setPageNumber(selected);
   };
 
-  console.log("[LIST]: " + { ...items });
+  // console.log("[LIST]: " + { ...items });
 
   return (
     <div className={style.listContainer}>
       {items.length ? (
         <>
-          <Heading type="primary">Resultado da busca:</Heading>
+          <Heading type='primary'>Resultado da busca:</Heading>
           <div className={style.listHeader}>
             <span>
               <FileMedicalFill className={style.icon} /> Cartão do SUS
@@ -62,9 +62,9 @@ export default function PatientList({ filteredResult }) {
               <>
                 {displayItems}
                 <ReactPaginate
-                  previousLabel="Anterior"
-                  nextLabel="Próximo"
-                  breakLabel="..."
+                  previousLabel='Anterior'
+                  nextLabel='Próximo'
+                  breakLabel='...'
                   pageCount={pageCount}
                   onPageChange={changePage}
                   marginPagesDisplayed={2}
@@ -84,7 +84,7 @@ export default function PatientList({ filteredResult }) {
           </ul>
         </>
       ) : (
-        <SearchItemNotFound subject="paciente" link="/patient" />
+        <SearchItemNotFound subject='paciente' link='/patient' />
       )}
     </div>
   );
