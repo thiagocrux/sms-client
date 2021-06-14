@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
-import { userInitialValues, userMockedValues } from '../../../utils/mock';
+import { userInitialValues } from '../../../utils/mock';
 
 import Button from '../../../components/Common/Button/Button';
 import Divider from '../../../components/Layout/Form/Divider/Divider';
@@ -13,7 +13,6 @@ import SubmitContainer from '../../../components/Layout/Form/SubmitContainer/Sub
 import style from './UserForm.module.css';
 
 // FIXME: Deletar objeto quando o banco de dados estiver acessível.
-const MOCK_VALUES = userMockedValues;
 const INITIAL_VALUES = userInitialValues;
 
 export default function UserForm() {
@@ -22,7 +21,8 @@ export default function UserForm() {
   const { userID } = useParams();
 
   /* Input handlers */
-  const handleChange = (field, value) => setUserInformation({ ...userInformation, [field]: value });
+  const handleChange = (field, value) =>
+    setUserInformation({ ...userInformation, [field]: value });
 
   /* Set the type of form on the first render */
   useEffect(() => {
@@ -32,18 +32,13 @@ export default function UserForm() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  /* LOG: Mostra todas as informações submetidas pelo formulário no console */
-  // useEffect(() => {
-  //   if (userInformation) {
-  //     console.log(`FORM TYPE: ${formType}`);
-  //     console.log(userInformation);
-  //   }
-  // }, [userInformation, formType]);
-
   /* Check the existence of params and set the type of form */
   function handleFormType() {
     if (userID && formType !== 'update') {
       setFormType('update');
+      axios
+        .get(`http://localhost:8000/api/v1/users/${userID}`)
+        .then((response) => console.log(response.data.user));
       setInputValues();
       console.log(formType);
     } else if (!userID && formType !== 'create') {
@@ -55,7 +50,7 @@ export default function UserForm() {
   /* Insert the values of the object in the inputs in case of an update */
   function setInputValues() {
     // FIXME: Buscar informações no banco de dados e substituir o objeto abaixo.
-    setUserInformation(MOCK_VALUES);
+    setUserInformation(userInformation);
   }
 
   /* Save the input values in the state and then send to the database */
@@ -82,78 +77,104 @@ export default function UserForm() {
       </Heading>
       <Form>
         <Divider>
-          <Field>
-            <label htmlFor="">Nome</label>
-            <input
-              name=""
-              onChange={(event) => handleChange('name', event.currentTarget.value)}
-              value={userInformation.name}
-              placeholder="Insira o nome do usuário"
-            />
-          </Field>
-          <Field>
-            <label htmlFor="">CPF</label>
-            <input
-              name=""
-              onChange={(event) => handleChange('name', event.currentTarget.value)}
-              value={userInformation.cpf}
-              placeholder=""
-            />
-          </Field>
-          <Field>
-            <label htmlFor="">Cargo</label>
-            <input
-              name=""
-              onChange={(event) => handleChange('name', event.currentTarget.value)}
-              value={userInformation.role}
-              placeholder=""
-            />
-          </Field>
-          <Field>
-            <label htmlFor="">Local de trabalho</label>
-            <input
-              name=""
-              onChange={(event) => handleChange('name', event.currentTarget.value)}
-              value={userInformation.workLocation}
-              placeholder=""
-            />
-          </Field>
-          <Field>
-            <label htmlFor="">E-mail</label>
-            <input
-              type="email"
-              name=""
-              onChange={(event) => handleChange('name', event.currentTarget.value)}
-              value={userInformation.email}
-              placeholder=""
-            />
-          </Field>
-          <Field>
-            <label htmlFor="">Password</label>
-            <input
-              type="password"
-              name=""
-              onChange={(event) => handleChange('name', event.currentTarget.value)}
-              value={userInformation.password}
-              placeholder=""
-            />
-          </Field>
-          <Field>
-            <label htmlFor="">Permissão de administrador?</label>
-            <input
-              type=""
-              name=""
-              onChange={(event) => handleChange('name', event.currentTarget.value)}
-              value={userInformation.admin}
-              placeholder=""
-            />
-          </Field>
+          <Heading type="secondary">Informações do usuário</Heading>
+          <div className={style.gridContainer}>
+            <Field>
+              <label htmlFor="name">Nome</label>
+              <input
+                name="name"
+                onChange={(event) =>
+                  handleChange('name', event.currentTarget.value)
+                }
+                value={userInformation.name}
+                placeholder="Insira o nome do usuário"
+              />
+            </Field>
+            <Field>
+              <label htmlFor="cpf">CPF</label>
+              <input
+                name="cpf"
+                onChange={(event) =>
+                  handleChange('cpf', event.currentTarget.value)
+                }
+                value={userInformation.cpf}
+                placeholder="Insira o CPF do usuário"
+              />
+            </Field>
+            <Field>
+              <label htmlFor="role">Cargo</label>
+              <input
+                name="role"
+                onChange={(event) =>
+                  handleChange('role', event.currentTarget.value)
+                }
+                value={userInformation.role}
+                placeholder="Insira o cargo do usuário"
+              />
+            </Field>
+            <Field>
+              <label htmlFor="workLocation">Local de trabalho</label>
+              <input
+                name="workLocation"
+                onChange={(event) =>
+                  handleChange('workLocation', event.currentTarget.value)
+                }
+                value={userInformation.workLocation}
+                placeholder="Insira o local de trabalho do usuário"
+              />
+            </Field>
+            <Field>
+              <label htmlFor="email">E-mail</label>
+              <input
+                type="email"
+                name="email"
+                onChange={(event) =>
+                  handleChange('email', event.currentTarget.value)
+                }
+                value={userInformation.email}
+                placeholder="Insira o e-mail do usuário"
+              />
+            </Field>
+            <Field>
+              <label htmlFor="password">Senha</label>
+              <input
+                type="password"
+                name="password"
+                onChange={(event) =>
+                  handleChange('password', event.currentTarget.value)
+                }
+                value={userInformation.password}
+                placeholder="Insira a senha do usuário"
+              />
+            </Field>
+            <Field>
+              <div className={style.flexContainer}>
+                <label htmlFor="admin">Permissão de administrador</label>
+                <input
+                  type="checkbox"
+                  name="admin"
+                  onChange={(event) =>
+                    handleChange('admin', event.currentTarget.checked)
+                  }
+                  value={userInformation.partnerTreatment}
+                />
+              </div>
+            </Field>
+          </div>
         </Divider>
         <SubmitContainer>
-          <Button type="button" action="cancel" click={handleButtonClick}>
+          <Button
+            type="button"
+            action="cancel"
+            click={() => handleButtonClick('cancel')}
+          >
             Cancelar
           </Button>
-          <Button type="button" action="submit" click={handleButtonClick}>
+          <Button
+            type="button"
+            action="submit"
+            click={() => handleButtonClick('submit')}
+          >
             {formType === 'create' ? 'Cadastrar' : 'Salvar'}
           </Button>
         </SubmitContainer>
