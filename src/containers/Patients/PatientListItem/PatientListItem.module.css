@@ -3,6 +3,7 @@
   border-radius: 0.4rem;
   padding: 1.6rem 2rem;
   font-size: 1.6rem;
+  text-decoration: none;
   display: grid;
   grid-template-columns: 2fr 2fr 5fr 2fr 1fr;
   color: #757575;
@@ -11,7 +12,7 @@
 }
 
 .listItem:hover {
-  color: #181818;
+  background-color: #edf2fb;
 }
 
 .listItem:not(:last-child) {
@@ -21,18 +22,4 @@
 .listItem > span {
   display: flex;
   align-items: center;
-}
-
-.icon {
-  margin-right: 1rem;
-}
-
-.controls {
-  display: flex;
-  align-items: center;
-  justify-content: flex-end;
-}
-
-a {
-  text-decoration: none;
 }

@@ -16,7 +16,6 @@ export default function PatientSearchForm({
   const inputRef = useRef(null);
 
   useEffect(() => {
-    console.log(inputRef);
     const inputListener = event => {
       if (
         document.activeElement === inputRef.current &&

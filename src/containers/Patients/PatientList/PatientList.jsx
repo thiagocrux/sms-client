@@ -22,7 +22,7 @@ export default function PatientList({ filteredResult }) {
 
   // Pagination
   const [pageNumber, setPageNumber] = useState(0);
-  const itemsPerPage = 5;
+  const itemsPerPage = 10;
   const pagesVisited = pageNumber * itemsPerPage;
   const pageCount = items.length / itemsPerPage;
 
