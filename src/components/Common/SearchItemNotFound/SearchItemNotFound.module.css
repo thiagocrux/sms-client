@@ -1,22 +1,56 @@
-.search-item-not-found {
+.messageBox {
   width: 90rem;
   text-align: center;
   border-radius: 0.6rem;
   margin: 0 auto;
-  border: 2px solid #ff1d58;
-  background-color: #ffa9c0;
-  color: #ff1d58;
-  font-size: 1.8rem;
-  font-weight: 600;
+  border: 1px solid #f25757;
+  background-color: #f8cacf;
+  color: #f25757;
+  font-size: 1.7rem;
+  font-weight: 400;
   margin-top: 3rem;
   padding: 2rem 5rem;
 }
 
-.search-item-not-found > p {
+.messageBox > p {
   display: flex;
+  justify-content: center;
   align-items: center;
+  margin-bottom: 2rem;
+  line-height: 1.7rem;
+}
+
+.messageBox a {
+  text-decoration: none;
 }
 
 .icon {
   margin-right: 1rem;
+}
+
+.button {
+  margin: 0 auto;
+  padding: 0.6rem 2rem;
+  font-size: 1.4rem;
+  font-weight: 600;
+  letter-spacing: 0.1rem;
+  border: none;
+  border-radius: 10rem;
+  box-shadow: 2px 1px 8px -4px #757575;
+  --webkit-box-shadow: 2px 3px 7px -4px #757575;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s;
+  color: #ffffff;
+  background-color: #809bce;
+}
+
+.button:hover {
+  background-color: #4873c4;
+}
+
+.button > .icon {
+  margin-left: 1rem;
 }

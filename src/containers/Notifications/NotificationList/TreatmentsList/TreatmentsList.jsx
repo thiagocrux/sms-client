@@ -1,5 +1,5 @@
 import React from 'react';
-import { PersonLinesFill, PenFill, XCircleFill } from 'react-bootstrap-icons';
+import { PersonLinesFill, PenFill, TrashFill } from 'react-bootstrap-icons';
 import { formatDate, formatDateTime } from '../../../../utils/dataFormatter';
 
 import Heading from '../../../../components/Common/Heading/Heading';
@@ -12,7 +12,7 @@ export default function TreatmentsList({ treatments }) {
       <Heading type="primary">Tratamentos do paciente</Heading>
       <ul class={style.list}>
         {treatments.map((treatment) => (
-          <li className={style.item}>
+          <li key={treatment._id} className={style.item}>
             <div className={style.header}>
               <div className={style.itemID}>
                 <span>#</span>
@@ -22,7 +22,7 @@ export default function TreatmentsList({ treatments }) {
               <span className={style.controls}>
                 <PersonLinesFill className={style.icon} />
                 <PenFill className={style.icon} />
-                <XCircleFill className={style.icon} />
+                <TrashFill className={style.icon} />
               </span>
             </div>
 

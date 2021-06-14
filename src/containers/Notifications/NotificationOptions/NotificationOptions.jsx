@@ -10,8 +10,8 @@ import style from './NotificationOptions.module.css';
 export default function NotificationOptions({ isCreation, click }) {
   const { patientID } = useParams();
   const treatmentsURL = `/notifications/patients/${patientID}/treatments/new`;
-  const monitoringsURL = `/notifications/patients/${patientID}/monitorings/new`;
   const examsURL = `/notifications/patients/${patientID}/exams/new`;
+  const monitoringsURL = `/notifications/patients/${patientID}/monitorings/new`;
 
   return (
     <>

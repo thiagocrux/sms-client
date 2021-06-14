@@ -4,16 +4,16 @@ import {
   monitoringMockedValues,
   monitoringInitialValues,
 } from '../../../../utils/mock';
+import api from '../../../../utils/api';
 
 import Button from '../../../../components/Common/Button/Button';
+import ConfirmationModal from '../../../../components/Layout/Modals/ConfirmationModal/ConfirmationModal';
+import ThematicBreak from '../../../../components/Common/ThematicBreak/ThematicBreak';
 import Divider from '../../../../components/Layout/Form/Divider/Divider';
 import Field from '../../../../components/Layout/Form/Field/Field';
 import Form from '../../../../components/Layout/Form/Form';
 import Heading from '../../../../components/Common/Heading/Heading';
 import SubmitContainer from '../../../../components/Layout/Form/SubmitContainer/SubmitContainer';
-import ConfirmationModal from '../../../../components/Layout/Modals/ConfirmationModal/ConfirmationModal';
-
-import api from '../../../../utils/api';
 
 import style from './MonitoringForm.module.css';
 
@@ -98,74 +98,74 @@ export default function MonitoringForm() {
           <div className={style['grid-container']}>
             <Heading type='tertiary'>1ª VDRL</Heading>
             <Field>
-              <label htmlFor='firstVDRLDate'>Data</label>
+              <label htmlFor='vdrl1Date'>Data</label>
               <input
                 type='date'
-                name='firstVDRLDate'
+                name='vdrl1Date'
                 onChange={event =>
-                  handleChange('firstVDRLDate', event.currentTarget.value)
+                  handleChange('vdrl1Date', event.currentTarget.value)
                 }
-                value={monitoringInformation.firstVDRLDate}
+                value={monitoringInformation.vdrl1Date}
               />
             </Field>
             <Field>
-              <label htmlFor='firstVDRLTitration'>Titulação</label>
+              <label htmlFor='vdrl1Titration'>Titulação</label>
               <input
                 type='text'
-                name='firstVDRLTitration'
+                name='vdrl1Titration'
                 placeholder='Insira a titulação'
                 onChange={event =>
-                  handleChange('firstVDRLTitration', event.currentTarget.value)
+                  handleChange('vdrl1Titration', event.currentTarget.value)
                 }
-                value={monitoringInformation.firstVDRLTitration}
+                value={monitoringInformation.vdrl1Titration}
               />
             </Field>
             <Heading type='tertiary'>2ª VDRL</Heading>
             <Field>
-              <label htmlFor='secondVDRLDate'>Data</label>
+              <label htmlFor='vdrl2Date'>Data</label>
               <input
                 type='date'
-                name='secondVDRLDate'
+                name='vdrl2Date'
                 onChange={event =>
-                  handleChange('secondVDRLDate', event.currentTarget.value)
+                  handleChange('vdrl2Date', event.currentTarget.value)
                 }
-                value={monitoringInformation.secondVDRLDate}
+                value={monitoringInformation.vdrl2Date}
               />
             </Field>
             <Field>
-              <label htmlFor='secondVDRLTitration'>Titulação</label>
+              <label htmlFor='vdrl2Titration'>Titulação</label>
               <input
                 type='text'
-                name='secondVDRLTitration'
+                name='vdrl2Titration'
                 placeholder='Insira a titulação'
                 onChange={event =>
-                  handleChange('secondVDRLTitration', event.currentTarget.value)
+                  handleChange('vdrl2Titration', event.currentTarget.value)
                 }
-                value={monitoringInformation.secondVDRLTitration}
+                value={monitoringInformation.vdrl2Titration}
               />
             </Field>
             <Heading type='tertiary'>3ª VDRL</Heading>
             <Field>
-              <label htmlFor='thirdVDRLDate'>Data</label>
+              <label htmlFor='vdrl3Date'>Data</label>
               <input
                 type='date'
-                name='thirdVDRLDate'
+                name='vdrl3Date'
                 onChange={event =>
-                  handleChange('thirdVDRLDate', event.currentTarget.value)
+                  handleChange('vdrl3Date', event.currentTarget.value)
                 }
-                value={monitoringInformation.thirdVDRLDate}
+                value={monitoringInformation.vdrl3Date}
               />
             </Field>
             <Field>
-              <label htmlFor='thirdVDRLTituladion'>Titulação</label>
+              <label htmlFor='vdrl3Titration'>Titulação</label>
               <input
                 type='text'
-                name='thirdVDRLTitration'
+                name='vdrl3Titration'
                 placeholder='Insira a titulação'
                 onChange={event =>
-                  handleChange('thirdVDRLTitration', event.currentTarget.value)
+                  handleChange('vdrl3Titration', event.currentTarget.value)
                 }
-                value={monitoringInformation.thirdVDRLTitration}
+                value={monitoringInformation.vdrl3Titration}
               />
             </Field>
           </div>
@@ -182,8 +182,7 @@ export default function MonitoringForm() {
               />
             </div>
           </Field>
-        </Divider>
-        <Divider>
+          <ThematicBreak />
           <Heading type='secondary'>Outras observações</Heading>
           <Field>
             <textarea
