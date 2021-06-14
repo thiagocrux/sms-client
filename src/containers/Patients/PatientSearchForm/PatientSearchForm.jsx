@@ -52,7 +52,11 @@ export default function PatientSearchForm({
           <label htmlFor='search-input'>&nbsp;</label>
           <input
             ref={inputRef}
-            value={inputValue}
+            value={
+              criterion === 'name'
+                ? inputValue
+                : inputValue.replace(/[^0-9]/g, '')
+            }
             name='search-input'
             type='text'
             placeholder={
