@@ -11,10 +11,11 @@ import Field from '../../../../components/Layout/Form/Field/Field';
 import Form from '../../../../components/Layout/Form/Form';
 import Heading from '../../../../components/Common/Heading/Heading';
 import SubmitContainer from '../../../../components/Layout/Form/SubmitContainer/SubmitContainer';
+import ConfirmationModal from '../../../../components/Layout/Modals/ConfirmationModal/ConfirmationModal';
+
+import api from '../../../../utils/api';
 
 import style from './TreatmentForm.module.css';
-import ConfirmationModal from '../../../../components/Layout/Modals/ConfirmationModal/ConfirmationModal';
-import axios from 'axios';
 
 // FIXME: Deletar objeto quando o banco de dados estiver acessível.
 const MOCK_VALUES = treatmentMockedValues;
@@ -86,10 +87,7 @@ export default function TreatmentForm() {
   }
 
   function handleSubmit() {
-    axios.post(
-      `http://localhost:8000/api/v1/patients/${patientID}/treatments`,
-      treatmentInformation
-    );
+    api.post(`/patients/${patientID}/treatments`, treatmentInformation);
     setOpenModal(false);
     history.goBack();
   }
@@ -181,10 +179,18 @@ export default function TreatmentForm() {
           </div>
         </Divider>
         <SubmitContainer>
-          <Button type='button' action='cancel' click={handleButtonClick}>
+          <Button
+            type='button'
+            action='cancel'
+            click={() => handleButtonClick('cancel')}
+          >
             Cancelar
           </Button>
-          <Button type='button' action='submit' click={handleButtonClick}>
+          <Button
+            type='button'
+            action='submit'
+            click={() => handleButtonClick('submit')}
+          >
             {formType === 'create' ? 'Cadastrar' : 'Salvar'}
           </Button>
         </SubmitContainer>

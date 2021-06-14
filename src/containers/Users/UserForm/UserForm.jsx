@@ -10,6 +10,8 @@ import Form from '../../../components/Layout/Form/Form';
 import Heading from '../../../components/Common/Heading/Heading';
 import SubmitContainer from '../../../components/Layout/Form/SubmitContainer/SubmitContainer';
 
+import api from '../../../utils/api';
+
 import style from './UserForm.module.css';
 
 // FIXME: Deletar objeto quando o banco de dados estiver acessível.
@@ -61,7 +63,7 @@ export default function UserForm() {
         2. Salvar valores no banco de dados de acordo com o método (criação ou atualização);
       */
       console.log(userInformation);
-      axios.post('http://localhost:8000/api/v1/users/', userInformation);
+      api.post('/users/', userInformation);
     } else if (action === 'cancel') {
       /* TODO:
         1. Criar lógica para o botão de cancelar.

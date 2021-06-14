@@ -1,16 +1,19 @@
 import React, { useEffect, useState } from 'react';
-import axios from 'axios';
 import { useHistory, useParams } from 'react-router-dom';
-import { monitoringMockedValues, monitoringInitialValues } from '../../../../utils/mock';
+import {
+  monitoringMockedValues,
+  monitoringInitialValues,
+} from '../../../../utils/mock';
+import api from '../../../../utils/api';
 
 import Button from '../../../../components/Common/Button/Button';
 import ConfirmationModal from '../../../../components/Layout/Modals/ConfirmationModal/ConfirmationModal';
+import ThematicBreak from '../../../../components/Common/ThematicBreak/ThematicBreak';
 import Divider from '../../../../components/Layout/Form/Divider/Divider';
 import Field from '../../../../components/Layout/Form/Field/Field';
 import Form from '../../../../components/Layout/Form/Form';
 import Heading from '../../../../components/Common/Heading/Heading';
 import SubmitContainer from '../../../../components/Layout/Form/SubmitContainer/SubmitContainer';
-import ThematicBreak from '../../../../components/Common/ThematicBreak/ThematicBreak';
 
 import style from './MonitoringForm.module.css';
 
@@ -21,7 +24,8 @@ const INITIAL_VALUES = monitoringInitialValues;
 export default function MonitoringForm() {
   const [formType, setFormType] = useState('create');
   const [openModal, setOpenModal] = useState(false);
-  const [monitoringInformation, setMonitoringInformation] = useState(INITIAL_VALUES);
+  const [monitoringInformation, setMonitoringInformation] =
+    useState(INITIAL_VALUES);
   const { monitoringID, patientID } = useParams();
 
   const history = useHistory();
@@ -64,6 +68,7 @@ export default function MonitoringForm() {
         1. Validar os dados antes de salvar no banco de dados;
         2. Salvar valores no banco de dados de acordo com o método (criação ou atualização);
       */
+
       setOpenModal(true);
       console.log(monitoringInformation);
     } else if (action === 'cancel') {
@@ -75,118 +80,141 @@ export default function MonitoringForm() {
   }
 
   function handleSubmit() {
-    axios.post(
-      `http://localhost:8000/api/v1/patients/${patientID}/monitorings`,
-      monitoringInformation
-    );
+    api
+      .post(`/patients/${patientID}/monitorings`, monitoringInformation)
+      .then(response => console.log(response));
     setOpenModal(false);
     history.goBack();
   }
 
   return (
     <>
-      <Heading type="primary">
+      <Heading type='primary'>
         {formType === 'update' ? 'Atualização' : 'Cadastro'} de monitoramento
       </Heading>
       <Form>
         <Divider>
-          <Heading type="secondary">Pós-tratamento</Heading>
+          <Heading type='secondary'>Pós-tratamento</Heading>
           <div className={style['grid-container']}>
-            <Heading type="tertiary">1ª VDRL</Heading>
+            <Heading type='tertiary'>1ª VDRL</Heading>
             <Field>
-              <label htmlFor="vdrl1Date">Data</label>
+              <label htmlFor='vdrl1Date'>Data</label>
               <input
-                type="date"
-                name="vdrl1Date"
-                onChange={(event) => handleChange('vdrl1Date', event.currentTarget.value)}
+                type='date'
+                name='vdrl1Date'
+                onChange={event =>
+                  handleChange('vdrl1Date', event.currentTarget.value)
+                }
                 value={monitoringInformation.vdrl1Date}
               />
             </Field>
             <Field>
-              <label htmlFor="vdrl1Titration">Titulação</label>
+              <label htmlFor='vdrl1Titration'>Titulação</label>
               <input
-                type="text"
-                name="vdrl1Titration"
-                placeholder="Insira a titulação"
-                onChange={(event) => handleChange('vdrl1Titration', event.currentTarget.value)}
+                type='text'
+                name='vdrl1Titration'
+                placeholder='Insira a titulação'
+                onChange={event =>
+                  handleChange('vdrl1Titration', event.currentTarget.value)
+                }
                 value={monitoringInformation.vdrl1Titration}
               />
             </Field>
-            <Heading type="tertiary">2ª VDRL</Heading>
+            <Heading type='tertiary'>2ª VDRL</Heading>
             <Field>
-              <label htmlFor="vdrl2Date">Data</label>
+              <label htmlFor='vdrl2Date'>Data</label>
               <input
-                type="date"
-                name="vdrl2Date"
-                onChange={(event) => handleChange('vdrl2Date', event.currentTarget.value)}
+                type='date'
+                name='vdrl2Date'
+                onChange={event =>
+                  handleChange('vdrl2Date', event.currentTarget.value)
+                }
                 value={monitoringInformation.vdrl2Date}
               />
             </Field>
             <Field>
-              <label htmlFor="vdrl2Titration">Titulação</label>
+              <label htmlFor='vdrl2Titration'>Titulação</label>
               <input
-                type="text"
-                name="vdrl2Titration"
-                placeholder="Insira a titulação"
-                onChange={(event) => handleChange('vdrl2Titration', event.currentTarget.value)}
+                type='text'
+                name='vdrl2Titration'
+                placeholder='Insira a titulação'
+                onChange={event =>
+                  handleChange('vdrl2Titration', event.currentTarget.value)
+                }
                 value={monitoringInformation.vdrl2Titration}
               />
             </Field>
-            <Heading type="tertiary">3ª VDRL</Heading>
+            <Heading type='tertiary'>3ª VDRL</Heading>
             <Field>
-              <label htmlFor="vdrl3Date">Data</label>
+              <label htmlFor='vdrl3Date'>Data</label>
               <input
-                type="date"
-                name="vdrl3Date"
-                onChange={(event) => handleChange('vdrl3Date', event.currentTarget.value)}
+                type='date'
+                name='vdrl3Date'
+                onChange={event =>
+                  handleChange('vdrl3Date', event.currentTarget.value)
+                }
                 value={monitoringInformation.vdrl3Date}
               />
             </Field>
             <Field>
-              <label htmlFor="vdrl3Titration">Titulação</label>
+              <label htmlFor='vdrl3Titration'>Titulação</label>
               <input
-                type="text"
-                name="vdrl3Titration"
-                placeholder="Insira a titulação"
-                onChange={(event) => handleChange('vdrl3Titration', event.currentTarget.value)}
+                type='text'
+                name='vdrl3Titration'
+                placeholder='Insira a titulação'
+                onChange={event =>
+                  handleChange('vdrl3Titration', event.currentTarget.value)
+                }
                 value={monitoringInformation.vdrl3Titration}
               />
             </Field>
           </div>
           <Field>
             <div className={style['flex-container']}>
-              <label htmlFor="partnerTreatment">Tratamento de parceiro</label>
+              <label htmlFor='partnerTreatment'>Tratamento de parceiro</label>
               <input
-                type="checkbox"
-                name="partnerTreatment"
-                onChange={(event) => handleChange('partnerTreatment', event.currentTarget.checked)}
+                type='checkbox'
+                name='partnerTreatment'
+                onChange={event =>
+                  handleChange('partnerTreatment', event.currentTarget.checked)
+                }
                 value={monitoringInformation.partnerTreatment}
               />
             </div>
           </Field>
           <ThematicBreak />
-          <Heading type="secondary">Outras observações</Heading>
+          <Heading type='secondary'>Outras observações</Heading>
           <Field>
             <textarea
-              name="observations"
-              onChange={(event) => handleChange('observations', event.currentTarget.value)}
+              name='observations'
+              onChange={event =>
+                handleChange('observations', event.currentTarget.value)
+              }
               value={monitoringInformation.observations}
-              placeholder="Insira as observações sobre o monitoramento"
+              placeholder='Insira as observações sobre o monitoramento'
             ></textarea>
           </Field>
         </Divider>
         <SubmitContainer>
-          <Button type="button" action="cancel" click={() => handleButtonClick('cancel')}>
+          <Button
+            type='button'
+            action='cancel'
+            click={() => handleButtonClick('cancel')}
+          >
             Cancelar
           </Button>
-          <Button type="button" action="submit" click={() => handleButtonClick('submit')}>
+          <Button
+            type='button'
+            action='submit'
+            click={() => handleButtonClick('submit')}
+          >
             {formType === 'create' ? 'Cadastrar' : 'Salvar'}
           </Button>
         </SubmitContainer>
       </Form>
       <ConfirmationModal
         open={openModal}
-        message="Confirmar novo monitoramento?"
+        message='Confirmar novo monitoramento?'
         handleCancel={() => setOpenModal(false)}
         handleConfirm={handleSubmit}
       />

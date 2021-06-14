@@ -84,7 +84,7 @@ export default function PatientList({ filteredResult }) {
           </ul>
         </>
       ) : (
-        <SearchItemNotFound subject='paciente' link='/patient' />
+        <SearchItemNotFound subject='paciente' link='/patients/new' />
       )}
     </div>
   );

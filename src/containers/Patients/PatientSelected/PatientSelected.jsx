@@ -2,7 +2,12 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useHistory, useLocation } from 'react-router-dom';
 import { formatCPF, formatSUSCardNumber } from '../../../utils/dataFormatter';
-import { PencilFill, PersonLinesFill, TrashFill, X } from 'react-bootstrap-icons';
+import {
+  PencilFill,
+  PersonLinesFill,
+  TrashFill,
+  X,
+} from 'react-bootstrap-icons';
 
 import style from './PatientSelected.module.css';
 
@@ -16,17 +21,24 @@ function PatientInfo({ patient }) {
   return (
     <>
       <div className={style.selectedPatientCard}>
-        <button className={`${style.button} ${style.closeButton}`} onClick={() => history.goBack()}>
+        <button
+          className={`${style.button} ${style.closeButton}`}
+          onClick={() => history.goBack()}
+        >
           <X className={style.icon} />
         </button>
         <div className={style.innerContainer}>
           <div className={style.cardHeader}>
-            <h1 className={style.heading}>Informações do paciente selecionado</h1>
+            <h1 className={style.heading}>
+              Informações do paciente selecionado
+            </h1>
           </div>
           <div className={style.cardBody}>
             <div className={style.infoContainer}>
               <span className={style.label}>Número do cartão do SUS</span>
-              <span className={style.info}>{formatSUSCardNumber(patient.susCardNumber)}</span>
+              <span className={style.info}>
+                {formatSUSCardNumber(patient.susCardNumber)}
+              </span>
             </div>
             <div className={style.infoContainer}>
               <span className={style.label}>CPF</span>
@@ -54,7 +66,10 @@ function PatientInfo({ patient }) {
               <PencilFill className={style.icon} />
               Editar paciente
             </button>
-            <button className={`${style.button} ${style.deleteButton}`} onClick={deletePatient()}>
+            <button
+              className={`${style.button} ${style.deleteButton}`}
+              onClick={deletePatient}
+            >
               <TrashFill className={style.icon} />
               Excluir paciente
             </button>

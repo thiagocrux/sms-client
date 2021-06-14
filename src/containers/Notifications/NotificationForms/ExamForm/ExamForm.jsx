@@ -9,10 +9,11 @@ import Form from '../../../../components/Layout/Form/Form';
 import Heading from '../../../../components/Common/Heading/Heading';
 import SubmitContainer from '../../../../components/Layout/Form/SubmitContainer/SubmitContainer';
 import ThematicBreak from '../../../../components/Common/ThematicBreak/ThematicBreak';
+import ConfirmationModal from '../../../../components/Layout/Modals/ConfirmationModal/ConfirmationModal';
+
+import api from '../../../../utils/api';
 
 import style from './ExamForm.module.css';
-import ConfirmationModal from '../../../../components/Layout/Modals/ConfirmationModal/ConfirmationModal';
-import axios from 'axios';
 
 // FIXME: Deletar objeto quando o banco de dados estiver acessível.
 const MOCK_VALUES = examMockedValues;
@@ -74,11 +75,8 @@ export default function ExamForm() {
   }
 
   function handleSubmit() {
-    axios
-      .post(
-        `http://localhost:8000/api/v1/patients/${patientID}/exams`,
-        examInformation
-      )
+    api
+      .post(`/patients/${patientID}/exams`, examInformation)
       .then(response => console.log(response));
     setOpenModal(false);
     history.goBack();
@@ -240,10 +238,18 @@ export default function ExamForm() {
           </div>
         </Divider>
         <SubmitContainer>
-          <Button type='button' action='cancel' click={handleButtonClick}>
+          <Button
+            type='button'
+            action='cancel'
+            click={() => handleButtonClick('cancel')}
+          >
             Cancelar
           </Button>
-          <Button type='button' action='submit' click={handleButtonClick}>
+          <Button
+            type='button'
+            action='submit'
+            click={() => handleButtonClick('submit')}
+          >
             {formType === 'create' ? 'Cadastrar' : 'Salvar'}
           </Button>
         </SubmitContainer>
