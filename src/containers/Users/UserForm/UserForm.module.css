@@ -1,0 +1,50 @@
+.gridContainer {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  grid-template-rows: repeat(4, auto);
+  grid-template-areas:
+    'name name name name cpf cpf'
+    'role role role workLocation workLocation workLocation'
+    'email email email password password password'
+    'admin admin admin admin admin admin';
+  gap: 2rem 3rem;
+}
+
+.gridContainer > *:nth-child(1) {
+  grid-area: name;
+}
+
+.gridContainer > *:nth-child(2) {
+  grid-area: cpf;
+}
+
+.gridContainer > *:nth-child(3) {
+  grid-area: role;
+}
+
+.gridContainer > *:nth-child(4) {
+  grid-area: workLocation;
+}
+
+.gridContainer > *:nth-child(5) {
+  grid-area: email;
+}
+
+.gridContainer > *:nth-child(6) {
+  grid-area: password;
+}
+
+.gridContainer > *:nth-child(7) {
+  grid-area: admin;
+}
+
+.flexContainer {
+  display: flex;
+  width: 100%;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.flexContainer > label {
+  margin-right: 1.2rem;
+}
