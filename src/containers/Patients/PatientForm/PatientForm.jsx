@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import { useParams } from 'react-router-dom';
-import { patientMockedValues, patientInitialValues } from '../../../utils/mock';
+import { useParams, useHistory } from 'react-router-dom';
+import { patientInitialValues } from '../../../utils/mock';
 
 import Button from '../../../components/Common/Button/Button';
 import Divider from '../../../components/Layout/Form/Divider/Divider';
@@ -14,13 +14,13 @@ import ThematicBreak from '../../../components/Common/ThematicBreak/ThematicBrea
 import style from './PatientForm.module.css';
 
 // FIXME: Deletar objeto quando o banco de dados estiver acessível.
-const MOCK_VALUES = patientMockedValues;
 const INITIAL_VALUES = patientInitialValues;
 
 export default function PatientForm() {
   const [formType, setFormType] = useState('create');
   const [patientInformation, setPatientInformation] = useState(INITIAL_VALUES);
   const { patientID } = useParams();
+  const history = useHistory();
 
   /* Input handlers */
   const handleChange = (field, value) =>
@@ -33,14 +33,6 @@ export default function PatientForm() {
     handleFormType();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
-
-  /* LOG: Mostra todas as informações submetidas pelo formulário no console */
-  // useEffect(() => {
-  //   if (patientInformation) {
-  //     console.log(`FORM TYPE: ${formType}`);
-  //     console.log(patientInformation);
-  //   }
-  // }, [patientInformation, formType]);
 
   /* Check the existence of params and set the type of form */
   function handleFormType() {
@@ -73,10 +65,8 @@ export default function PatientForm() {
       console.log(patientInformation);
       axios.post('http://localhost:8000/api/v1/patients/', patientInformation);
     } else if (action === 'cancel') {
-      /* TODO:
-        1. Criar lógica para o botão de cancelar.
-      */
       console.log('Action cancelled!');
+      history.goBack();
     }
   }
 
@@ -262,10 +252,10 @@ export default function PatientForm() {
           </div>
         </Divider>
         <SubmitContainer>
-          <Button type="button" action="cancel" click={handleButtonClick}>
+          <Button type="button" action="cancel" click={() => handleButtonClick('cancel')}>
             Cancelar
           </Button>
-          <Button type="button" action="submit" click={handleButtonClick}>
+          <Button type="button" action="submit" click={() => handleButtonClick('submit')}>
             {formType === 'create' ? 'Cadastrar' : 'Salvar'}
           </Button>
         </SubmitContainer>
