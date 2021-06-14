@@ -4,6 +4,8 @@ import React, { useEffect, useState } from 'react';
 import PatientList from '../../Patients/PatientList/PatientList';
 import PatientSearchForm from '../../Patients/PatientSearchForm/PatientSearchForm';
 
+import api from '../../../utils/api';
+
 import style from './NotificationPage.module.css';
 
 export default function NotificationPage() {
@@ -27,7 +29,7 @@ export default function NotificationPage() {
   });
 
   useEffect(() => {
-    axios.get('http://localhost:8000/api/v1/patients/').then((response) => {
+    api.get('/patients/').then(response => {
       setPatients(response.data.patients);
     });
   }, []);
@@ -35,9 +37,13 @@ export default function NotificationPage() {
   useEffect(() => {
     const { criterion, inputValue } = search;
 
-    const filter = patients.filter((filteredPatients) => {
-      const key = Object.keys(filteredPatients).filter((key) => key === criterion);
-      return filteredPatients[key].toLowerCase().includes(inputValue.toLowerCase());
+    const filter = patients.filter(filteredPatients => {
+      const key = Object.keys(filteredPatients).filter(
+        key => key === criterion
+      );
+      return filteredPatients[key]
+        .toLowerCase()
+        .includes(inputValue.toLowerCase());
     });
 
     setFilteredPatients(filter);
@@ -46,8 +52,8 @@ export default function NotificationPage() {
   const handleSubmit = () => {
     const { criterion, inputValue } = search;
 
-    const filteredPatient = patients.filter((patient) => {
-      const key = Object.keys(patient).filter((key) => key === criterion);
+    const filteredPatient = patients.filter(patient => {
+      const key = Object.keys(patient).filter(key => key === criterion);
       return patient[key].toLowerCase() === inputValue.toLowerCase();
     });
     setFilteredPatients(filteredPatient);
@@ -56,7 +62,7 @@ export default function NotificationPage() {
   return (
     <div className={style.notification}>
       <PatientSearchForm
-        formHeader="Localize o paciente que será notificado"
+        formHeader='Localize o paciente que será notificado'
         handleSubmit={handleSubmit}
         search={search}
         setSearch={setSearch}

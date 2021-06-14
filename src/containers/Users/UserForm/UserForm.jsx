@@ -10,6 +10,8 @@ import Form from '../../../components/Layout/Form/Form';
 import Heading from '../../../components/Common/Heading/Heading';
 import SubmitContainer from '../../../components/Layout/Form/SubmitContainer/SubmitContainer';
 
+import api from '../../../utils/api';
+
 import style from './UserForm.module.css';
 
 // FIXME: Deletar objeto quando o banco de dados estiver acessível.
@@ -22,7 +24,8 @@ export default function UserForm() {
   const { userID } = useParams();
 
   /* Input handlers */
-  const handleChange = (field, value) => setUserInformation({ ...userInformation, [field]: value });
+  const handleChange = (field, value) =>
+    setUserInformation({ ...userInformation, [field]: value });
 
   /* Set the type of form on the first render */
   useEffect(() => {
@@ -66,7 +69,7 @@ export default function UserForm() {
         2. Salvar valores no banco de dados de acordo com o método (criação ou atualização);
       */
       console.log(userInformation);
-      axios.post('http://localhost:8000/api/v1/users/', userInformation);
+      api.post('/users/', userInformation);
     } else if (action === 'cancel') {
       /* TODO:
         1. Criar lógica para o botão de cancelar.
@@ -77,83 +80,97 @@ export default function UserForm() {
 
   return (
     <>
-      <Heading type="primary">
+      <Heading type='primary'>
         {formType === 'update' ? 'Atualização' : 'Cadastro'} de paciente
       </Heading>
       <Form>
         <Divider>
           <Field>
-            <label htmlFor="">Nome</label>
+            <label htmlFor=''>Nome</label>
             <input
-              name=""
-              onChange={(event) => handleChange('name', event.currentTarget.value)}
+              name=''
+              onChange={event =>
+                handleChange('name', event.currentTarget.value)
+              }
               value={userInformation.name}
-              placeholder="Insira o nome do usuário"
+              placeholder='Insira o nome do usuário'
             />
           </Field>
           <Field>
-            <label htmlFor="">CPF</label>
+            <label htmlFor=''>CPF</label>
             <input
-              name=""
-              onChange={(event) => handleChange('name', event.currentTarget.value)}
+              name=''
+              onChange={event =>
+                handleChange('name', event.currentTarget.value)
+              }
               value={userInformation.cpf}
-              placeholder=""
+              placeholder=''
             />
           </Field>
           <Field>
-            <label htmlFor="">Cargo</label>
+            <label htmlFor=''>Cargo</label>
             <input
-              name=""
-              onChange={(event) => handleChange('name', event.currentTarget.value)}
+              name=''
+              onChange={event =>
+                handleChange('name', event.currentTarget.value)
+              }
               value={userInformation.role}
-              placeholder=""
+              placeholder=''
             />
           </Field>
           <Field>
-            <label htmlFor="">Local de trabalho</label>
+            <label htmlFor=''>Local de trabalho</label>
             <input
-              name=""
-              onChange={(event) => handleChange('name', event.currentTarget.value)}
+              name=''
+              onChange={event =>
+                handleChange('name', event.currentTarget.value)
+              }
               value={userInformation.workLocation}
-              placeholder=""
+              placeholder=''
             />
           </Field>
           <Field>
-            <label htmlFor="">E-mail</label>
+            <label htmlFor=''>E-mail</label>
             <input
-              type="email"
-              name=""
-              onChange={(event) => handleChange('name', event.currentTarget.value)}
+              type='email'
+              name=''
+              onChange={event =>
+                handleChange('name', event.currentTarget.value)
+              }
               value={userInformation.email}
-              placeholder=""
+              placeholder=''
             />
           </Field>
           <Field>
-            <label htmlFor="">Password</label>
+            <label htmlFor=''>Password</label>
             <input
-              type="password"
-              name=""
-              onChange={(event) => handleChange('name', event.currentTarget.value)}
+              type='password'
+              name=''
+              onChange={event =>
+                handleChange('name', event.currentTarget.value)
+              }
               value={userInformation.password}
-              placeholder=""
+              placeholder=''
             />
           </Field>
           <Field>
-            <label htmlFor="">Permissão de administrador?</label>
+            <label htmlFor=''>Permissão de administrador?</label>
             <input
-              type=""
-              name=""
-              onChange={(event) => handleChange('name', event.currentTarget.value)}
+              type=''
+              name=''
+              onChange={event =>
+                handleChange('name', event.currentTarget.value)
+              }
               value={userInformation.admin}
-              placeholder=""
+              placeholder=''
             />
           </Field>
         </Divider>
         <SubmitContainer>
-          <Button type="button" action="cancel" click={handleButtonClick}>
+          <Button type='button' action='cancel' click={handleButtonClick}>
             Cancelar
           </Button>
-          <Button type="button" action="submit" click={handleButtonClick}>
+          <Button type='button' action='submit' click={handleButtonClick}>
             {formType === 'create' ? 'Cadastrar' : 'Salvar'}
           </Button>
         </SubmitContainer>

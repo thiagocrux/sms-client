@@ -1,12 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
-import axios from 'axios';
 
 import PatientSelected from '../PatientSelected/PatientSelected';
 import ExamsList from '../../../containers/Notifications/NotificationList/ExamsList/ExamsList';
 import MonitoringsList from '../../../containers/Notifications/NotificationList/MonitoringsList/MonitoringsList';
 import TreatmentsList from '../../../containers/Notifications/NotificationList/TreatmentsList/TreatmentsList';
 import NotificationOptions from '../../Notifications/NotificationOptions/NotificationOptions';
+
+import api from '../../../utils/api';
 
 export default function PatientPageForSelectedPatient() {
   const [patient, setPatient] = useState();
@@ -20,7 +21,7 @@ export default function PatientPageForSelectedPatient() {
 
   // Get the data of the patient whose ID is the same as the one received as a request parameter when the component is mounted
   useEffect(() => {
-    axios.get(`http://localhost:8000/api/v1/patients/${patientID}`).then((response) => {
+    api.get(`/patients/${patientID}`).then(response => {
       console.log(response.data.patient);
       setPatient(response.data.patient);
     });
@@ -28,7 +29,7 @@ export default function PatientPageForSelectedPatient() {
 
   // Get the exams of the patient whose ID is the same as the one received as a request parameter
   useEffect(() => {
-    axios.get(`http://localhost:8000/api/v1/patients/${patientID}/exams`).then((response) => {
+    api.get(`/patients/${patientID}/exams`).then(response => {
       console.log(response.data.exams);
       setPatientExams(response.data.exams);
     });
@@ -36,7 +37,7 @@ export default function PatientPageForSelectedPatient() {
 
   // Get the monitorings of the patient whose ID is the same as the one received as a request parameter
   useEffect(() => {
-    axios.get(`http://localhost:8000/api/v1/patients/${patientID}/monitorings`).then((response) => {
+    api.get(`/patients/${patientID}/monitorings`).then(response => {
       console.log(response.data.monitorings);
       setPatientMonitorings(response.data.monitorings);
     });
@@ -44,7 +45,7 @@ export default function PatientPageForSelectedPatient() {
 
   // Get the treatments of the patient whose ID is the same as the one received as a request parameter
   useEffect(() => {
-    axios.get(`http://localhost:8000/api/v1/patients/${patientID}/treatments`).then((response) => {
+    api.get(`/patients/${patientID}/treatments`).then(response => {
       console.log(response.data.treatments);
       setPatientTreatments(response.data.treatments);
     });
@@ -83,8 +84,12 @@ export default function PatientPageForSelectedPatient() {
           <PatientSelected patient={patient} />
           <NotificationOptions isCreation={false} click={handleClick} />
           {displayExams && <ExamsList exams={patientExams} />}
-          {displayMonitorings && <MonitoringsList monitorings={patientMonitorings} />}
-          {displayTreatments && <TreatmentsList treatments={patientTreatments} />}
+          {displayMonitorings && (
+            <MonitoringsList monitorings={patientMonitorings} />
+          )}
+          {displayTreatments && (
+            <TreatmentsList treatments={patientTreatments} />
+          )}
         </>
       )}
     </div>

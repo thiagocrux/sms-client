@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from 'react';
-import axios from 'axios';
 
 import PatientList from '../PatientList/PatientList';
 import PatientSearchForm from '../PatientSearchForm/PatientSearchForm';
+
+import api from '../../../utils/api';
 
 import style from './PatientPage.module.css';
 
@@ -15,7 +16,7 @@ export default function PatientSelected() {
   });
 
   useEffect(() => {
-    axios.get('http://localhost:8000/api/v1/patients/').then((response) => {
+    api.get('/patients/').then(response => {
       setPatients(response.data.patients);
     });
   }, []);
@@ -23,9 +24,13 @@ export default function PatientSelected() {
   useEffect(() => {
     const { criterion, inputValue } = search;
 
-    const filter = patients.filter((filteredPatients) => {
-      const key = Object.keys(filteredPatients).filter((key) => key === criterion);
-      return filteredPatients[key].toLowerCase().includes(inputValue.toLowerCase());
+    const filter = patients.filter(filteredPatients => {
+      const key = Object.keys(filteredPatients).filter(
+        key => key === criterion
+      );
+      return filteredPatients[key]
+        .toLowerCase()
+        .includes(inputValue.toLowerCase());
     });
 
     setFilteredPatients(filter);
@@ -34,8 +39,8 @@ export default function PatientSelected() {
   const handleSubmit = () => {
     const { criterion, inputValue } = search;
 
-    const filteredPatient = patients.filter((patient) => {
-      const key = Object.keys(patient).filter((key) => key === criterion);
+    const filteredPatient = patients.filter(patient => {
+      const key = Object.keys(patient).filter(key => key === criterion);
       return patient[key].toLowerCase() === inputValue.toLowerCase();
     });
     setFilteredPatients(filteredPatient);
@@ -45,7 +50,7 @@ export default function PatientSelected() {
     <div className={style.patient}>
       <>
         <PatientSearchForm
-          formHeader="Localize o paciente que deseja consultar"
+          formHeader='Localize o paciente que deseja consultar'
           handleSubmit={handleSubmit}
           search={search}
           setSearch={setSearch}
