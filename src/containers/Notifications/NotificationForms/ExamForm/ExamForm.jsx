@@ -22,7 +22,7 @@ export default function ExamForm() {
   const [formType, setFormType] = useState('create');
   const [openModal, setOpenModal] = useState(false);
   const [examInformation, setExamInformation] = useState(INITIAL_VALUES);
-  const { examID } = useParams();
+  const { examID, patientID } = useParams();
 
   const history = useHistory();
 
@@ -74,7 +74,12 @@ export default function ExamForm() {
   }
 
   function handleSubmit() {
-    axios.post('http://localhost:8000/api/v1/patients/', examInformation);
+    axios
+      .post(
+        `http://localhost:8000/api/v1/patients/${patientID}/exams`,
+        examInformation
+      )
+      .then(response => console.log(response));
     setOpenModal(false);
     history.goBack();
   }
@@ -245,6 +250,7 @@ export default function ExamForm() {
       </Form>
       <ConfirmationModal
         open={openModal}
+        message='Confirmar novo exame?'
         handleCancel={() => setOpenModal(false)}
         handleConfirm={handleSubmit}
       />

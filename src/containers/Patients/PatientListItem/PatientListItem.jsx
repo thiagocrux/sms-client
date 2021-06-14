@@ -1,6 +1,10 @@
 import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { formatCPF, formatDate, formatSUSCardNumber } from '../../../utils/dataFormatter';
+import {
+  formatCPF,
+  formatDate,
+  formatSUSCardNumber,
+} from '../../../utils/dataFormatter';
 
 import PatientControls from '../PatientControls/PatientControls';
 
@@ -20,9 +24,13 @@ export default function PatientListItem({ patient }) {
         state: patient,
       }}
     >
-      <span className={style.innerDivider}>{formatSUSCardNumber(susCardNumber)}</span>
+      <span className={style.innerDivider}>
+        {formatSUSCardNumber(susCardNumber)}
+      </span>
       <span className={style.innerDivider}>{formatCPF(cpf)}</span>
-      <span className={style.innerDivider}>{socialName ? socialName : name}</span>
+      <span className={style.innerDivider}>
+        {socialName ? socialName : name}
+      </span>
       <span className={style.innerDivider}>{formatDate(birthDate)}</span>
       <PatientControls patientID={patient._id} />
     </Link>
