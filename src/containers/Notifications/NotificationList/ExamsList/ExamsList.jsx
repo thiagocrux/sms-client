@@ -1,8 +1,8 @@
 import React from 'react';
-import { PersonLinesFill, PenFill, TrashFill, Hash } from 'react-bootstrap-icons';
 import { formatDate, formatDateTime } from '../../../../utils/dataFormatter';
 
 import Heading from '../../../../components/Common/Heading/Heading';
+import NotificationListItemControls from '../../NotificationListItemControls/NotificationListItemControls';
 
 import style from './ExamsList.module.css';
 
@@ -20,11 +20,11 @@ export default function ExamsList({ exams }) {
                   <p>{exam._id}</p>
                 </div>
 
-                <span className={style.controls}>
-                  <PersonLinesFill className={style.icon} />
-                  <PenFill className={style.icon} />
-                  <TrashFill className={style.icon} />
-                </span>
+                <NotificationListItemControls
+                  notificationType={'exam'}
+                  patientID={exam.patient}
+                  notificationID={exam._id}
+                />
               </div>
 
               <div className={style.infoContainer}>
@@ -60,7 +60,11 @@ export default function ExamsList({ exams }) {
                 </div>
                 <div className={style.info}>
                   <span>Observações de referência e contra-referência</span>
-                  <p>{exam.refObservations ? exam.refObservations : 'Não há observações.'}</p>
+                  <p>
+                    {exam.refObservations
+                      ? exam.refObservations
+                      : 'Não há observações.'}
+                  </p>
                 </div>
                 <div className={style.info}>
                   <span>Em tratamento?</span>

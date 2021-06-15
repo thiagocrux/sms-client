@@ -1,8 +1,8 @@
 import React from 'react';
-import { PersonLinesFill, PenFill, TrashFill } from 'react-bootstrap-icons';
 import { formatDate, formatDateTime } from '../../../../utils/dataFormatter';
 
 import Heading from '../../../../components/Common/Heading/Heading';
+import NotificationListItemControls from '../../NotificationListItemControls/NotificationListItemControls';
 
 import style from './TreatmentsList.module.css';
 
@@ -19,11 +19,11 @@ export default function TreatmentsList({ treatments }) {
                 <p>{treatment._id}</p>
               </div>
 
-              <span className={style.controls}>
-                <PersonLinesFill className={style.icon} />
-                <PenFill className={style.icon} />
-                <TrashFill className={style.icon} />
-              </span>
+              <NotificationListItemControls
+                notificationType={'treatment'}
+                patientID={treatment.patient}
+                notificationID={treatment._id}
+              />
             </div>
 
             <div className={style.infoContainer}>
@@ -56,7 +56,11 @@ export default function TreatmentsList({ treatments }) {
               </div>
               <div className={style.footerInfo}>
                 <span>atualizado em:&nbsp;</span>
-                <p>{treatment.updatedAt ? formatDateTime(treatment.updatedAt) : '-'}</p>
+                <p>
+                  {treatment.updatedAt
+                    ? formatDateTime(treatment.updatedAt)
+                    : '-'}
+                </p>
               </div>
             </div>
           </li>

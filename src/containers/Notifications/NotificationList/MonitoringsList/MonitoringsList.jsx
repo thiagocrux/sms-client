@@ -1,12 +1,14 @@
 import React from 'react';
-import { PersonLinesFill, PenFill, TrashFill, Hash } from 'react-bootstrap-icons';
 import { formatDate, formatDateTime } from '../../../../utils/dataFormatter';
 
 import Heading from '../../../../components/Common/Heading/Heading';
+import NotificationListItemControls from '../../NotificationListItemControls/NotificationListItemControls';
 
 import style from './MonitoringsList.module.css';
 
 export default function MonitoringsList({ monitorings }) {
+  console.log(monitorings);
+
   return (
     monitorings && (
       <div className={style.listContainer}>
@@ -20,11 +22,11 @@ export default function MonitoringsList({ monitorings }) {
                   <p>{monitoring._id}</p>
                 </div>
 
-                <span className={style.controls}>
-                  <PersonLinesFill className={style.icon} />
-                  <PenFill className={style.icon} />
-                  <TrashFill className={style.icon} />
-                </span>
+                <NotificationListItemControls
+                  notificationType={'monitoring'}
+                  patientID={monitoring.patient}
+                  notificationID={monitoring._id}
+                />
               </div>
 
               <div className={style.infoContainer}>
@@ -69,7 +71,11 @@ export default function MonitoringsList({ monitorings }) {
                 </div>
                 <div className={style.footerInfo}>
                   <span>atualizado em:&nbsp;</span>
-                  <p>{monitoring.updatedAt ? formatDateTime(monitoring.updatedAt) : '-'}</p>
+                  <p>
+                    {monitoring.updatedAt
+                      ? formatDateTime(monitoring.updatedAt)
+                      : '-'}
+                  </p>
                 </div>
               </div>
             </li>
