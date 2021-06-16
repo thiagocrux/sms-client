@@ -208,7 +208,7 @@ export default function TreatmentForm() {
         open={openCancelationModal}
         message="Deseja cancelar?"
         cancel={() => setOpenCancelationModal(false)}
-        confirm={handleSubmit}
+        confirm={handleCancel}
       />
     </>
   );
