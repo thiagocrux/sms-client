@@ -259,7 +259,11 @@ export default function ExamForm() {
       </Form>
       <ConfirmationModal
         open={openConfirmationModal}
-        message="Confirmar novo exame?"
+        message={
+          formType === 'create'
+            ? 'Confirmar novo tratamento?'
+            : 'Confirmar atualização?'
+        }
         cancel={() => setOpenConfirmationModal(false)}
         confirm={handleSubmit}
       />

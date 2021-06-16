@@ -216,7 +216,11 @@ export default function MonitoringForm() {
       </Form>
       <ConfirmationModal
         open={openConfirmationModal}
-        message="Confirmar novo monitoramento?"
+        message={
+          formType === 'create'
+            ? 'Confirmar novo tratamento?'
+            : 'Confirmar atualização?'
+        }
         cancel={() => setOpenConfirmationModal(false)}
         confirm={handleSubmit}
       />

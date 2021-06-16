@@ -188,7 +188,11 @@ export default function TreatmentForm() {
       </Form>
       <ConfirmationModal
         open={openConfirmationModal}
-        message="Confirmar novo tratamento?"
+        message={
+          formType === 'create'
+            ? 'Confirmar novo tratamento?'
+            : 'Confirmar atualização?'
+        }
         cancel={() => setOpenConfirmationModal(false)}
         confirm={handleSubmit}
       />
