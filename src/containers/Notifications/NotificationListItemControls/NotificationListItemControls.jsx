@@ -1,7 +1,6 @@
 import React from 'react';
 import { PenFill, TrashFill } from 'react-bootstrap-icons';
 import { useHistory } from 'react-router-dom';
-import api from '../../../utils/api';
 
 import style from './NotificationListItemControls.module.css';
 

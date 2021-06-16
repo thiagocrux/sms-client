@@ -1,7 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import axios from 'axios';
 import { useParams, useHistory } from 'react-router-dom';
-
 import api from '../../../utils/api';
 
 import PatientSelected from '../../Patients/PatientSelected/PatientSelected';
@@ -16,10 +14,11 @@ export default function NotificationPageForSelectedPatient() {
 
   // Get the data of the patient whose ID is the same as the one received as a request parameter when the component is mounted
   useEffect(() => {
-    api.get(`/patients/${patientID}`).then(response => {
+    api.get(`/patients/${patientID}`).then((response) => {
       console.log(response.data.patient);
       setPatient(response.data.patient);
     });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   function handleClick(url) {
