@@ -21,15 +21,16 @@ export default function PatientPageForSelectedPatient() {
 
   // Get the data of the patient whose ID is the same as the one received as a request parameter when the component is mounted
   useEffect(() => {
-    api.get(`/patients/${patientID}`).then(response => {
+    api.get(`/patients/${patientID}`).then((response) => {
       console.log(response.data.patient);
       setPatient(response.data.patient);
     });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   // Get the exams of the patient whose ID is the same as the one received as a request parameter
   useEffect(() => {
-    api.get(`/patients/${patientID}/exams`).then(response => {
+    api.get(`/patients/${patientID}/exams`).then((response) => {
       console.log(response.data.exams);
       setPatientExams(response.data.exams);
     });
@@ -37,7 +38,7 @@ export default function PatientPageForSelectedPatient() {
 
   // Get the monitorings of the patient whose ID is the same as the one received as a request parameter
   useEffect(() => {
-    api.get(`/patients/${patientID}/monitorings`).then(response => {
+    api.get(`/patients/${patientID}/monitorings`).then((response) => {
       console.log(response.data.monitorings);
       setPatientMonitorings(response.data.monitorings);
     });
@@ -45,7 +46,7 @@ export default function PatientPageForSelectedPatient() {
 
   // Get the treatments of the patient whose ID is the same as the one received as a request parameter
   useEffect(() => {
-    api.get(`/patients/${patientID}/treatments`).then(response => {
+    api.get(`/patients/${patientID}/treatments`).then((response) => {
       console.log(response.data.treatments);
       setPatientTreatments(response.data.treatments);
     });

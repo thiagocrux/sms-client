@@ -1,6 +1,5 @@
-import React, { useEffect, useState } from 'react';
-import axios from 'axios';
-import { useHistory, useLocation } from 'react-router-dom';
+import React from 'react';
+import { useHistory } from 'react-router-dom';
 import { formatCPF, formatSUSCardNumber } from '../../../utils/dataFormatter';
 import {
   PencilFill,
@@ -23,7 +22,7 @@ function PatientInfo({ patient }) {
       <div className={style.selectedPatientCard}>
         <button
           className={`${style.button} ${style.closeButton}`}
-          onClick={() => history.goBack()}
+          onClick={() => history.push('/patients/')}
         >
           <X className={style.icon} />
         </button>
