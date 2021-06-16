@@ -11,12 +11,14 @@ import Form from '../../../../components/Layout/Form/Form';
 import Heading from '../../../../components/Common/Heading/Heading';
 import SubmitContainer from '../../../../components/Layout/Form/SubmitContainer/SubmitContainer';
 import ConfirmationModal from '../../../../components/Layout/Modals/ConfirmationModal/ConfirmationModal';
+import CancelationModal from '../../../../components/Layout/Modals/CancelationModal/CancelationModal';
 
 import style from './TreatmentForm.module.css';
 
 export default function TreatmentForm() {
   const [formType, setFormType] = useState('create');
-  const [openModal, setOpenModal] = useState(false);
+  const [openConfirmationModal, setOpenConfirmationModal] = useState(false);
+  const [openCancelationModal, setOpenCancelationModal] = useState(false);
   const [treatmentInformation, setTreatmentInformation] =
     useState(INITIAL_VALUES);
   const { treatmentID, patientID } = useParams();
@@ -56,30 +58,29 @@ export default function TreatmentForm() {
     setTreatmentInformation(treatmentInformation);
   }
 
-  /* Save the input values in the state and then send to the database */
-  function handleButtonClick(action) {
+  function handleFormModal(action) {
     if (action === 'submit') {
-      /* TODO:
-        1. Validar os dados antes de salvar no banco de dados;
-        2. Salvar valores no banco de dados de acordo com o método (criação ou atualização);
-      */
-
-      setOpenModal(true);
+      setOpenConfirmationModal(true);
       console.log(treatmentInformation);
     } else if (action === 'cancel') {
-      history.push('/notifications');
-      /* TODO:
-        1. Criar modal para confirmar cancelamento.
-      */
+      setOpenCancelationModal(true);
     }
   }
 
+  /* Save the input values in the state and then send to the database */
   function handleSubmit() {
-    api
-      .post(`/patients/${patientID}/treatments`, treatmentInformation)
-      .then((response) => console.log(response));
-    setOpenModal(false);
+    /* TODO:
+    1. Validar os dados antes de salvar no banco de dados;
+      2. Salvar valores no banco de dados de acordo com o método (criação ou atualização);
+    */
+    api.post(`/patients/${patientID}/treatments`, treatmentInformation);
+    setOpenConfirmationModal(false);
     history.goBack();
+  }
+
+  function handleCancel() {
+    setOpenCancelationModal(false);
+    history.push('/notifications');
   }
 
   return (
@@ -172,24 +173,30 @@ export default function TreatmentForm() {
           <Button
             type="button"
             action="cancel"
-            click={() => handleButtonClick('cancel')}
+            click={() => handleFormModal('cancel')}
           >
             Cancelar
           </Button>
           <Button
             type="button"
             action="submit"
-            click={() => handleButtonClick('submit')}
+            click={() => handleFormModal('submit')}
           >
             {formType === 'create' ? 'Cadastrar' : 'Salvar'}
           </Button>
         </SubmitContainer>
       </Form>
       <ConfirmationModal
-        open={openModal}
+        open={openConfirmationModal}
         message="Confirmar novo tratamento?"
-        handleCancel={() => setOpenModal(false)}
-        handleConfirm={handleSubmit}
+        cancel={() => setOpenConfirmationModal(false)}
+        confirm={handleSubmit}
+      />
+      <CancelationModal
+        open={openCancelationModal}
+        message="Deseja cancelar?"
+        cancel={() => setOpenCancelationModal(false)}
+        confirm={handleCancel}
       />
     </>
   );

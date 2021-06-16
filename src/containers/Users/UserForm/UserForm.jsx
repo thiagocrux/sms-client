@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
-import axios from 'axios';
+import { useHistory, useParams } from 'react-router-dom';
 import { userInitialValues } from '../../../utils/mock';
+import api from '../../../utils/api';
 
 import Button from '../../../components/Common/Button/Button';
 import Divider from '../../../components/Layout/Form/Divider/Divider';
@@ -9,8 +9,8 @@ import Field from '../../../components/Layout/Form/Field/Field';
 import Form from '../../../components/Layout/Form/Form';
 import Heading from '../../../components/Common/Heading/Heading';
 import SubmitContainer from '../../../components/Layout/Form/SubmitContainer/SubmitContainer';
-
-import api from '../../../utils/api';
+import ConfirmationModal from '../../../components/Layout/Modals/ConfirmationModal/ConfirmationModal';
+import CancelationModal from '../../../components/Layout/Modals/CancelationModal/CancelationModal';
 
 import style from './UserForm.module.css';
 
@@ -20,7 +20,10 @@ const INITIAL_VALUES = userInitialValues;
 export default function UserForm() {
   const [formType, setFormType] = useState('create');
   const [userInformation, setUserInformation] = useState(INITIAL_VALUES);
+  const [openConfirmationModal, setOpenConfirmationModal] = useState(false);
+  const [openCancelationModal, setOpenCancelationModal] = useState(false);
   const { userID } = useParams();
+  const history = useHistory();
 
   /* Input handlers */
   const handleChange = (field, value) =>
@@ -38,8 +41,8 @@ export default function UserForm() {
   function handleFormType() {
     if (userID && formType !== 'update') {
       setFormType('update');
-      axios
-        .get(`http://localhost:8000/api/v1/users/${userID}`)
+      api
+        .get(`/users/${userID}`)
         .then((response) => console.log(response.data.user));
       setInputValues();
       console.log(formType);
@@ -51,25 +54,33 @@ export default function UserForm() {
 
   /* Insert the values of the object in the inputs in case of an update */
   function setInputValues() {
-    // FIXME: Buscar informações no banco de dados e substituir o objeto abaixo.
     setUserInformation(userInformation);
   }
 
   /* Save the input values in the state and then send to the database */
-  function handleButtonClick(action) {
+  function handleFormModal(action) {
     if (action === 'submit') {
-      /* TODO:
-        1. Validar os dados antes de salvar no banco de dados;
-        2. Salvar valores no banco de dados de acordo com o método (criação ou atualização);
-      */
       console.log(userInformation);
-      api.post('/users/', userInformation);
+      setOpenConfirmationModal(true);
     } else if (action === 'cancel') {
-      /* TODO:
-        1. Criar lógica para o botão de cancelar.
-      */
-      console.log('Action cancelled!');
+      setOpenCancelationModal(true);
     }
+  }
+
+  function handleCancel() {
+    setOpenCancelationModal(false);
+    history.push('/notifications');
+  }
+
+  /* Save the input values in the state and then send to the database */
+  function handleSubmit() {
+    /* TODO:
+    1. Validar os dados antes de salvar no banco de dados;
+    2. Salvar valores no banco de dados de acordo com o método (criação ou atualização);
+    */
+    api.post('/users/', userInformation);
+    setOpenConfirmationModal(false);
+    history.goBack();
   }
 
   return (
@@ -168,19 +179,31 @@ export default function UserForm() {
           <Button
             type="button"
             action="cancel"
-            click={() => handleButtonClick('cancel')}
+            click={() => handleFormModal('cancel')}
           >
             Cancelar
           </Button>
           <Button
             type="button"
             action="submit"
-            click={() => handleButtonClick('submit')}
+            click={() => handleFormModal('submit')}
           >
             {formType === 'create' ? 'Cadastrar' : 'Salvar'}
           </Button>
         </SubmitContainer>
       </Form>
+      <ConfirmationModal
+        open={openConfirmationModal}
+        message="Cadastrar novo paciente?"
+        cancel={() => setOpenConfirmationModal(false)}
+        confirm={handleSubmit}
+      />
+      <CancelationModal
+        open={openCancelationModal}
+        message="Deseja cancelar?"
+        cancel={() => setOpenCancelationModal(false)}
+        confirm={handleCancel}
+      />
     </>
   );
 }

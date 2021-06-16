@@ -12,12 +12,14 @@ import Heading from '../../../../components/Common/Heading/Heading';
 import SubmitContainer from '../../../../components/Layout/Form/SubmitContainer/SubmitContainer';
 import ThematicBreak from '../../../../components/Common/ThematicBreak/ThematicBreak';
 import ConfirmationModal from '../../../../components/Layout/Modals/ConfirmationModal/ConfirmationModal';
+import CancelationModal from '../../../../components/Layout/Modals/CancelationModal/CancelationModal';
 
 import style from './ExamForm.module.css';
 
 export default function ExamForm() {
   const [formType, setFormType] = useState('create');
-  const [openModal, setOpenModal] = useState(false);
+  const [openConfirmationModal, setOpenConfirmationModal] = useState(false);
+  const [openCancelationModal, setOpenCancelationModal] = useState(false);
   const [examInformation, setExamInformation] = useState(INITIAL_VALUES);
   const { examID, patientID } = useParams();
 
@@ -56,31 +58,33 @@ export default function ExamForm() {
     setExamInformation(examInformation);
   }
 
-  /* Save the input values in the state and then send to the database */
-  function handleButtonClick(action) {
+  function handleFormModal(action) {
     if (action === 'submit') {
-      /* TODO:
-        1. Validar os dados antes de salvar no banco de dados;
-        2. Salvar valores no banco de dados de acordo com o método (criação ou atualização);
-      */
-
-      setOpenModal(true);
+      setOpenConfirmationModal(true);
       console.log(examInformation);
     } else if (action === 'cancel') {
-      history.push('/notifications');
-      /* TODO:
-        1. Criar modal para confirmar cancelamento.
-      */
+      setOpenCancelationModal(true);
     }
   }
 
+  function handleCancel() {
+    setOpenCancelationModal(false);
+    history.push('/notifications');
+  }
+
+  /* Save the input values in the state and then send to the database */
   function handleSubmit() {
+    /* TODO:
+      1. Validar os dados antes de salvar no banco de dados;
+      2. Salvar valores no banco de dados de acordo com o método (criação ou atualização);
+    */
     api
       .post(`/patients/${patientID}/exams`, examInformation)
       .then((response) => console.log(response));
-    setOpenModal(false);
+    setOpenConfirmationModal(false);
     history.goBack();
   }
+
   return (
     <>
       <Heading type="primary">
@@ -217,7 +221,7 @@ export default function ExamForm() {
                   onChange={(event) =>
                     handleChange('onExam', event.currentTarget.checked)
                   }
-                  value={examInformation.onExam}
+                  checked={examInformation.onTreatment}
                 />
               </div>
             </Field>
@@ -230,7 +234,7 @@ export default function ExamForm() {
                   onChange={(event) =>
                     handleChange('onMonitoring', event.currentTarget.checked)
                   }
-                  value={examInformation.onMonitoring}
+                  checked={examInformation.onMonitoring}
                 />
               </div>
             </Field>
@@ -240,24 +244,30 @@ export default function ExamForm() {
           <Button
             type="button"
             action="cancel"
-            click={() => handleButtonClick('cancel')}
+            click={() => handleFormModal('cancel')}
           >
             Cancelar
           </Button>
           <Button
             type="button"
             action="submit"
-            click={() => handleButtonClick('submit')}
+            click={() => handleFormModal('submit')}
           >
             {formType === 'create' ? 'Cadastrar' : 'Salvar'}
           </Button>
         </SubmitContainer>
       </Form>
       <ConfirmationModal
-        open={openModal}
+        open={openConfirmationModal}
         message="Confirmar novo exame?"
-        handleCancel={() => setOpenModal(false)}
-        handleConfirm={handleSubmit}
+        cancel={() => setOpenConfirmationModal(false)}
+        confirm={handleSubmit}
+      />
+      <CancelationModal
+        open={openCancelationModal}
+        message="Deseja cancelar?"
+        cancel={() => setOpenCancelationModal(false)}
+        confirm={handleCancel}
       />
     </>
   );

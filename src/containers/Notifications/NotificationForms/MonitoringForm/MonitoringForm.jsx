@@ -6,6 +6,7 @@ import { formatDateToInput } from '../../../../utils/dataFormatter';
 
 import Button from '../../../../components/Common/Button/Button';
 import ConfirmationModal from '../../../../components/Layout/Modals/ConfirmationModal/ConfirmationModal';
+import CancelationModal from '../../../../components/Layout/Modals/CancelationModal/CancelationModal';
 import ThematicBreak from '../../../../components/Common/ThematicBreak/ThematicBreak';
 import Divider from '../../../../components/Layout/Form/Divider/Divider';
 import Field from '../../../../components/Layout/Form/Field/Field';
@@ -17,7 +18,8 @@ import style from './MonitoringForm.module.css';
 
 export default function MonitoringForm() {
   const [formType, setFormType] = useState('create');
-  const [openModal, setOpenModal] = useState(false);
+  const [openConfirmationModal, setOpenConfirmationModal] = useState(false);
+  const [openCancelationModal, setOpenCancelationModal] = useState(false);
   const [monitoringInformation, setMonitoringInformation] =
     useState(INITIAL_VALUES);
   const { monitoringID, patientID } = useParams();
@@ -57,29 +59,33 @@ export default function MonitoringForm() {
     setMonitoringInformation(monitoringInformation);
   }
 
-  /* Save the input values in the state and then send to the database */
-  function handleButtonClick(action) {
+  function handleFormModal(action) {
     if (action === 'submit') {
-      /* TODO:
-        1. Validar os dados antes de salvar no banco de dados;
-        2. Salvar valores no banco de dados de acordo com o método (criação ou atualização);
-      */
-
-      setOpenModal(true);
+      setOpenConfirmationModal(true);
       console.log(monitoringInformation);
     } else if (action === 'cancel') {
-      history.push('/notifications');
+      setOpenCancelationModal(true);
       /* TODO:
-        1. Criar modal para confirmar cancelamento.
+      1. Criar modal para confirmar cancelamento.
       */
     }
   }
 
+  function handleCancel() {
+    setOpenCancelationModal(false);
+    history.push('/notifications');
+  }
+
+  /* Save the input values in the state and then send to the database */
   function handleSubmit() {
+    /* TODO:
+      1. Validar os dados antes de salvar no banco de dados;
+      2. Salvar valores no banco de dados de acordo com o método (criação ou atualização);
+    */
     api
       .post(`/patients/${patientID}/monitorings`, monitoringInformation)
       .then((response) => console.log(response));
-    setOpenModal(false);
+    setOpenConfirmationModal(false);
     history.goBack();
   }
 
@@ -195,24 +201,30 @@ export default function MonitoringForm() {
           <Button
             type="button"
             action="cancel"
-            click={() => handleButtonClick('cancel')}
+            click={() => handleFormModal('cancel')}
           >
             Cancelar
           </Button>
           <Button
             type="button"
             action="submit"
-            click={() => handleButtonClick('submit')}
+            click={() => handleFormModal('submit')}
           >
             {formType === 'create' ? 'Cadastrar' : 'Salvar'}
           </Button>
         </SubmitContainer>
       </Form>
       <ConfirmationModal
-        open={openModal}
+        open={openConfirmationModal}
         message="Confirmar novo monitoramento?"
-        handleCancel={() => setOpenModal(false)}
-        handleConfirm={handleSubmit}
+        cancel={() => setOpenConfirmationModal(false)}
+        confirm={handleSubmit}
+      />
+      <CancelationModal
+        open={openCancelationModal}
+        message="Deseja cancelar?"
+        cancel={() => setOpenCancelationModal(false)}
+        confirm={handleCancel}
       />
     </>
   );
