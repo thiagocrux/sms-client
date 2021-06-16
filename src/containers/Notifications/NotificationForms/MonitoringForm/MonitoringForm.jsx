@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useHistory, useParams } from 'react-router-dom';
-import { monitoringInitialValues } from '../../../../utils/mock';
+import { monitoringInitialValues as INITIAL_VALUES } from '../../../../utils/mock';
 import api from '../../../../utils/api';
 import { formatDateToInput } from '../../../../utils/dataFormatter';
 
@@ -14,8 +14,6 @@ import Heading from '../../../../components/Common/Heading/Heading';
 import SubmitContainer from '../../../../components/Layout/Form/SubmitContainer/SubmitContainer';
 
 import style from './MonitoringForm.module.css';
-
-const INITIAL_VALUES = monitoringInitialValues;
 
 export default function MonitoringForm() {
   const [formType, setFormType] = useState('create');

@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useHistory, useParams } from 'react-router-dom';
-import { examInitialValues, examMockedValues } from '../../../../utils/mock';
+import { examInitialValues as INITIAL_VALUES } from '../../../../utils/mock';
+import api from '../../../../utils/api';
 import { formatDateToInput } from '../../../../utils/dataFormatter';
 
 import Button from '../../../../components/Common/Button/Button';
@@ -12,13 +13,7 @@ import SubmitContainer from '../../../../components/Layout/Form/SubmitContainer/
 import ThematicBreak from '../../../../components/Common/ThematicBreak/ThematicBreak';
 import ConfirmationModal from '../../../../components/Layout/Modals/ConfirmationModal/ConfirmationModal';
 
-import api from '../../../../utils/api';
-
 import style from './ExamForm.module.css';
-
-// FIXME: Deletar objeto quando o banco de dados estiver acessível.
-const MOCK_VALUES = examMockedValues;
-const INITIAL_VALUES = examInitialValues;
 
 export default function ExamForm() {
   const [formType, setFormType] = useState('create');
