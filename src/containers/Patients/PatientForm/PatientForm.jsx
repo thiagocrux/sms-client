@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { useParams, useHistory } from 'react-router-dom';
 import { patientInitialValues } from '../../../utils/mock';
+import { formatDateToInput } from '../../../utils/dataFormatter';
+import api from '../../../utils/api';
 
 import Button from '../../../components/Common/Button/Button';
 import Divider from '../../../components/Layout/Form/Divider/Divider';
@@ -9,11 +11,10 @@ import Form from '../../../components/Layout/Form/Form';
 import Heading from '../../../components/Common/Heading/Heading';
 import SubmitContainer from '../../../components/Layout/Form/SubmitContainer/SubmitContainer';
 import ThematicBreak from '../../../components/Common/ThematicBreak/ThematicBreak';
-
-import api from '../../../utils/api';
+import ConfirmationModal from '../../../components/Layout/Modals/ConfirmationModal/ConfirmationModal';
+import CancelationModal from '../../../components/Layout/Modals/CancelationModal/CancelationModal';
 
 import style from './PatientForm.module.css';
-import ConfirmationModal from '../../../components/Layout/Modals/ConfirmationModal/ConfirmationModal';
 
 const INITIAL_VALUES = patientInitialValues;
 
@@ -21,7 +22,7 @@ export default function PatientForm() {
   const [formType, setFormType] = useState('create');
   const [patientInformation, setPatientInformation] = useState(INITIAL_VALUES);
   const [openConfirmationModal, setOpenConfirmationModal] = useState(false);
-
+  const [openCancelationModal, setOpenCancelationModal] = useState(false);
   const { patientID } = useParams();
   const history = useHistory();
 
@@ -54,26 +55,29 @@ export default function PatientForm() {
 
   /* Insert the values of the object in the inputs in case of an update */
   function setInputValues() {
-    // FIXME: Buscar informações no banco de dados e substituir o objeto abaixo.
     setPatientInformation(patientInformation);
   }
 
-  /* Save the input values in the state and then send to the database */
-  function handleButtonClick(action) {
+  function handleFormModal(action) {
     if (action === 'submit') {
-      /* TODO:
-        1. Validar os dados antes de salvar no banco de dados;
-        2. Salvar valores no banco de dados de acordo com o método (criação ou atualização);
-      */
       console.log(patientInformation);
       setOpenConfirmationModal(true);
     } else if (action === 'cancel') {
-      console.log('Action cancelled!');
-      history.goBack();
+      setOpenCancelationModal(true);
     }
   }
 
+  function handleCancel() {
+    setOpenCancelationModal(false);
+    history.push('/notifications');
+  }
+
+  /* Save the input values in the state and then send to the database */
   function handleSubmit() {
+    /* TODO:
+      1. Validar os dados antes de salvar no banco de dados;
+      2. Salvar valores no banco de dados de acordo com o método (criação ou atualização);
+    */
     api.post('/patients/', patientInformation);
     setOpenConfirmationModal(false);
     history.goBack();
@@ -142,7 +146,7 @@ export default function PatientForm() {
                 onChange={(event) =>
                   handleChange('birthDate', event.currentTarget.value)
                 }
-                value={patientInformation.birthDate}
+                value={formatDateToInput(patientInformation.birthDate)}
               />
             </Field>
             <Field>
@@ -302,14 +306,14 @@ export default function PatientForm() {
           <Button
             type="button"
             action="cancel"
-            click={() => handleButtonClick('cancel')}
+            click={() => handleFormModal('cancel')}
           >
             Cancelar
           </Button>
           <Button
             type="button"
             action="submit"
-            click={() => handleButtonClick('submit')}
+            click={() => handleFormModal('submit')}
           >
             {formType === 'create' ? 'Cadastrar' : 'Salvar'}
           </Button>
@@ -318,8 +322,14 @@ export default function PatientForm() {
       <ConfirmationModal
         open={openConfirmationModal}
         message="Cadastrar novo paciente?"
-        handleCancel={() => setOpenConfirmationModal(false)}
-        handleConfirm={handleSubmit}
+        cancel={() => setOpenConfirmationModal(false)}
+        confirm={handleSubmit}
+      />
+      <CancelationModal
+        open={openCancelationModal}
+        message="Deseja cancelar?"
+        cancel={() => setOpenCancelationModal(false)}
+        confirm={handleCancel}
       />
     </>
   );

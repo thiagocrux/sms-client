@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 
 import style from './ConfirmationModal.module.css';
 
-function ConfirmationModal({ open, message, handleCancel, handleConfirm }) {
+function ConfirmationModal({ open, message, cancel, confirm }) {
   if (!open) return null;
 
   return ReactDOM.createPortal(
@@ -11,10 +11,10 @@ function ConfirmationModal({ open, message, handleCancel, handleConfirm }) {
       <div className={style.modalBox}>
         <p className={style.header}>{message}</p>
         <div className={style.buttons}>
-          <button className={style.button} onClick={handleCancel}>
+          <button className={style.button} onClick={cancel}>
             Não
           </button>
-          <button className={style.button} onClick={handleConfirm}>
+          <button className={style.button} onClick={confirm}>
             Sim
           </button>
         </div>
