@@ -1,6 +1,5 @@
-import React, { useEffect, useState } from 'react';
-import axios from 'axios';
-import { useHistory, useLocation } from 'react-router-dom';
+import React from 'react';
+import { useHistory } from 'react-router-dom';
 import { formatCPF, formatSUSCardNumber } from '../../../utils/dataFormatter';
 import {
   PencilFill,
