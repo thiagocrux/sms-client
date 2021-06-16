@@ -1,4 +1,3 @@
-import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 
 import PatientList from '../../Patients/PatientList/PatientList';
@@ -29,7 +28,7 @@ export default function NotificationPage() {
   });
 
   useEffect(() => {
-    api.get('/patients/').then(response => {
+    api.get('/patients/').then((response) => {
       setPatients(response.data.patients);
     });
   }, []);
@@ -37,9 +36,9 @@ export default function NotificationPage() {
   useEffect(() => {
     const { criterion, inputValue } = search;
 
-    const filter = patients.filter(filteredPatients => {
+    const filter = patients.filter((filteredPatients) => {
       const key = Object.keys(filteredPatients).filter(
-        key => key === criterion
+        (key) => key === criterion
       );
       return filteredPatients[key]
         .toLowerCase()
@@ -52,8 +51,8 @@ export default function NotificationPage() {
   const handleSubmit = () => {
     const { criterion, inputValue } = search;
 
-    const filteredPatient = patients.filter(patient => {
-      const key = Object.keys(patient).filter(key => key === criterion);
+    const filteredPatient = patients.filter((patient) => {
+      const key = Object.keys(patient).filter((key) => key === criterion);
       return patient[key].toLowerCase() === inputValue.toLowerCase();
     });
     setFilteredPatients(filteredPatient);
@@ -62,7 +61,7 @@ export default function NotificationPage() {
   return (
     <div className={style.notification}>
       <PatientSearchForm
-        formHeader='Localize o paciente que será notificado'
+        formHeader="Localize o paciente que será notificado"
         handleSubmit={handleSubmit}
         search={search}
         setSearch={setSearch}

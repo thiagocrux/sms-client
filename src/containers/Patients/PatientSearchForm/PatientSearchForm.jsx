@@ -16,7 +16,7 @@ export default function PatientSearchForm({
   const inputRef = useRef(null);
 
   useEffect(() => {
-    const inputListener = event => {
+    const inputListener = (event) => {
       if (
         document.activeElement === inputRef.current &&
         (event.code === 'Enter' || event.code === 'NumpadEnter')
@@ -27,29 +27,30 @@ export default function PatientSearchForm({
     document.addEventListener('keydown', inputListener);
 
     return () => document.removeEventListener('keydown', inputListener);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
     <div className={style.patientSearchContainer}>
-      <Heading type='primary'>{formHeader}</Heading>
+      <Heading type="primary">{formHeader}</Heading>
       <div className={style.gridContainer}>
         <Field>
-          <label htmlFor='search-criterion'>Critério de pesquisa</label>
+          <label htmlFor="search-criterion">Critério de pesquisa</label>
           <select
             value={criterion}
-            name='search-criterion'
+            name="search-criterion"
             className={style.searchCriterion}
-            onChange={event =>
+            onChange={(event) =>
               setSearch({ ...search, criterion: event.currentTarget.value })
             }
           >
-            <option value='susCardNumber'>Número do cartão do SUS</option>
-            <option value='cpf'>Número do CPF</option>
-            <option value='name'>Nome do paciente</option>
+            <option value="susCardNumber">Número do cartão do SUS</option>
+            <option value="cpf">Número do CPF</option>
+            <option value="name">Nome do paciente</option>
           </select>
         </Field>
         <Field>
-          <label htmlFor='search-input'>&nbsp;</label>
+          <label htmlFor="search-input">&nbsp;</label>
           <input
             ref={inputRef}
             value={
@@ -57,8 +58,8 @@ export default function PatientSearchForm({
                 ? inputValue
                 : inputValue.replace(/[^0-9]/g, '')
             }
-            name='search-input'
-            type='text'
+            name="search-input"
+            type="text"
             placeholder={
               criterion === 'susCardNumber'
                 ? 'Insira o número do cartão do SUS do paciente'
@@ -67,7 +68,7 @@ export default function PatientSearchForm({
                 : 'Insira o nome do paciente'
             }
             className={style.searchInput}
-            onChange={event =>
+            onChange={(event) =>
               setSearch({ ...search, inputValue: event.currentTarget.value })
             }
           />
