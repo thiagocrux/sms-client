@@ -23,7 +23,7 @@ function PatientInfo({ patient }) {
       <div className={style.selectedPatientCard}>
         <button
           className={`${style.button} ${style.closeButton}`}
-          onClick={() => history.goBack()}
+          onClick={() => history.push('/patients/')}
         >
           <X className={style.icon} />
         </button>
