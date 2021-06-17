@@ -7,7 +7,7 @@ import api from '../../../utils/api';
 
 import style from './PatientPage.module.css';
 
-export default function PatientSelected() {
+export default function PatientPage() {
   const [patients, setPatients] = useState([]);
   const [filteredPatients, setFilteredPatients] = useState([]);
   const [search, setSearch] = useState({
@@ -16,17 +16,18 @@ export default function PatientSelected() {
   });
 
   useEffect(() => {
-    api.get('/patients/').then(response => {
+    api.get('/patients/').then((response) => {
       setPatients(response.data.patients);
     });
+    console.log('PATIENT PAGE MOUNT');
   }, []);
 
   useEffect(() => {
     const { criterion, inputValue } = search;
 
-    const filter = patients.filter(filteredPatients => {
+    const filter = patients.filter((filteredPatients) => {
       const key = Object.keys(filteredPatients).filter(
-        key => key === criterion
+        (key) => key === criterion
       );
       return filteredPatients[key]
         .toLowerCase()
@@ -39,8 +40,8 @@ export default function PatientSelected() {
   const handleSubmit = () => {
     const { criterion, inputValue } = search;
 
-    const filteredPatient = patients.filter(patient => {
-      const key = Object.keys(patient).filter(key => key === criterion);
+    const filteredPatient = patients.filter((patient) => {
+      const key = Object.keys(patient).filter((key) => key === criterion);
       return patient[key].toLowerCase() === inputValue.toLowerCase();
     });
     setFilteredPatients(filteredPatient);
@@ -50,7 +51,7 @@ export default function PatientSelected() {
     <div className={style.patient}>
       <>
         <PatientSearchForm
-          formHeader='Localize o paciente que deseja consultar'
+          formHeader="Localize o paciente que deseja consultar"
           handleSubmit={handleSubmit}
           search={search}
           setSearch={setSearch}

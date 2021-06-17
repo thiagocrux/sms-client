@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 
@@ -25,32 +26,31 @@ export default function PatientPageForSelectedPatient() {
       console.log(response.data.patient);
       setPatient(response.data.patient);
     });
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   // Get the exams of the patient whose ID is the same as the one received as a request parameter
   useEffect(() => {
     api.get(`/patients/${patientID}/exams`).then((response) => {
-      console.log(response.data.exams);
+      // console.log(response.data.exams);
       setPatientExams(response.data.exams);
     });
-  }, [patientID]);
+  }, [patient]);
 
   // Get the monitorings of the patient whose ID is the same as the one received as a request parameter
   useEffect(() => {
     api.get(`/patients/${patientID}/monitorings`).then((response) => {
-      console.log(response.data.monitorings);
+      // console.log(response.data.monitorings);
       setPatientMonitorings(response.data.monitorings);
     });
-  }, [patientID]);
+  }, [patient]);
 
   // Get the treatments of the patient whose ID is the same as the one received as a request parameter
   useEffect(() => {
     api.get(`/patients/${patientID}/treatments`).then((response) => {
-      console.log(response.data.treatments);
+      // console.log(response.data.treatments);
       setPatientTreatments(response.data.treatments);
     });
-  }, [patientID]);
+  }, [patient]);
 
   function showExams() {
     setDisplayExams(true);

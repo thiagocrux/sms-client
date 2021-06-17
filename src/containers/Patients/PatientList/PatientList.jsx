@@ -18,7 +18,7 @@ export default function PatientList({ filteredResult }) {
 
   useEffect(() => {
     setItems(filteredResult);
-  }, [filteredResult, items]);
+  }, [filteredResult]);
 
   // Pagination
   const [pageNumber, setPageNumber] = useState(0);
@@ -28,7 +28,7 @@ export default function PatientList({ filteredResult }) {
 
   const displayItems = items
     .slice(pagesVisited, pagesVisited + itemsPerPage)
-    .map(item => {
+    .map((item) => {
       return <PatientListItem key={item._id} patient={item} />;
     });
 
@@ -42,7 +42,7 @@ export default function PatientList({ filteredResult }) {
     <div className={style.listContainer}>
       {items.length ? (
         <>
-          <Heading type='primary'>Resultado da busca:</Heading>
+          <Heading type="primary">Resultado da busca:</Heading>
           <div className={style.listHeader}>
             <span>
               <FileMedicalFill className={style.icon} /> Cartão do SUS
@@ -62,9 +62,9 @@ export default function PatientList({ filteredResult }) {
               <>
                 {displayItems}
                 <ReactPaginate
-                  previousLabel='Anterior'
-                  nextLabel='Próximo'
-                  breakLabel='...'
+                  previousLabel="Anterior"
+                  nextLabel="Próximo"
+                  breakLabel="..."
                   pageCount={pageCount}
                   onPageChange={changePage}
                   marginPagesDisplayed={2}
@@ -84,7 +84,7 @@ export default function PatientList({ filteredResult }) {
           </ul>
         </>
       ) : (
-        <SearchItemNotFound subject='paciente' link='/patients/new' />
+        <SearchItemNotFound subject="paciente" link="/patients/new" />
       )}
     </div>
   );
