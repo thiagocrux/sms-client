@@ -1,9 +1,11 @@
 .trepTestGridContainer {
   display: grid;
-  gap: 2rem 3rem;
-  grid-template-columns: repeat(4, 1fr);
-  grid-template-rows: auto;
-  grid-template-areas: 'trepTestType trepTestResult trepTestDate trepTestLocation';
+  column-gap: 2rem;
+  grid-template-columns: repeat(12, 1fr);
+  grid-template-rows: repeat(2, auto);
+  grid-template-areas:
+    'trepTestType trepTestType trepTestType trepTestType trepTestType trepTestType trepTestResult trepTestResult trepTestResult trepTestResult trepTestResult trepTestResult'
+    'trepTestDate trepTestDate trepTestDate trepTestDate trepTestDate trepTestDate trepTestLocation trepTestLocation trepTestLocation trepTestLocation trepTestLocation trepTestLocation';
 }
 
 .trepTestGridContainer > *:nth-child(1) {
@@ -24,7 +26,7 @@
 
 .nonTrepTestGridContainer {
   display: grid;
-  gap: 2rem 3rem;
+  column-gap: 2rem;
   grid-template-columns: repeat(3, 1fr);
   grid-template-rows: auto auto;
   grid-template-areas:
