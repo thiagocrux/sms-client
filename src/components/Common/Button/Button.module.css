@@ -32,7 +32,8 @@
   background-color: #809bce;
 }
 
-.submit:hover {
+.submit:hover,
+.submit:focus {
   background-color: #4873c4;
 }
 
@@ -41,7 +42,8 @@
   background-color: #f67b75;
 }
 
-.cancel:hover {
+.cancel:hover,
+.cancel:focus {
   background-color: #f25757;
 }
 
@@ -51,6 +53,7 @@
   background-color: #809bce;
 }
 
-.default:hover {
+.default:hover,
+default:focus {
   background-color: #4873c4;
 }
