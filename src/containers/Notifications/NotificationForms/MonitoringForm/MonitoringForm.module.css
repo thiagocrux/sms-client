@@ -1,13 +1,16 @@
 .grid-container {
   min-width: 100%;
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  grid-template-rows: auto auto auto;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: repeat(6, auto);
   column-gap: 2rem;
   grid-template-areas:
-    'vdrl1Heading vdrl2Heading  vdrl3Heading'
-    'vdrl1Date vdrl2Date vdrl3Date'
-    'vdrl1Titration vdrl2Titration vdrl3Titration';
+    'vdrl1Heading vdrl1Heading'
+    'vdrl1Titration vdrl1Date'
+    'vdrl2Heading vdrl2Heading'
+    'vdrl2Titration vdrl2Date'
+    'vdrl3Heading vdrl3Heading'
+    'vdrl3Titration vdrl3Date';
 }
 
 .grid-container > *:nth-child(1) {
