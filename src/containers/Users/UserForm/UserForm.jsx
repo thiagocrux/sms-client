@@ -86,7 +86,7 @@ export default function UserForm() {
   return (
     <>
       <Heading type="primary">
-        {formType === 'update' ? 'Atualização' : 'Cadastro'} de paciente
+        {formType === 'update' ? 'Atualização' : 'Cadastro'} de usuário
       </Heading>
       <Form>
         <Divider>
