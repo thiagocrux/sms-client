@@ -107,7 +107,7 @@ export const examInitialValues = {
   nonTrepTestDate: '',
   refObservations: '',
   onTreatment: false,
-  onObservation: false,
+  onMonitoring: false,
 };
 
 export const monitoringInitialValues = {

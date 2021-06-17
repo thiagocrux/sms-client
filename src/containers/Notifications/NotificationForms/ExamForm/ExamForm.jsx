@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react';
 import { useHistory, useParams } from 'react-router-dom';
 import { examInitialValues as INITIAL_VALUES } from '../../../../utils/mock';
 import api from '../../../../utils/api';
-import { formatDateToInput } from '../../../../utils/dataFormatter';
 
 import Button from '../../../../components/Common/Button/Button';
 import Divider from '../../../../components/Layout/Form/Divider/Divider';
@@ -139,7 +138,7 @@ export default function ExamForm() {
                 onChange={(event) =>
                   handleChange('trepTestDate', event.currentTarget.value)
                 }
-                value={formatDateToInput(examInformation.trepTestDate)}
+                value={examInformation.trepTestDate}
               />
             </Field>
             <Field>
@@ -197,7 +196,7 @@ export default function ExamForm() {
                 onChange={(event) =>
                   handleChange('nonTrepTestDate', event.currentTarget.value)
                 }
-                value={formatDateToInput(examInformation.nonTrepTestDate)}
+                value={examInformation.nonTrepTestDate}
               />
             </Field>
             <Field>
@@ -221,9 +220,9 @@ export default function ExamForm() {
                 <label htmlFor="onExam">Em tratamento</label>
                 <input
                   type="checkbox"
-                  name="onExam"
+                  name="onTreatment"
                   onChange={(event) =>
-                    handleChange('onExam', event.currentTarget.checked)
+                    handleChange('onTreatment', event.currentTarget.checked)
                   }
                   checked={examInformation.onTreatment}
                 />
@@ -231,12 +230,12 @@ export default function ExamForm() {
             </Field>
             <Field>
               <div className={style.flexContainer}>
-                <label htmlFor="onMonitoring">Em monitoramento</label>
+                <label htmlFor="onObservation">Em monitoramento</label>
                 <input
                   type="checkbox"
-                  name="onMonitoring"
+                  name="onObservation"
                   onChange={(event) =>
-                    handleChange('onMonitoring', event.currentTarget.checked)
+                    handleChange('onObservation', event.currentTarget.checked)
                   }
                   checked={examInformation.onMonitoring}
                 />
