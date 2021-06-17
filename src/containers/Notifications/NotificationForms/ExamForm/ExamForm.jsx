@@ -78,11 +78,15 @@ export default function ExamForm() {
       1. Validar os dados antes de salvar no banco de dados;
       2. Salvar valores no banco de dados de acordo com o método (criação ou atualização);
     */
-    api
-      .post(`/patients/${patientID}/exams`, examInformation)
-      .then((response) => console.log(response));
+    formType === 'create'
+      ? api
+          .post(`/patients/${patientID}/exams`, examInformation)
+          .then((response) => console.log(response))
+      : api
+          .patch(`/patients/${patientID}/exams/${examID}`, examInformation)
+          .then((response) => console.log(response));
     setOpenConfirmationModal(false);
-    history.goBack();
+    history.push(`/patients/${patientID}`);
   }
 
   return (

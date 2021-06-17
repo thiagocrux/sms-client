@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react';
 import { useHistory, useParams } from 'react-router-dom';
 import { treatmentInitialValues as INITIAL_VALUES } from '../../../../utils/mock';
 import api from '../../../../utils/api';
-import { formatDateToInput } from '../../../../utils/dataFormatter';
 
 import Button from '../../../../components/Common/Button/Button';
 import Divider from '../../../../components/Layout/Form/Divider/Divider';
@@ -25,12 +24,10 @@ export default function TreatmentForm() {
 
   const history = useHistory();
 
-  /* Input handlers */
   const handleChange = (field, value) => {
     setTreatmentInformation({ ...treatmentInformation, [field]: value });
   };
 
-  /* Set the type of form on the first render */
   useEffect(() => {
     console.clear();
     console.log(`>> Component [Treatment] mounted`);
@@ -38,7 +35,6 @@ export default function TreatmentForm() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  /* Check the existence of params and set the type of form */
   function handleFormType() {
     if (treatmentID && formType !== 'update') {
       setFormType('update');
@@ -53,7 +49,6 @@ export default function TreatmentForm() {
     }
   }
 
-  /* Insert the values of the object in the inputs in case of an update */
   function setInputValues() {
     setTreatmentInformation(treatmentInformation);
   }
@@ -67,15 +62,15 @@ export default function TreatmentForm() {
     }
   }
 
-  /* Save the input values in the state and then send to the database */
   function handleSubmit() {
-    /* TODO:
-    1. Validar os dados antes de salvar no banco de dados;
-      2. Salvar valores no banco de dados de acordo com o método (criação ou atualização);
-    */
-    api.post(`/patients/${patientID}/treatments`, treatmentInformation);
+    formType === 'create'
+      ? api.post(`/patients/${patientID}/treatments`, treatmentInformation)
+      : api.patch(
+          `/patients/${patientID}/treatments/${treatmentID}`,
+          treatmentInformation
+        );
     setOpenConfirmationModal(false);
-    history.goBack();
+    history.push(`/patients/${patientID}`);
   }
 
   function handleCancel() {
@@ -129,7 +124,7 @@ export default function TreatmentForm() {
                 onChange={(event) =>
                   handleChange('startDate', event.currentTarget.value)
                 }
-                value={formatDateToInput(treatmentInformation.startDate)}
+                value={treatmentInformation.startDate}
               />
             </Field>
             <Field>

@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useParams, useHistory } from 'react-router-dom';
 import { patientInitialValues } from '../../../utils/mock';
-import { formatDateToInput } from '../../../utils/dataFormatter';
 import api from '../../../utils/api';
 
 import Button from '../../../components/Common/Button/Button';
@@ -45,7 +44,7 @@ export default function PatientForm() {
       api
         .get(`/patients/${patientID}`)
         .then((response) => setPatientInformation(response.data.patient));
-      setInputValues();
+      setInputValues(patientInformation);
       console.log(formType);
     } else if (!patientID && formType !== 'create') {
       setFormType('create');
@@ -78,9 +77,15 @@ export default function PatientForm() {
       1. Validar os dados antes de salvar no banco de dados;
       2. Salvar valores no banco de dados de acordo com o método (criação ou atualização);
     */
-    api.post('/patients/', patientInformation);
+    formType === 'create'
+      ? api
+          .post('/patients/', patientInformation)
+          .then((response) => console.log(response))
+      : api
+          .patch(`/patients/${patientID}`, patientInformation)
+          .then((response) => console.log(response));
     setOpenConfirmationModal(false);
-    history.goBack();
+    history.push('/notifications');
   }
 
   return (
@@ -146,7 +151,7 @@ export default function PatientForm() {
                 onChange={(event) =>
                   handleChange('birthDate', event.currentTarget.value)
                 }
-                value={formatDateToInput(patientInformation.birthDate)}
+                value={patientInformation.birthDate}
               />
             </Field>
             <Field>
