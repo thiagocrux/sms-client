@@ -44,11 +44,11 @@
   display: grid;
   column-gap: 2rem;
   row-gap: 2.2rem;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(8, 1fr);
   grid-template-rows: repeat(2, auto);
   grid-template-areas:
-    'medication location startDate dosage'
-    'observations observations observations observations';
+    'medication medication location location startDate startDate dosage dosage'
+    'partnerInfo partnerInfo partnerInfo observations observations observations observations observations';
 }
 
 .info > span {
@@ -80,6 +80,11 @@
 }
 
 .info:nth-child(5) {
+  grid-area: partnerInfo;
+  text-align: justify;
+}
+
+.info:nth-child(6) {
   grid-area: observations;
   text-align: justify;
 }
