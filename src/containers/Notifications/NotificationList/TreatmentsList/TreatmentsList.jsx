@@ -9,7 +9,7 @@ import style from './TreatmentsList.module.css';
 export default function TreatmentsList({ treatments }) {
   return treatments ? (
     <div class={style.listContainer}>
-      <Heading type="primary">Tratamentos do paciente</Heading>
+      <Heading type="primary">Lista de tratamentos</Heading>
       <ul class={style.list}>
         {treatments.map((treatment) => (
           <li key={treatment._id} className={style.item}>
