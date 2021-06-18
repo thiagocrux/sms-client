@@ -1,25 +1,26 @@
 .grid-container {
   display: grid;
-  gap: 2rem 3rem;
+  column-gap: 2rem;
 }
 
 /* Informações pessoais */
 
 .first-grid-container {
-  grid-template-columns: repeat(10, 1fr);
-  grid-template-rows: repeat(3, auto);
+  grid-template-columns: repeat(12, 1fr);
+  grid-template-rows: repeat(4, auto);
   grid-template-areas:
-    'sus-code sus-code patient-name patient-name patient-name patient-name patient-name  cpf cpf cpf'
-    'social-name social-name social-name social-name   birth-date birth-date gender gender nationality nationality'
-    'phone phone email email email mother-name mother-name mother-name mother-name mother-name';
+    'susCodeNumber susCodeNumber susCodeNumber susCodeNumber name name name name name name name name'
+    'cpf cpf cpf cpf socialName socialName socialName socialName socialName socialName socialName socialName'
+    'birthDate birthDate birthDate gender gender gender nationality nationality nationality phone phone phone'
+    'email email email email motherName motherName motherName motherName motherName motherName motherName motherName';
 }
 
 .first-grid-container > *:nth-child(1) {
-  grid-area: sus-code;
+  grid-area: susCodeNumber;
 }
 
 .first-grid-container > *:nth-child(2) {
-  grid-area: patient-name;
+  grid-area: name;
 }
 
 .first-grid-container > *:nth-child(3) {
@@ -27,11 +28,11 @@
 }
 
 .first-grid-container > *:nth-child(4) {
-  grid-area: social-name;
+  grid-area: socialName;
 }
 
 .first-grid-container > *:nth-child(5) {
-  grid-area: birth-date;
+  grid-area: birthDate;
 }
 
 .first-grid-container > *:nth-child(6) {
@@ -51,21 +52,22 @@
 }
 
 .first-grid-container > *:nth-child(10) {
-  grid-area: mother-name;
+  grid-area: motherName;
 }
 
 /* Informações de endereço */
 
 .second-grid-container {
-  grid-template-columns: repeat(9, 1fr);
-  grid-template-rows: repeat(2, auto);
+  grid-template-columns: repeat(12, 1fr);
+  grid-template-rows: repeat(3, auto);
   grid-template-areas:
-    'zip-code zip-code state state city city neighbourhood neighbourhood neighbourhood'
-    'street street street houseNumber houseNumber complement complement complement complement';
+    'zipCode zipCode zipCode zipCode state state state state city city city city'
+    'neighbourhood neighbourhood neighbourhood neighbourhood neighbourhood neighbourhood street street street street street street'
+    'houseNumber houseNumber houseNumber complement complement complement complement complement complement complement complement complement';
 }
 
 .second-grid-container > *:nth-child(1) {
-  grid-area: zip-code;
+  grid-area: zipCode;
 }
 
 .second-grid-container > *:nth-child(2) {

@@ -1,14 +1,14 @@
 .container {
   min-width: 100%;
   display: grid;
-  grid-template-columns: repeat(8, 1fr);
-  grid-template-rows: auto auto;
-  gap: 2rem 3rem;
+  grid-template-columns: repeat(12, 1fr);
+  grid-template-rows: repeat(4, auto);
+  column-gap: 2rem;
   grid-template-areas:
-    'medication medication ubs-location ubs-location ubs-location ubs-location start-date start-date'
-    'dosage dosage dosage dosage dosage dosage dosage dosage'
-    'observations observations observations observations observations observations observations observations'
-    'partnerInfo partnerInfo partnerInfo partnerInfo partnerInfo partnerInfo partnerInfo partnerInfo';
+    'medication medication medication medication ubsLocation ubsLocation ubsLocation ubsLocation ubsLocation ubsLocation ubsLocation ubsLocation'
+    'startDate startDate  startDate startDate dosage dosage dosage dosage dosage dosage dosage dosage'
+    'observations observations observations observations observations observations observations observations observations observations observations observations'
+    'partnerInfo partnerInfo partnerInfo partnerInfo partnerInfo partnerInfo partnerInfo partnerInfo partnerInfo partnerInfo partnerInfo partnerInfo';
 }
 
 .container > *:nth-child(1) {
@@ -16,11 +16,11 @@
 }
 
 .container > *:nth-child(2) {
-  grid-area: ubs-location;
+  grid-area: ubsLocation;
 }
 
 .container > *:nth-child(3) {
-  grid-area: start-date;
+  grid-area: startDate;
 }
 
 .container > *:nth-child(4) {

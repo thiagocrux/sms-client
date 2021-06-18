@@ -2,12 +2,12 @@
   display: grid;
   grid-template-columns: repeat(6, 1fr);
   grid-template-rows: repeat(4, auto);
+  column-gap: 2rem;
   grid-template-areas:
     'name name name name cpf cpf'
     'role role role workLocation workLocation workLocation'
     'email email email password password password'
     'admin admin admin admin admin admin';
-  gap: 2rem 3rem;
 }
 
 .gridContainer > *:nth-child(1) {

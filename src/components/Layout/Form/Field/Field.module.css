@@ -2,11 +2,12 @@
   border: none;
   display: flex;
   flex-direction: column;
-  margin-bottom: 1.4rem;
+  margin-bottom: 1.8rem;
 }
 
 .field > label {
   color: #2b2a2a;
+  font-weight: 600;
   margin-bottom: 0.4rem;
 }
 
@@ -19,11 +20,11 @@
   padding: 0.6rem 0.8rem;
   max-width: 100%;
   width: 100%;
-  background-color: #f2f3f5;
-  border: none;
-  border-radius: 0.6rem;
-  box-shadow: 2px 1px 8px -4px #757575;
-  --webkit-box-shadow: 0px 3px 7px -4px #757575;
+  /* background-color: #f2f3f5; */
+  border: 1px solid #dadada;
+  border-radius: 0.3rem;
+  box-shadow: 1px 1px 6px -4px #757575;
+  --webkit-box-shadow: 1px1px 6px -4px #757575;
 }
 
 .field > textarea {
@@ -34,5 +35,9 @@
 .field > input:focus,
 .field > select:focus,
 .field > textarea:focus {
-  box-shadow: 0 0 0 0.2rem #809bce;
+  box-shadow: 0 0 2px 1px #809bce;
+}
+
+input[type='checkbox']:focus {
+  outline: 2px solid #a6c0f0;
 }

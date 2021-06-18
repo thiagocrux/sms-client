@@ -1,13 +1,17 @@
 import React from 'react';
+import { useParams } from 'react-router-dom';
 import { formatDate, formatDateTime } from '../../../../utils/dataFormatter';
 
 import Heading from '../../../../components/Common/Heading/Heading';
 import NotificationListItemControls from '../../NotificationListItemControls/NotificationListItemControls';
+import NotificationNotFoundMessage from '../../NotificationNotFoundMessage/NotificationNotFoundMessage';
 
 import style from './TreatmentsList.module.css';
 
 export default function TreatmentsList({ treatments }) {
-  return treatments ? (
+  const { patientID } = useParams();
+
+  return treatments.length > 0 ? (
     <div class={style.listContainer}>
       <Heading type="primary">Lista de tratamentos</Heading>
       <ul class={style.list}>
@@ -44,6 +48,10 @@ export default function TreatmentsList({ treatments }) {
                 <p>{treatment.dosage}</p>
               </div>
               <div className={style.info}>
+                <span>Informações de parceiro</span>
+                <p>{treatment.partnerInfo}</p>
+              </div>
+              <div className={style.info}>
                 <span>Observações</span>
                 <p>{treatment.observations}</p>
               </div>
@@ -68,6 +76,9 @@ export default function TreatmentsList({ treatments }) {
       </ul>
     </div>
   ) : (
-    <p>Não há resultados</p>
+    <NotificationNotFoundMessage
+      link={`/notifications/patients/${patientID}/treatments/new`}
+      subject="tratamento"
+    />
   );
 }

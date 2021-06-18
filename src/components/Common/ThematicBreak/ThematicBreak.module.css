@@ -1,7 +1,9 @@
 .thematicBreak {
-  margin-top: 5rem;
+  width: 12rem;
+  margin: 0 auto;
+  margin-top: 3.4rem;
   margin-bottom: 5rem;
-  height: 1px;
-  background-color: #dbdbdb;
+  height: 2px;
+  background-color: #809bce;
   border: none;
 }

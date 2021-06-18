@@ -1,50 +1,52 @@
 .grid-container {
   min-width: 100%;
-  margin-bottom: 2rem;
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  grid-template-rows: auto auto auto;
-  gap: 2rem 3rem;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(6, auto);
+  column-gap: 2rem;
   grid-template-areas:
-    'first-vdrl-heading second-vdrl-heading third-vdrl-heading'
-    'first-vdrl-date second-vdrl-date third-vdrl-date'
-    'first-vdrl-titration second-vdrl-titration third-vdrl-titration';
+    'vdrl1Heading vdrl1Heading vdrl1Heading'
+    'vdrl1Titration vdrl1Titration vdrl1Date'
+    'vdrl2Heading vdrl2Heading vdrl2Heading'
+    'vdrl2Titration vdrl2Titration vdrl2Date'
+    'vdrl3Heading vdrl3Heading vdrl3Heading'
+    'vdrl3Titration vdrl3Titration vdrl3Date';
 }
 
 .grid-container > *:nth-child(1) {
-  grid-area: first-vdrl-heading;
+  grid-area: vdrl1Heading;
 }
 
-.grid-container > div:nth-child(2) {
-  grid-area: first-vdrl-date;
+.grid-container > *:nth-child(2) {
+  grid-area: vdrl1Date;
 }
 
 .grid-container > *:nth-child(3) {
-  grid-area: first-vdrl-titration;
+  grid-area: vdrl1Titration;
 }
 
 .grid-container > *:nth-child(4) {
-  grid-area: second-vdrl-heading;
+  grid-area: vdrl2Heading;
 }
 
 .grid-container > *:nth-child(5) {
-  grid-area: second-vdrl-date;
+  grid-area: vdrl2Date;
 }
 
 .grid-container > *:nth-child(6) {
-  grid-area: second-vdrl-titration;
+  grid-area: vdrl2Titration;
 }
 
 .grid-container > *:nth-child(7) {
-  grid-area: third-vdrl-heading;
+  grid-area: vdrl3Heading;
 }
 
 .grid-container > *:nth-child(8) {
-  grid-area: third-vdrl-date;
+  grid-area: vdrl3Date;
 }
 
 .grid-container > *:nth-child(9) {
-  grid-area: third-vdrl-titration;
+  grid-area: vdrl3Titration;
 }
 
 .flex-container {
