@@ -1,11 +1,18 @@
+import { parseISO } from 'date-fns';
+import { format } from 'date-fns-tz';
+
 export function formatCPF(cpf) {
   cpf = cpf.replace(/[^\d]/g, '');
   return cpf.replace(/(\d{3})(\d{3})(\d{3})(\d{2})/, '$1.$2.$3-$4');
 }
 
 export function formatDate(dateAsString) {
-  const date = new Date(dateAsString);
-  const dateFormatted = Intl.DateTimeFormat('pt-BR').format(date);
+  const date = parseISO(dateAsString);
+  // const pattern = 'yyyy-MM-dd';
+  const pattern = 'dd/MM/yyyy';
+
+  const dateFormatted = format(date, pattern);
+
   return dateFormatted;
 }
 
@@ -35,8 +42,9 @@ export function formatDateToInput(dateAsObject) {
   const date = new Date(dateAsObject);
   const day = date.getDate();
   const month = date.getMonth();
+  const year = date.getFullYear();
 
-  return `${date.getFullYear()}-${month >= 10 ? month : '0' + month}-${
+  return `${year}-${month >= 10 ? month : '0' + month}-${
     day >= 10 ? day : '0' + day
   }`;
 }

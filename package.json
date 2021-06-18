@@ -8,6 +8,8 @@
     "@testing-library/user-event": "^12.1.10",
     "axios": "^0.21.1",
     "commitizen": "^4.2.4",
+    "date-fns": "^2.22.1",
+    "date-fns-tz": "^1.1.4",
     "joi": "^17.4.0",
     "prop-types": "^15.7.2",
     "react": "^17.0.2",
