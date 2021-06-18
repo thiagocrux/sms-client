@@ -1,0 +1,170 @@
+.infoContainer {
+  max-width: 90rem;
+  margin: 0 auto;
+}
+
+.personalInfoContainer {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  grid-template-rows: repeat(4, auto);
+  column-gap: 2rem;
+  row-gap: 1.8rem;
+  grid-template-areas:
+    'susCardNumber susCardNumber susCardNumber susCardNumber cpf cpf cpf cpf name name name name'
+    'birthDate birthDate birthDate birthDate nationality nationality nationality nationality socialName socialName socialName socialName'
+    'gender gender gender gender phone phone phone phone email email email email'
+    'motherName motherName motherName motherName motherName motherName motherName motherName motherName motherName motherName motherName ';
+  margin-bottom: 3.2rem;
+}
+
+.personalInfoContainer > *:nth-child(1) {
+  grid-area: susCardNumber;
+}
+
+.personalInfoContainer > *:nth-child(2) {
+  grid-area: name;
+}
+
+.personalInfoContainer > *:nth-child(3) {
+  grid-area: cpf;
+}
+
+.personalInfoContainer > *:nth-child(4) {
+  grid-area: socialName;
+}
+
+.personalInfoContainer > *:nth-child(5) {
+  grid-area: birthDate;
+}
+
+.personalInfoContainer > *:nth-child(6) {
+  grid-area: gender;
+}
+
+.personalInfoContainer > *:nth-child(7) {
+  grid-area: nationality;
+}
+
+.personalInfoContainer > *:nth-child(8) {
+  grid-area: phone;
+}
+
+.personalInfoContainer > *:nth-child(9) {
+  grid-area: email;
+}
+
+.personalInfoContainer > *:nth-child(10) {
+  grid-area: motherName;
+}
+
+.info > span {
+  font-size: 1.3rem;
+  font-weight: 700;
+  letter-spacing: 0.1rem;
+  text-transform: uppercase;
+}
+
+.info > p {
+  font-weight: 300;
+}
+
+/* Address container */
+
+.addressInfoContainer {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(3, auto);
+  column-gap: 2rem;
+  row-gap: 1.8rem;
+  grid-template-areas:
+    'zipCode state city'
+    'neighbourhood street houseNumber'
+    'complement complement complement';
+  margin-bottom: 3.2rem;
+}
+
+.addressInfoContainer > *:nth-child(1) {
+  grid-area: zipCode;
+}
+
+.addressInfoContainer > *:nth-child(2) {
+  grid-area: state;
+}
+
+.addressInfoContainer > *:nth-child(3) {
+  grid-area: city;
+}
+
+.addressInfoContainer > *:nth-child(4) {
+  grid-area: neighbourhood;
+}
+
+.addressInfoContainer > *:nth-child(5) {
+  grid-area: street;
+}
+
+.addressInfoContainer > *:nth-child(6) {
+  grid-area: houseNumber;
+}
+
+.addressInfoContainer > *:nth-child(7) {
+  grid-area: complement;
+}
+
+/* Register info container */
+
+.registerInfoContainer {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: auto;
+  column-gap: 2rem;
+  row-gap: 1.8rem;
+  margin-bottom: 5rem;
+}
+
+/* Controls */
+
+.patientControls {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  border-top: 1px solid #f2f3f5;
+  padding-top: 3.2rem;
+}
+
+.button {
+  padding: 0.8rem 2rem;
+  font-size: 1.4rem;
+  font-weight: 600;
+  letter-spacing: 0.1rem;
+  color: #ffffff;
+  border: none;
+  border-radius: 10rem;
+  box-shadow: 2px 1px 8px -4px #757575;
+  --webkit-box-shadow: 2px 3px 7px -4px #757575;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s;
+}
+
+.edit {
+  background-color: #809bce;
+}
+
+.delete {
+  background-color: #f67b75;
+}
+
+.edit:hover {
+  background-color: #4873c4;
+}
+
+.delete:hover {
+  background-color: #f25757;
+}
+
+.icon {
+  margin-right: 1rem;
+}
