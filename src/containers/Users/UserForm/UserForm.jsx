@@ -14,7 +14,6 @@ import CancelationModal from '../../../components/Layout/Modals/CancelationModal
 
 import style from './UserForm.module.css';
 
-// FIXME: Deletar objeto quando o banco de dados estiver acessível.
 const INITIAL_VALUES = userInitialValues;
 
 export default function UserForm() {
@@ -43,7 +42,7 @@ export default function UserForm() {
       setFormType('update');
       api
         .get(`/users/${userID}`)
-        .then((response) => console.log(response.data.user));
+        .then((response) => setUserInformation(response.data.user));
       setInputValues();
       console.log(formType);
     } else if (!userID && formType !== 'create') {
@@ -69,16 +68,17 @@ export default function UserForm() {
 
   function handleCancel() {
     setOpenCancelationModal(false);
-    history.push('/notifications');
+    history.push('/users');
   }
 
   /* Save the input values in the state and then send to the database */
   function handleSubmit() {
-    /* TODO:
-    1. Validar os dados antes de salvar no banco de dados;
-    2. Salvar valores no banco de dados de acordo com o método (criação ou atualização);
-    */
-    api.post('/users/', userInformation);
+    formType === 'create'
+      ? api
+          .post('/users/', userInformation)
+          .then((response) => console.log(response))
+      : api.patch(`/users/${userID}`).then((response) => console.log(response));
+
     setOpenConfirmationModal(false);
     history.goBack();
   }
@@ -169,7 +169,7 @@ export default function UserForm() {
                   onChange={(event) =>
                     handleChange('admin', event.currentTarget.checked)
                   }
-                  value={userInformation.partnerTreatment}
+                  checked={userInformation.admin}
                 />
               </div>
             </Field>
