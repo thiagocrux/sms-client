@@ -1,11 +1,23 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import api from '../../../utils/api';
+import { useParams, useHistory } from 'react-router-dom';
+import { PenFill, TrashFill } from 'react-bootstrap-icons';
+import { formatDateTime, formatCPF } from '../../../utils/dataFormatter';
 
 import Heading from '../../../components/Common/Heading/Heading';
 import Divider from '../../../components/Layout/Form/Divider/Divider';
 
 import style from './UserFullInfo.module.css';
 
-export default function UserFullInfo({ user }) {
+export default function UserFullInfo() {
+  const [user, setUser] = useState({});
+  const { userID } = useParams();
+  const history = useHistory();
+
+  useEffect(() => {
+    api.get(`/users/${userID}`).then((response) => setUser(response.data.user));
+  }, [userID]);
+
   return (
     <div className={style.infoContainer}>
       <Heading type="primary">Informações do usuário</Heading>
@@ -18,7 +30,7 @@ export default function UserFullInfo({ user }) {
           </div>
           <div className={style.info}>
             <span>CPF</span>
-            <p>{user.cpf}</p>
+            <p>{user.cpf && formatCPF(user.cpf)}</p>
           </div>
           <div className={style.info}>
             <span>Cargo</span>
@@ -33,23 +45,33 @@ export default function UserFullInfo({ user }) {
             <p>{user.email}</p>
           </div>
           <div className={style.info}>
-            <span>Senha</span>
-            <p>{user.password}</p>
+            <span>Permissão de administrador?</span>
+            <p>{user.admin ? 'Sim' : 'Não'}</p>
           </div>
           <div className={style.info}>
-            <span>Permissão de administrador?</span>
-            <p>{user.admin}</p>
+            <span>Data de criação</span>
+            <p>{formatDateTime(user.createdAt)}</p>
           </div>
-          <div className={style.footer}>
-            <div className={style.footerInfo}>
-              <span>Data de criação</span>
-              <p>{user.createdAt}</p>
-            </div>
-            <div className={style.footerInfo}>
-              <span>Data de atualização</span>
-              <p>{user.updatedAt}</p>
-            </div>
+          <div className={style.info}>
+            <span>Data de atualização</span>
+            <p>{user.updatedAt ? formatDateTime(user.updatedAt) : '-'}</p>
           </div>
+        </div>
+        <div className={style.userControls}>
+          <button
+            className={`${style.button} ${style.edit}`}
+            onClick={() => history.push(`/users/${userID}/edit`)}
+          >
+            <PenFill className={style.icon} />
+            Editar usuário
+          </button>
+          <button
+            className={`${style.button} ${style.delete}`}
+            onClick={() => console.log('Delete button clicked!')}
+          >
+            <TrashFill className={style.icon} />
+            Excluir usuário
+          </button>
         </div>
       </Divider>
     </div>
