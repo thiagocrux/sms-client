@@ -53,7 +53,7 @@ function PatientInfo({ patient }) {
           <div className={style.cardFooter}>
             <button
               className={`${style.button} ${style.infoButton}`}
-              onClick={() => history.goBack()}
+              onClick={() => history.push(`/patients/${patient._id}/info`)}
             >
               <PersonLinesFill className={style.icon} />
               Mais informações
