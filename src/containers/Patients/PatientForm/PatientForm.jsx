@@ -31,8 +31,6 @@ export default function PatientForm() {
 
   /* Set the type of form on the first render */
   useEffect(() => {
-    console.clear();
-    console.log(`>> Component [PATIENT] mounted`);
     handleFormType();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
@@ -45,10 +43,8 @@ export default function PatientForm() {
         .get(`/patients/${patientID}`)
         .then((response) => setPatientInformation(response.data.patient));
       setInputValues(patientInformation);
-      console.log(formType);
     } else if (!patientID && formType !== 'create') {
       setFormType('create');
-      console.log(formType);
     }
   }
 

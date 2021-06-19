@@ -29,8 +29,6 @@ export default function TreatmentForm() {
   };
 
   useEffect(() => {
-    console.clear();
-    console.log(`>> Component [Treatment] mounted`);
     handleFormType();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
@@ -42,10 +40,8 @@ export default function TreatmentForm() {
         .get(`/patients/${patientID}/treatments/${treatmentID}`)
         .then((response) => setTreatmentInformation(response.data.treatment));
       setInputValues(treatmentInformation);
-      console.log(formType);
     } else if (!treatmentID && formType !== 'create') {
       setFormType('create');
-      console.log(formType);
     }
   }
 

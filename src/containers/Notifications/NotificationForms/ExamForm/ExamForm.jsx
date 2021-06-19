@@ -32,8 +32,6 @@ export default function ExamForm() {
 
   /* Set the type of form on the first render */
   useEffect(() => {
-    console.clear();
-    console.log(`>> Component [Exam] mounted`);
     handleFormType();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
@@ -46,10 +44,8 @@ export default function ExamForm() {
         .get(`/patients/${patientID}/exams/${examID}`)
         .then((response) => setExamInformation(response.data.exam));
       setInputValues(examInformation);
-      console.log(formType);
     } else if (!examID && formType !== 'create') {
       setFormType('create');
-      console.log(formType);
     }
   }
 

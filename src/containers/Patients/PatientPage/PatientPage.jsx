@@ -19,7 +19,6 @@ export default function PatientPage() {
     api.get('/patients/').then((response) => {
       setPatients(response.data.patients);
     });
-    console.log('PATIENT PAGE MOUNT');
   }, []);
 
   useEffect(() => {
