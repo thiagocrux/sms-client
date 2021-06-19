@@ -19,7 +19,7 @@
   border-radius: 0.4rem;
   padding: 1.6rem 2rem;
   display: grid;
-  grid-template-columns: 2fr 2fr 5fr 2fr 1fr;
+  grid-template-columns: 2fr 2fr 5fr 2fr;
   color: #ffffff;
   margin-bottom: 0.4rem;
   font-weight: 300;
