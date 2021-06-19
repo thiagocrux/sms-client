@@ -6,7 +6,6 @@ import {
   formatDateTime,
   formatCPF,
   formatSUSCardNumber,
-  formatDate,
   formatPhoneNumber,
 } from '../../../utils/dataFormatter';
 
@@ -34,7 +33,7 @@ export default function PatientFullInfo() {
         <Heading type="secondary">Informações pessoais</Heading>
         <div className={style.personalInfoContainer}>
           <div className={style.info}>
-            <span>Código do SUS</span>
+            <span>Número do cartão do SUS</span>
             <p>
               {patient.susCardNumber &&
                 formatSUSCardNumber(patient.susCardNumber)}
@@ -57,20 +56,28 @@ export default function PatientFullInfo() {
             <p>{patient.birthDate}</p>
           </div>
           <div className={style.info}>
-            <span>Sexo</span>
-            <p>{patient.gender}</p>
-          </div>
-          <div className={style.info}>
-            <span>Nacionalidade</span>
-            <p>{patient.nationality}</p>
-          </div>
-          <div className={style.info}>
             <span>Telefone</span>
             <p>{patient.phone && formatPhoneNumber(patient.phone)}</p>
           </div>
           <div className={style.info}>
             <span>E-mail</span>
             <p>{patient.email}</p>
+          </div>
+          <div className={style.info}>
+            <span>Sexo</span>
+            <p>{patient.sex}</p>
+          </div>
+          <div className={style.info}>
+            <span>Gênero</span>
+            <p>{patient.gender}</p>
+          </div>
+          <div className={style.info}>
+            <span>Sexualidade</span>
+            <p>{patient.sexuality}</p>
+          </div>
+          <div className={style.info}>
+            <span>Nacionalidade</span>
+            <p>{patient.nationality}</p>
           </div>
           <div className={style.info}>
             <span>Nome da mãe</span>

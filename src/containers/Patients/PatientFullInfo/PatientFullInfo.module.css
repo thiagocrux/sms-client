@@ -5,17 +5,22 @@
 
 .personalInfoContainer {
   display: grid;
-  grid-template-columns: repeat(12, 1fr);
+  grid-template-columns: repeat(3, 1fr);
   grid-template-rows: repeat(4, auto);
+  grid-template-areas:
+    'susCardNumber cpf name'
+    'birthDate nationality socialName'
+    'sex gender sexuality'
+    'phone email motherName';
   column-gap: 2rem;
   row-gap: 1.8rem;
-  grid-template-areas:
-    'susCardNumber susCardNumber susCardNumber susCardNumber cpf cpf cpf cpf name name name name'
-    'birthDate birthDate birthDate birthDate nationality nationality nationality nationality socialName socialName socialName socialName'
-    'gender gender gender gender phone phone phone phone email email email email'
-    'motherName motherName motherName motherName motherName motherName motherName motherName motherName motherName motherName motherName ';
   margin-bottom: 3.2rem;
 }
+
+/*  'cpf cpf cpf cpf cpf cpf socialName socialName socialName socialName socialName socialName'
+    'birthDate birthDate birthDate birthDate sex sex sex sex gender gender gender'
+
+    'nationality nationality nationality nationality nationality nationality motherName motherName motherName motherName motherName motherName'; */
 
 .personalInfoContainer > *:nth-child(1) {
   grid-area: susCardNumber;
@@ -38,22 +43,30 @@
 }
 
 .personalInfoContainer > *:nth-child(6) {
-  grid-area: gender;
-}
-
-.personalInfoContainer > *:nth-child(7) {
-  grid-area: nationality;
-}
-
-.personalInfoContainer > *:nth-child(8) {
   grid-area: phone;
 }
 
-.personalInfoContainer > *:nth-child(9) {
+.personalInfoContainer > *:nth-child(7) {
   grid-area: email;
 }
 
+.personalInfoContainer > *:nth-child(8) {
+  grid-area: sex;
+}
+
+.personalInfoContainer > *:nth-child(9) {
+  grid-area: gender;
+}
+
 .personalInfoContainer > *:nth-child(10) {
+  grid-area: sexuality;
+}
+
+.personalInfoContainer > *:nth-child(11) {
+  grid-area: nationality;
+}
+
+.personalInfoContainer > *:nth-child(12) {
   grid-area: motherName;
 }
 
