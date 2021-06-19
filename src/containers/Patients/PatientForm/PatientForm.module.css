@@ -7,16 +7,17 @@
 
 .first-grid-container {
   grid-template-columns: repeat(12, 1fr);
-  grid-template-rows: repeat(4, auto);
+  grid-template-rows: repeat(5, auto);
   grid-template-areas:
-    'susCodeNumber susCodeNumber susCodeNumber susCodeNumber name name name name name name name name'
+    'susCardNumber susCardNumber susCardNumber susCardNumber name name name name name name name name'
     'cpf cpf cpf cpf socialName socialName socialName socialName socialName socialName socialName socialName'
-    'birthDate birthDate birthDate gender gender gender nationality nationality nationality phone phone phone'
-    'email email email email motherName motherName motherName motherName motherName motherName motherName motherName';
+    'birthDate birthDate birthDate birthDate phone phone phone phone email email email email'
+    'sex sex sex sex gender gender gender gender sexuality sexuality sexuality sexuality'
+    'nationality nationality nationality nationality motherName motherName motherName motherName motherName motherName motherName motherName';
 }
 
 .first-grid-container > *:nth-child(1) {
-  grid-area: susCodeNumber;
+  grid-area: susCardNumber;
 }
 
 .first-grid-container > *:nth-child(2) {
@@ -36,22 +37,30 @@
 }
 
 .first-grid-container > *:nth-child(6) {
-  grid-area: gender;
-}
-
-.first-grid-container > *:nth-child(7) {
-  grid-area: nationality;
-}
-
-.first-grid-container > *:nth-child(8) {
   grid-area: phone;
 }
 
-.first-grid-container > *:nth-child(9) {
+.first-grid-container > *:nth-child(7) {
   grid-area: email;
 }
 
+.first-grid-container > *:nth-child(8) {
+  grid-area: sex;
+}
+
+.first-grid-container > *:nth-child(9) {
+  grid-area: gender;
+}
+
 .first-grid-container > *:nth-child(10) {
+  grid-area: sexuality;
+}
+
+.first-grid-container > *:nth-child(11) {
+  grid-area: nationality;
+}
+
+.first-grid-container > *:nth-child(12) {
   grid-area: motherName;
 }
 
@@ -63,7 +72,7 @@
   grid-template-areas:
     'zipCode zipCode zipCode zipCode state state state state city city city city'
     'neighbourhood neighbourhood neighbourhood neighbourhood neighbourhood neighbourhood street street street street street street'
-    'houseNumber houseNumber houseNumber complement complement complement complement complement complement complement complement complement';
+    'houseNumber houseNumber houseNumber houseNumber complement complement complement complement complement complement complement complement';
 }
 
 .second-grid-container > *:nth-child(1) {
