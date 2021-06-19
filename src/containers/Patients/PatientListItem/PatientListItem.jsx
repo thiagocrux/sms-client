@@ -6,8 +6,6 @@ import {
   formatSUSCardNumber,
 } from '../../../utils/dataFormatter';
 
-import PatientControls from '../PatientControls/PatientControls';
-
 import style from './PatientListItem.module.css';
 
 export default function PatientListItem({ patient }) {
