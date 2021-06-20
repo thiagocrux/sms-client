@@ -78,7 +78,7 @@ export default function UserForm() {
     1. Validar os dados antes de salvar no banco de dados;
     2. Salvar valores no banco de dados de acordo com o método (criação ou atualização);
     */
-    api.post('/users/', userInformation);
+    api.post('/users', userInformation);
     setOpenConfirmationModal(false);
     history.goBack();
   }
@@ -86,7 +86,7 @@ export default function UserForm() {
   return (
     <>
       <Heading type="primary">
-        {formType === 'update' ? 'Atualização' : 'Cadastro'} de paciente
+        {formType === 'update' ? 'Atualização' : 'Cadastro'} de usuário
       </Heading>
       <Form>
         <Divider>
