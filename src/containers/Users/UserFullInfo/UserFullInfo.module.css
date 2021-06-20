@@ -6,14 +6,13 @@
 .personalInfoContainer {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  grid-template-rows: repeat(4, auto);
+  grid-template-rows: repeat(3, auto);
   column-gap: 2rem;
   row-gap: 1.8rem;
   grid-template-areas:
     'name cpf'
     'role workLocation'
-    'email admin'
-    'createdAt updatedAt';
+    'email admin';
   margin-bottom: 3.2rem;
 }
 
@@ -41,12 +40,10 @@
   grid-area: admin;
 }
 
-.personalInfoContainer > *:nth-child(7) {
-  grid-area: createdAt;
-}
-
-.personalInfoContainer > *:nth-child(8) {
-  grid-area: updatedAt;
+.registerInfoContainer {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 3.2rem;
 }
 
 .info > span {
@@ -66,6 +63,8 @@
   display: flex;
   justify-content: space-around;
   align-items: center;
+  border-top: 1px solid #f2f3f5;
+  padding-top: 3.2rem;
 }
 
 .button {

@@ -8,6 +8,7 @@ import Heading from '../../../components/Common/Heading/Heading';
 import Divider from '../../../components/Layout/Form/Divider/Divider';
 
 import style from './UserFullInfo.module.css';
+import ThematicBreak from '../../../components/Common/ThematicBreak/ThematicBreak';
 
 export default function UserFullInfo() {
   const [user, setUser] = useState({});
@@ -48,6 +49,9 @@ export default function UserFullInfo() {
             <span>Permissão de administrador?</span>
             <p>{user.admin ? 'Sim' : 'Não'}</p>
           </div>
+        </div>
+        <ThematicBreak />
+        <div className={style.registerInfoContainer}>
           <div className={style.info}>
             <span>Data de criação</span>
             <p>{formatDateTime(user.createdAt)}</p>
