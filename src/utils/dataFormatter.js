@@ -28,7 +28,11 @@ export function formatDateTime(dateAsObject) {
 
   return `${date.getDate()} de ${
     months[date.getMonth()]
-  } de ${date.getFullYear()}, ${date.getHours()}:${date.getMinutes()}:${date.getSeconds()}`;
+  } de ${date.getFullYear()}, ${
+    date.getHours() < 10 ? '0' + date.getHours() : date.getHours()
+  }:${
+    date.getMinutes() < 10 ? '0' + date.getMinutes() : date.getMinutes()
+  }:${date.getSeconds()}`;
 }
 
 export function formatDateToInput(dateAsObject) {
