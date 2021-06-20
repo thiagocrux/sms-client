@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react';
 import { useHistory, useParams } from 'react-router-dom';
 import { examInitialValues as INITIAL_VALUES } from '../../../../utils/mock';
 import api from '../../../../utils/api';
-import { formatDateToInput } from '../../../../utils/dataFormatter';
 
 import Button from '../../../../components/Common/Button/Button';
 import Divider from '../../../../components/Layout/Form/Divider/Divider';
@@ -135,7 +134,7 @@ export default function ExamForm() {
                 onChange={(event) =>
                   handleChange('trepTestDate', event.currentTarget.value)
                 }
-                value={formatDateToInput(examInformation.trepTestDate)}
+                value={examInformation.trepTestDate}
               />
             </Field>
             <Field>
@@ -193,7 +192,7 @@ export default function ExamForm() {
                 onChange={(event) =>
                   handleChange('nonTrepTestDate', event.currentTarget.value)
                 }
-                value={formatDateToInput(examInformation.nonTrepTestDate)}
+                value={examInformation.nonTrepTestDate}
               />
             </Field>
             <Field>
