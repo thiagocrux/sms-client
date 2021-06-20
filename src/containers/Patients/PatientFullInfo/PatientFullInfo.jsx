@@ -118,7 +118,7 @@ export default function PatientFullInfo() {
         </div>
         <ThematicBreak />
         <Heading type="secondary">Informações de cadastro</Heading>
-        <div class={style.registerInfoContainer}>
+        <div className={style.registerInfoContainer}>
           <div className={style.info}>
             <span>Data de criação</span>
             <p>{formatDateTime(patient.createdAt)}</p>

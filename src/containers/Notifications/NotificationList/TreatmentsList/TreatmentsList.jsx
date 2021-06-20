@@ -12,9 +12,9 @@ export default function TreatmentsList({ treatments }) {
   const { patientID } = useParams();
 
   return treatments.length > 0 ? (
-    <div class={style.listContainer}>
+    <div className={style.listContainer}>
       <Heading type="primary">Lista de tratamentos</Heading>
-      <ul class={style.list}>
+      <ul className={style.list}>
         {treatments.map((treatment) => (
           <li key={treatment._id} className={style.item}>
             <div className={style.header}>
