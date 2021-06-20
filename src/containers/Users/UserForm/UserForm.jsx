@@ -73,7 +73,9 @@ export default function UserForm() {
       ? api
           .post('/users/', userInformation)
           .then((response) => console.log(response))
-      : api.patch(`/users/${userID}`).then((response) => console.log(response));
+      : api
+          .patch(`/users/${userID}`, userInformation)
+          .then((response) => console.log(response));
 
     setOpenConfirmationModal(false);
     history.goBack();
