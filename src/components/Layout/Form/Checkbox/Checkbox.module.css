@@ -1,0 +1,13 @@
+.flex {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.label {
+  margin-right: 1.2rem;
+}
+
+input[type='checkbox']:focus {
+  outline: 2px solid #a6c0f0;
+}
