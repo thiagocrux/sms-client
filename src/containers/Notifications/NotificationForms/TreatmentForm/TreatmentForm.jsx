@@ -1,21 +1,26 @@
 import React, { useEffect, useState } from 'react';
 import { useHistory, useParams } from 'react-router-dom';
-import { treatmentInitialValues as INITIAL_VALUES } from '../../../../utils/mock';
+import {
+  medicationOptions,
+  treatmentInitialValues as INITIAL_VALUES,
+} from '../../../../utils/formData';
 import api from '../../../../utils/api';
 
 import Button from '../../../../components/Common/Button/Button';
+import CancelationModal from '../../../../components/Layout/Modals/CancelationModal/CancelationModal';
+import ConfirmationModal from '../../../../components/Layout/Modals/ConfirmationModal/ConfirmationModal';
 import Divider from '../../../../components/Layout/Form/Divider/Divider';
-import Field from '../../../../components/Layout/Form/Field/Field';
 import Form from '../../../../components/Layout/Form/Form';
 import Heading from '../../../../components/Common/Heading/Heading';
+import Input from '../../../../components/Layout/Form/Input/Input';
+import Select from '../../../../components/Layout/Form/Select/Select';
 import SubmitContainer from '../../../../components/Layout/Form/SubmitContainer/SubmitContainer';
-import ConfirmationModal from '../../../../components/Layout/Modals/ConfirmationModal/ConfirmationModal';
-import CancelationModal from '../../../../components/Layout/Modals/CancelationModal/CancelationModal';
+import Textarea from '../../../../components/Layout/Form/Textarea/Textarea';
 
 import style from './TreatmentForm.module.css';
 
 export default function TreatmentForm() {
-  const [formType, setFormType] = useState('create');
+  const [isCreationForm, setIsCreationForm] = useState(true);
   const [openConfirmationModal, setOpenConfirmationModal] = useState(false);
   const [openCancelationModal, setOpenCancelationModal] = useState(false);
   const [treatmentInformation, setTreatmentInformation] =
@@ -34,14 +39,14 @@ export default function TreatmentForm() {
   }, []);
 
   function handleFormType() {
-    if (treatmentID && formType !== 'update') {
-      setFormType('update');
+    if (treatmentID && isCreationForm) {
+      setIsCreationForm(false);
       api
         .get(`/patients/${patientID}/treatments/${treatmentID}`)
         .then((response) => setTreatmentInformation(response.data.treatment));
       setInputValues(treatmentInformation);
-    } else if (!treatmentID && formType !== 'create') {
-      setFormType('create');
+    } else if (!treatmentID && !isCreationForm) {
+      setIsCreationForm(true);
     }
   }
 
@@ -59,7 +64,7 @@ export default function TreatmentForm() {
   }
 
   function handleSubmit() {
-    formType === 'create'
+    isCreationForm
       ? api.post(`/patients/${patientID}/treatments`, treatmentInformation)
       : api.patch(
           `/patients/${patientID}/treatments/${treatmentID}`,
@@ -77,87 +82,68 @@ export default function TreatmentForm() {
   return (
     <>
       <Heading type="primary">
-        {formType === 'update' ? 'Atualização' : 'Cadastro'} de tratamento
+        {isCreationForm ? 'Cadastro' : 'Atualização'} de tratamento
       </Heading>
       <Form>
         <Divider>
           <Heading type="secondary">Informações sobre o tratamento</Heading>
-          <div className={style.container}>
-            <Field>
-              <label htmlFor="medication">Medicamento</label>
-              <select
-                name="medication"
-                onChange={(event) =>
-                  handleChange('medication', event.currentTarget.value)
-                }
-                value={treatmentInformation.medication}
-              >
-                <option value="" disabled selected hidden>
-                  Selecione uma opção
-                </option>
-                <option value="Penicilina">Penicilina</option>
-                <option value="Doxiciclina">Doxiciclina</option>
-                <option value="Ceftriaxona">Ceftriaxona</option>
-              </select>
-            </Field>
-            <Field>
-              <label htmlFor="ubsLocation">Localização da UBS</label>
-              <input
-                type="text"
-                name="ubsLocation"
-                placeholder="Insira a localização da UBS"
-                onChange={(event) =>
-                  handleChange('ubsLocation', event.currentTarget.value)
-                }
-                value={treatmentInformation.ubsLocation}
-              />
-            </Field>
-            <Field>
-              <label htmlFor="startDate">Data</label>
-              <input
-                type="date"
-                name="startDate"
-                onChange={(event) =>
-                  handleChange('startDate', event.currentTarget.value)
-                }
-                value={treatmentInformation.startDate}
-              />
-            </Field>
-            <Field>
-              <label htmlFor="dosage">Dosagem</label>
-              <input
-                name="dosage"
-                placeholder="Insira as informações sobre dosagem"
-                onChange={(event) =>
-                  handleChange('dosage', event.currentTarget.value)
-                }
-                value={treatmentInformation.dosage}
-              />
-            </Field>
-            <Field>
-              <label htmlFor="observations">
-                Observações sobre o tratamento
-              </label>
-              <textarea
-                name="observations"
-                placeholder="Insira as observações sobre o tratamento"
-                onChange={(event) =>
-                  handleChange('observations', event.currentTarget.value)
-                }
-                value={treatmentInformation.observations}
-              ></textarea>
-            </Field>
-            <Field>
-              <label htmlFor="parnerInfo">Informações sobre parceiro</label>
-              <textarea
-                name="partnerInfo"
-                placeholder="Insira as informações sobre o parceiro"
-                onChange={(event) =>
-                  handleChange('partnerInfo', event.currentTarget.value)
-                }
-                value={treatmentInformation.partnerInfo}
-              ></textarea>
-            </Field>
+          <div className={style.gridContainer}>
+            <Select
+              label="Medicamento"
+              name="medication"
+              options={medicationOptions}
+              value={treatmentInformation.medication}
+              change={(event) =>
+                handleChange('medication', event.currentTarget.value)
+              }
+            />
+            <Input
+              label="Localização da UBS"
+              type="text"
+              name="ubsLocation"
+              placeholder="Insira a localização da UBS"
+              value={treatmentInformation.ubsLocation}
+              change={(event) =>
+                handleChange('ubsLocation', event.currentTarget.value)
+              }
+            />
+            <Input
+              label="Data"
+              type="date"
+              name="startDate"
+              value={treatmentInformation.startDate}
+              change={(event) =>
+                handleChange('startDate', event.currentTarget.value)
+              }
+            />
+            <Input
+              label="Dosagem"
+              type="text"
+              name="dosage"
+              placeholder="Insira as informações sobre dosagem"
+              value={treatmentInformation.dosage}
+              change={(event) =>
+                handleChange('dosage', event.currentTarget.value)
+              }
+            />
+            <Textarea
+              label="Observações sobre o tratamento"
+              name="observations"
+              placeholder="Insira as observações sobre o tratamento"
+              value={treatmentInformation.observations}
+              change={(event) =>
+                handleChange('observations', event.currentTarget.value)
+              }
+            />
+            <Textarea
+              label="Observações sobre parceiro(a)"
+              name="partnerInfo"
+              placeholder="Insira as informações sobre o parceiro(a)"
+              value={treatmentInformation.partnerInfo}
+              change={(event) =>
+                handleChange('partnerInfo', event.currentTarget.value)
+              }
+            />
           </div>
         </Divider>
         <SubmitContainer>
@@ -173,23 +159,23 @@ export default function TreatmentForm() {
             action="submit"
             click={() => handleFormModal('submit')}
           >
-            {formType === 'create' ? 'Cadastrar' : 'Salvar'}
+            {isCreationForm ? 'Cadastrar' : 'Salvar'}
           </Button>
         </SubmitContainer>
       </Form>
       <ConfirmationModal
         open={openConfirmationModal}
         message={
-          formType === 'create'
-            ? 'Confirmar novo tratamento?'
-            : 'Confirmar atualização?'
+          isCreationForm
+            ? 'Confirmar o cadastro do tratamento?'
+            : 'Confirmar alteração dos dados do tratamento?'
         }
         cancel={() => setOpenConfirmationModal(false)}
         confirm={handleSubmit}
       />
       <CancelationModal
         open={openCancelationModal}
-        message="Deseja cancelar?"
+        message={`Deseja realmente cancelar esta operação? Todos os dados modificados serão perdidos.`}
         cancel={() => setOpenCancelationModal(false)}
         confirm={handleCancel}
       />

@@ -1,23 +1,26 @@
 import React, { useState, useEffect } from 'react';
 import { useHistory, useParams } from 'react-router-dom';
-import { userInitialValues } from '../../../utils/mock';
+import {
+  ubsOptions,
+  userInitialValues as INITIAL_VALUES,
+} from '../../../utils/formData';
 import api from '../../../utils/api';
 
 import Button from '../../../components/Common/Button/Button';
+import CancelationModal from '../../../components/Layout/Modals/CancelationModal/CancelationModal';
+import Checkbox from '../../../components/Layout/Form/Checkbox/Checkbox';
+import ConfirmationModal from '../../../components/Layout/Modals/ConfirmationModal/ConfirmationModal';
 import Divider from '../../../components/Layout/Form/Divider/Divider';
-import Field from '../../../components/Layout/Form/Field/Field';
 import Form from '../../../components/Layout/Form/Form';
 import Heading from '../../../components/Common/Heading/Heading';
+import Input from '../../../components/Layout/Form/Input/Input';
+import Select from '../../../components/Layout/Form/Select/Select';
 import SubmitContainer from '../../../components/Layout/Form/SubmitContainer/SubmitContainer';
-import ConfirmationModal from '../../../components/Layout/Modals/ConfirmationModal/ConfirmationModal';
-import CancelationModal from '../../../components/Layout/Modals/CancelationModal/CancelationModal';
 
 import style from './UserForm.module.css';
 
-const INITIAL_VALUES = userInitialValues;
-
 export default function UserForm() {
-  const [formType, setFormType] = useState('create');
+  const [isCreationForm, setIsCreationForm] = useState('create');
   const [userInformation, setUserInformation] = useState(INITIAL_VALUES);
   const [openConfirmationModal, setOpenConfirmationModal] = useState(false);
   const [openCancelationModal, setOpenCancelationModal] = useState(false);
@@ -36,14 +39,14 @@ export default function UserForm() {
 
   /* Check the existence of params and set the type of form */
   function handleFormType() {
-    if (userID && formType !== 'update') {
-      setFormType('update');
+    if (userID && isCreationForm) {
+      setIsCreationForm(false);
       api
         .get(`/users/${userID}`)
         .then((response) => setUserInformation(response.data.user));
       setInputValues();
-    } else if (!userID && formType !== 'create') {
-      setFormType('create');
+    } else if (!userID && !isCreationForm) {
+      setIsCreationForm(true);
     }
   }
 
@@ -69,7 +72,7 @@ export default function UserForm() {
 
   /* Save the input values in the state and then send to the database */
   function handleSubmit() {
-    formType === 'create'
+    isCreationForm
       ? api
           .post('/users/', userInformation)
           .then((response) => console.log(response))
@@ -78,99 +81,83 @@ export default function UserForm() {
           .then((response) => console.log(response));
 
     setOpenConfirmationModal(false);
-    history.goBack();
+    history.goBack(); // FIXME: Update the route to history.push(...)
   }
 
   return (
     <>
       <Heading type="primary">
-        {formType === 'update' ? 'Atualização' : 'Cadastro'} de usuário
+        {isCreationForm ? 'Cadastro' : 'Atualização'} de usuário
       </Heading>
       <Form>
         <Divider>
           <Heading type="secondary">Informações do usuário</Heading>
           <div className={style.gridContainer}>
-            <Field>
-              <label htmlFor="name">Nome</label>
-              <input
-                name="name"
-                onChange={(event) =>
-                  handleChange('name', event.currentTarget.value)
-                }
-                value={userInformation.name}
-                placeholder="Insira o nome do usuário"
-              />
-            </Field>
-            <Field>
-              <label htmlFor="cpf">CPF</label>
-              <input
-                name="cpf"
-                onChange={(event) =>
-                  handleChange('cpf', event.currentTarget.value)
-                }
-                value={userInformation.cpf}
-                placeholder="Insira o CPF do usuário"
-              />
-            </Field>
-            <Field>
-              <label htmlFor="role">Cargo</label>
-              <input
-                name="role"
-                onChange={(event) =>
-                  handleChange('role', event.currentTarget.value)
-                }
-                value={userInformation.role}
-                placeholder="Insira o cargo do usuário"
-              />
-            </Field>
-            <Field>
-              <label htmlFor="workLocation">Local de trabalho</label>
-              <input
-                name="workLocation"
-                onChange={(event) =>
-                  handleChange('workLocation', event.currentTarget.value)
-                }
-                value={userInformation.workLocation}
-                placeholder="Insira o local de trabalho do usuário"
-              />
-            </Field>
-            <Field>
-              <label htmlFor="email">E-mail</label>
-              <input
-                type="email"
-                name="email"
-                onChange={(event) =>
-                  handleChange('email', event.currentTarget.value)
-                }
-                value={userInformation.email}
-                placeholder="Insira o e-mail do usuário"
-              />
-            </Field>
-            <Field>
-              <label htmlFor="password">Senha</label>
-              <input
-                type="password"
-                name="password"
-                onChange={(event) =>
-                  handleChange('password', event.currentTarget.value)
-                }
-                value={userInformation.password}
-                placeholder="Insira a senha do usuário"
-              />
-            </Field>
-            <Field>
-              <div className={style.flexContainer}>
-                <label htmlFor="admin">Permissão de administrador</label>
-                <input
-                  type="checkbox"
-                  name="admin"
-                  onChange={(event) =>
-                    handleChange('admin', event.currentTarget.checked)
-                  }
-                  checked={userInformation.admin}
-                />
-              </div>
-            </Field>
+            <Input
+              label="Nome"
+              type="text"
+              name="name"
+              placeholder="Insira o nome do usuário"
+              value={userInformation.name}
+              change={(event) =>
+                handleChange('name', event.currentTarget.value)
+              }
+            />
+            <Input
+              label="CPF"
+              type="text"
+              name="cpf"
+              placeholder="Insira o CPF do usuário"
+              value={userInformation.cpf}
+              change={(event) => handleChange('cpf', event.currentTarget.value)}
+            />
+            <Input
+              label="Cargo"
+              type="text"
+              name="role"
+              placeholder="Insira o cargo do usuário"
+              value={userInformation.role}
+              change={(event) =>
+                handleChange('role', event.currentTarget.value)
+              }
+            />
+            <Select
+              label="Local de trabalho"
+              name="workLocation"
+              options={ubsOptions}
+              value={userInformation.workLocation}
+              change={(event) =>
+                handleChange('workLocation', event.currentTarget.value)
+              }
+            />
+            <Input
+              label="E-mail"
+              type="email"
+              name="email"
+              placeholder="Insira o e-mail do usuário"
+              value={userInformation.email}
+              change={(event) =>
+                handleChange('email', event.currentTarget.value)
+              }
+            />
+            <Input
+              label="Senha"
+              type="password"
+              name="password"
+              placeholder="Insira a senha do usuário"
+              value={userInformation.password}
+              change={(event) =>
+                handleChange('password', event.currentTarget.value)
+              }
+            />
+            <Checkbox
+              label="Permissão de administrador"
+              name="admin"
+              checked={userInformation.admin}
+              change={(event) =>
+                handleChange('admin', event.currentTarget.checked)
+              }
+            />
           </div>
         </Divider>
         <SubmitContainer>
@@ -186,19 +173,23 @@ export default function UserForm() {
             action="submit"
             click={() => handleFormModal('submit')}
           >
-            {formType === 'create' ? 'Cadastrar' : 'Salvar'}
+            {isCreationForm ? 'Cadastrar' : 'Salvar'}
           </Button>
         </SubmitContainer>
       </Form>
       <ConfirmationModal
         open={openConfirmationModal}
-        message="Cadastrar novo paciente?"
+        message={
+          isCreationForm
+            ? 'Confirmar o cadastro do usuário?'
+            : 'Confirmar alteração dos dados do usuário?'
+        }
         cancel={() => setOpenConfirmationModal(false)}
         confirm={handleSubmit}
       />
       <CancelationModal
         open={openCancelationModal}
-        message="Deseja cancelar?"
+        message={`Deseja realmente cancelar esta operação? Todos os dados modificados serão perdidos.`}
         cancel={() => setOpenCancelationModal(false)}
         confirm={handleCancel}
       />

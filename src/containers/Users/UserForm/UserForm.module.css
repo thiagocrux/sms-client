@@ -37,14 +37,3 @@
 .gridContainer > *:nth-child(7) {
   grid-area: admin;
 }
-
-.flexContainer {
-  display: flex;
-  width: 100%;
-  justify-content: flex-start;
-  align-items: center;
-}
-
-.flexContainer > label {
-  margin-right: 1.2rem;
-}

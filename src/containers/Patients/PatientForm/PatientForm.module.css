@@ -1,11 +1,11 @@
-.grid-container {
+.gridContainer {
   display: grid;
   column-gap: 2rem;
 }
 
 /* Informações pessoais */
 
-.first-grid-container {
+.upperGridContainer {
   grid-template-columns: repeat(12, 1fr);
   grid-template-rows: repeat(5, auto);
   grid-template-areas:
@@ -16,57 +16,57 @@
     'nationality nationality nationality nationality motherName motherName motherName motherName motherName motherName motherName motherName';
 }
 
-.first-grid-container > *:nth-child(1) {
+.upperGridContainer > *:nth-child(1) {
   grid-area: susCardNumber;
 }
 
-.first-grid-container > *:nth-child(2) {
+.upperGridContainer > *:nth-child(2) {
   grid-area: name;
 }
 
-.first-grid-container > *:nth-child(3) {
+.upperGridContainer > *:nth-child(3) {
   grid-area: cpf;
 }
 
-.first-grid-container > *:nth-child(4) {
+.upperGridContainer > *:nth-child(4) {
   grid-area: socialName;
 }
 
-.first-grid-container > *:nth-child(5) {
+.upperGridContainer > *:nth-child(5) {
   grid-area: birthDate;
 }
 
-.first-grid-container > *:nth-child(6) {
+.upperGridContainer > *:nth-child(6) {
   grid-area: phone;
 }
 
-.first-grid-container > *:nth-child(7) {
+.upperGridContainer > *:nth-child(7) {
   grid-area: email;
 }
 
-.first-grid-container > *:nth-child(8) {
+.upperGridContainer > *:nth-child(8) {
   grid-area: sex;
 }
 
-.first-grid-container > *:nth-child(9) {
+.upperGridContainer > *:nth-child(9) {
   grid-area: gender;
 }
 
-.first-grid-container > *:nth-child(10) {
+.upperGridContainer > *:nth-child(10) {
   grid-area: sexuality;
 }
 
-.first-grid-container > *:nth-child(11) {
+.upperGridContainer > *:nth-child(11) {
   grid-area: nationality;
 }
 
-.first-grid-container > *:nth-child(12) {
+.upperGridContainer > *:nth-child(12) {
   grid-area: motherName;
 }
 
 /* Informações de endereço */
 
-.second-grid-container {
+.lowerGridContainer {
   grid-template-columns: repeat(12, 1fr);
   grid-template-rows: repeat(3, auto);
   grid-template-areas:
@@ -75,30 +75,30 @@
     'houseNumber houseNumber houseNumber houseNumber complement complement complement complement complement complement complement complement';
 }
 
-.second-grid-container > *:nth-child(1) {
+.lowerGridContainer > *:nth-child(1) {
   grid-area: zipCode;
 }
 
-.second-grid-container > *:nth-child(2) {
+.lowerGridContainer > *:nth-child(2) {
   grid-area: state;
 }
 
-.second-grid-container > *:nth-child(3) {
+.lowerGridContainer > *:nth-child(3) {
   grid-area: city;
 }
 
-.second-grid-container > *:nth-child(4) {
+.lowerGridContainer > *:nth-child(4) {
   grid-area: neighbourhood;
 }
 
-.second-grid-container > *:nth-child(5) {
+.lowerGridContainer > *:nth-child(5) {
   grid-area: street;
 }
 
-.second-grid-container > *:nth-child(6) {
+.lowerGridContainer > *:nth-child(6) {
   grid-area: houseNumber;
 }
 
-.second-grid-container > *:nth-child(7) {
+.lowerGridContainer > *:nth-child(7) {
   grid-area: complement;
 }

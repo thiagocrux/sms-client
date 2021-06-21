@@ -1,4 +1,4 @@
-.container {
+.gridContainer {
   min-width: 100%;
   display: grid;
   grid-template-columns: repeat(12, 1fr);
@@ -11,26 +11,26 @@
     'partnerInfo partnerInfo partnerInfo partnerInfo partnerInfo partnerInfo partnerInfo partnerInfo partnerInfo partnerInfo partnerInfo partnerInfo';
 }
 
-.container > *:nth-child(1) {
+.gridContainer > *:nth-child(1) {
   grid-area: medication;
 }
 
-.container > *:nth-child(2) {
+.gridContainer > *:nth-child(2) {
   grid-area: ubsLocation;
 }
 
-.container > *:nth-child(3) {
+.gridContainer > *:nth-child(3) {
   grid-area: startDate;
 }
 
-.container > *:nth-child(4) {
+.gridContainer > *:nth-child(4) {
   grid-area: dosage;
 }
 
-.container > *:nth-child(5) {
+.gridContainer > *:nth-child(5) {
   grid-area: observations;
 }
 
-.container > *:nth-child(6) {
+.gridContainer > *:nth-child(6) {
   grid-area: partnerInfo;
 }
