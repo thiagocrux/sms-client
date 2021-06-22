@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import ReactPaginate from 'react-paginate';
-import { Mailbox2, PersonBadgeFill, PersonFill } from 'react-bootstrap-icons';
+import { At, PersonBadgeFill, PersonFill } from 'react-bootstrap-icons';
 
 import Heading from '../../../components/Common/Heading/Heading';
 import SearchItemNotFound from '../../../components/Common/SearchItemNotFound/SearchItemNotFound';
@@ -48,7 +48,7 @@ export default function PatientList({ filteredResult }) {
               <PersonFill className={style.icon} /> Nome do usuário
             </span>
             <span>
-              <Mailbox2 className={style.icon} /> E-mail
+              <At className={style.icon} /> E-mail
             </span>
           </div>
           <ul className={style.list}>

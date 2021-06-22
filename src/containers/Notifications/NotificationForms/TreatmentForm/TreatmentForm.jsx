@@ -1,12 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import { useHistory, useParams } from 'react-router-dom';
+import { CheckCircle, XCircle } from 'react-bootstrap-icons';
 import {
   medicationOptions,
   treatmentInitialValues as INITIAL_VALUES,
 } from '../../../../utils/formData';
 import api from '../../../../utils/api';
 
-import Button from '../../../../components/Common/Button/Button';
+import Button from '../../../../components/Common/Buttons/Button/Button';
 import CancelationModal from '../../../../components/Layout/Modals/CancelationModal/CancelationModal';
 import ConfirmationModal from '../../../../components/Layout/Modals/ConfirmationModal/ConfirmationModal';
 import Divider from '../../../../components/Layout/Form/Divider/Divider';
@@ -150,17 +151,19 @@ export default function TreatmentForm() {
         </Divider>
         <SubmitContainer>
           <Button
-            type="button"
-            action="cancel"
+            class="danger"
+            size="big"
             click={() => handleFormModal('cancel')}
           >
+            <XCircle />
             Cancelar
           </Button>
           <Button
-            type="button"
-            action="submit"
+            class="success"
+            size="big"
             click={() => handleFormModal('submit')}
           >
+            <CheckCircle />
             {isCreationForm ? 'Cadastrar' : 'Salvar'}
           </Button>
         </SubmitContainer>

@@ -10,9 +10,11 @@ import {
   formatPhoneNumber,
 } from '../../../utils/dataFormatter';
 
+import Button from '../../../components/Common/Buttons/Button/Button';
+import ButtonReturn from '../../../components/Common/Buttons/ButtonReturn/ButtonReturn';
+import Card from '../../../components/Common/Card/Card';
 import Heading from '../../../components/Common/Heading/Heading';
 import Info from '../../../components/Common/Info/Info';
-import Divider from '../../../components/Layout/Form/Divider/Divider';
 import ThematicBreak from '../../../components/Common/ThematicBreak/ThematicBreak';
 
 import style from './PatientFullInfo.module.css';
@@ -29,11 +31,12 @@ export default function PatientFullInfo() {
   }, [patientID]);
 
   return (
-    <div className={style.infoContainer}>
+    <>
       <Heading size="huge" align="center" margin="big">
         Informações do paciente
       </Heading>
-      <Divider>
+      <Card>
+        <ButtonReturn link={`/patients/`} />
         <Heading size="medium" align="start" margin="small">
           Informações pessoais
         </Heading>
@@ -131,22 +134,24 @@ export default function PatientFullInfo() {
           />
         </div>
         <div className={style.patientControls}>
-          <button
-            className={`${style.button} ${style.edit}`}
-            onClick={() => history.push(`/patients/${patientID}/edit`)}
+          <Button
+            class="success"
+            size="medium"
+            click={() => history.push(`/patients/${patientID}/edit`)}
           >
-            <PenFill className={style.icon} />
+            <PenFill />
             Editar usuário
-          </button>
-          <button
-            className={`${style.button} ${style.delete}`}
-            onClick={() => console.log('Delete button clicked!')}
+          </Button>
+          <Button
+            class="danger"
+            size="medium"
+            click={() => console.log('Delete button clicked!')}
           >
-            <TrashFill className={style.icon} />
+            <TrashFill />
             Excluir usuário
-          </button>
+          </Button>
         </div>
-      </Divider>
-    </div>
+      </Card>
+    </>
   );
 }

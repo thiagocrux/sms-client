@@ -2,10 +2,12 @@ import React, { useState, useEffect } from 'react';
 import api from '../../../utils/api';
 import { useParams, useHistory } from 'react-router-dom';
 import { PenFill, TrashFill } from 'react-bootstrap-icons';
-import { formatDateTime, formatCPF } from '../../../utils/dataFormatter';
+import { formatDateTime } from '../../../utils/dataFormatter';
 
+import Button from '../../../components/Common/Buttons/Button/Button';
+import ButtonReturn from '../../../components/Common/Buttons/ButtonReturn/ButtonReturn';
+import Card from '../../../components/Common/Card/Card';
 import Heading from '../../../components/Common/Heading/Heading';
-import Divider from '../../../components/Layout/Form/Divider/Divider';
 import Info from '../../../components/Common/Info/Info';
 import ThematicBreak from '../../../components/Common/ThematicBreak/ThematicBreak';
 
@@ -21,11 +23,12 @@ export default function UserFullInfo() {
   }, [userID]);
 
   return (
-    <div className={style.infoContainer}>
+    <>
       <Heading size="huge" align="center" margin="big">
         Informações do usuário
       </Heading>
-      <Divider>
+      <Card>
+        <ButtonReturn link={`/users/`} />
         <Heading size="medium" align="start" margin="small">
           Informações pessoais
         </Heading>
@@ -62,22 +65,24 @@ export default function UserFullInfo() {
           />
         </div>
         <div className={style.userControls}>
-          <button
-            className={`${style.button} ${style.edit}`}
-            onClick={() => history.push(`/users/${userID}/edit`)}
+          <Button
+            class="success"
+            size="medium"
+            click={() => history.push(`/users/${userID}/edit`)}
           >
-            <PenFill className={style.icon} />
+            <PenFill />
             Editar usuário
-          </button>
-          <button
-            className={`${style.button} ${style.delete}`}
-            onClick={() => console.log('Delete button clicked!')}
+          </Button>
+          <Button
+            class="danger"
+            size="medium"
+            click={() => console.log('Delete button clicked!')}
           >
-            <TrashFill className={style.icon} />
+            <TrashFill />
             Excluir usuário
-          </button>
+          </Button>
         </div>
-      </Divider>
-    </div>
+      </Card>
+    </>
   );
 }

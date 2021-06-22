@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { useHistory, useParams } from 'react-router-dom';
+import { CheckCircle, XCircle } from 'react-bootstrap-icons';
 import { monitoringInitialValues as INITIAL_VALUES } from '../../../../utils/formData';
 import api from '../../../../utils/api';
 
-import Button from '../../../../components/Common/Button/Button';
+import Button from '../../../../components/Common/Buttons/Button/Button';
 import CancelationModal from '../../../../components/Layout/Modals/CancelationModal/CancelationModal';
 import Checkbox from '../../../../components/Layout/Form/Checkbox/Checkbox';
 import ConfirmationModal from '../../../../components/Layout/Modals/ConfirmationModal/ConfirmationModal';
@@ -188,17 +189,19 @@ export default function MonitoringForm() {
         </Divider>
         <SubmitContainer>
           <Button
-            type="button"
-            action="cancel"
+            class="danger"
+            size="big"
             click={() => handleFormModal('cancel')}
           >
+            <XCircle />
             Cancelar
           </Button>
           <Button
-            type="button"
-            action="submit"
+            class="success"
+            size="big"
             click={() => handleFormModal('submit')}
           >
+            <CheckCircle />
             {isCreationForm ? 'Cadastrar' : 'Salvar'}
           </Button>
         </SubmitContainer>
