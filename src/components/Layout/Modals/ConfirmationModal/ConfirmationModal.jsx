@@ -1,5 +1,8 @@
 import React from 'react';
+import { CheckCircle, XCircle } from 'react-bootstrap-icons';
 import ReactDOM from 'react-dom';
+
+import Button from '../../../Common/Buttons/Button/Button';
 
 import style from './ConfirmationModal.module.css';
 
@@ -9,14 +12,16 @@ function ConfirmationModal({ open, message, cancel, confirm }) {
   return ReactDOM.createPortal(
     <div className={style.container}>
       <div className={style.modalBox}>
-        <p className={style.header}>{message}</p>
-        <div className={style.buttons}>
-          <button className={style.button} onClick={cancel}>
-            Não
-          </button>
-          <button className={style.button} onClick={confirm}>
-            Sim
-          </button>
+        <p className={style.messageContainer}>{message}</p>
+        <div className={style.buttonsContainer}>
+          <Button class="danger" size="medium" click={cancel}>
+            <XCircle />
+            Não, cancelar
+          </Button>
+          <Button class="success" size="medium" click={confirm}>
+            <CheckCircle />
+            Sim, confirmar
+          </Button>
         </div>
       </div>
     </div>,
