@@ -32,22 +32,16 @@
   display: flex;
   align-items: center;
   justify-content: center;
-
-  padding: 1.2rem;
-  /* height: 3.2rem;
-  width: 3.2rem; */
-
-  font-size: 1.5rem;
+  padding: 1rem;
+  font-size: 1.4rem;
   font-weight: 600;
   color: #ffffff;
-
   background-color: #809bce;
   border: none;
   border-radius: 50%;
   cursor: pointer;
   box-shadow: 2px 1px 8px -4px #757575;
   --webkit-box-shadow: 2px 3px 7px -4px #757575;
-
   transition: all 0.2s;
 }
 
