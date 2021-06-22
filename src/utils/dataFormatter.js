@@ -4,9 +4,7 @@ export function formatCPF(cpf) {
 }
 
 export function formatDate(dateAsString) {
-  const date = new Date(dateAsString);
-  const dateFormatted = Intl.DateTimeFormat('pt-BR').format(date);
-  return dateFormatted;
+  return dateAsString.split('-').reverse().join('/');
 }
 
 export function formatDateTime(dateAsObject) {
