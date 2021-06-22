@@ -31,8 +31,6 @@ export default function PatientForm() {
 
   /* Set the type of form on the first render */
   useEffect(() => {
-    console.clear();
-    console.log(`>> Component [PATIENT] mounted`);
     handleFormType();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
@@ -45,10 +43,8 @@ export default function PatientForm() {
         .get(`/patients/${patientID}`)
         .then((response) => setPatientInformation(response.data.patient));
       setInputValues(patientInformation);
-      console.log(formType);
     } else if (!patientID && formType !== 'create') {
       setFormType('create');
-      console.log(formType);
     }
   }
 
@@ -100,14 +96,14 @@ export default function PatientForm() {
             className={`${style['grid-container']} ${style['first-grid-container']}`}
           >
             <Field>
-              <label htmlFor="susCardNumber">Código do SUS</label>
+              <label htmlFor="susCardNumber">Número do cartão do SUS</label>
               <input
                 name="susCardNumber"
                 onChange={(event) =>
                   handleChange('susCardNumber', event.currentTarget.value)
                 }
                 value={patientInformation.susCardNumber}
-                placeholder="Insira o número do cartão do SUS"
+                placeholder="Insira o número do cartão"
               />
             </Field>
             <Field>
@@ -155,40 +151,6 @@ export default function PatientForm() {
               />
             </Field>
             <Field>
-              <label htmlFor="gender">Sexo</label>
-              <select
-                name="gender"
-                onChange={(event) =>
-                  handleChange('gender', event.currentTarget.value)
-                }
-                value={patientInformation.gender}
-              >
-                <option value="" disabled selected hidden>
-                  Selecione uma opção
-                </option>
-                <option value="Feminino">Feminino</option>
-                <option value="Masculino">Masculino</option>
-                <option value="Outro">Outro</option>
-              </select>
-            </Field>
-            <Field>
-              <label htmlFor="nationality">Naturalidade</label>
-              <select
-                name="nationality"
-                onChange={(event) =>
-                  handleChange('nationality', event.currentTarget.value)
-                }
-                value={patientInformation.nationality}
-              >
-                <option value="" selected disabled hidden>
-                  Selecione uma opção
-                </option>
-                <option value="Brasileiro">Brasileiro</option>
-                <option value="Naturalizado">Naturalizado</option>
-                <option value="Outro">Outro</option>
-              </select>
-            </Field>
-            <Field>
               <label htmlFor="phone">Telefone</label>
               <input
                 name="phone"
@@ -210,6 +172,79 @@ export default function PatientForm() {
                 type="email"
                 placeholder="Insira o e-mail do paciente"
               />
+            </Field>
+            <Field>
+              <label htmlFor="sex">Sexo</label>
+              <select
+                name="sex"
+                onChange={(event) =>
+                  handleChange('sex', event.currentTarget.value)
+                }
+                value={patientInformation.sex}
+              >
+                <option value="" defaultValue disabled hidden>
+                  Selecione uma opção
+                </option>
+                <option value="Feminino">Feminino</option>
+                <option value="Masculino">Masculino</option>
+                <option value="Intersexo">Intersexo</option>
+              </select>
+            </Field>
+            <Field>
+              <label htmlFor="gender">Gênero</label>
+              <select
+                name="gender"
+                onChange={(event) =>
+                  handleChange('gender', event.currentTarget.value)
+                }
+                value={patientInformation.gender}
+              >
+                <option value="" defaultValue disabled hidden>
+                  Selecione uma opção
+                </option>
+                <option value="Agênero">Agenero</option>
+                <option value="Cisgênero">Cisgênero</option>
+                <option value="Transgênero">Transgênero</option>
+                <option value="Não-binário">Não-binário</option>
+              </select>
+            </Field>
+            <Field>
+              <label htmlFor="sexuality">Sexualidade</label>
+              <select
+                name="sexuality"
+                onChange={(event) =>
+                  handleChange('sexuality', event.currentTarget.value)
+                }
+                value={patientInformation.sexuality}
+              >
+                <option value="" disabled selected hidden>
+                  Selecione uma opção
+                </option>
+                <option value="Assexual">Assexual</option>
+                <option value="Bissexual">Bissexual</option>
+                <option value="Heterossexual">Heterossexual</option>
+                <option value="Homossexual">Homossexual</option>
+                <option value="Outro">Outro</option>
+                <option value="Não informado">Não informado</option>
+              </select>
+            </Field>
+
+            <Field>
+              <label htmlFor="nationality">Naturalidade</label>
+              <select
+                name="nationality"
+                onChange={(event) =>
+                  handleChange('nationality', event.currentTarget.value)
+                }
+                value={patientInformation.nationality}
+              >
+                <option value="" selected disabled hidden>
+                  Selecione uma opção
+                </option>
+                <option value="Brasileiro">Brasileiro</option>
+                <option value="Naturalizado">Naturalizado</option>
+                <option value="Outro">Outro</option>
+              </select>
             </Field>
             <Field>
               <label htmlFor="motherName">Nome da mãe do paciente</label>
@@ -273,7 +308,7 @@ export default function PatientForm() {
               />
             </Field>
             <Field>
-              <label htmlFor="street">Logradouro</label>
+              <label htmlFor="street">Logradouro (rua, avenida etc)</label>
               <input
                 name="street"
                 onChange={(event) =>

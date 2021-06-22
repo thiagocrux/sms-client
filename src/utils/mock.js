@@ -1,15 +1,5 @@
 /* USUÁRIO */
 
-export const userMockedValues = {
-  name: '[NOME DO USUÁRIO]',
-  cpf: '06518152658',
-  role: 'Enfermeiro(a)',
-  workLocation: 'UBS - José e Maria',
-  email: 'fulanodetail@gmail.com',
-  password: '15986285891166',
-  admin: true,
-};
-
 export const userInitialValues = {
   name: '',
   cpf: '',
@@ -22,33 +12,15 @@ export const userInitialValues = {
 
 /* PACIENTE */
 
-export const patientMockedValues = {
-  susCardNumber: '[NÚMERO DO CARTÃO DO SUS]',
-  name: '[NOME]',
-  cpf: '[CPF]',
-  socialName: '[NOME SOCIAL]',
-  birthDate: '1978-12-03',
-  gender: 'Masculino',
-  nationality: 'Brasileiro',
-  phone: '[TELEFONE]',
-  email: 'email@email.com',
-  motherName: 'Fulana Detail',
-  zipCode: '[CEP]',
-  state: '[ESTADO]',
-  city: '[CIDADE]',
-  neighbourhood: '[BAIRRO]',
-  street: '[RUA]',
-  houseNumber: '[NÚMERO]',
-  complement: '[COMPLEMENTO]',
-};
-
 export const patientInitialValues = {
   susCardNumber: '',
   name: '',
   cpf: '',
   socialName: '',
   birthDate: '',
+  sex: '',
   gender: '',
+  sexuality: '',
   nationality: '',
   phone: '',
   email: '',
@@ -64,15 +36,6 @@ export const patientInitialValues = {
 
 /* TRATAMENTO */
 
-export const treatmentMockedValues = {
-  medication: '[MEDICAÇÃO]',
-  ubsLocation: '[LOCALIZAÇÃO DA UBS]',
-  startDate: '2021-01-01',
-  dosage: '[DOSAGEM]',
-  observations: '[OBSERVAÇÕES]',
-  partnerInfo: '[INFORMAÇÕES SOBRE PARCEIRO]',
-};
-
 export const treatmentInitialValues = {
   medication: '',
   ubsLocation: '',
@@ -82,20 +45,7 @@ export const treatmentInitialValues = {
   partnerInfo: '',
 };
 
-/* EXAME ############### */
-
-export const examMockedValues = {
-  trepTestType: '[TIPO DE TESTE TREPONÊMICO]',
-  trepTestResult: '[RESULTADO DO TESTE TREPONÊMICO]',
-  trepTestDate: '1917-03-08',
-  trepTestLocation: '[LOCAL DO TESTE TREPONÊMICO]',
-  nonTrepTestVDRL: '[TESTE VDRL NÃO TREPONÊMICO]',
-  nonTrepTestTitration: '[TITULAÇÃO DO TESTE NÃO TREPONÊMICO]',
-  nonTrepTestDate: '1917-03-08',
-  refObservations: '[OBSERVAÇÕES DE REFERÊNCIA E CONTRA-REFERÊNCIA]',
-  onTreatment: true,
-  onObservation: false,
-};
+/* EXAME */
 
 export const examInitialValues = {
   trepTestType: '',
@@ -109,6 +59,8 @@ export const examInitialValues = {
   onTreatment: false,
   onMonitoring: false,
 };
+
+/* MONITORING */
 
 export const monitoringInitialValues = {
   vdrl1Date: '',

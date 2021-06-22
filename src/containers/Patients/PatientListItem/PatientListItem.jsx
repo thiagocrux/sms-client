@@ -6,8 +6,6 @@ import {
   formatSUSCardNumber,
 } from '../../../utils/dataFormatter';
 
-import PatientControls from '../PatientControls/PatientControls';
-
 import style from './PatientListItem.module.css';
 
 export default function PatientListItem({ patient }) {
@@ -19,10 +17,7 @@ export default function PatientListItem({ patient }) {
     <Link
       className={style.listItem}
       patient={patient}
-      to={{
-        pathname: `${url}/patients/${_id}/`,
-        state: patient,
-      }}
+      to={`${url}/patients/${_id}/`}
     >
       <span className={style.innerDivider}>
         {formatSUSCardNumber(susCardNumber)}
@@ -32,7 +27,6 @@ export default function PatientListItem({ patient }) {
         {socialName ? socialName : name}
       </span>
       <span className={style.innerDivider}>{formatDate(birthDate)}</span>
-      <PatientControls patientID={patient._id} />
     </Link>
   );
 }

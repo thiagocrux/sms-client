@@ -32,8 +32,6 @@ export default function MonitoringForm() {
 
   /* Set the type of form on the first render */
   useEffect(() => {
-    console.clear();
-    console.log(`>> Component [Monitoring] mounted`);
     handleFormType();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
@@ -46,10 +44,8 @@ export default function MonitoringForm() {
         .get(`/patients/${patientID}/monitorings/${monitoringID}`)
         .then((response) => setMonitoringInformation(response.data.monitoring));
       setInputValues(monitoringInformation);
-      console.log(formType);
     } else if (!monitoringID && formType !== 'create') {
       setFormType('create');
-      console.log(formType);
     }
   }
 

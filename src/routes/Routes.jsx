@@ -6,6 +6,7 @@ import LoginPage from '../components/Pages/LoginPage/LoginPage';
 
 import PatientPage from '../containers/Patients/PatientPage/PatientPage';
 import PatientForm from '../containers/Patients/PatientForm/PatientForm';
+import PatientFullInfo from '../containers/Patients/PatientFullInfo/PatientFullInfo';
 import PatientPageForSelectedPatient from '../containers/Patients/PatientPageForSelectedPatient/PatientPageForSelectedPatient';
 
 import NotificationPage from '../containers/Notifications/NotificationPage/NotificationPage';
@@ -14,6 +15,7 @@ import MonitoringForm from '../containers/Notifications/NotificationForms/Monito
 import TreatmentForm from '../containers/Notifications/NotificationForms/TreatmentForm/TreatmentForm';
 import ExamForm from '../containers/Notifications/NotificationForms/ExamForm/ExamForm';
 
+import UserPage from '../containers/Users/UserPage/UserPage';
 import UserForm from '../containers/Users/UserForm/UserForm';
 import UserFullInfo from '../containers/Users/UserFullInfo/UserFullInfo';
 
@@ -22,9 +24,15 @@ import PageNotFound from '../components/Pages/PageNotFound/PageNotFound';
 function Routes() {
   return (
     <Switch>
+      {/* HOME PAGE ROUTES */}
+
       <Route exact path="/" component={HomePage} />
 
+      {/* LOGIN ROUTES */}
+
       <Route exact path="/login" component={LoginPage} />
+
+      {/* NOTIFICATION ROUTES */}
 
       <Route exact path="/notifications" component={NotificationPage} />
 
@@ -70,6 +78,8 @@ function Routes() {
         component={TreatmentForm}
       />
 
+      {/* PATIENT ROUTES */}
+
       <Route exact path="/patients" component={PatientPage} />
 
       <Route exact path="/patients/new" component={PatientForm} />
@@ -81,6 +91,16 @@ function Routes() {
       />
 
       <Route exact path="/patients/:patientID/edit" component={PatientForm} />
+
+      <Route
+        exact
+        path="/patients/:patientID/info"
+        component={PatientFullInfo}
+      />
+
+      {/* USER ROUTES */}
+
+      <Route exact path="/users" component={UserPage} />
 
       <Route exact path="/users/new" component={UserForm} />
 
