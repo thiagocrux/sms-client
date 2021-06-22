@@ -42,7 +42,9 @@ export default function PatientList({ filteredResult }) {
     <div className={style.listContainer}>
       {items.length ? (
         <>
-          <Heading type="primary">Resultado da busca:</Heading>
+          <Heading size="huge" align="center" margin="big">
+            Resultado da busca:
+          </Heading>
           <div className={style.listHeader}>
             <span>
               <FileMedicalFill className={style.icon} /> Cartão do SUS

@@ -1,22 +1,30 @@
 import React, { useEffect, useState } from 'react';
 import { useHistory, useParams } from 'react-router-dom';
-import { examInitialValues as INITIAL_VALUES } from '../../../../utils/mock';
+import {
+  examInitialValues as INITIAL_VALUES,
+  trepTestResultOptions,
+  trepTestTypeOptions,
+  ubsOptions,
+} from '../../../../utils/formData';
 import api from '../../../../utils/api';
 
 import Button from '../../../../components/Common/Button/Button';
+import CancelationModal from '../../../../components/Layout/Modals/CancelationModal/CancelationModal';
+import Checkbox from '../../../../components/Layout/Form/Checkbox/Checkbox';
+import ConfirmationModal from '../../../../components/Layout/Modals/ConfirmationModal/ConfirmationModal';
 import Divider from '../../../../components/Layout/Form/Divider/Divider';
-import Field from '../../../../components/Layout/Form/Field/Field';
 import Form from '../../../../components/Layout/Form/Form';
 import Heading from '../../../../components/Common/Heading/Heading';
+import Input from '../../../../components/Layout/Form/Input/Input';
+import Select from '../../../../components/Layout/Form/Select/Select';
 import SubmitContainer from '../../../../components/Layout/Form/SubmitContainer/SubmitContainer';
+import Textarea from '../../../../components/Layout/Form/Textarea/Textarea';
 import ThematicBreak from '../../../../components/Common/ThematicBreak/ThematicBreak';
-import ConfirmationModal from '../../../../components/Layout/Modals/ConfirmationModal/ConfirmationModal';
-import CancelationModal from '../../../../components/Layout/Modals/CancelationModal/CancelationModal';
 
 import style from './ExamForm.module.css';
 
 export default function ExamForm() {
-  const [formType, setFormType] = useState('create');
+  const [isCreationForm, setIsCreationForm] = useState('create');
   const [openConfirmationModal, setOpenConfirmationModal] = useState(false);
   const [openCancelationModal, setOpenCancelationModal] = useState(false);
   const [examInformation, setExamInformation] = useState(INITIAL_VALUES);
@@ -37,14 +45,14 @@ export default function ExamForm() {
 
   /* Check the existence of params and set the type of form */
   function handleFormType() {
-    if (examID && formType !== 'update') {
-      setFormType('update');
+    if (examID && isCreationForm) {
+      setIsCreationForm(false);
       api
         .get(`/patients/${patientID}/exams/${examID}`)
         .then((response) => setExamInformation(response.data.exam));
       setInputValues(examInformation);
-    } else if (!examID && formType !== 'create') {
-      setFormType('create');
+    } else if (!examID && !isCreationForm) {
+      setIsCreationForm(true);
     }
   }
 
@@ -69,11 +77,7 @@ export default function ExamForm() {
 
   /* Save the input values in the state and then send to the database */
   function handleSubmit() {
-    /* TODO:
-      1. Validar os dados antes de salvar no banco de dados;
-      2. Salvar valores no banco de dados de acordo com o método (criação ou atualização);
-    */
-    formType === 'create'
+    isCreationForm
       ? api
           .post(`/patients/${patientID}/exams`, examInformation)
           .then((response) => console.log(response))
@@ -86,157 +90,115 @@ export default function ExamForm() {
 
   return (
     <>
-      <Heading type="primary">
-        {formType === 'update' ? 'Atualização' : 'Cadastro'} de exame
+      <Heading size="huge" align="center" margin="big">
+        {isCreationForm ? 'Cadastro' : 'Atualização'} de exame
       </Heading>
       <Form>
         <Divider>
-          <Heading type="secondary">Teste treponêmico</Heading>
-          <div className={style.trepTestGridContainer}>
-            <Field>
-              <label htmlFor="trepTestType">Tipo de teste</label>
-              <select
-                name="trepTestType"
-                onChange={(event) =>
-                  handleChange('trepTestType', event.currentTarget.value)
-                }
-                value={examInformation.trepTestType}
-              >
-                <option value="" selected disabled hidden>
-                  Selecione uma opção
-                </option>
-                <option value="Teste rápido">Teste rápido</option>
-                <option value="FTA-ABS IgM">FTA-ABS IgM</option>
-                <option value="FTA-ABS IgG">FTA-ABS IgG</option>
-              </select>
-            </Field>
-            <Field>
-              <label htmlFor="trepTestResult">Resultado do teste</label>
-              <select
-                name="trepTestResult"
-                onChange={(event) =>
-                  handleChange('trepTestResult', event.currentTarget.value)
-                }
-                value={examInformation.trepTestResult}
-              >
-                <option value="" selected disabled hidden>
-                  Selecione uma opção
-                </option>
-                <option value="Reagente">Reagente</option>
-                <option value="Não reagente">Não reagente</option>
-              </select>
-            </Field>
-            <Field>
-              <label htmlFor="trepTestDate">Data do teste</label>
-              <input
-                type="date"
-                name="trepTestDate"
-                onChange={(event) =>
-                  handleChange('trepTestDate', event.currentTarget.value)
-                }
-                value={examInformation.trepTestDate}
-              />
-            </Field>
-            <Field>
-              <label htmlFor="trepTestLocation">Local do teste</label>
-              <select
-                name="trepTestLocation"
-                onChange={(event) =>
-                  handleChange('trepTestLocation', event.currentTarget.value)
-                }
-                value={examInformation.trepTestLocation}
-              >
-                <option value="" selected disabled hidden>
-                  Selecione uma opção
-                </option>
-                <option value="UBS">UBS</option>
-                <option value="CTA/SAE">CTA/SAE</option>
-              </select>
-            </Field>
+          <Heading size="medium" align="start" margin="small">
+            Teste treponêmico
+          </Heading>
+          <div className={style.upperGridContainer}>
+            <Select
+              label="Tipo de teste"
+              name="trepTestType"
+              options={trepTestTypeOptions}
+              value={examInformation.trepTestType}
+              change={(event) =>
+                handleChange('trepTestType', event.currentTarget.value)
+              }
+            />
+            <Select
+              label="Resultado do teste"
+              name="trepTestResult"
+              options={trepTestResultOptions}
+              value={examInformation.trepTestResult}
+              change={(event) =>
+                handleChange('trepTestResult', event.currentTarget.value)
+              }
+            />
+            <Input
+              label="Data do teste"
+              type="date"
+              name="trepTestDate"
+              value={examInformation.trepTestDate}
+              change={(event) =>
+                handleChange('trepTestDate', event.currentTarget.value)
+              }
+            />
+            <Select
+              label="Local do teste"
+              name="trepTestLocation"
+              options={ubsOptions}
+              value={examInformation.trepTestLocation}
+              change={(event) =>
+                handleChange('trepTestLocation', event.currentTarget.value)
+              }
+            />
           </div>
           <ThematicBreak />
-          <Heading type="secondary">Teste não-treponêmico</Heading>
-          <div className={style.nonTrepTestGridContainer}>
-            <Field>
-              <label htmlFor="nonTrepTestVDRL">VDRL</label>
-              <input
-                type="text"
-                name="nonTrepTestVDRL"
-                placeholder="Insira o VDRL"
-                onChange={(event) =>
-                  handleChange('nonTrepTestVDRL', event.currentTarget.value)
-                }
-                value={examInformation.nonTrepTestVDRL}
-              />
-            </Field>
-            <Field>
-              <label htmlFor="nonTrepTestTitration">Titulação</label>
-              <input
-                type="text"
-                name="nonTrepTestTitration"
-                placeholder="Insira a titulação"
-                onChange={(event) =>
-                  handleChange(
-                    'nonTrepTestTitration',
-                    event.currentTarget.value
-                  )
-                }
-                value={examInformation.nonTrepTestTitration}
-              />
-            </Field>
-            <Field>
-              <label htmlFor="nonTrepTestDate">Data do teste</label>
-              <input
-                type="date"
-                name="nonTrepTestDate"
-                onChange={(event) =>
-                  handleChange('nonTrepTestDate', event.currentTarget.value)
-                }
-                value={examInformation.nonTrepTestDate}
-              />
-            </Field>
-            <Field>
-              <label htmlFor="refObservations">
-                Observações de referência e contra-referência
-              </label>
-              <textarea
-                type="date"
-                name="refObservations"
-                placeholder="Insira as observações"
-                onChange={(event) =>
-                  handleChange('refObservations', event.currentTarget.value)
-                }
-                value={examInformation.refObservations}
-              />
-            </Field>
+          <Heading size="medium" align="start" margin="small">
+            Teste não-treponêmico
+          </Heading>
+          <div className={style.lowerGridContainer}>
+            <Input
+              label="VDRL"
+              type="text"
+              name="nonTrepTestVDRL"
+              placeholder="Insira o VDRL"
+              value={examInformation.nonTrepTestVDRL}
+              change={(event) =>
+                handleChange('nonTrepTestVDRL', event.currentTarget.value)
+              }
+            />
+            <Input
+              label="Titulação"
+              type="text"
+              name="nonTrepTestTitration"
+              placeholder="Insira a titulação"
+              value={examInformation.nonTrepTestTitration}
+              change={(event) =>
+                handleChange('nonTrepTestTitration', event.currentTarget.value)
+              }
+            />
+            <Input
+              label="Data do teste"
+              type="date"
+              name="nonTrepTestDate"
+              value={examInformation.nonTrepTestDate}
+              change={(event) =>
+                handleChange('nonTrepTestDate', event.currentTarget.value)
+              }
+            />
+            <Textarea
+              label="Observações de referência e contra-referência"
+              name="refObservations"
+              placeholder="Insira as observações"
+              value={examInformation.refObservations}
+              change={(event) =>
+                handleChange('refObservations', event.currentTarget.value)
+              }
+            />
           </div>
-          <div className={style.nonTrepTestCheckboxContainer}>
-            <Field>
-              <div className={style.flexContainer}>
-                <label htmlFor="onExam">Em tratamento</label>
-                <input
-                  type="checkbox"
-                  name="onTreatment"
-                  onChange={(event) =>
-                    handleChange('onTreatment', event.currentTarget.checked)
-                  }
-                  checked={examInformation.onTreatment}
-                />
-              </div>
-            </Field>
-            <Field>
-              <div className={style.flexContainer}>
-                <label htmlFor="onObservation">Em monitoramento</label>
-                <input
-                  type="checkbox"
-                  name="onObservation"
-                  onChange={(event) =>
-                    handleChange('onObservation', event.currentTarget.checked)
-                  }
-                  checked={examInformation.onMonitoring}
-                />
-              </div>
-            </Field>
+          <div className={style.flexContainer}>
+            <Checkbox
+              label="Em tratamento"
+              type="checkbox"
+              name="onTreatment"
+              checked={examInformation.onTreatment}
+              change={(event) =>
+                handleChange('onTreatment', event.currentTarget.checked)
+              }
+            />
+            <Checkbox
+              label="Em monitoramento"
+              type="checkbox"
+              name="onMonitoring"
+              checked={examInformation.onMonitoring}
+              change={(event) =>
+                handleChange('onMonitoring', event.currentTarget.checked)
+              }
+            />
           </div>
         </Divider>
         <SubmitContainer>
@@ -252,23 +214,23 @@ export default function ExamForm() {
             action="submit"
             click={() => handleFormModal('submit')}
           >
-            {formType === 'create' ? 'Cadastrar' : 'Salvar'}
+            {isCreationForm ? 'Cadastrar' : 'Salvar'}
           </Button>
         </SubmitContainer>
       </Form>
       <ConfirmationModal
         open={openConfirmationModal}
         message={
-          formType === 'create'
-            ? 'Confirmar novo tratamento?'
-            : 'Confirmar atualização?'
+          isCreationForm
+            ? 'Confirmar o cadastro do exame?'
+            : 'Confirmar alteração dos dados do exame?'
         }
         cancel={() => setOpenConfirmationModal(false)}
         confirm={handleSubmit}
       />
       <CancelationModal
         open={openCancelationModal}
-        message="Deseja cancelar?"
+        message={`Deseja realmente cancelar esta operação? Todos os dados modificados serão perdidos.`}
         cancel={() => setOpenCancelationModal(false)}
         confirm={handleCancel}
       />

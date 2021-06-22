@@ -2,22 +2,60 @@
   font-weight: 600;
 }
 
-.primary {
+/* Sizes */
+
+.sizeHuge {
   font-size: 3rem;
   font-weight: 700;
-  margin-bottom: 4rem;
-  text-align: center;
-  padding-top: 3rem;
 }
 
-.secondary {
+.sizeBig {
+  font-size: 2.4rem;
+  font-weight: 700;
+}
+
+.sizeMedium {
   font-size: 2rem;
   font-weight: 700;
+}
+
+.sizeSmall {
+  font-size: 1.7rem;
+  letter-spacing: 0.03rem;
+}
+
+/* Alignment */
+
+.alignStart {
+  text-align: start;
+}
+
+.alignCenter {
+  text-align: center;
+}
+
+.alignEnd {
+  text-align: end;
+}
+
+/* Margin */
+
+.marginHuge {
+  margin-bottom: 5.4rem;
+}
+
+.marginBig {
+  margin-bottom: 4rem;
+}
+
+.marginMedium {
+  margin-bottom: 3.6rem;
+}
+
+.marginSmall {
   margin-bottom: 2.2rem;
 }
 
-.tertiary {
-  font-size: 1.7rem;
-  letter-spacing: 0.03rem;
-  margin: 1rem 0 0.8rem 0;
+.marginTiny {
+  margin-bottom: 0.8rem;
 }

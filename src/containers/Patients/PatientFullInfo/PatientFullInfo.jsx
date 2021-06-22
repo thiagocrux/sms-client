@@ -5,11 +5,13 @@ import { PenFill, TrashFill } from 'react-bootstrap-icons';
 import {
   formatDateTime,
   formatCPF,
+  formatDate,
   formatSUSCardNumber,
   formatPhoneNumber,
 } from '../../../utils/dataFormatter';
 
 import Heading from '../../../components/Common/Heading/Heading';
+import Info from '../../../components/Common/Info/Info';
 import Divider from '../../../components/Layout/Form/Divider/Divider';
 import ThematicBreak from '../../../components/Common/ThematicBreak/ThematicBreak';
 
@@ -28,105 +30,105 @@ export default function PatientFullInfo() {
 
   return (
     <div className={style.infoContainer}>
-      <Heading type="primary">Informações do usuário</Heading>
+      <Heading size="huge" align="center" margin="big">
+        Informações do paciente
+      </Heading>
       <Divider>
-        <Heading type="secondary">Informações pessoais</Heading>
+        <Heading size="medium" align="start" margin="small">
+          Informações pessoais
+        </Heading>
         <div className={style.personalInfoContainer}>
-          <div className={style.info}>
-            <span>Número do cartão do SUS</span>
-            <p>
-              {patient.susCardNumber &&
-                formatSUSCardNumber(patient.susCardNumber)}
-            </p>
-          </div>
-          <div className={style.info}>
-            <span>Nome</span>
-            <p>{patient.name}</p>
-          </div>
-          <div className={style.info}>
-            <span>cpf</span>
-            <p>{patient.cpf && formatCPF(patient.cpf)}</p>
-          </div>
-          <div className={style.info}>
-            <span>Nome social</span>
-            <p>{patient.socialName || 'Não declarado'}</p>
-          </div>
-          <div className={style.info}>
-            <span>Data de nascimento</span>
-            <p>{patient.birthDate}</p>
-          </div>
-          <div className={style.info}>
-            <span>Telefone</span>
-            <p>{patient.phone && formatPhoneNumber(patient.phone)}</p>
-          </div>
-          <div className={style.info}>
-            <span>E-mail</span>
-            <p>{patient.email}</p>
-          </div>
-          <div className={style.info}>
-            <span>Sexo</span>
-            <p>{patient.sex}</p>
-          </div>
-          <div className={style.info}>
-            <span>Gênero</span>
-            <p>{patient.gender}</p>
-          </div>
-          <div className={style.info}>
-            <span>Sexualidade</span>
-            <p>{patient.sexuality}</p>
-          </div>
-          <div className={style.info}>
-            <span>Nacionalidade</span>
-            <p>{patient.nationality}</p>
-          </div>
-          <div className={style.info}>
-            <span>Nome da mãe</span>
-            <p>{patient.motherName}</p>
-          </div>
+          <Info
+            class="regular"
+            label="Número do cartão do SUS"
+            info={
+              patient.susCardNumber &&
+              formatSUSCardNumber(patient.susCardNumber)
+            }
+          />
+          <Info class="regular" label="Nome" info={patient.name} />
+          <Info
+            class="regular"
+            label="CPF"
+            info={patient.cpf && formatCPF(patient.cpf)}
+          />
+          <Info
+            class="regular"
+            label="Data de nascimento"
+            info={patient.birthDate && formatDate(patient.birthDate)}
+          />
+          <Info
+            class="regular"
+            label="Nome social"
+            info={patient.socialName || 'Não declarado'}
+          />
+          <Info
+            class="regular"
+            label="Telefone"
+            info={patient.phone && formatPhoneNumber(patient.phone)}
+          />
+          <Info class="regular" label="E-mail" info={patient.email} />
+          <Info class="regular" label="Sexo" info={patient.sex} />
+          <Info class="regular" label="Gênero" info={patient.gender} />
+          <Info class="regular" label="Sexualidade" info={patient.sexuality} />
+          <Info
+            class="regular"
+            label="Nacionalidade"
+            info={patient.nationality}
+          />
+          <Info class="regular" label="Nome da mãe" info={patient.motherName} />
+          <Info
+            class="regular"
+            label="Nome do pai"
+            info={patient.fatherName ? patient.fatherName : 'Não declarado'}
+          />
+          <Info
+            class="regular"
+            label="Tipo de notificação"
+            info={patient.notificationType}
+          />
+          <Info
+            class="regular"
+            label="Paciente falecido?"
+            info={patient.isDeceased ? 'Sim' : 'Não'}
+          />
         </div>
         <ThematicBreak />
-        <Heading type="secondary">Informações de endereço</Heading>
+        <Heading size="medium" align="start" margin="small">
+          Informações de endereço
+        </Heading>
         <div className={style.addressInfoContainer}>
-          <div className={style.info}>
-            <span>CEP</span>
-            <p>{patient.zipCode}</p>
-          </div>
-          <div className={style.info}>
-            <span>Estado</span>
-            <p>{patient.state}</p>
-          </div>
-          <div className={style.info}>
-            <span>Cidade</span>
-            <p>{patient.city}</p>
-          </div>
-          <div className={style.info}>
-            <span>Bairro</span>
-            <p>{patient.neighbourhood}</p>
-          </div>
-          <div className={style.info}>
-            <span>Logradouro</span>
-            <p>{patient.street}</p>
-          </div>
-          <div className={style.info}>
-            <span>Número da residência</span>
-            <p>{patient.houseNumber}</p>
-          </div>
-          <div className={style.info}>
-            <span>Complemento</span>
-            <p>{patient.complement || 'Não declarado'}</p>
-          </div>
+          <Info class="regular" label="CEP" info={patient.zipCode} />
+          <Info class="regular" label="Estado" info={patient.state} />
+          <Info class="regular" label="Cidade" info={patient.city} />
+          <Info class="regular" label="Bairro" info={patient.neighbourhood} />
+          <Info class="regular" label="Logradouro" info={patient.street} />
+          <Info
+            class="regular"
+            label="Número da residência"
+            info={patient.houseNumber}
+          />
+          <Info
+            class="regular"
+            label="Complemento"
+            info={patient.complement || 'Não declarado'}
+          />
         </div>
         <ThematicBreak />
-        <Heading type="secondary">Informações de cadastro</Heading>
-        <div class={style.registerInfoContainer}>
-          <div className={style.info}>
-            <span>Data de criação</span>
-            <p>{formatDateTime(patient.createdAt)}</p>
-          </div>
-          <div className={style.info}>
-            <span>Data de atualização</span>
-            <p>{formatDateTime(patient.updatedAt) || 'Nunca foi atualizado'}</p>
-          </div>
+        <Heading size="medium" align="start" margin="small">
+          Informações de cadastro
+        </Heading>
+        <div className={style.registerInfoContainer}>
+          <Info
+            class="regular"
+            label="Data de criação"
+            info={patient.createdAt && formatDateTime(patient.createdAt)}
+          />
+          <Info
+            class="regular"
+            label="Data de atualização"
+            info={patient.updatedAt && formatDateTime(patient.updatedAt)}
+          />
         </div>
         <div className={style.patientControls}>
           <button

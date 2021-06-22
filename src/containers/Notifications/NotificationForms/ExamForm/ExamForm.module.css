@@ -1,4 +1,4 @@
-.trepTestGridContainer {
+.upperGridContainer {
   display: grid;
   column-gap: 2rem;
   grid-template-columns: repeat(12, 1fr);
@@ -8,23 +8,23 @@
     'trepTestDate trepTestDate trepTestDate trepTestDate trepTestDate trepTestDate trepTestLocation trepTestLocation trepTestLocation trepTestLocation trepTestLocation trepTestLocation';
 }
 
-.trepTestGridContainer > *:nth-child(1) {
+.upperGridContainer > *:nth-child(1) {
   grid-area: trepTestType;
 }
 
-.trepTestGridContainer > *:nth-child(2) {
+.upperGridContainer > *:nth-child(2) {
   grid-area: trepTestResult;
 }
 
-.trepTestGridContainer > *:nth-child(3) {
+.upperGridContainer > *:nth-child(3) {
   grid-area: trepTestDate;
 }
 
-.trepTestGridContainer > *:nth-child(4) {
+.upperGridContainer > *:nth-child(4) {
   grid-area: trepTestLocation;
 }
 
-.nonTrepTestGridContainer {
+.lowerGridContainer {
   display: grid;
   column-gap: 2rem;
   grid-template-columns: repeat(3, 1fr);
@@ -34,24 +34,20 @@
     'refObservations refObservations refObservations';
 }
 
-.nonTrepTestGridContainer > *:nth-child(1) {
+.lowerGridContainer > *:nth-child(1) {
   grid-area: nonTrepTestVDRL;
 }
 
-.nonTrepTestGridContainer > *:nth-child(3) {
+.lowerGridContainer > *:nth-child(3) {
   grid-area: nonTrepTestTitration;
 }
 
-.nonTrepTestGridContainer > *:nth-child(3) {
+.lowerGridContainer > *:nth-child(3) {
   grid-area: nonTrepTestDate;
 }
 
-.nonTrepTestGridContainer > *:nth-child(4) {
+.lowerGridContainer > *:nth-child(4) {
   grid-area: refObservations;
-}
-
-.nonTrepTestCheckboxContainer {
-  display: flex;
 }
 
 .flexContainer {
@@ -61,10 +57,10 @@
   align-items: center;
 }
 
-.flexContainer > label {
+.flexContainer label {
   margin-right: 1.2rem;
 }
 
-.flexContainer > input {
+.flexContainer > *:first-child {
   margin-right: 5rem;
 }

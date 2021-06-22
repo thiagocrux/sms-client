@@ -13,7 +13,9 @@ export default function ExamsList({ exams }) {
 
   return exams.length > 0 ? (
     <div className={style.listContainer}>
-      <Heading type="primary">Lista de exames</Heading>
+      <Heading size="huge" align="center" margin="big">
+        Lista de exames
+      </Heading>
       <ul className={style.list}>
         {exams.map((exam) => (
           <li key={exam._id} className={style.item}>

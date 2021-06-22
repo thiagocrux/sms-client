@@ -13,7 +13,9 @@ export default function MonitoringsList({ monitorings }) {
 
   return monitorings.length > 0 ? (
     <div className={style.listContainer}>
-      <Heading type="primary">Lista de monitoramentos</Heading>
+      <Heading size="huge" align="center" margin="big">
+        Lista de monitoramentos
+      </Heading>
       <ul className={style.list}>
         {monitorings.map((monitoring) => (
           <li key={monitoring._id} className={style.item}>

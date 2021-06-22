@@ -6,13 +6,31 @@ export default function Heading(props) {
   return (
     <p
       className={`${style.heading} ${
-        props.type === 'primary'
-          ? style.primary
-          : props.type === 'secondary'
-          ? style.secondary
-          : props.type === 'tertiary'
-          ? style.tertiary
-          : null
+        props.size === 'huge'
+          ? style.sizeHuge
+          : props.size === 'big'
+          ? style.sizeBig
+          : props.size === 'medium'
+          ? style.sizeMedium
+          : props.size === 'small'
+          ? style.sizeSmall
+          : style.sizeTiny
+      } ${
+        props.align === 'center'
+          ? style.alignCenter
+          : props.align === 'end'
+          ? style.alignEnd
+          : style.alignStart
+      } ${
+        props.margin === 'huge'
+          ? style.marginHuge
+          : props.margin === 'big'
+          ? style.marginBig
+          : props.margin === 'medium'
+          ? style.marginMedium
+          : props.margin === 'small'
+          ? style.marginSmall
+          : style.marginTiny
       }`}
     >
       {props.children}

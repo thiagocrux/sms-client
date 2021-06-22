@@ -1,12 +1,12 @@
 import React from 'react';
 import { useHistory } from 'react-router-dom';
 import { formatCPF, formatSUSCardNumber } from '../../../utils/dataFormatter';
-import {
-  PencilFill,
-  PersonLinesFill,
-  TrashFill,
-  X,
-} from 'react-bootstrap-icons';
+import { PencilFill, PersonLinesFill, TrashFill } from 'react-bootstrap-icons';
+
+import Button from '../../../components/Common/Buttons/Button/Button';
+import ButtonClose from '../../../components/Common/Buttons/ButtonClose/ButtonClose';
+import Card from '../../../components/Common/Card/Card';
+import Info from '../../../components/Common/Info/Info';
 
 import style from './PatientSelected.module.css';
 
@@ -18,64 +18,57 @@ function PatientInfo({ patient }) {
   }
 
   return (
-    <>
-      <div className={style.selectedPatientCard}>
-        <button
-          className={`${style.button} ${style.closeButton}`}
-          onClick={() => history.push('/patients/')}
-        >
-          <X className={style.icon} />
-        </button>
-        <div className={style.innerContainer}>
-          <div className={style.cardHeader}>
+    <div className={style.selectedPatientCard}>
+      <Card>
+        <ButtonClose click={() => history.push('/patients/')} />
+        <div className={style.gridContainer}>
+          <div className={style.header}>
             <h1 className={style.heading}>
               Informações do paciente selecionado
             </h1>
           </div>
-          <div className={style.cardBody}>
-            <div className={style.infoContainer}>
-              <span className={style.label}>Número do cartão do SUS</span>
-              <span className={style.info}>
-                {formatSUSCardNumber(patient.susCardNumber)}
-              </span>
-            </div>
-            <div className={style.infoContainer}>
-              <span className={style.label}>CPF</span>
-              <span className={style.info}>{formatCPF(patient.cpf)}</span>
-            </div>
-            <div className={style.infoContainer}>
-              <span className={style.label}>Nome</span>
-              <span className={style.info}>
-                {patient.socialName !== '' ? patient.socialName : patient.name}
-              </span>
-            </div>
+          <div className={style.body}>
+            <Info
+              label="Número do cartão do SUS"
+              info={formatSUSCardNumber(patient.susCardNumber)}
+              class="highlight"
+            />
+            <Info label="CPF" info={formatCPF(patient.cpf)} class="highlight" />
+            <Info
+              label="Nome"
+              info={
+                patient.socialName !== ''
+                  ? `${patient.socialName} (Nome social)`
+                  : patient.name
+              }
+              class="highlight"
+            />
           </div>
-          <div className={style.cardFooter}>
-            <button
-              className={`${style.button} ${style.infoButton}`}
-              onClick={() => history.push(`/patients/${patient._id}/info`)}
+          <div className={style.footer}>
+            <Button
+              size="medium"
+              class="success"
+              click={() => history.push(`/patients/${patient._id}/info`)}
             >
-              <PersonLinesFill className={style.icon} />
+              <PersonLinesFill />
               Mais informações
-            </button>
-            <button
-              className={`${style.button} ${style.editButton}`}
-              onClick={() => history.push(`/patients/${patient._id}/edit`)}
+            </Button>
+            <Button
+              size="medium"
+              class="success"
+              click={() => history.push(`/patients/${patient._id}/edit`)}
             >
-              <PencilFill className={style.icon} />
+              <PencilFill />
               Editar paciente
-            </button>
-            <button
-              className={`${style.button} ${style.deleteButton}`}
-              onClick={deletePatient}
-            >
-              <TrashFill className={style.icon} />
+            </Button>
+            <Button size="medium" class="danger" click={deletePatient}>
+              <TrashFill />
               Excluir paciente
-            </button>
+            </Button>
           </div>
         </div>
-      </div>
-    </>
+      </Card>
+    </div>
   );
 }
 

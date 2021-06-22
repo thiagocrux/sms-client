@@ -1,0 +1,68 @@
+.button {
+  border: none;
+  border-radius: 10rem;
+  box-shadow: 2px 1px 8px -4px #757575;
+  --webkit-box-shadow: 2px 3px 7px -4px #757575;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s;
+}
+
+.button svg {
+  margin-right: 1rem;
+}
+
+/* Sizes */
+
+.big {
+  padding: 1.2rem 4rem;
+  font-size: 1.7rem;
+  font-weight: 400;
+  letter-spacing: 0.03rem;
+}
+
+.medium {
+  padding: 0.6rem 2rem;
+  font-size: 1.4rem;
+  font-weight: 600;
+  letter-spacing: 0.1rem;
+}
+
+.small {
+}
+
+/* Colors */
+
+.success,
+.danger {
+  color: #ffffff;
+}
+
+.success {
+  background-color: #809bce;
+}
+
+.success:hover {
+  background-color: #4873c4;
+}
+
+.danger {
+  background-color: #f67b75;
+}
+
+.danger:hover {
+  background-color: #f25757;
+  color: white;
+}
+
+.default {
+  background-color: #dadada;
+  color: #757575;
+}
+
+.default:hover {
+  background-color: #757575;
+  color: #dadada;
+}
