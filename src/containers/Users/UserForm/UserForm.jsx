@@ -86,12 +86,14 @@ export default function UserForm() {
 
   return (
     <>
-      <Heading type="primary">
+      <Heading size="huge" align="center" margin="big">
         {isCreationForm ? 'Cadastro' : 'Atualização'} de usuário
       </Heading>
       <Form>
         <Divider>
-          <Heading type="secondary">Informações do usuário</Heading>
+          <Heading size="medium" align="start" margin="small">
+            Informações do usuário
+          </Heading>
           <div className={style.gridContainer}>
             <Input
               label="Nome"

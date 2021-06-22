@@ -46,17 +46,6 @@
   margin-bottom: 3.2rem;
 }
 
-.info > span {
-  font-size: 1.3rem;
-  font-weight: 700;
-  letter-spacing: 0.1rem;
-  text-transform: uppercase;
-}
-
-.info > p {
-  font-weight: 300;
-}
-
 /* Controls */
 
 .userControls {

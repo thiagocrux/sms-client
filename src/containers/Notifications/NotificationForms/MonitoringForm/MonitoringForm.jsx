@@ -88,14 +88,18 @@ export default function MonitoringForm() {
 
   return (
     <>
-      <Heading type="primary">
+      <Heading size="huge" align="center" margin="big">
         {isCreationForm ? 'Cadastro' : 'Atualização'} de monitoramento
       </Heading>
       <Form>
         <Divider>
-          <Heading type="secondary">Pós-tratamento</Heading>
+          <Heading size="medium" align="start" margin="small">
+            Pós-tratamento
+          </Heading>
           <div className={style.gridContainer}>
-            <Heading type="tertiary">1ª VDRL</Heading>
+            <Heading size="small" align="start" margin="tiny">
+              1ª VDRL
+            </Heading>
             <Input
               label="Titulação"
               type="text"
@@ -115,7 +119,9 @@ export default function MonitoringForm() {
                 handleChange('vdrl1Date', event.currentTarget.value)
               }
             />
-            <Heading type="tertiary">2ª VDRL</Heading>
+            <Heading size="small" align="start" margin="tiny">
+              2ª VDRL
+            </Heading>
             <Input
               label="Titulação"
               type="text"
@@ -135,7 +141,9 @@ export default function MonitoringForm() {
                 handleChange('vdrl2Date', event.currentTarget.value)
               }
             />
-            <Heading type="tertiary">3ª VDRL</Heading>
+            <Heading size="small" align="start" margin="tiny">
+              3ª VDRL
+            </Heading>
             <Input
               label="Titulação"
               type="text"
@@ -166,7 +174,9 @@ export default function MonitoringForm() {
             }
           />
           <ThematicBreak />
-          <Heading type="secondary">Outras observações</Heading>
+          <Heading size="medium" align="start" margin="small">
+            Outras observações
+          </Heading>
           <Textarea
             name="observations"
             placeholder="Insira as observações sobre o monitoramento"

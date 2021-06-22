@@ -6,9 +6,10 @@ import { formatDateTime, formatCPF } from '../../../utils/dataFormatter';
 
 import Heading from '../../../components/Common/Heading/Heading';
 import Divider from '../../../components/Layout/Form/Divider/Divider';
+import Info from '../../../components/Common/Info/Info';
+import ThematicBreak from '../../../components/Common/ThematicBreak/ThematicBreak';
 
 import style from './UserFullInfo.module.css';
-import ThematicBreak from '../../../components/Common/ThematicBreak/ThematicBreak';
 
 export default function UserFullInfo() {
   const [user, setUser] = useState({});
@@ -21,45 +22,44 @@ export default function UserFullInfo() {
 
   return (
     <div className={style.infoContainer}>
-      <Heading type="primary">Informações do usuário</Heading>
+      <Heading size="huge" align="center" margin="big">
+        Informações do usuário
+      </Heading>
       <Divider>
-        <Heading type="secondary">Informações pessoais</Heading>
+        <Heading size="medium" align="start" margin="small">
+          Informações pessoais
+        </Heading>
         <div className={style.personalInfoContainer}>
-          <div className={style.info}>
-            <span>Nome</span>
-            <p>{user.name}</p>
-          </div>
-          <div className={style.info}>
-            <span>CPF</span>
-            <p>{user.cpf && formatCPF(user.cpf)}</p>
-          </div>
-          <div className={style.info}>
-            <span>Cargo</span>
-            <p>{user.role}</p>
-          </div>
-          <div className={style.info}>
-            <span>Local de trabalho</span>
-            <p>{user.workLocation}</p>
-          </div>
-          <div className={style.info}>
-            <span>E-mail</span>
-            <p>{user.email}</p>
-          </div>
-          <div className={style.info}>
-            <span>Permissão de administrador?</span>
-            <p>{user.admin ? 'Sim' : 'Não'}</p>
-          </div>
+          <Info class="regular" label="Nome" info={user.name} />
+          <Info class="regular" label="CPF" info={user.cpf} />
+          <Info class="regular" label="Cargo" info={user.role} />
+          <Info
+            class="regular"
+            label="Local de trabalho"
+            info={user.workLocation}
+          />
+          <Info class="regular" label="E-mail" info={user.email} />
+          <Info
+            class="regular"
+            label="Permissão de administrador?"
+            info={user.admin ? 'Sim' : 'Não'}
+          />
         </div>
         <ThematicBreak />
+        <Heading size="medium" align="start" margin="small">
+          Informações de cadastro
+        </Heading>
         <div className={style.registerInfoContainer}>
-          <div className={style.info}>
-            <span>Data de criação</span>
-            <p>{formatDateTime(user.createdAt)}</p>
-          </div>
-          <div className={style.info}>
-            <span>Data de atualização</span>
-            <p>{user.updatedAt ? formatDateTime(user.updatedAt) : '-'}</p>
-          </div>
+          <Info
+            class="regular"
+            label="Data de criação"
+            info={formatDateTime(user.createdAt)}
+          />
+          <Info
+            class="regular"
+            label="Data de atualização"
+            info={user.updatedAt ? formatDateTime(user.updatedAt) : '-'}
+          />
         </div>
         <div className={style.userControls}>
           <button

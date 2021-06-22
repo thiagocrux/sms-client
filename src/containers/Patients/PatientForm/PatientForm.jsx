@@ -91,12 +91,14 @@ export default function PatientForm() {
 
   return (
     <>
-      <Heading type="primary">
+      <Heading size="huge" align="center" margin="big">
         {isCreationForm ? 'Cadastro' : 'Atualização'} de paciente
       </Heading>
       <Form>
         <Divider>
-          <Heading type="secondary">Dados do paciente</Heading>
+          <Heading size="medium" align="start" margin="small">
+            Dados do paciente
+          </Heading>
           <div className={`${style.gridContainer} ${style.upperGridContainer}`}>
             <Input
               label="Número do cartão do SUS"
@@ -211,7 +213,9 @@ export default function PatientForm() {
             />
           </div>
           <ThematicBreak />
-          <Heading type="secondary">Endereço do paciente</Heading>
+          <Heading size="medium" align="start" margin="small">
+            Endereço do paciente
+          </Heading>
           <div className={`${style.gridContainer} ${style.lowerGridContainer}`}>
             <Input
               label="CEP"

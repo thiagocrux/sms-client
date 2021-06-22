@@ -32,7 +32,9 @@ export default function PatientSearchForm({
 
   return (
     <div className={style.patientSearchContainer}>
-      <Heading type="primary">{formHeader}</Heading>
+      <Heading size="huge" align="center" margin="big">
+        {formHeader}
+      </Heading>
       <div className={style.gridContainer}>
         <Field>
           <label htmlFor="search-criterion">Critério de pesquisa</label>

@@ -13,7 +13,9 @@ export default function TreatmentsList({ treatments }) {
 
   return treatments.length > 0 ? (
     <div className={style.listContainer}>
-      <Heading type="primary">Lista de tratamentos</Heading>
+      <Heading size="huge" align="center" margin="big">
+        Lista de tratamentos
+      </Heading>
       <ul className={style.list}>
         {treatments.map((treatment) => (
           <li key={treatment._id} className={style.item}>

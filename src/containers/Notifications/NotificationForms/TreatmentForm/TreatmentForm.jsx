@@ -81,12 +81,14 @@ export default function TreatmentForm() {
 
   return (
     <>
-      <Heading type="primary">
+      <Heading size="huge" align="center" margin="big">
         {isCreationForm ? 'Cadastro' : 'Atualização'} de tratamento
       </Heading>
       <Form>
         <Divider>
-          <Heading type="secondary">Informações sobre o tratamento</Heading>
+          <Heading size="medium" align="start" margin="small">
+            Informações sobre o tratamento
+          </Heading>
           <div className={style.gridContainer}>
             <Select
               label="Medicamento"

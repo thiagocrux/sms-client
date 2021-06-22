@@ -90,12 +90,14 @@ export default function ExamForm() {
 
   return (
     <>
-      <Heading type="primary">
+      <Heading size="huge" align="center" margin="big">
         {isCreationForm ? 'Cadastro' : 'Atualização'} de exame
       </Heading>
       <Form>
         <Divider>
-          <Heading type="secondary">Teste treponêmico</Heading>
+          <Heading size="medium" align="start" margin="small">
+            Teste treponêmico
+          </Heading>
           <div className={style.upperGridContainer}>
             <Select
               label="Tipo de teste"
@@ -135,7 +137,9 @@ export default function ExamForm() {
             />
           </div>
           <ThematicBreak />
-          <Heading type="secondary">Teste não-treponêmico</Heading>
+          <Heading size="medium" align="start" margin="small">
+            Teste não-treponêmico
+          </Heading>
           <div className={style.lowerGridContainer}>
             <Input
               label="VDRL"

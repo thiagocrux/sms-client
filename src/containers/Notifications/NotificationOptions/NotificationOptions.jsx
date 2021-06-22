@@ -15,14 +15,14 @@ export default function NotificationOptions({ isCreation, click }) {
 
   return (
     <>
-      <Heading type='primary'>
+      <Heading size="huge" align="center" margin="big">
         {isCreation
           ? 'Que tipo de notificação você deseja criar?'
           : 'Notificações do paciente'}
       </Heading>
       <nav className={style.navigation}>
         <Button
-          action='default'
+          action="default"
           click={
             isCreation ? () => click(treatmentsURL) : () => click('treatment')
           }
@@ -31,7 +31,7 @@ export default function NotificationOptions({ isCreation, click }) {
           {isCreation ? 'Novo tratamento' : 'Tratamentos'}
         </Button>
         <Button
-          action='default'
+          action="default"
           click={
             isCreation ? () => click(monitoringsURL) : () => click('monitoring')
           }
@@ -40,7 +40,7 @@ export default function NotificationOptions({ isCreation, click }) {
           {isCreation ? 'Novo monitoramento' : 'Monitoramentos'}
         </Button>
         <Button
-          action='default'
+          action="default"
           click={isCreation ? () => click(examsURL) : () => click('exam')}
         >
           <DropletHalf className={style.icon} />
