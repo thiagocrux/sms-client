@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useHistory } from 'react-router-dom';
+// import { useHistory } from 'react-router-dom';
 import api from '../../../utils/api';
 
 import Button from '../../Common/Button/Button';
@@ -10,7 +10,7 @@ import SubmitContainer from '../../Layout/Form/SubmitContainer/SubmitContainer';
 export default function LoginPage() {
   const [credentials, setCredentials] = useState({ email: '', password: '' });
   const [isLogged, setIsLogged] = useState(false);
-  const history = useHistory();
+  // const history = useHistory();
 
   const handleChange = (field, value) => {
     setCredentials({ ...credentials, [field]: value });

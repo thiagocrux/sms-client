@@ -3,7 +3,7 @@ import React from 'react';
 import Field from '../Field/Field';
 import Label from '../Label/Label';
 
-import style from './Select.module.css';
+// import style from './Select.module.css';
 
 export default function Input(props) {
   return (
@@ -14,7 +14,9 @@ export default function Input(props) {
           Selecione uma opção
         </option>
         {props.options.map((option) => (
-          <option value={option}>{option}</option>
+          <option key={option} value={option}>
+            {option}
+          </option>
         ))}
       </select>
     </Field>

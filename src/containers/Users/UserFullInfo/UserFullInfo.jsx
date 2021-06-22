@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import api from '../../../utils/api';
 import { useParams, useHistory } from 'react-router-dom';
 import { PenFill, TrashFill } from 'react-bootstrap-icons';
-import { formatDateTime, formatCPF } from '../../../utils/dataFormatter';
+import { formatDateTime } from '../../../utils/dataFormatter';
 
 import Heading from '../../../components/Common/Heading/Heading';
 import Divider from '../../../components/Layout/Form/Divider/Divider';

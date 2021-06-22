@@ -3,7 +3,7 @@ import React from 'react';
 import Field from '../Field/Field';
 import Label from '../Label/Label';
 
-import style from './Input.module.css';
+// import style from './Input.module.css';
 
 export default function Input(props) {
   return (
