@@ -1,0 +1,33 @@
+.infoContainer {
+  display: flex;
+  flex-direction: column;
+}
+
+.highlight {
+  font-weight: 600;
+}
+
+.highlight > .label {
+  font-size: 1.2rem;
+  color: #757575;
+  text-transform: uppercase;
+}
+
+.highlight > .info {
+  font-size: 1.8rem;
+  letter-spacing: 0.1rem;
+}
+
+.regular {
+}
+
+.regular > .label {
+  font-size: 1.3rem;
+  font-weight: 700;
+  letter-spacing: 0.1rem;
+  text-transform: uppercase;
+}
+
+.regular > .info {
+  font-weight: 300;
+}
