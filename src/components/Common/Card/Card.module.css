@@ -1,8 +1,9 @@
 .card {
-  margin-bottom: 4rem;
   position: relative;
   width: 90rem;
+  padding: 6rem 10rem;
   margin: 0 auto;
+  margin-bottom: 4rem;
   background-color: #ffffff;
   border-radius: 0.4em;
   box-shadow: 2px 1px 8px -4px #757575;
