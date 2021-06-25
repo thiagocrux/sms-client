@@ -8,11 +8,9 @@ import Button from '@components/Common/Buttons/Button/Button';
 import CancelationModal from '@components/Layout/Modals/CancelationModal/CancelationModal';
 import Checkbox from '@components/Layout/Form/Checkbox/Checkbox';
 import ConfirmationModal from '@components/Layout/Modals/ConfirmationModal/ConfirmationModal';
-import ThematicBreak from '@components/Common/ThematicBreak/ThematicBreak';
 import Divider from '@components/Layout/Form/Divider/Divider';
 import Form from '@components/Layout/Form/Form';
 import Heading from '@components/Common/Heading/Heading';
-import Input from '@components/Layout/Form/Input/Input';
 import SubmitContainer from '@components/Layout/Form/SubmitContainer/SubmitContainer';
 import Textarea from '@components/Layout/Form/Textarea/Textarea';
 
@@ -94,88 +92,7 @@ export default function MonitoringForm() {
       </Heading>
       <Form>
         <Divider>
-          <Heading size="medium" align="start" margin="small">
-            Pós-tratamento
-          </Heading>
-          <div className={style.gridContainer}>
-            <Heading size="small" align="start" margin="tiny">
-              1ª VDRL
-            </Heading>
-            <Input
-              label="Titulação"
-              type="text"
-              name="vdrl1Titration"
-              placeholder="Insira a titulação"
-              value={monitoringInformation.vdrl1Titration}
-              change={(event) =>
-                handleChange('vdrl1Titration', event.currentTarget.value)
-              }
-            />
-            <Input
-              label="Data"
-              type="date"
-              name="vdrl1Date"
-              value={monitoringInformation.vdrl1Date}
-              change={(event) =>
-                handleChange('vdrl1Date', event.currentTarget.value)
-              }
-            />
-            <Heading size="small" align="start" margin="tiny">
-              2ª VDRL
-            </Heading>
-            <Input
-              label="Titulação"
-              type="text"
-              name="vdrl2Titration"
-              placeholder="Insira a titulação"
-              value={monitoringInformation.vdrl2Titration}
-              change={(event) =>
-                handleChange('vdrl2Titration', event.currentTarget.value)
-              }
-            />
-            <Input
-              label="Data"
-              type="date"
-              name="vdrl2Date"
-              value={monitoringInformation.vdrl2Date}
-              change={(event) =>
-                handleChange('vdrl2Date', event.currentTarget.value)
-              }
-            />
-            <Heading size="small" align="start" margin="tiny">
-              3ª VDRL
-            </Heading>
-            <Input
-              label="Titulação"
-              type="text"
-              name="vdrl3Titration"
-              placeholder="Insira a titulação"
-              value={monitoringInformation.vdrl3Titration}
-              change={(event) =>
-                handleChange('vdrl3Titration', event.currentTarget.value)
-              }
-            />
-            <Input
-              label="Data"
-              type="date"
-              name="vdrl3Date"
-              value={monitoringInformation.vdrl3Date}
-              change={(event) =>
-                handleChange('vdrl3Date', event.currentTarget.value)
-              }
-            />
-          </div>
-          <Checkbox
-            label="Tratamento de parceiro"
-            type="checkbox"
-            name="partnerTreatment"
-            checked={monitoringInformation.partnerTreatment}
-            change={(event) =>
-              handleChange('partnerTreatment', event.currentTarget.checked)
-            }
-          />
-          <ThematicBreak />
-          <Heading size="medium" align="start" margin="small">
+          <Heading size="small" align="start" margin="tiny">
             Outras observações
           </Heading>
           <Textarea
@@ -184,6 +101,14 @@ export default function MonitoringForm() {
             value={monitoringInformation.observations}
             change={(event) =>
               handleChange('observations', event.currentTarget.value)
+            }
+          />
+          <Checkbox
+            label="Tratamento de parceiro"
+            name="partnerTreatment"
+            checked={monitoringInformation.partnerTreatment}
+            change={(event) =>
+              handleChange('partnerTreatment', event.currentTarget.checked)
             }
           />
         </Divider>

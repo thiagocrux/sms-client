@@ -4,8 +4,9 @@
   align-items: center;
 }
 
-.label {
+.flex label {
   margin-right: 1.2rem;
+  margin-bottom: 0;
 }
 
 input[type='checkbox']:focus {
