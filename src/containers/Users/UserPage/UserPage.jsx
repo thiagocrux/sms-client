@@ -1,9 +1,8 @@
 import React, { useEffect, useState } from 'react';
+import api from '@utils/api';
 
 import UserList from '../../Users/UserList/UserList';
 import UserSearchForm from '../../Users/UserSearchForm/UserSearchForm';
-
-import api from '../../../utils/api';
 
 import style from './UserPage.module.css';
 

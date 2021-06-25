@@ -1,20 +1,20 @@
 import React, { useEffect, useState } from 'react';
 import { useHistory, useParams } from 'react-router-dom';
 import { CheckCircle, XCircle } from 'react-bootstrap-icons';
-import { monitoringInitialValues as INITIAL_VALUES } from '../../../../utils/formData';
-import api from '../../../../utils/api';
+import api from '@utils/api';
+import { monitoringInitialValues as INITIAL_VALUES } from '@utils/formData';
 
-import Button from '../../../../components/Common/Buttons/Button/Button';
-import CancelationModal from '../../../../components/Layout/Modals/CancelationModal/CancelationModal';
-import Checkbox from '../../../../components/Layout/Form/Checkbox/Checkbox';
-import ConfirmationModal from '../../../../components/Layout/Modals/ConfirmationModal/ConfirmationModal';
-import ThematicBreak from '../../../../components/Common/ThematicBreak/ThematicBreak';
-import Divider from '../../../../components/Layout/Form/Divider/Divider';
-import Form from '../../../../components/Layout/Form/Form';
-import Heading from '../../../../components/Common/Heading/Heading';
-import Input from '../../../../components/Layout/Form/Input/Input';
-import SubmitContainer from '../../../../components/Layout/Form/SubmitContainer/SubmitContainer';
-import Textarea from '../../../../components/Layout/Form/Textarea/Textarea';
+import Button from '@components/Common/Buttons/Button/Button';
+import CancelationModal from '@components/Layout/Modals/CancelationModal/CancelationModal';
+import Checkbox from '@components/Layout/Form/Checkbox/Checkbox';
+import ConfirmationModal from '@components/Layout/Modals/ConfirmationModal/ConfirmationModal';
+import ThematicBreak from '@components/Common/ThematicBreak/ThematicBreak';
+import Divider from '@components/Layout/Form/Divider/Divider';
+import Form from '@components/Layout/Form/Form';
+import Heading from '@components/Common/Heading/Heading';
+import Input from '@components/Layout/Form/Input/Input';
+import SubmitContainer from '@components/Layout/Form/SubmitContainer/SubmitContainer';
+import Textarea from '@components/Layout/Form/Textarea/Textarea';
 
 import style from './MonitoringForm.module.css';
 

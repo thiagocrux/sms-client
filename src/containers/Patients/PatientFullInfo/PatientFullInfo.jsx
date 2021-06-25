@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import api from '../../../utils/api';
+import api from '@utils/api';
 import { useParams, useHistory } from 'react-router-dom';
 import { PenFill, TrashFill } from 'react-bootstrap-icons';
 import {
@@ -8,14 +8,14 @@ import {
   formatDate,
   formatSUSCardNumber,
   formatPhoneNumber,
-} from '../../../utils/dataFormatter';
+} from '@utils/dataFormatter';
 
-import Button from '../../../components/Common/Buttons/Button/Button';
-import ButtonReturn from '../../../components/Common/Buttons/ButtonReturn/ButtonReturn';
-import Card from '../../../components/Common/Card/Card';
-import Heading from '../../../components/Common/Heading/Heading';
-import Info from '../../../components/Common/Info/Info';
-import ThematicBreak from '../../../components/Common/ThematicBreak/ThematicBreak';
+import Button from '@components/Common/Buttons/Button/Button';
+import ButtonReturn from '@components/Common/Buttons/ButtonReturn/ButtonReturn';
+import Card from '@components/Common/Card/Card';
+import Heading from '@components/Common/Heading/Heading';
+import Info from '@components/Common/Info/Info';
+import ThematicBreak from '@components/Common/ThematicBreak/ThematicBreak';
 
 import style from './PatientFullInfo.module.css';
 

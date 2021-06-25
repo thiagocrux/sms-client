@@ -2,7 +2,7 @@ import React from 'react';
 import { useParams } from 'react-router';
 import { formatDate, formatDateTime } from '../../../../utils/dataFormatter';
 
-import Heading from '../../../../components/Common/Heading/Heading';
+import Heading from '@components/Common/Heading/Heading';
 import NotificationListItemControls from '../../NotificationListItemControls/NotificationListItemControls';
 import NotificationNotFoundMessage from '../../NotificationNotFoundMessage/NotificationNotFoundMessage';
 

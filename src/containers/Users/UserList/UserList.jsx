@@ -2,8 +2,8 @@ import React, { useEffect, useState } from 'react';
 import ReactPaginate from 'react-paginate';
 import { At, PersonBadgeFill, PersonFill } from 'react-bootstrap-icons';
 
-import Heading from '../../../components/Common/Heading/Heading';
-import SearchItemNotFound from '../../../components/Common/SearchItemNotFound/SearchItemNotFound';
+import Heading from '@components/Common/Heading/Heading';
+import SearchItemNotFound from '@components/Common/SearchItemNotFound/SearchItemNotFound';
 import UserListItem from '../UserListItem/UserListItem';
 
 import style from './UserList.module.css';

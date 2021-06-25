@@ -3,10 +3,10 @@ import { useHistory } from 'react-router-dom';
 import { formatCPF, formatSUSCardNumber } from '../../../utils/dataFormatter';
 import { PencilFill, PersonLinesFill, TrashFill } from 'react-bootstrap-icons';
 
-import Button from '../../../components/Common/Buttons/Button/Button';
-import ButtonClose from '../../../components/Common/Buttons/ButtonClose/ButtonClose';
-import Card from '../../../components/Common/Card/Card';
-import Info from '../../../components/Common/Info/Info';
+import Button from '@components/Common/Buttons/Button/Button';
+import ButtonClose from '@components/Common/Buttons/ButtonClose/ButtonClose';
+import Card from '@components/Common/Card/Card';
+import Info from '@components/Common/Info/Info';
 
 import style from './PatientSelected.module.css';
 
