@@ -71,8 +71,7 @@ export default function MonitoringForm() {
   const errorMessage = (field) => {
     const error = [...formErrors].find(({ label }) => label === field);
     if (error && isSubmitted) {
-      console.log(isSubmitted);
-      return error.message;
+      return String(error.message);
     } else {
       return;
     }
@@ -245,9 +244,8 @@ export default function MonitoringForm() {
             change={(event) =>
               handleChange('observations', event.currentTarget.value)
             }
-          >
-            {errorMessage('observations')}
-          </Textarea>
+            message={() => errorMessage('observations')}
+          />
         </Divider>
         <SubmitContainer>
           <Button

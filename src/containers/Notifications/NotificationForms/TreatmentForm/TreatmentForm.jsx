@@ -36,23 +36,37 @@ export default function TreatmentForm() {
   const [openCancelationModal, setOpenCancelationModal] = useState(false);
   const [treatmentInformation, setTreatmentInformation] =
     useState(INITIAL_VALUES);
-  const { treatmentID, patientID } = useParams();
+
   const [isValid, setIsValid] = useState(false);
+  const [isSubmitted, setIsSubmitted] = useState(false);
+  const [formErrors, setFormErrors] = useState([]);
 
+  const { treatmentID, patientID } = useParams();
   const history = useHistory();
-
-  const handleChange = (field, value) => {
-    setTreatmentInformation({ ...treatmentInformation, [field]: value });
-  };
 
   useEffect(() => {
     handleFormType();
+    validate(treatmentSchema, treatmentInformation, setIsValid, setFormErrors);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect(() => {
-    validate(treatmentSchema, treatmentInformation, setIsValid);
+    validate(treatmentSchema, treatmentInformation, setIsValid, setFormErrors);
   }, [treatmentInformation]);
+
+  const errorMessage = (field) => {
+    const error = [...formErrors].find(({ label }) => label === field);
+    if (error && isSubmitted) {
+      console.log(isSubmitted);
+      return error.message;
+    } else {
+      return;
+    }
+  };
+
+  const handleChange = (field, value) => {
+    setTreatmentInformation({ ...treatmentInformation, [field]: value });
+  };
 
   function handleFormType() {
     if (treatmentID && isCreationForm) {
@@ -71,6 +85,8 @@ export default function TreatmentForm() {
   }
 
   function handleFormModal(action) {
+    setIsSubmitted(true);
+
     if (isValid) {
       if (action === 'submit') {
         setOpenConfirmationModal(true);
@@ -116,7 +132,9 @@ export default function TreatmentForm() {
               change={(event) =>
                 handleChange('medication', event.currentTarget.value)
               }
-            />
+            >
+              {errorMessage('medication')}
+            </Select>
             <Input
               label="Localização da UBS"
               type="text"
@@ -126,7 +144,9 @@ export default function TreatmentForm() {
               change={(event) =>
                 handleChange('ubsLocation', event.currentTarget.value)
               }
-            />
+            >
+              {errorMessage('ubsLocation')}
+            </Input>
             <Input
               label="Data"
               type="date"
@@ -135,7 +155,9 @@ export default function TreatmentForm() {
               change={(event) =>
                 handleChange('startDate', event.currentTarget.value)
               }
-            />
+            >
+              {errorMessage('startDate')}
+            </Input>
             <Input
               label="Dosagem"
               type="text"
@@ -145,7 +167,9 @@ export default function TreatmentForm() {
               change={(event) =>
                 handleChange('dosage', event.currentTarget.value)
               }
-            />
+            >
+              {errorMessage('dosage')}
+            </Input>
             <Textarea
               label="Observações sobre o tratamento"
               name="observations"
@@ -154,7 +178,9 @@ export default function TreatmentForm() {
               change={(event) =>
                 handleChange('observations', event.currentTarget.value)
               }
-            />
+            >
+              {errorMessage('observations')}
+            </Textarea>
             <Textarea
               label="Observações sobre parceiro(a)"
               name="partnerInfo"
@@ -163,7 +189,9 @@ export default function TreatmentForm() {
               change={(event) =>
                 handleChange('partnerInfo', event.currentTarget.value)
               }
-            />
+            >
+              {errorMessage('partnerInfo')}
+            </Textarea>
           </div>
         </Divider>
         <SubmitContainer>
