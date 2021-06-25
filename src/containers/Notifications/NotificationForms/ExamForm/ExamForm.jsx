@@ -1,5 +1,7 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect, useState } from 'react';
 import { useHistory, useParams } from 'react-router-dom';
+import Joi from 'joi';
 import {
   examInitialValues as INITIAL_VALUES,
   trepTestResultOptions,
@@ -7,6 +9,7 @@ import {
   ubsOptions,
 } from '../../../../utils/formData';
 import api from '../../../../utils/api';
+import { validate } from '../../../../utils/helpers';
 
 import Button from '../../../../components/Common/Button/Button';
 import CancelationModal from '../../../../components/Layout/Modals/CancelationModal/CancelationModal';
@@ -23,25 +26,59 @@ import ThematicBreak from '../../../../components/Common/ThematicBreak/ThematicB
 
 import style from './ExamForm.module.css';
 
+const schema = Joi.object({
+  trepTestType: Joi.string().required(),
+  trepTestResult: Joi.string().required(),
+  trepTestDate: Joi.string().required(),
+  trepTestLocation: Joi.string().required(),
+  nonTrepTestVDRL: Joi.string().required(),
+  nonTrepTestTitration: Joi.string().required(),
+  nonTrepTestDate: Joi.string().required(),
+  refObservations: Joi.string().required(),
+  onTreatment: Joi.boolean().required(),
+  onObservation: Joi.boolean().required(),
+});
+
 export default function ExamForm() {
   const [isCreationForm, setIsCreationForm] = useState('create');
   const [openConfirmationModal, setOpenConfirmationModal] = useState(false);
   const [openCancelationModal, setOpenCancelationModal] = useState(false);
   const [examInformation, setExamInformation] = useState(INITIAL_VALUES);
-  const { examID, patientID } = useParams();
 
+  const [isValid, setIsValid] = useState(false);
+  const [isSubmitted, setIsSubmitted] = useState(false);
+  const [formErrors, setFormErrors] = useState([]);
+
+  const { examID, patientID } = useParams();
   const history = useHistory();
+
+  /* Set the type of form on the first render */
+  useEffect(() => {
+    handleFormType();
+    validate(schema, examInformation, setIsValid, setFormErrors);
+    return () => {
+      setIsSubmitted(false);
+    };
+  }, []);
+
+  useEffect(() => {
+    validate(schema, examInformation, setIsValid, setFormErrors);
+  }, [examInformation]);
+
+  const errorMessage = (field) => {
+    const error = [...formErrors].find(({ label }) => label === field);
+    if (error && isSubmitted) {
+      console.log(isSubmitted);
+      return error.message;
+    } else {
+      return;
+    }
+  };
 
   /* Input handlers */
   const handleChange = (field, value) => {
     setExamInformation({ ...examInformation, [field]: value });
   };
-
-  /* Set the type of form on the first render */
-  useEffect(() => {
-    handleFormType();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
 
   /* Check the existence of params and set the type of form */
   function handleFormType() {
@@ -62,11 +99,14 @@ export default function ExamForm() {
   }
 
   function handleFormModal(action) {
-    if (action === 'submit') {
-      setOpenConfirmationModal(true);
-      console.log(examInformation);
-    } else if (action === 'cancel') {
-      setOpenCancelationModal(true);
+    setIsSubmitted(true);
+
+    if (isValid) {
+      if (action === 'submit') {
+        setOpenConfirmationModal(true);
+      } else if (action === 'cancel') {
+        setOpenCancelationModal(true);
+      }
     }
   }
 
@@ -107,7 +147,9 @@ export default function ExamForm() {
               change={(event) =>
                 handleChange('trepTestType', event.currentTarget.value)
               }
-            />
+            >
+              {errorMessage('trepTestType')}
+            </Select>
             <Select
               label="Resultado do teste"
               name="trepTestResult"
@@ -116,7 +158,9 @@ export default function ExamForm() {
               change={(event) =>
                 handleChange('trepTestResult', event.currentTarget.value)
               }
-            />
+            >
+              {errorMessage('trepTestResult')}
+            </Select>
             <Input
               label="Data do teste"
               type="date"
@@ -125,7 +169,9 @@ export default function ExamForm() {
               change={(event) =>
                 handleChange('trepTestDate', event.currentTarget.value)
               }
-            />
+            >
+              {errorMessage('trepTestDate')}
+            </Input>
             <Select
               label="Local do teste"
               name="trepTestLocation"
@@ -134,7 +180,9 @@ export default function ExamForm() {
               change={(event) =>
                 handleChange('trepTestLocation', event.currentTarget.value)
               }
-            />
+            >
+              {errorMessage('trepTestLocation')}
+            </Select>
           </div>
           <ThematicBreak />
           <Heading size="medium" align="start" margin="small">
@@ -150,7 +198,9 @@ export default function ExamForm() {
               change={(event) =>
                 handleChange('nonTrepTestVDRL', event.currentTarget.value)
               }
-            />
+            >
+              {errorMessage('nonTrepTestVDRL')}
+            </Input>
             <Input
               label="Titulação"
               type="text"
@@ -160,7 +210,9 @@ export default function ExamForm() {
               change={(event) =>
                 handleChange('nonTrepTestTitration', event.currentTarget.value)
               }
-            />
+            >
+              {errorMessage('nonTrepTestTitration')}
+            </Input>
             <Input
               label="Data do teste"
               type="date"
@@ -169,7 +221,9 @@ export default function ExamForm() {
               change={(event) =>
                 handleChange('nonTrepTestDate', event.currentTarget.value)
               }
-            />
+            >
+              {errorMessage('nonTrepTestDate')}
+            </Input>
             <Textarea
               label="Observações de referência e contra-referência"
               name="refObservations"
@@ -178,7 +232,9 @@ export default function ExamForm() {
               change={(event) =>
                 handleChange('refObservations', event.currentTarget.value)
               }
-            />
+            >
+              {errorMessage('refObservations')}
+            </Textarea>
           </div>
           <div className={style.flexContainer}>
             <Checkbox

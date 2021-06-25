@@ -19,6 +19,7 @@ export default function Input(props) {
           </option>
         ))}
       </select>
+      <p>{props.children}</p>
     </Field>
   );
 }

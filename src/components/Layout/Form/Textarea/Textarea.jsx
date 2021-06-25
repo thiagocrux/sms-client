@@ -15,6 +15,7 @@ export default function Textarea(props) {
         value={props.value}
         onChange={props.change}
       ></textarea>
+      <p>{props.children}</p>
     </Field>
   );
 }

@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import { useHistory, useParams } from 'react-router-dom';
+import Joi from 'joi';
 import {
   medicationOptions,
   treatmentInitialValues as INITIAL_VALUES,
 } from '../../../../utils/formData';
 import api from '../../../../utils/api';
+import { validate } from '../../../../utils/helpers';
 
 import Button from '../../../../components/Common/Button/Button';
 import CancelationModal from '../../../../components/Layout/Modals/CancelationModal/CancelationModal';
@@ -19,6 +21,15 @@ import Textarea from '../../../../components/Layout/Form/Textarea/Textarea';
 
 import style from './TreatmentForm.module.css';
 
+const treatmentSchema = Joi.object({
+  medication: Joi.string().required(),
+  ubsLocation: Joi.string().required(),
+  startDate: Joi.string().required(),
+  dosage: Joi.string().required(),
+  observations: Joi.string().required(),
+  partnerInfo: Joi.string().required(),
+});
+
 export default function TreatmentForm() {
   const [isCreationForm, setIsCreationForm] = useState(true);
   const [openConfirmationModal, setOpenConfirmationModal] = useState(false);
@@ -26,6 +37,7 @@ export default function TreatmentForm() {
   const [treatmentInformation, setTreatmentInformation] =
     useState(INITIAL_VALUES);
   const { treatmentID, patientID } = useParams();
+  const [isValid, setIsValid] = useState(false);
 
   const history = useHistory();
 
@@ -37,6 +49,10 @@ export default function TreatmentForm() {
     handleFormType();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
+  useEffect(() => {
+    validate(treatmentSchema, treatmentInformation, setIsValid);
+  }, [treatmentInformation]);
 
   function handleFormType() {
     if (treatmentID && isCreationForm) {
@@ -55,11 +71,13 @@ export default function TreatmentForm() {
   }
 
   function handleFormModal(action) {
-    if (action === 'submit') {
-      setOpenConfirmationModal(true);
-      console.log(treatmentInformation);
-    } else if (action === 'cancel') {
-      setOpenCancelationModal(true);
+    if (isValid) {
+      if (action === 'submit') {
+        setOpenConfirmationModal(true);
+        console.log(treatmentInformation);
+      } else if (action === 'cancel') {
+        setOpenCancelationModal(true);
+      }
     }
   }
 

@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useHistory, useParams } from 'react-router-dom';
+import Joi from 'joi';
 import { monitoringInitialValues as INITIAL_VALUES } from '../../../../utils/formData';
 import api from '../../../../utils/api';
 
@@ -16,6 +17,18 @@ import SubmitContainer from '../../../../components/Layout/Form/SubmitContainer/
 import Textarea from '../../../../components/Layout/Form/Textarea/Textarea';
 
 import style from './MonitoringForm.module.css';
+import { validate } from '../../../../utils/helpers';
+
+const monitoringSchema = Joi.object({
+  vdrl1Date: Joi.string().required(),
+  vdrl1Titration: Joi.string().required(),
+  vdrl2Date: Joi.string().required(),
+  vdrl2Titration: Joi.string().required(),
+  vdrl3Date: Joi.string().required(),
+  vdrl3Titration: Joi.string().required(),
+  partnerTreatment: Joi.boolean().required(),
+  observations: Joi.string().required(),
+});
 
 export default function MonitoringForm() {
   const [isCreationForm, setIsCreationForm] = useState(true);
@@ -23,20 +36,52 @@ export default function MonitoringForm() {
   const [openCancelationModal, setOpenCancelationModal] = useState(false);
   const [monitoringInformation, setMonitoringInformation] =
     useState(INITIAL_VALUES);
-  const { monitoringID, patientID } = useParams();
 
+  const [isValid, setIsValid] = useState(false);
+  const [isSubmitted, setIsSubmitted] = useState(false);
+  const [formErrors, setFormErrors] = useState([]);
+
+  const { monitoringID, patientID } = useParams();
   const history = useHistory();
+
+  /* Set the type of form on the first render */
+  useEffect(() => {
+    handleFormType();
+    validate(
+      monitoringSchema,
+      monitoringInformation,
+      setIsValid,
+      setFormErrors
+    );
+    return () => {
+      setIsSubmitted(false);
+    };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  useEffect(() => {
+    validate(
+      monitoringSchema,
+      monitoringInformation,
+      setIsValid,
+      setFormErrors
+    );
+  }, [monitoringInformation]);
+
+  const errorMessage = (field) => {
+    const error = [...formErrors].find(({ label }) => label === field);
+    if (error && isSubmitted) {
+      console.log(isSubmitted);
+      return error.message;
+    } else {
+      return;
+    }
+  };
 
   /* Input handlers */
   const handleChange = (field, value) => {
     setMonitoringInformation({ ...monitoringInformation, [field]: value });
   };
-
-  /* Set the type of form on the first render */
-  useEffect(() => {
-    handleFormType();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
 
   /* Check the existence of params and set the type of form */
   function handleFormType() {
@@ -57,11 +102,15 @@ export default function MonitoringForm() {
   }
 
   function handleFormModal(action) {
-    if (action === 'submit') {
-      setOpenConfirmationModal(true);
-      console.log(monitoringInformation);
-    } else if (action === 'cancel') {
-      setOpenCancelationModal(true);
+    setIsSubmitted(true);
+
+    if (isValid) {
+      if (action === 'submit') {
+        setOpenConfirmationModal(true);
+        console.log(monitoringInformation);
+      } else if (action === 'cancel') {
+        setOpenCancelationModal(true);
+      }
     }
   }
 
@@ -109,7 +158,9 @@ export default function MonitoringForm() {
               change={(event) =>
                 handleChange('vdrl1Titration', event.currentTarget.value)
               }
-            />
+            >
+              {errorMessage('vdrl1Titration')}
+            </Input>
             <Input
               label="Data"
               type="date"
@@ -118,7 +169,9 @@ export default function MonitoringForm() {
               change={(event) =>
                 handleChange('vdrl1Date', event.currentTarget.value)
               }
-            />
+            >
+              {errorMessage('vdrl1Date')}
+            </Input>
             <Heading size="small" align="start" margin="tiny">
               2ª VDRL
             </Heading>
@@ -131,7 +184,9 @@ export default function MonitoringForm() {
               change={(event) =>
                 handleChange('vdrl2Titration', event.currentTarget.value)
               }
-            />
+            >
+              {errorMessage('vdrl2Titration')}
+            </Input>
             <Input
               label="Data"
               type="date"
@@ -140,7 +195,9 @@ export default function MonitoringForm() {
               change={(event) =>
                 handleChange('vdrl2Date', event.currentTarget.value)
               }
-            />
+            >
+              {errorMessage('vdrl2Date')}
+            </Input>
             <Heading size="small" align="start" margin="tiny">
               3ª VDRL
             </Heading>
@@ -153,7 +210,9 @@ export default function MonitoringForm() {
               change={(event) =>
                 handleChange('vdrl3Titration', event.currentTarget.value)
               }
-            />
+            >
+              {errorMessage('vdrl3Titration')}
+            </Input>
             <Input
               label="Data"
               type="date"
@@ -162,7 +221,9 @@ export default function MonitoringForm() {
               change={(event) =>
                 handleChange('vdrl3Date', event.currentTarget.value)
               }
-            />
+            >
+              {errorMessage('vdrl3Date')}
+            </Input>
           </div>
           <Checkbox
             label="Tratamento de parceiro"
@@ -184,7 +245,9 @@ export default function MonitoringForm() {
             change={(event) =>
               handleChange('observations', event.currentTarget.value)
             }
-          />
+          >
+            {errorMessage('observations')}
+          </Textarea>
         </Divider>
         <SubmitContainer>
           <Button

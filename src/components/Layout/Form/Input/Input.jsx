@@ -16,6 +16,7 @@ export default function Input(props) {
         value={props.value}
         onChange={props.change}
       />
+      <p>{props.children}</p>
     </Field>
   );
 }
