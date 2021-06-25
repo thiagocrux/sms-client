@@ -1,23 +1,24 @@
 import React, { useEffect, useState } from 'react';
 import { useHistory, useParams } from 'react-router-dom';
+import { CheckCircle, XCircle } from 'react-bootstrap-icons';
 import Joi from 'joi';
 import {
   medicationOptions,
   treatmentInitialValues as INITIAL_VALUES,
-} from '../../../../utils/formData';
-import api from '../../../../utils/api';
-import { validate } from '../../../../utils/helpers';
+} from '@utils/formData';
+import { validate } from '@utils/helpers';
+import api from '@utils/api';
 
-import Button from '../../../../components/Common/Button/Button';
-import CancelationModal from '../../../../components/Layout/Modals/CancelationModal/CancelationModal';
-import ConfirmationModal from '../../../../components/Layout/Modals/ConfirmationModal/ConfirmationModal';
-import Divider from '../../../../components/Layout/Form/Divider/Divider';
-import Form from '../../../../components/Layout/Form/Form';
-import Heading from '../../../../components/Common/Heading/Heading';
-import Input from '../../../../components/Layout/Form/Input/Input';
-import Select from '../../../../components/Layout/Form/Select/Select';
-import SubmitContainer from '../../../../components/Layout/Form/SubmitContainer/SubmitContainer';
-import Textarea from '../../../../components/Layout/Form/Textarea/Textarea';
+import Button from '@components/Common/Buttons/Button/Button';
+import CancelationModal from '@components/Layout/Modals/CancelationModal/CancelationModal';
+import ConfirmationModal from '@components/Layout/Modals/ConfirmationModal/ConfirmationModal';
+import Divider from '@components/Layout/Form/Divider/Divider';
+import Form from '@components/Layout/Form/Form';
+import Heading from '@components/Common/Heading/Heading';
+import Input from '@components/Layout/Form/Input/Input';
+import Select from '@components/Layout/Form/Select/Select';
+import SubmitContainer from '@components/Layout/Form/SubmitContainer/SubmitContainer';
+import Textarea from '@components/Layout/Form/Textarea/Textarea';
 
 import style from './TreatmentForm.module.css';
 
@@ -26,8 +27,8 @@ const treatmentSchema = Joi.object({
   ubsLocation: Joi.string().required(),
   startDate: Joi.string().required(),
   dosage: Joi.string().required(),
-  observations: Joi.string().required(),
-  partnerInfo: Joi.string().required(),
+  partnerInfo: Joi.string().allow(''),
+  observations: Joi.string().allow(''),
 });
 
 export default function TreatmentForm() {
@@ -196,17 +197,19 @@ export default function TreatmentForm() {
         </Divider>
         <SubmitContainer>
           <Button
-            type="button"
-            action="cancel"
+            class="danger"
+            size="big"
             click={() => handleFormModal('cancel')}
           >
+            <XCircle />
             Cancelar
           </Button>
           <Button
-            type="button"
-            action="submit"
+            class="success"
+            size="big"
             click={() => handleFormModal('submit')}
           >
+            <CheckCircle />
             {isCreationForm ? 'Cadastrar' : 'Salvar'}
           </Button>
         </SubmitContainer>

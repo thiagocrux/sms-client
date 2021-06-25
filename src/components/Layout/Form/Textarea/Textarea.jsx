@@ -1,4 +1,5 @@
-import React, { useEffect } from 'react';
+import React from 'react';
+import ErrorMessage from '../ErrorMessage/ErrorMessage';
 
 import Field from '../Field/Field';
 import Label from '../Label/Label';
@@ -6,9 +7,6 @@ import Label from '../Label/Label';
 import style from './Textarea.module.css';
 
 export default function Textarea(props) {
-  useEffect(() => {
-    console.log(props.message);
-  }, []);
   return (
     <Field>
       {props.label ? <Label name={props.name} label={props.label} /> : null}
@@ -18,7 +16,7 @@ export default function Textarea(props) {
         value={props.value}
         onChange={props.change}
       ></textarea>
-      <p>{props.message}</p>
+      <ErrorMessage>{props.children}</ErrorMessage>
     </Field>
   );
 }

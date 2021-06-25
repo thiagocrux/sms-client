@@ -1,9 +1,8 @@
 import React, { useEffect, useState } from 'react';
+import api from '@utils/api';
 
 import PatientList from '../PatientList/PatientList';
 import PatientSearchForm from '../PatientSearchForm/PatientSearchForm';
-
-import api from '../../../utils/api';
 
 import style from './PatientPage.module.css';
 

@@ -1,28 +1,29 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect, useState } from 'react';
 import { useHistory, useParams } from 'react-router-dom';
+import { CheckCircle, XCircle } from 'react-bootstrap-icons';
 import Joi from 'joi';
 import {
   examInitialValues as INITIAL_VALUES,
   trepTestResultOptions,
   trepTestTypeOptions,
   ubsOptions,
-} from '../../../../utils/formData';
-import api from '../../../../utils/api';
-import { validate } from '../../../../utils/helpers';
+} from '@utils/formData';
+import api from '@utils/api';
+import { validate } from '@utils/helpers';
 
-import Button from '../../../../components/Common/Button/Button';
-import CancelationModal from '../../../../components/Layout/Modals/CancelationModal/CancelationModal';
-import Checkbox from '../../../../components/Layout/Form/Checkbox/Checkbox';
-import ConfirmationModal from '../../../../components/Layout/Modals/ConfirmationModal/ConfirmationModal';
-import Divider from '../../../../components/Layout/Form/Divider/Divider';
-import Form from '../../../../components/Layout/Form/Form';
-import Heading from '../../../../components/Common/Heading/Heading';
-import Input from '../../../../components/Layout/Form/Input/Input';
-import Select from '../../../../components/Layout/Form/Select/Select';
-import SubmitContainer from '../../../../components/Layout/Form/SubmitContainer/SubmitContainer';
-import Textarea from '../../../../components/Layout/Form/Textarea/Textarea';
-import ThematicBreak from '../../../../components/Common/ThematicBreak/ThematicBreak';
+import Button from '@components/Common/Buttons/Button/Button';
+import CancelationModal from '@components/Layout/Modals/CancelationModal/CancelationModal';
+import Checkbox from '@components/Layout/Form/Checkbox/Checkbox';
+import ConfirmationModal from '@components/Layout/Modals/ConfirmationModal/ConfirmationModal';
+import Divider from '@components/Layout/Form/Divider/Divider';
+import Form from '@components/Layout/Form/Form';
+import Heading from '@components/Common/Heading/Heading';
+import Input from '@components/Layout/Form/Input/Input';
+import Select from '@components/Layout/Form/Select/Select';
+import SubmitContainer from '@components/Layout/Form/SubmitContainer/SubmitContainer';
+import Textarea from '@components/Layout/Form/Textarea/Textarea';
+import ThematicBreak from '@components/Common/ThematicBreak/ThematicBreak';
 
 import style from './ExamForm.module.css';
 
@@ -34,9 +35,9 @@ const schema = Joi.object({
   nonTrepTestVDRL: Joi.string().required(),
   nonTrepTestTitration: Joi.string().required(),
   nonTrepTestDate: Joi.string().required(),
-  refObservations: Joi.string().required(),
   onTreatment: Joi.boolean().required(),
   onObservation: Joi.boolean().required(),
+  refObservations: Joi.string().allow(''),
 });
 
 export default function ExamForm() {
@@ -259,17 +260,19 @@ export default function ExamForm() {
         </Divider>
         <SubmitContainer>
           <Button
-            type="button"
-            action="cancel"
+            class="danger"
+            size="big"
             click={() => handleFormModal('cancel')}
           >
+            <XCircle />
             Cancelar
           </Button>
           <Button
-            type="button"
-            action="submit"
+            class="success"
+            size="big"
             click={() => handleFormModal('submit')}
           >
+            <CheckCircle />
             {isCreationForm ? 'Cadastrar' : 'Salvar'}
           </Button>
         </SubmitContainer>

@@ -2,8 +2,8 @@ import React from 'react';
 import { useParams } from 'react-router-dom';
 import { ClipboardPlus, DropletHalf, Eye } from 'react-bootstrap-icons';
 
-import Heading from '../../../components/Common/Heading/Heading';
-import Button from '../../../components/Common/Button/Button';
+import Heading from '@components/Common/Heading/Heading';
+import Button from '@components/Common/Buttons/Button/Button';
 
 import style from './NotificationOptions.module.css';
 
@@ -22,7 +22,8 @@ export default function NotificationOptions({ isCreation, click }) {
       </Heading>
       <nav className={style.navigation}>
         <Button
-          action="default"
+          class="success"
+          size="big"
           click={
             isCreation ? () => click(treatmentsURL) : () => click('treatment')
           }
@@ -31,7 +32,8 @@ export default function NotificationOptions({ isCreation, click }) {
           {isCreation ? 'Novo tratamento' : 'Tratamentos'}
         </Button>
         <Button
-          action="default"
+          class="success"
+          size="big"
           click={
             isCreation ? () => click(monitoringsURL) : () => click('monitoring')
           }
@@ -40,7 +42,8 @@ export default function NotificationOptions({ isCreation, click }) {
           {isCreation ? 'Novo monitoramento' : 'Monitoramentos'}
         </Button>
         <Button
-          action="default"
+          class="success"
+          size="big"
           click={isCreation ? () => click(examsURL) : () => click('exam')}
         >
           <DropletHalf className={style.icon} />

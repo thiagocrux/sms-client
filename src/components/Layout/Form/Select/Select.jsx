@@ -1,4 +1,5 @@
 import React from 'react';
+import ErrorMessage from '../ErrorMessage/ErrorMessage';
 
 import Field from '../Field/Field';
 import Label from '../Label/Label';
@@ -19,7 +20,7 @@ export default function Input(props) {
           </option>
         ))}
       </select>
-      <p>{props.children}</p>
+      <ErrorMessage>{props.children}</ErrorMessage>
     </Field>
   );
 }

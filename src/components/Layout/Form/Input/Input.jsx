@@ -2,6 +2,7 @@ import React from 'react';
 
 import Field from '../Field/Field';
 import Label from '../Label/Label';
+import ErrorMessage from '../ErrorMessage/ErrorMessage';
 
 // import style from './Input.module.css';
 
@@ -16,7 +17,7 @@ export default function Input(props) {
         value={props.value}
         onChange={props.change}
       />
-      <p>{props.children}</p>
+      <ErrorMessage>{props.children}</ErrorMessage>
     </Field>
   );
 }

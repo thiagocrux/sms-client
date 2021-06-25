@@ -1,8 +1,8 @@
 import React, { useEffect, useRef } from 'react';
 import { Search } from 'react-bootstrap-icons';
 
-import Field from '../../../components/Layout/Form/Field/Field';
-import Heading from '../../../components/Common/Heading/Heading';
+import Field from '@components/Layout/Form/Field/Field';
+import Heading from '@components/Common/Heading/Heading';
 
 import style from './PatientSearchForm.module.css';
 

@@ -15,30 +15,26 @@
   transform: translate(-50%, -50%);
   background-color: white;
   border-radius: 0.6rem;
-  padding: 1rem;
-  width: 20%;
-  height: 30%;
-
+  padding: 5rem 6rem;
+  min-width: 40rem;
+  max-width: 80rem;
   display: flex;
   flex-direction: column;
   justify-content: space-around;
 }
 
-.buttons {
+.messageContainer {
+  text-align: center;
+  font-weight: 700;
+  font-size: 2rem;
+  margin-bottom: 3rem;
+}
+
+.buttonsContainer {
   display: flex;
   justify-content: space-around;
 }
 
-.header {
-  text-align: center;
-  font-weight: bold;
-  font-size: 2rem;
-}
-
-.button {
-  padding: 1rem 3rem;
-  color: white;
-  border: none;
-  border-radius: 0.6rem;
-  background-color: dodgerblue;
+.buttonsContainer > button:first-child {
+  margin-right: 6rem;
 }

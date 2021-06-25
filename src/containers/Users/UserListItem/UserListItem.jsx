@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { formatCPF } from '../../../utils/dataFormatter';
+import { formatCPF } from '@utils/dataFormatter';
 
 // import UserControls from '../UserControls/UserControls';
 

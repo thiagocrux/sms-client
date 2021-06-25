@@ -1,21 +1,22 @@
 import React, { useState, useEffect } from 'react';
 import { useHistory, useParams } from 'react-router-dom';
+import { CheckCircle, XCircle } from 'react-bootstrap-icons';
 import {
   ubsOptions,
   userInitialValues as INITIAL_VALUES,
-} from '../../../utils/formData';
-import api from '../../../utils/api';
+} from '@utils/formData';
+import api from '@utils/api';
 
-import Button from '../../../components/Common/Button/Button';
-import CancelationModal from '../../../components/Layout/Modals/CancelationModal/CancelationModal';
-import Checkbox from '../../../components/Layout/Form/Checkbox/Checkbox';
-import ConfirmationModal from '../../../components/Layout/Modals/ConfirmationModal/ConfirmationModal';
-import Divider from '../../../components/Layout/Form/Divider/Divider';
-import Form from '../../../components/Layout/Form/Form';
-import Heading from '../../../components/Common/Heading/Heading';
-import Input from '../../../components/Layout/Form/Input/Input';
-import Select from '../../../components/Layout/Form/Select/Select';
-import SubmitContainer from '../../../components/Layout/Form/SubmitContainer/SubmitContainer';
+import Button from '@components/Common/Buttons/Button/Button';
+import CancelationModal from '@components/Layout/Modals/CancelationModal/CancelationModal';
+import Checkbox from '@components/Layout/Form/Checkbox/Checkbox';
+import ConfirmationModal from '@components/Layout/Modals/ConfirmationModal/ConfirmationModal';
+import Divider from '@components/Layout/Form/Divider/Divider';
+import Form from '@components/Layout/Form/Form';
+import Heading from '@components/Common/Heading/Heading';
+import Input from '@components/Layout/Form/Input/Input';
+import Select from '@components/Layout/Form/Select/Select';
+import SubmitContainer from '@components/Layout/Form/SubmitContainer/SubmitContainer';
 
 import style from './UserForm.module.css';
 
@@ -164,17 +165,19 @@ export default function UserForm() {
         </Divider>
         <SubmitContainer>
           <Button
-            type="button"
-            action="cancel"
+            class="danger"
+            size="big"
             click={() => handleFormModal('cancel')}
           >
+            <XCircle />
             Cancelar
           </Button>
           <Button
-            type="button"
-            action="submit"
+            class="success"
+            size="big"
             click={() => handleFormModal('submit')}
           >
+            <CheckCircle />
             {isCreationForm ? 'Cadastrar' : 'Salvar'}
           </Button>
         </SubmitContainer>
