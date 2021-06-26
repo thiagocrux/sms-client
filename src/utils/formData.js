@@ -23,6 +23,9 @@ export const patientInitialValues = {
   phone: '',
   email: '',
   motherName: '',
+  fatherName: '',
+  notificationType: '',
+  isDeceased: false,
   zipCode: '',
   state: '',
   city: '',
@@ -55,14 +58,8 @@ export const examInitialValues = {
 };
 
 export const monitoringInitialValues = {
-  vdrl1Date: '',
-  vdrl1Titration: '',
-  vdrl2Date: '',
-  vdrl2Titration: '',
-  vdrl3Date: '',
-  vdrl3Titration: '',
-  partnerTreatment: false,
   observations: '',
+  partnerTreatment: false,
 };
 
 /* SELECT OPTIONS */
@@ -72,6 +69,12 @@ export const genderOptions = [
   'Cisgênero',
   'Transgênero',
   'Não-binário',
+];
+
+export const notificationTypeOptions = [
+  'Sífilis adquirida',
+  'Sífilis congênita',
+  'Sífilis gestante',
 ];
 
 export const medicationOptions = ['Penicilina', 'Doxiciclina', 'Ceftriaxona'];

@@ -13,7 +13,9 @@
     'cpf cpf cpf cpf socialName socialName socialName socialName socialName socialName socialName socialName'
     'birthDate birthDate birthDate birthDate phone phone phone phone email email email email'
     'sex sex sex sex gender gender gender gender sexuality sexuality sexuality sexuality'
-    'nationality nationality nationality nationality motherName motherName motherName motherName motherName motherName motherName motherName';
+    'nationality nationality nationality nationality motherName motherName motherName motherName motherName motherName motherName motherName'
+    'notificationType notificationType notificationType notificationType fatherName fatherName fatherName fatherName fatherName fatherName fatherName fatherName'
+    'isDeceased isDeceased isDeceased isDeceased isDeceased isDeceased isDeceased isDeceased isDeceased isDeceased isDeceased isDeceased';
 }
 
 .upperGridContainer > *:nth-child(1) {
@@ -62,6 +64,18 @@
 
 .upperGridContainer > *:nth-child(12) {
   grid-area: motherName;
+}
+
+.upperGridContainer > *:nth-child(13) {
+  grid-area: notificationType;
+}
+
+.upperGridContainer > *:nth-child(14) {
+  grid-area: fatherName;
+}
+
+.upperGridContainer > *:nth-child(15) {
+  grid-area: isDeceased;
 }
 
 /* Informações de endereço */

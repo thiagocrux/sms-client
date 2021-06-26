@@ -5,6 +5,7 @@ import api from '@utils/api';
 import {
   genderOptions,
   nationalityOptions,
+  notificationTypeOptions,
   patientInitialValues as INITIAL_VALUES,
   sexOptions,
   sexualityOptions,
@@ -12,6 +13,7 @@ import {
 
 import Button from '@components/Common/Buttons/Button/Button';
 import CancelationModal from '@components/Layout/Modals/CancelationModal/CancelationModal';
+import Checkbox from '@components/Layout/Form/Checkbox/Checkbox';
 import ConfirmationModal from '@components/Layout/Modals/ConfirmationModal/ConfirmationModal';
 import Divider from '@components/Layout/Form/Divider/Divider';
 import Form from '@components/Layout/Form/Form';
@@ -210,6 +212,34 @@ export default function PatientForm() {
               value={patientInformation.motherName}
               change={(event) =>
                 handleChange('motherName', event.currentTarget.value)
+              }
+            />
+            <Select
+              label="Tipo de notificação"
+              name="notificationType"
+              options={notificationTypeOptions}
+              value={patientInformation.notificationType}
+              change={(event) =>
+                handleChange('notificationType', event.currentTarget.value)
+              }
+            />
+            <Input
+              label="Nome do pai do paciente"
+              type="text"
+              name="fatherName"
+              placeholder="Insira o nome do pai do paciente"
+              value={patientInformation.fatherName}
+              change={(event) =>
+                handleChange('fatherName', event.currentTarget.value)
+              }
+            />
+            <Checkbox
+              label="Paciente falecido"
+              type="checkbox"
+              name="isDeceased"
+              checked={patientInformation.isDeceased}
+              change={(event) =>
+                handleChange('isDeceased', event.currentTarget.checked)
               }
             />
           </div>
