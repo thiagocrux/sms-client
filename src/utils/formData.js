@@ -24,7 +24,7 @@ export const patientInitialValues = {
   email: '',
   motherName: '',
   fatherName: '',
-  notificationType: '',
+  monitoringType: '',
   isDeceased: false,
   zipCode: '',
   state: '',
@@ -57,9 +57,14 @@ export const examInitialValues = {
   onObservation: false,
 };
 
-export const monitoringInitialValues = {
+export const observationInitialValues = {
   observations: '',
   partnerTreatment: false,
+};
+
+export const notificationInitialValues = {
+  sinan: '',
+  observations: '',
 };
 
 /* SELECT OPTIONS */
@@ -71,7 +76,7 @@ export const genderOptions = [
   'Não-binário',
 ];
 
-export const notificationTypeOptions = [
+export const monitoringTypeOptions = [
   'Sífilis adquirida',
   'Sífilis congênita',
   'Sífilis gestante',

@@ -5,7 +5,7 @@ import api from '@utils/api';
 import {
   genderOptions,
   nationalityOptions,
-  notificationTypeOptions,
+  monitoringTypeOptions,
   patientInitialValues as INITIAL_VALUES,
   sexOptions,
   sexualityOptions,
@@ -72,7 +72,7 @@ export default function PatientForm() {
 
   function handleCancel() {
     setOpenCancelationModal(false);
-    history.push('/notifications');
+    history.push('/monitorings');
   }
 
   /* Save the input values in the state and then send to the database */
@@ -89,7 +89,7 @@ export default function PatientForm() {
           .patch(`/patients/${patientID}`, patientInformation)
           .then((response) => console.log(response));
     setOpenConfirmationModal(false);
-    history.push('/notifications');
+    history.push('/monitorings');
   }
 
   return (
@@ -216,11 +216,11 @@ export default function PatientForm() {
             />
             <Select
               label="Tipo de notificação"
-              name="notificationType"
-              options={notificationTypeOptions}
-              value={patientInformation.notificationType}
+              name="monitoringType"
+              options={monitoringTypeOptions}
+              value={patientInformation.monitoringType}
               change={(event) =>
-                handleChange('notificationType', event.currentTarget.value)
+                handleChange('monitoringType', event.currentTarget.value)
               }
             />
             <Input

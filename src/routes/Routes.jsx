@@ -9,11 +9,12 @@ import PatientForm from '../containers/Patients/PatientForm/PatientForm';
 import PatientFullInfo from '../containers/Patients/PatientFullInfo/PatientFullInfo';
 import PatientPageForSelectedPatient from '../containers/Patients/PatientPageForSelectedPatient/PatientPageForSelectedPatient';
 
-import NotificationPage from '../containers/Notifications/NotificationPage/NotificationPage';
-import NotificationPageForSelectedPatient from '../containers/Notifications/NotificationPageForSelectedPatient/NotificationPageForSelectedPatient';
-import MonitoringForm from '../containers/Notifications/NotificationForms/MonitoringForm/MonitoringForm';
-import TreatmentForm from '../containers/Notifications/NotificationForms/TreatmentForm/TreatmentForm';
-import ExamForm from '../containers/Notifications/NotificationForms/ExamForm/ExamForm';
+import MonitoringPage from '../containers/Monitorings/MonitoringPage/MonitoringPage';
+import MonitoringPageForSelectedPatient from '../containers/Monitorings/MonitoringPageForSelectedPatient/MonitoringPageForSelectedPatient';
+import NotificationForm from '../containers/Monitorings/MonitoringForms/NotificationForm/NotificationForm';
+import ObservationForm from '../containers/Monitorings/MonitoringForms/ObservationForm/ObservationForm';
+import TreatmentForm from '../containers/Monitorings/MonitoringForms/TreatmentForm/TreatmentForm';
+import ExamForm from '../containers/Monitorings/MonitoringForms/ExamForm/ExamForm';
 
 import UserPage from '../containers/Users/UserPage/UserPage';
 import UserForm from '../containers/Users/UserForm/UserForm';
@@ -34,47 +35,59 @@ function Routes() {
 
       {/* NOTIFICATION ROUTES */}
 
-      <Route exact path="/notifications" component={NotificationPage} />
+      <Route exact path="/monitorings" component={MonitoringPage} />
 
       <Route
         exact
-        path="/notifications/patients/:patientID"
-        component={NotificationPageForSelectedPatient}
+        path="/monitorings/patients/:patientID"
+        component={MonitoringPageForSelectedPatient}
       />
 
       <Route
         exact
-        path="/notifications/patients/:patientID/exams/new"
+        path="/monitorings/patients/:patientID/exams/new"
         component={ExamForm}
       />
 
       <Route
         exact
-        path="/notifications/patients/:patientID/exams/:examID/edit"
+        path="/monitorings/patients/:patientID/exams/:examID/edit"
         component={ExamForm}
       />
 
       <Route
         exact
-        path="/notifications/patients/:patientID/monitorings/new"
-        component={MonitoringForm}
+        path="/monitorings/patients/:patientID/observations/new"
+        component={ObservationForm}
       />
 
       <Route
         exact
-        path="/notifications/patients/:patientID/monitorings/:monitoringID/edit"
-        component={MonitoringForm}
+        path="/monitorings/patients/:patientID/observations/:observationID/edit"
+        component={ObservationForm}
       />
 
       <Route
         exact
-        path="/notifications/patients/:patientID/treatments/new"
+        path="/monitorings/patients/:patientID/notifications/new"
+        component={NotificationForm}
+      />
+
+      <Route
+        exact
+        path="/monitorings/patients/:patientID/notifications/:notificationID/edit"
+        component={NotificationForm}
+      />
+
+      <Route
+        exact
+        path="/monitorings/patients/:patientID/treatments/new"
         component={TreatmentForm}
       />
 
       <Route
         exact
-        path="/notifications/patients/:patientID/treatments/:treatmentID/edit"
+        path="/monitorings/patients/:patientID/treatments/:treatmentID/edit"
         component={TreatmentForm}
       />
 

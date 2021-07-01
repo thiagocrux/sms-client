@@ -88,7 +88,7 @@ export default function PatientFullInfo() {
           <Info
             class="regular"
             label="Tipo de notificação"
-            info={patient.notificationType}
+            info={patient.monitoringType}
           />
           <Info
             class="regular"

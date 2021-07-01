@@ -2,27 +2,27 @@ import React from 'react';
 import { PenFill, TrashFill } from 'react-bootstrap-icons';
 import { useHistory } from 'react-router-dom';
 
-import style from './NotificationListItemControls.module.css';
+import style from './MonitoringListItemControls.module.css';
 
-export default function NotificationListItemControls({
+export default function MonitoringListItemControls({
   patientID,
-  notificationType,
-  notificationID,
+  monitoringType,
+  monitoringID,
 }) {
   const history = useHistory();
-  const url = `/notifications/patients/${patientID}/${notificationType}s/${notificationID}/edit`;
+  const url = `/monitorings/patients/${patientID}/${monitoringType}s/${monitoringID}/edit`;
 
   function handleDelete() {
     // api
     //   .delete(
-    //     `/notifications/patients/${patientID}/${notificationType}s/${notificationID}/edit`
+    //     `/monitorings/patients/${patientID}/${monitoringType}s/${monitoringID}/edit`
     //   )
     //   .then((response) => console.log(response));
-    console.log('Delete notification: ' + notificationID);
+    console.log('Delete monitoring: ' + monitoringID);
   }
 
   return (
-    <div className={style.notificationControls}>
+    <div className={style.monitoringControls}>
       <button
         className={`${style.button} ${style.edit}`}
         onClick={() => history.push(url)}

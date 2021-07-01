@@ -5,6 +5,7 @@ import Joi from 'joi';
 import {
   medicationOptions,
   treatmentInitialValues as INITIAL_VALUES,
+  ubsOptions,
 } from '@utils/formData';
 import { validate } from '@utils/helpers';
 import api from '@utils/api';
@@ -100,18 +101,23 @@ export default function TreatmentForm() {
 
   function handleSubmit() {
     isCreationForm
-      ? api.post(`/patients/${patientID}/treatments`, treatmentInformation)
-      : api.patch(
-          `/patients/${patientID}/treatments/${treatmentID}`,
-          treatmentInformation
-        );
+      ? api
+          .post(`/patients/${patientID}/treatments`, treatmentInformation)
+          .then((response) => setTreatmentInformation(response.data.treatment))
+      : api
+          .patch(
+            `/patients/${patientID}/treatments/${treatmentID}`,
+            treatmentInformation
+          )
+          .then((response) => setTreatmentInformation(response.data.treatment));
+
     setOpenConfirmationModal(false);
     history.push(`/patients/${patientID}`);
   }
 
   function handleCancel() {
     setOpenCancelationModal(false);
-    history.push('/notifications');
+    history.push('/monitorings');
   }
 
   return (
@@ -136,18 +142,17 @@ export default function TreatmentForm() {
             >
               {errorMessage('medication')}
             </Select>
-            <Input
+            <Select
               label="Localização da UBS"
-              type="text"
               name="ubsLocation"
-              placeholder="Insira a localização da UBS"
+              options={ubsOptions}
               value={treatmentInformation.ubsLocation}
               change={(event) =>
                 handleChange('ubsLocation', event.currentTarget.value)
               }
             >
               {errorMessage('ubsLocation')}
-            </Input>
+            </Select>
             <Input
               label="Data"
               type="date"

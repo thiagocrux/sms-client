@@ -4,9 +4,9 @@ import api from '@utils/api';
 import PatientList from '../../Patients/PatientList/PatientList';
 import PatientSearchForm from '../../Patients/PatientSearchForm/PatientSearchForm';
 
-import style from './NotificationPage.module.css';
+import style from './MonitoringPage.module.css';
 
-export default function NotificationPage() {
+export default function MonitoringPage() {
   const [patients, setPatients] = useState([]);
   const [filteredPatients, setFilteredPatients] = useState([]);
   const [search, setSearch] = useState({
@@ -46,7 +46,7 @@ export default function NotificationPage() {
   };
 
   return (
-    <div className={style.notification}>
+    <div className={style.monitoring}>
       <PatientSearchForm
         formHeader="Localize o paciente que será notificado"
         handleSubmit={handleSubmit}

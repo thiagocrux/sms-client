@@ -13,10 +13,6 @@ import style from './PatientSelected.module.css';
 function PatientInfo({ patient }) {
   const history = useHistory();
 
-  function deletePatient() {
-    console.log(`Paciente "${patient._id}" deletado!`);
-  }
-
   return (
     <div className={style.selectedPatientCard}>
       <Card>
@@ -34,15 +30,7 @@ function PatientInfo({ patient }) {
               class="highlight"
             />
             <Info label="CPF" info={formatCPF(patient.cpf)} class="highlight" />
-            <Info
-              label="Nome"
-              info={
-                patient.socialName !== ''
-                  ? `${patient.socialName} (Nome social)`
-                  : patient.name
-              }
-              class="highlight"
-            />
+            <Info label="Nome" info={patient.name} class="highlight" />
           </div>
           <div className={style.footer}>
             <Button
@@ -55,16 +43,16 @@ function PatientInfo({ patient }) {
             </Button>
             <Button
               size="medium"
-              class="success"
+              class="danger"
               click={() => history.push(`/patients/${patient._id}/edit`)}
             >
               <PencilFill />
               Editar paciente
             </Button>
-            <Button size="medium" class="danger" click={deletePatient}>
+            {/* <Button size="medium" class="danger" click={deletePatient}>
               <TrashFill />
               Excluir paciente
-            </Button>
+            </Button> */}
           </div>
         </div>
       </Card>

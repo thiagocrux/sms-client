@@ -51,12 +51,12 @@ export default function Navigation() {
         <div className={style.divContainer}>
           <NavLink
             exact
-            to="/notifications"
+            to="/monitorings"
             className={style.link}
             activeStyle={activeStyle}
           >
             <JournalMedical className={style.icon} />
-            Notificações
+            Monitoramento
           </NavLink>
         </div>
         <div className={style.divContainer}>

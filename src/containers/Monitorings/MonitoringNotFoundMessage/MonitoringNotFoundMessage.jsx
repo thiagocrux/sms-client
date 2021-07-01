@@ -2,9 +2,9 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { ExclamationCircle, PlusCircleFill } from 'react-bootstrap-icons';
 
-import style from './NotificationNotFoundMessage.module.css';
+import style from './MonitoringNotFoundMessage.module.css';
 
-export default function NotificationNotFoundMessage({ link, subject }) {
+export default function MonitoringNotFoundMessage({ link, subject }) {
   return (
     <div className={style.messageBox}>
       <p>

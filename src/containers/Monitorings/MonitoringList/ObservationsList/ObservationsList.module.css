@@ -44,44 +44,19 @@
   display: grid;
   column-gap: 2rem;
   row-gap: 2.2rem;
-  grid-template-columns: repeat(3, 1fr);
-  grid-template-rows: repeat(3, auto);
+  grid-template-columns: repeat(1, 1fr);
+  grid-template-rows: repeat(2, auto);
   grid-template-areas:
-    'vdrl1Titration vdrl2Titration vdrl3Titration'
-    'vdrl1Date vdrl2Date vdrl3Date'
-    'partnerTreatment observations observations';
+    'observations'
+    'partnerTreatment';
 }
 
 .infoContainer > *:nth-child(1) {
-  grid-area: vdrl1Titration;
+  grid-area: observations;
 }
 
 .infoContainer > *:nth-child(2) {
-  grid-area: vdrl1Date;
-}
-
-.infoContainer > *:nth-child(3) {
-  grid-area: vdrl2Titration;
-}
-
-.infoContainer > *:nth-child(4) {
-  grid-area: vdrl2Date;
-}
-
-.infoContainer > *:nth-child(5) {
-  grid-area: vdrl3Titration;
-}
-
-.infoContainer > *:nth-child(6) {
-  grid-area: vdrl3Date;
-}
-
-.infoContainer > *:nth-child(7) {
   grid-area: partnerTreatment;
-}
-
-.infoContainer > *:nth-child(8) {
-  grid-area: observations;
 }
 
 .infoContainer > * > p {

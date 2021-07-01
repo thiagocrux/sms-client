@@ -14,7 +14,7 @@
     'birthDate birthDate birthDate birthDate phone phone phone phone email email email email'
     'sex sex sex sex gender gender gender gender sexuality sexuality sexuality sexuality'
     'nationality nationality nationality nationality motherName motherName motherName motherName motherName motherName motherName motherName'
-    'notificationType notificationType notificationType notificationType fatherName fatherName fatherName fatherName fatherName fatherName fatherName fatherName'
+    'monitoringType monitoringType monitoringType monitoringType fatherName fatherName fatherName fatherName fatherName fatherName fatherName fatherName'
     'isDeceased isDeceased isDeceased isDeceased isDeceased isDeceased isDeceased isDeceased isDeceased isDeceased isDeceased isDeceased';
 }
 
@@ -67,7 +67,7 @@
 }
 
 .upperGridContainer > *:nth-child(13) {
-  grid-area: notificationType;
+  grid-area: monitoringType;
 }
 
 .upperGridContainer > *:nth-child(14) {

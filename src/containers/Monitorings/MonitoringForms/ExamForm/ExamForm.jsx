@@ -113,7 +113,7 @@ export default function ExamForm() {
 
   function handleCancel() {
     setOpenCancelationModal(false);
-    history.push('/notifications');
+    history.push('/monitorings');
   }
 
   /* Save the input values in the state and then send to the database */
@@ -121,10 +121,11 @@ export default function ExamForm() {
     isCreationForm
       ? api
           .post(`/patients/${patientID}/exams`, examInformation)
-          .then((response) => console.log(response))
+          .then((response) => setExamInformation(response.data.exam))
       : api
           .patch(`/patients/${patientID}/exams/${examID}`, examInformation)
-          .then((response) => console.log(response));
+          .then((response) => setExamInformation(response.data.exam));
+
     setOpenConfirmationModal(false);
     history.push(`/patients/${patientID}`);
   }

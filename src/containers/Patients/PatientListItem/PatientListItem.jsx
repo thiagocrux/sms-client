@@ -11,7 +11,7 @@ import style from './PatientListItem.module.css';
 export default function PatientListItem({ patient }) {
   const { _id, susCardNumber, cpf, name, socialName, birthDate } = patient;
   const location = useLocation();
-  const url = location.pathname === '/patients' ? '' : '/notifications';
+  const url = location.pathname === '/patients' ? '' : '/monitorings';
 
   return (
     <Link

@@ -3,46 +3,46 @@ import { useHistory, useParams } from 'react-router-dom';
 import Joi from 'joi';
 import { validate } from '@utils/helpers';
 import api from '@utils/api';
-import { monitoringInitialValues as INITIAL_VALUES } from '@utils/formData';
+import { notificationInitialValues as INITIAL_VALUES } from '@utils/formData';
 import { CheckCircle, XCircle } from 'react-bootstrap-icons';
 
 import Button from '@components/Common/Buttons/Button/Button';
 import CancelationModal from '@components/Layout/Modals/CancelationModal/CancelationModal';
-import Checkbox from '@components/Layout/Form/Checkbox/Checkbox';
 import ConfirmationModal from '@components/Layout/Modals/ConfirmationModal/ConfirmationModal';
 import Divider from '@components/Layout/Form/Divider/Divider';
 import Form from '@components/Layout/Form/Form';
 import Heading from '@components/Common/Heading/Heading';
+import Input from '@components/Layout/Form/Input/Input';
 import SubmitContainer from '@components/Layout/Form/SubmitContainer/SubmitContainer';
 import Textarea from '@components/Layout/Form/Textarea/Textarea';
 
-// import style from './MonitoringForm.module.css';
+// import style from './ObservationForm.module.css';
 
-const monitoringSchema = Joi.object({
-  partnerTreatment: Joi.boolean().required(),
-  observations: Joi.string().required(),
+const notificationSchema = Joi.object({
+  sinan: Joi.string().required(),
+  observations: Joi.string().allow(''),
 });
 
-export default function MonitoringForm() {
+export default function ObservationForm() {
   const [isCreationForm, setIsCreationForm] = useState(true);
   const [openConfirmationModal, setOpenConfirmationModal] = useState(false);
   const [openCancelationModal, setOpenCancelationModal] = useState(false);
-  const [monitoringInformation, setMonitoringInformation] =
+  const [notificationInformation, setNotificationInformation] =
     useState(INITIAL_VALUES);
 
   const [isValid, setIsValid] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [formErrors, setFormErrors] = useState([]);
 
-  const { monitoringID, patientID } = useParams();
+  const { notificationID, patientID } = useParams();
   const history = useHistory();
 
   /* Set the type of form on the first render */
   useEffect(() => {
     handleFormType();
     validate(
-      monitoringSchema,
-      monitoringInformation,
+      notificationSchema,
+      notificationInformation,
       setIsValid,
       setFormErrors
     );
@@ -54,12 +54,12 @@ export default function MonitoringForm() {
 
   useEffect(() => {
     validate(
-      monitoringSchema,
-      monitoringInformation,
+      notificationSchema,
+      notificationInformation,
       setIsValid,
       setFormErrors
     );
-  }, [monitoringInformation]);
+  }, [notificationInformation]);
 
   const errorMessage = (field) => {
     const error = [...formErrors].find(({ label }) => label === field);
@@ -72,25 +72,27 @@ export default function MonitoringForm() {
 
   /* Input handlers */
   const handleChange = (field, value) => {
-    setMonitoringInformation({ ...monitoringInformation, [field]: value });
+    setNotificationInformation({ ...notificationInformation, [field]: value });
   };
 
   /* Check the existence of params and set the type of form */
   function handleFormType() {
-    if (monitoringID && isCreationForm) {
+    if (notificationID && isCreationForm) {
       setIsCreationForm(false);
       api
-        .get(`/patients/${patientID}/monitorings/${monitoringID}`)
-        .then((response) => setMonitoringInformation(response.data.monitoring));
-      setInputValues(monitoringInformation);
-    } else if (!monitoringID && !isCreationForm) {
+        .get(`/patients/${patientID}/monitorings/${notificationID}`)
+        .then((response) =>
+          setNotificationInformation(response.data.notification)
+        );
+      setInputValues(notificationInformation);
+    } else if (!notificationID && !isCreationForm) {
       setIsCreationForm(true);
     }
   }
 
   /* Insert the values of the object in the inputs in case of an update */
   function setInputValues() {
-    setMonitoringInformation(monitoringInformation);
+    setNotificationInformation(notificationInformation);
   }
 
   function handleFormModal(action) {
@@ -99,7 +101,7 @@ export default function MonitoringForm() {
     if (isValid) {
       if (action === 'submit') {
         setOpenConfirmationModal(true);
-        console.log(monitoringInformation);
+        console.log(notificationInformation);
       } else if (action === 'cancel') {
         setOpenCancelationModal(true);
       }
@@ -108,19 +110,19 @@ export default function MonitoringForm() {
 
   function handleCancel() {
     setOpenCancelationModal(false);
-    history.push('/notifications');
+    history.push('/monitorings');
   }
 
   /* Save the input values in the state and then send to the database */
   function handleSubmit() {
     isCreationForm
       ? api
-          .post(`/patients/${patientID}/monitorings`, monitoringInformation)
+          .post(`/patients/${patientID}/notifications`, notificationInformation)
           .then((response) => console.log(response))
       : api
           .patch(
-            `/patients/${patientID}/monitorings/${monitoringID}`,
-            monitoringInformation
+            `/patients/${patientID}/notifications/${notificationID}`,
+            notificationInformation
           )
           .then((response) => console.log(response));
     setOpenConfirmationModal(false);
@@ -130,31 +132,30 @@ export default function MonitoringForm() {
   return (
     <>
       <Heading size="huge" align="center" margin="big">
-        {isCreationForm ? 'Cadastro' : 'Atualização'} de monitoramento
+        {isCreationForm ? 'Cadastro' : 'Atualização'} de notificação
       </Heading>
       <Form>
         <Divider>
-          <Heading size="small" align="start" margin="tiny">
-            Outras observações
-          </Heading>
+          <Input
+            label="SINAN"
+            name="sinan"
+            placeholder="Insira o número do SINAN"
+            value={notificationInformation.sinan}
+            change={(event) => handleChange('sinan', event.currentTarget.value)}
+          >
+            {errorMessage('sinan')}
+          </Input>
           <Textarea
-            name="observations"
-            placeholder="Insira as observações sobre o monitoramento"
-            value={monitoringInformation.observations}
+            label="Observações"
+            name="notifications"
+            placeholder="Caso seja necessário, insira as observações sobre a notificação."
+            value={notificationInformation.observations}
             change={(event) =>
               handleChange('observations', event.currentTarget.value)
             }
           >
             {errorMessage('observations')}
           </Textarea>
-          <Checkbox
-            label="Tratamento de parceiro"
-            name="partnerTreatment"
-            checked={monitoringInformation.partnerTreatment}
-            change={(event) =>
-              handleChange('partnerTreatment', event.currentTarget.checked)
-            }
-          />
         </Divider>
         <SubmitContainer>
           <Button
@@ -179,8 +180,8 @@ export default function MonitoringForm() {
         open={openConfirmationModal}
         message={
           isCreationForm
-            ? 'Confirmar o cadastro do monitoramento?'
-            : 'Confirmar alteração dos dados do monitoramento?'
+            ? 'Confirmar o cadastro da notificação?'
+            : 'Confirmar alteração dos dados da notificação?'
         }
         cancel={() => setOpenConfirmationModal(false)}
         confirm={handleSubmit}

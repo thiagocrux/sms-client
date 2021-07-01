@@ -3,11 +3,11 @@ import { useParams, useHistory } from 'react-router-dom';
 import api from '@utils/api';
 
 import PatientSelected from '../../Patients/PatientSelected/PatientSelected';
-import NotificationOptions from '../NotificationOptions/NotificationOptions';
+import MonitoringOptions from '../MonitoringOptions/MonitoringOptions';
 
-// import style from './NotificationPageForSelectedPatient.module.css';
+// import style from './MonitoringPageForSelectedPatient.module.css';
 
-export default function NotificationPageForSelectedPatient() {
+export default function MonitoringPageForSelectedPatient() {
   const [patient, setPatient] = useState();
   const { patientID } = useParams();
   const history = useHistory();
@@ -30,7 +30,7 @@ export default function NotificationPageForSelectedPatient() {
       {patient && (
         <>
           <PatientSelected patient={patient} />
-          <NotificationOptions isCreation={true} click={handleClick} />
+          <MonitoringOptions isCreation={true} click={handleClick} />
         </>
       )}
     </div>

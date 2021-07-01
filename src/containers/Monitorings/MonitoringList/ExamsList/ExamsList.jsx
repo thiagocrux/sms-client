@@ -1,10 +1,10 @@
 import React from 'react';
 import { useParams } from 'react-router';
-import { formatDate, formatDateTime } from '../../../../utils/dataFormatter';
+import { formatDate, formatDateTime } from '@utils/dataFormatter';
 
 import Heading from '@components/Common/Heading/Heading';
-import NotificationListItemControls from '../../NotificationListItemControls/NotificationListItemControls';
-import NotificationNotFoundMessage from '../../NotificationNotFoundMessage/NotificationNotFoundMessage';
+import MonitoringListItemControls from '../../MonitoringListItemControls/MonitoringListItemControls';
+import MonitoringNotFoundMessage from '../../MonitoringNotFoundMessage/MonitoringNotFoundMessage';
 
 import style from './ExamsList.module.css';
 
@@ -25,10 +25,10 @@ export default function ExamsList({ exams }) {
                 <p>{exam._id}</p>
               </div>
 
-              <NotificationListItemControls
-                notificationType={'exam'}
+              <MonitoringListItemControls
+                monitoringType={'exam'}
                 patientID={exam.patient}
-                notificationID={exam._id}
+                monitoringID={exam._id}
               />
             </div>
 
@@ -96,8 +96,8 @@ export default function ExamsList({ exams }) {
       </ul>
     </div>
   ) : (
-    <NotificationNotFoundMessage
-      link={`/notifications/patients/${patientID}/exams/new`}
+    <MonitoringNotFoundMessage
+      link={`/monitorings/patients/${patientID}/exams/new`}
       subject="exame"
     />
   );

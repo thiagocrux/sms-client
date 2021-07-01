@@ -3,8 +3,8 @@ import { useParams } from 'react-router-dom';
 import { formatDate, formatDateTime } from '../../../../utils/dataFormatter';
 
 import Heading from '@components/Common/Heading/Heading';
-import NotificationListItemControls from '../../NotificationListItemControls/NotificationListItemControls';
-import NotificationNotFoundMessage from '../../NotificationNotFoundMessage/NotificationNotFoundMessage';
+import MonitoringListItemControls from '../../MonitoringListItemControls/MonitoringListItemControls';
+import MonitoringNotFoundMessage from '../../MonitoringNotFoundMessage/MonitoringNotFoundMessage';
 
 import style from './TreatmentsList.module.css';
 
@@ -25,10 +25,10 @@ export default function TreatmentsList({ treatments }) {
                 <p>{treatment._id}</p>
               </div>
 
-              <NotificationListItemControls
-                notificationType={'treatment'}
+              <MonitoringListItemControls
+                monitoringType={'treatment'}
                 patientID={treatment.patient}
-                notificationID={treatment._id}
+                monitoringID={treatment._id}
               />
             </div>
 
@@ -78,8 +78,8 @@ export default function TreatmentsList({ treatments }) {
       </ul>
     </div>
   ) : (
-    <NotificationNotFoundMessage
-      link={`/notifications/patients/${patientID}/treatments/new`}
+    <MonitoringNotFoundMessage
+      link={`/monitorings/patients/${patientID}/treatments/new`}
       subject="tratamento"
     />
   );

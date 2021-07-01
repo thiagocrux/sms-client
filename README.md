@@ -1,6 +1,6 @@
 # Syphilis Monitoring System (Client)
 
-This system aims to help some professionals from health units in my hometown, facilitating the creation of notifications and monitoring of patients affected by syphilis. This project is not for profit, the people involved just want to increase knowledge in software development and help the community.
+This system aims to help some professionals from health units in my hometown, facilitating the creation of monitorings and monitoring of patients affected by syphilis. This project is not for profit, the people involved just want to increase knowledge in software development and help the community.
 
 ## :toolbox: Built With
 
