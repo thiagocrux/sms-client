@@ -124,7 +124,7 @@ export default function ExamForm() {
           .then((response) => setExamInformation(response.data.exam));
 
     setOpenConfirmationModal(false);
-    history.push(`/patients/${patientID}`);
+    history.goBack();
   }
 
   return (

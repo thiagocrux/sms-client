@@ -89,7 +89,7 @@ export default function PatientForm() {
           .patch(`/patients/${patientID}`, patientInformation)
           .then((response) => console.log(response));
     setOpenConfirmationModal(false);
-    history.push('/monitorings');
+    history.goBack();
   }
 
   return (

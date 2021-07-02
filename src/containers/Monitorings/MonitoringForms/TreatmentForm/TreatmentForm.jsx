@@ -110,7 +110,7 @@ export default function TreatmentForm() {
           .then((response) => setTreatmentInformation(response.data.treatment));
 
     setOpenConfirmationModal(false);
-    history.push(`/patients/${patientID}`);
+    history.goBack();
   }
 
   function handleCancel() {

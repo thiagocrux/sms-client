@@ -124,7 +124,7 @@ export default function ObservationForm() {
           )
           .then((response) => console.log(response));
     setOpenConfirmationModal(false);
-    history.push(`/patients/${patientID}`);
+    history.goBack();
   }
 
   return (
