@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useParams, useHistory } from 'react-router-dom';
 import { CheckCircle, XCircle } from 'react-bootstrap-icons';
-import api from '@utils/api';
+import api from '../../../utils/api';
 import {
   genderOptions,
   nationalityOptions,
@@ -9,19 +9,19 @@ import {
   patientInitialValues as INITIAL_VALUES,
   sexOptions,
   sexualityOptions,
-} from '@utils/formData';
+} from '../../../utils/formData';
 
-import Button from '@components/Common/Buttons/Button/Button';
-import CancelationModal from '@components/Layout/Modals/CancelationModal/CancelationModal';
-import Checkbox from '@components/Layout/Form/Checkbox/Checkbox';
-import ConfirmationModal from '@components/Layout/Modals/ConfirmationModal/ConfirmationModal';
-import Divider from '@components/Layout/Form/Divider/Divider';
-import Form from '@components/Layout/Form/Form';
-import Heading from '@components/Common/Heading/Heading';
-import Input from '@components/Layout/Form/Input/Input';
-import Select from '@components/Layout/Form/Select/Select';
-import SubmitContainer from '@components/Layout/Form/SubmitContainer/SubmitContainer';
-import ThematicBreak from '@components/Common/ThematicBreak/ThematicBreak';
+import Button from '../../../components/Common/Buttons/Button/Button';
+import CancelationModal from '../../../components/Layout/Modals/CancelationModal/CancelationModal';
+import Checkbox from '../../../components/Layout/Form/Checkbox/Checkbox';
+import ConfirmationModal from '../../../components/Layout/Modals/ConfirmationModal/ConfirmationModal';
+import Divider from '../../../components/Layout/Form/Divider/Divider';
+import Form from '../../../components/Layout/Form/Form';
+import Heading from '../../../components/Common/Heading/Heading';
+import Input from '../../../components/Layout/Form/Input/Input';
+import Select from '../../../components/Layout/Form/Select/Select';
+import SubmitContainer from '../../../components/Layout/Form/SubmitContainer/SubmitContainer';
+import ThematicBreak from '../../../components/Common/ThematicBreak/ThematicBreak';
 
 import style from './PatientForm.module.css';
 

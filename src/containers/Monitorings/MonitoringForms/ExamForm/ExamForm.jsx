@@ -8,21 +8,21 @@ import {
   trepTestResultOptions,
   trepTestTypeOptions,
   ubsOptions,
-} from '@utils/formData';
-import api from '@utils/api';
-import { validate } from '@utils/helpers';
+} from '../../../../utils/formData';
+import api from '../../../../utils/api';
+import { validate } from '../../../../utils/helpers';
 
-import Button from '@components/Common/Buttons/Button/Button';
-import CancelationModal from '@components/Layout/Modals/CancelationModal/CancelationModal';
-import ConfirmationModal from '@components/Layout/Modals/ConfirmationModal/ConfirmationModal';
-import Divider from '@components/Layout/Form/Divider/Divider';
-import Form from '@components/Layout/Form/Form';
-import Heading from '@components/Common/Heading/Heading';
-import Input from '@components/Layout/Form/Input/Input';
-import Select from '@components/Layout/Form/Select/Select';
-import SubmitContainer from '@components/Layout/Form/SubmitContainer/SubmitContainer';
-import Textarea from '@components/Layout/Form/Textarea/Textarea';
-import ThematicBreak from '@components/Common/ThematicBreak/ThematicBreak';
+import Button from '../../../../components/Common/Buttons/Button/Button';
+import CancelationModal from '../../../../components/Layout/Modals/CancelationModal/CancelationModal';
+import ConfirmationModal from '../../../../components/Layout/Modals/ConfirmationModal/ConfirmationModal';
+import Divider from '../../../../components/Layout/Form/Divider/Divider';
+import Form from '../../../../components/Layout/Form/Form';
+import Heading from '../../../../components/Common/Heading/Heading';
+import Input from '../../../../components/Layout/Form/Input/Input';
+import Select from '../../../../components/Layout/Form/Select/Select';
+import SubmitContainer from '../../../../components/Layout/Form/SubmitContainer/SubmitContainer';
+import Textarea from '../../../../components/Layout/Form/Textarea/Textarea';
+import ThematicBreak from '../../../../components/Common/ThematicBreak/ThematicBreak';
 
 import style from './ExamForm.module.css';
 

@@ -1,15 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, useHistory } from 'react-router-dom';
 import { PenFill, TrashFill } from 'react-bootstrap-icons';
-import api from '@utils/api';
-import { formatDateTime } from '@utils/dataFormatter';
+import api from '../../../utils/api';
+import { formatDateTime } from '../../../utils/dataFormatter';
 
-import ButtonReturn from '@components/Common/Buttons/ButtonReturn/ButtonReturn';
-import Button from '@components/Common/Buttons/Button/Button';
-import Heading from '@components/Common/Heading/Heading';
-import Card from '@components/Common/Card/Card';
-import Info from '@components/Common/Info/Info';
-import ThematicBreak from '@components/Common/ThematicBreak/ThematicBreak';
+import ButtonReturn from '../../../components/Common/Buttons/ButtonReturn/ButtonReturn';
+import Button from '../../../components/Common/Buttons/Button/Button';
+import Heading from '../../../components/Common/Heading/Heading';
+import Card from '../../../components/Common/Card/Card';
+import Info from '../../../components/Common/Info/Info';
+import ThematicBreak from '../../../components/Common/ThematicBreak/ThematicBreak';
 
 import style from './UserFullInfo.module.css';
 

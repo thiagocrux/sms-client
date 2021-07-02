@@ -7,8 +7,8 @@ import {
   PersonFill,
 } from 'react-bootstrap-icons';
 
-import Heading from '@components/Common/Heading/Heading';
-import SearchItemNotFound from '@components/Common/SearchItemNotFound/SearchItemNotFound';
+import Heading from '../../../components/Common/Heading/Heading';
+import SearchItemNotFound from '../../../components/Common/SearchItemNotFound/SearchItemNotFound';
 import PatientListItem from '../PatientListItem/PatientListItem';
 
 import style from './PatientList.module.css';

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, useHistory } from 'react-router-dom';
-import api from '@utils/api';
+import api from '../../../utils/api';
 
 import PatientSelected from '../../Patients/PatientSelected/PatientSelected';
 import MonitoringOptions from '../MonitoringOptions/MonitoringOptions';

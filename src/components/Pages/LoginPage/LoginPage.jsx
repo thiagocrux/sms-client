@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
 // import { useHistory } from 'react-router-dom';
-import api from '@utils/api';
+import api from '../../../utils/api';
 
-import Button from '@components/Common/Buttons/Button/Button';
-import Field from '@components/Layout/Form/Field/Field';
-import Form from '@components/Layout/Form/Form';
-import SubmitContainer from '@components/Layout/Form/SubmitContainer/SubmitContainer';
+import Button from '../../../components/Common/Buttons/Button/Button';
+import Field from '../../../components/Layout/Form/Field/Field';
+import Form from '../../../components/Layout/Form/Form';
+import SubmitContainer from '../../../components/Layout/Form/SubmitContainer/SubmitContainer';
 
 export default function LoginPage() {
   const [credentials, setCredentials] = useState({ email: '', password: '' });

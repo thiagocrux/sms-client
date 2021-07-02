@@ -2,10 +2,10 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 
-import ExamsList from '@containers/Monitorings/MonitoringList/ExamsList/ExamsList';
-import NotificationsList from '@containers/Monitorings/MonitoringList/NotificationsList/NotificationsList';
-import ObservationsList from '@containers/Monitorings/MonitoringList/ObservationsList/ObservationsList';
-import TreatmentsList from '@containers/Monitorings/MonitoringList/TreatmentsList/TreatmentsList';
+import ExamsList from '../../../containers/Monitorings/MonitoringList/ExamsList/ExamsList';
+import NotificationsList from '../../../containers/Monitorings/MonitoringList/NotificationsList/NotificationsList';
+import ObservationsList from '../../../containers/Monitorings/MonitoringList/ObservationsList/ObservationsList';
+import TreatmentsList from '../../../containers/Monitorings/MonitoringList/TreatmentsList/TreatmentsList';
 import PatientSelected from '../PatientSelected/PatientSelected';
 import MonitoringOptions from '../../Monitorings/MonitoringOptions/MonitoringOptions';
 

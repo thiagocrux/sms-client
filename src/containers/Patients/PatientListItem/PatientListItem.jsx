@@ -4,7 +4,7 @@ import {
   formatCPF,
   formatDate,
   formatSUSCardNumber,
-} from '@utils/dataFormatter';
+} from '../../../utils/dataFormatter';
 
 import style from './PatientListItem.module.css';
 

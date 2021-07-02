@@ -1,20 +1,20 @@
 import React, { useEffect, useState } from 'react';
 import { useHistory, useParams } from 'react-router-dom';
 import Joi from 'joi';
-import { validate } from '@utils/helpers';
-import api from '@utils/api';
-import { observationInitialValues as INITIAL_VALUES } from '@utils/formData';
+import { validate } from '../../../../utils/helpers';
+import api from '../../../../utils/api';
+import { observationInitialValues as INITIAL_VALUES } from '../../../../utils/formData';
 import { CheckCircle, XCircle } from 'react-bootstrap-icons';
 
-import Button from '@components/Common/Buttons/Button/Button';
-import CancelationModal from '@components/Layout/Modals/CancelationModal/CancelationModal';
-import Checkbox from '@components/Layout/Form/Checkbox/Checkbox';
-import ConfirmationModal from '@components/Layout/Modals/ConfirmationModal/ConfirmationModal';
-import Divider from '@components/Layout/Form/Divider/Divider';
-import Form from '@components/Layout/Form/Form';
-import Heading from '@components/Common/Heading/Heading';
-import SubmitContainer from '@components/Layout/Form/SubmitContainer/SubmitContainer';
-import Textarea from '@components/Layout/Form/Textarea/Textarea';
+import Button from '../../../../components/Common/Buttons/Button/Button';
+import CancelationModal from '../../../../components/Layout/Modals/CancelationModal/CancelationModal';
+import Checkbox from '../../../../components/Layout/Form/Checkbox/Checkbox';
+import ConfirmationModal from '../../../../components/Layout/Modals/ConfirmationModal/ConfirmationModal';
+import Divider from '../../../../components/Layout/Form/Divider/Divider';
+import Form from '../../../../components/Layout/Form/Form';
+import Heading from '../../../../components/Common/Heading/Heading';
+import SubmitContainer from '../../../../components/Layout/Form/SubmitContainer/SubmitContainer';
+import Textarea from '../../../../components/Layout/Form/Textarea/Textarea';
 
 // import style from './ObservationForm.module.css';
 

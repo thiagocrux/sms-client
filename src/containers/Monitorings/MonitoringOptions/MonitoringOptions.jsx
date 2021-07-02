@@ -2,8 +2,8 @@ import React from 'react';
 import { useParams } from 'react-router-dom';
 import { ClipboardPlus, DropletHalf, Eye, Star } from 'react-bootstrap-icons';
 
-import Heading from '@components/Common/Heading/Heading';
-import Button from '@components/Common/Buttons/Button/Button';
+import Heading from '../../../components/Common/Heading/Heading';
+import Button from '../../../components/Common/Buttons/Button/Button';
 
 import style from './MonitoringOptions.module.css';
 

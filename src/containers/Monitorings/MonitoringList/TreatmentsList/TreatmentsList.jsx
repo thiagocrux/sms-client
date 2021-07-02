@@ -2,7 +2,7 @@ import React from 'react';
 import { useParams } from 'react-router-dom';
 import { formatDate, formatDateTime } from '../../../../utils/dataFormatter';
 
-import Heading from '@components/Common/Heading/Heading';
+import Heading from '../../../../components/Common/Heading/Heading';
 import MonitoringListItemControls from '../../MonitoringListItemControls/MonitoringListItemControls';
 import MonitoringNotFoundMessage from '../../MonitoringNotFoundMessage/MonitoringNotFoundMessage';
 
