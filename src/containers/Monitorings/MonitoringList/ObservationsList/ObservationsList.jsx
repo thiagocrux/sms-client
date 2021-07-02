@@ -17,48 +17,50 @@ export default function MonitoringsList({ observations }) {
         Lista de observações
       </Heading>
       <ul className={style.list}>
-        {observations.map((observation) => (
-          <li key={observation._id} className={style.item}>
-            <div className={style.header}>
-              <div className={style.itemID}>
-                <span>#</span>
-                <p>{observation._id}</p>
+        {observations
+          .map((observation) => (
+            <li key={observation._id} className={style.item}>
+              <div className={style.header}>
+                <div className={style.itemID}>
+                  <span>#</span>
+                  <p>{observation._id}</p>
+                </div>
+
+                <MonitoringListItemControls
+                  monitoringType={'observation'}
+                  patientID={observation.patient}
+                  monitoringID={observation._id}
+                />
               </div>
 
-              <MonitoringListItemControls
-                monitoringType={'observation'}
-                patientID={observation.patient}
-                monitoringID={observation._id}
-              />
-            </div>
+              <div className={style.infoContainer}>
+                <div className={style.info}>
+                  <span>Tratamento de parceiro?</span>
+                  <p>{observation.partnerTreatment ? 'Sim' : 'Não'}</p>
+                </div>
+                <div className={style.info}>
+                  <span>Observações</span>
+                  <p>{observation.observations}</p>
+                </div>
+              </div>
 
-            <div className={style.infoContainer}>
-              <div className={style.info}>
-                <span>Tratamento de parceiro?</span>
-                <p>{observation.partnerTreatment ? 'Sim' : 'Não'}</p>
+              <div className={style.footer}>
+                <div className={style.footerInfo}>
+                  <span>criado em:&nbsp;</span>
+                  <p>{formatDateTime(observation.createdAt)}</p>
+                </div>
+                <div className={style.footerInfo}>
+                  <span>atualizado em:&nbsp;</span>
+                  <p>
+                    {observation.updatedAt
+                      ? formatDateTime(observation.updatedAt)
+                      : '-'}
+                  </p>
+                </div>
               </div>
-              <div className={style.info}>
-                <span>Observações</span>
-                <p>{observation.observations}</p>
-              </div>
-            </div>
-
-            <div className={style.footer}>
-              <div className={style.footerInfo}>
-                <span>criado em:&nbsp;</span>
-                <p>{formatDateTime(observation.createdAt)}</p>
-              </div>
-              <div className={style.footerInfo}>
-                <span>atualizado em:&nbsp;</span>
-                <p>
-                  {observation.updatedAt
-                    ? formatDateTime(observation.updatedAt)
-                    : '-'}
-                </p>
-              </div>
-            </div>
-          </li>
-        ))}
+            </li>
+          ))
+          .reverse()}
       </ul>
     </div>
   ) : (

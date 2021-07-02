@@ -80,7 +80,7 @@ export default function ObservationForm() {
     if (observationID && isCreationForm) {
       setIsCreationForm(false);
       api
-        .get(`/patients/${patientID}/monitorings/${observationID}`)
+        .get(`/patients/${patientID}/observations/${observationID}`)
         .then((response) =>
           setObservationInformation(response.data.observation)
         );
@@ -98,13 +98,11 @@ export default function ObservationForm() {
   function handleFormModal(action) {
     setIsSubmitted(true);
 
-    if (isValid) {
-      if (action === 'submit') {
-        setOpenConfirmationModal(true);
-        console.log(observationInformation);
-      } else if (action === 'cancel') {
-        setOpenCancelationModal(true);
-      }
+    if (action === 'submit') {
+      setOpenConfirmationModal(true);
+      console.log(observationInformation);
+    } else if (action === 'cancel') {
+      setOpenCancelationModal(true);
     }
   }
 

@@ -89,13 +89,11 @@ export default function TreatmentForm() {
   function handleFormModal(action) {
     setIsSubmitted(true);
 
-    if (isValid) {
-      if (action === 'submit') {
-        setOpenConfirmationModal(true);
-        console.log(treatmentInformation);
-      } else if (action === 'cancel') {
-        setOpenCancelationModal(true);
-      }
+    if (action === 'submit') {
+      setOpenConfirmationModal(true);
+      console.log(treatmentInformation);
+    } else if (action === 'cancel') {
+      setOpenCancelationModal(true);
     }
   }
 

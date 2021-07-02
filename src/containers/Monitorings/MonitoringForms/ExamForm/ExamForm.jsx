@@ -14,7 +14,6 @@ import { validate } from '@utils/helpers';
 
 import Button from '@components/Common/Buttons/Button/Button';
 import CancelationModal from '@components/Layout/Modals/CancelationModal/CancelationModal';
-import Checkbox from '@components/Layout/Form/Checkbox/Checkbox';
 import ConfirmationModal from '@components/Layout/Modals/ConfirmationModal/ConfirmationModal';
 import Divider from '@components/Layout/Form/Divider/Divider';
 import Form from '@components/Layout/Form/Form';
@@ -35,8 +34,6 @@ const schema = Joi.object({
   nonTrepTestVDRL: Joi.string().required(),
   nonTrepTestTitration: Joi.string().required(),
   nonTrepTestDate: Joi.string().required(),
-  onTreatment: Joi.boolean().required(),
-  onObservation: Joi.boolean().required(),
   refObservations: Joi.string().allow(''),
 });
 
@@ -57,6 +54,7 @@ export default function ExamForm() {
   useEffect(() => {
     handleFormType();
     validate(schema, examInformation, setIsValid, setFormErrors);
+
     return () => {
       setIsSubmitted(false);
     };
@@ -102,12 +100,11 @@ export default function ExamForm() {
   function handleFormModal(action) {
     setIsSubmitted(true);
 
-    if (isValid) {
-      if (action === 'submit') {
-        setOpenConfirmationModal(true);
-      } else if (action === 'cancel') {
-        setOpenCancelationModal(true);
-      }
+    // if (isValid) {
+    if (action === 'submit') {
+      setOpenConfirmationModal(true);
+    } else if (action === 'cancel') {
+      setOpenCancelationModal(true);
     }
   }
 
@@ -237,26 +234,6 @@ export default function ExamForm() {
             >
               {errorMessage('refObservations')}
             </Textarea>
-          </div>
-          <div className={style.flexContainer}>
-            <Checkbox
-              label="Em tratamento"
-              type="checkbox"
-              name="onTreatment"
-              checked={examInformation.onTreatment}
-              change={(event) =>
-                handleChange('onTreatment', event.currentTarget.checked)
-              }
-            />
-            <Checkbox
-              label="Em monitoramento"
-              type="checkbox"
-              name="onMonitoring"
-              checked={examInformation.onMonitoring}
-              change={(event) =>
-                handleChange('onMonitoring', event.currentTarget.checked)
-              }
-            />
           </div>
         </Divider>
         <SubmitContainer>

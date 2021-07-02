@@ -17,48 +17,50 @@ export default function NotificationsList({ notifications }) {
         Lista de notificações
       </Heading>
       <ul className={style.list}>
-        {notifications.map((notification) => (
-          <li key={notification._id} className={style.item}>
-            <div className={style.header}>
-              <div className={style.itemID}>
-                <span>#</span>
-                <p>{notification._id}</p>
+        {notifications
+          .map((notification) => (
+            <li key={notification._id} className={style.item}>
+              <div className={style.header}>
+                <div className={style.itemID}>
+                  <span>#</span>
+                  <p>{notification._id}</p>
+                </div>
+
+                <MonitoringListItemControls
+                  monitoringType={'notification'}
+                  patientID={notification.patient}
+                  monitoringID={notification._id}
+                />
               </div>
 
-              <MonitoringListItemControls
-                monitoringType={'notification'}
-                patientID={notification.patient}
-                monitoringID={notification._id}
-              />
-            </div>
+              <div className={style.infoContainer}>
+                <div className={style.info}>
+                  <span>SINAN</span>
+                  <p>{notification.sinan}</p>
+                </div>
+                <div className={style.info}>
+                  <span>Observações sobre a notificação</span>
+                  <p>{notification.observations}</p>
+                </div>
+              </div>
 
-            <div className={style.infoContainer}>
-              <div className={style.info}>
-                <span>SINAN</span>
-                <p>{notification.sinan}</p>
+              <div className={style.footer}>
+                <div className={style.footerInfo}>
+                  <span>criado em:&nbsp;</span>
+                  <p>{formatDateTime(notification.createdAt)}</p>
+                </div>
+                <div className={style.footerInfo}>
+                  <span>atualizado em:&nbsp;</span>
+                  <p>
+                    {notification.updatedAt
+                      ? formatDateTime(notification.updatedAt)
+                      : '-'}
+                  </p>
+                </div>
               </div>
-              <div className={style.info}>
-                <span>Observações sobre a notificação</span>
-                <p>{notification.observations}</p>
-              </div>
-            </div>
-
-            <div className={style.footer}>
-              <div className={style.footerInfo}>
-                <span>criado em:&nbsp;</span>
-                <p>{formatDateTime(notification.createdAt)}</p>
-              </div>
-              <div className={style.footerInfo}>
-                <span>atualizado em:&nbsp;</span>
-                <p>
-                  {notification.updatedAt
-                    ? formatDateTime(notification.updatedAt)
-                    : '-'}
-                </p>
-              </div>
-            </div>
-          </li>
-        ))}
+            </li>
+          ))
+          .reverse()}
       </ul>
     </div>
   ) : (

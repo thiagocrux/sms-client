@@ -53,8 +53,6 @@ export const examInitialValues = {
   nonTrepTestTitration: '',
   nonTrepTestDate: '',
   refObservations: '',
-  onTreatment: false,
-  onObservation: false,
 };
 
 export const observationInitialValues = {
