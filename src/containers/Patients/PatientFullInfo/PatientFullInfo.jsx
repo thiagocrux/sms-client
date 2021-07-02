@@ -130,7 +130,7 @@ export default function PatientFullInfo() {
           <Info
             class="regular"
             label="Data de atualização"
-            info={patient.updatedAt && formatDateTime(patient.updatedAt)}
+            info={patient.updatedAt ? formatDateTime(patient.updatedAt) : '-'}
           />
         </div>
         <div className={style.patientControls}>
