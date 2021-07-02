@@ -45,7 +45,8 @@
   background-color: #809bce;
 }
 
-.success:hover {
+.success:hover,
+.success:focus {
   background-color: #4873c4;
 }
 
@@ -53,7 +54,8 @@
   background-color: #f67b75;
 }
 
-.danger:hover {
+.danger:hover,
+.danger:focus {
   background-color: #f25757;
   color: white;
 }
@@ -63,7 +65,8 @@
   color: #757575;
 }
 
-.default:hover {
+.default:hover,
+.default:focus {
   background-color: #757575;
   color: #dadada;
 }
