@@ -16,7 +16,7 @@ function PatientInfo({ patient }) {
   return (
     <div className={style.selectedPatientCard}>
       <Card>
-        <ButtonClose click={() => history.push('/patients/')} />
+        <ButtonClose click={() => history.goBack()} />
         <div className={style.gridContainer}>
           <div className={style.header}>
             <h1 className={style.heading}>
