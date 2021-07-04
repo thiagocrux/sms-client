@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useParams, useHistory } from 'react-router-dom';
 import { PenFill, TrashFill } from 'react-bootstrap-icons';
 import api from '@utils/api';
-import { formatDateTime } from '@utils/dataFormatter';
+import { formatCPF, formatDateTime } from '@utils/dataFormatter';
 
 import ButtonReturn from '@components/Common/Buttons/ButtonReturn/ButtonReturn';
 import Button from '@components/Common/Buttons/Button/Button';
@@ -20,6 +20,10 @@ export default function UserFullInfo() {
 
   useEffect(() => {
     api.get(`/users/${userID}`).then((response) => setUser(response.data.user));
+  }, []);
+
+  useEffect(() => {
+    api.get(`/users/${userID}`).then((response) => setUser(response.data.user));
   }, [userID]);
 
   return (
@@ -34,13 +38,28 @@ export default function UserFullInfo() {
         </Heading>
         <div className={style.personalInfoContainer}>
           <Info class="regular" label="Nome" info={user.name} />
-          <Info class="regular" label="CPF" info={user.cpf} />
+          <Info
+            class="regular"
+            label="CPF"
+            info={user.cpf && formatCPF(user.cpf)}
+          />
+          <Info
+            class="regular"
+            label="Matrícula de trabalho"
+            info={user.professionalRegistration}
+          />
+          <Info
+            class="regular"
+            label="Registro do conselho"
+            info={user.councilRegistration}
+          />
           <Info class="regular" label="Cargo" info={user.role} />
           <Info
             class="regular"
             label="Local de trabalho"
             info={user.workLocation}
           />
+          <Info class="regular" label="Telefone" info={user.phone} />
           <Info class="regular" label="E-mail" info={user.email} />
           <Info
             class="regular"
