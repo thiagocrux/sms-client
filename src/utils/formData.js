@@ -3,8 +3,11 @@
 export const userInitialValues = {
   name: '',
   cpf: '',
+  professionalRecord: '',
+  councilRegistration: '',
   role: '',
   workLocation: '',
+  phone: '',
   email: '',
   password: '',
   admin: '',
@@ -52,6 +55,8 @@ export const examInitialValues = {
   nonTrepTestVDRL: '',
   nonTrepTestTitration: '',
   nonTrepTestDate: '',
+  nonTrepOtherTest: '',
+  nonTrepOtherTestDate: '',
   refObservations: '',
 };
 
@@ -68,31 +73,67 @@ export const notificationInitialValues = {
 /* SELECT OPTIONS */
 
 export const genderOptions = [
-  'Agênero',
   'Cisgênero',
   'Transgênero',
   'Não-binário',
+  'Agênero',
+  'Não informado',
 ];
 
 export const monitoringTypeOptions = [
   'Sífilis adquirida',
   'Sífilis congênita',
-  'Sífilis gestante',
+  'Sífilis em gestante',
 ];
 
 export const medicationOptions = ['Penicilina', 'Doxiciclina', 'Ceftriaxona'];
 
-export const nationalityOptions = ['Brasileiro', 'Naturalizado', 'Outro'];
+export const nationalityOptions = ['Brasileira', 'Naturalizada', 'Outra'];
 
-export const sexOptions = ['Feminino', 'Masculino', 'Intersexo'];
+export const sexOptions = [
+  'Feminino',
+  'Masculino',
+  'Intersexo',
+  'Não informado',
+];
 
 export const sexualityOptions = [
-  'Assexual',
-  'Bissexual',
   'Heterossexual',
   'Homossexual',
+  'Bissexual',
+  'Assexual',
   'Outro',
-  'Não informado',
+  'Não informada',
+];
+
+export const stateOptions = [
+  'Acre',
+  'Alagoas',
+  'Amapá',
+  'Amazonas',
+  'Bahia',
+  'Ceará',
+  'Distrito Federal',
+  'Espírito Santo',
+  'Goiás',
+  'Maranhão',
+  'Mato Grosso',
+  'Mato Grosso do Sul',
+  'Minas Gerais',
+  'Pará',
+  'Paraíba',
+  'Paraná',
+  'Pernambuco',
+  'Piauí',
+  'Rio de Janeiro',
+  'Rio Grande do Norte',
+  'Rio Grande do Sul',
+  'Rondônia',
+  'Roraima',
+  'Santa Catarina',
+  'São Paulo',
+  'Sergipe',
+  'Tocantins',
 ];
 
 export const trepTestResultOptions = ['Reagente', 'Não-reagente'];
