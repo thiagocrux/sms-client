@@ -115,6 +115,29 @@ export default function UserForm() {
               change={(event) => handleChange('cpf', event.currentTarget.value)}
             />
             <Input
+              label="Matrícula do trabalhador"
+              type="text"
+              name="professionalRegistration"
+              placeholder="Insira a matrícula de trabalho do usuário"
+              value={userInformation.professionalRegistration}
+              change={(event) =>
+                handleChange(
+                  'professionalRegistration',
+                  event.currentTarget.value
+                )
+              }
+            />
+            <Input
+              label="Registro do conselho"
+              type="text"
+              name="councilRegistration"
+              placeholder="Insira o registro do usuário junto ao conselho da sua área"
+              value={userInformation.councilRegistration}
+              change={(event) =>
+                handleChange('councilRegistration', event.currentTarget.value)
+              }
+            />
+            <Input
               label="Cargo"
               type="text"
               name="role"
@@ -131,6 +154,16 @@ export default function UserForm() {
               value={userInformation.workLocation}
               change={(event) =>
                 handleChange('workLocation', event.currentTarget.value)
+              }
+            />
+            <Input
+              label="Telefone"
+              type="text"
+              name="phone"
+              placeholder="Insira o telefone do usuário"
+              value={userInformation.phone}
+              change={(event) =>
+                handleChange('phone', event.currentTarget.value)
               }
             />
             <Input
