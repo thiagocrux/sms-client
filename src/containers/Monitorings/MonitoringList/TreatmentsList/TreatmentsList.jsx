@@ -52,11 +52,11 @@ export default function TreatmentsList({ treatments }) {
                 </div>
                 <div className={style.info}>
                   <span>Informações de parceiro</span>
-                  <p>{treatment.partnerInfo}</p>
+                  <p>{treatment.partnerInfo || '-'}</p>
                 </div>
                 <div className={style.info}>
                   <span>Observações</span>
-                  <p>{treatment.observations}</p>
+                  <p>{treatment.observations || '-'}</p>
                 </div>
               </div>
 
