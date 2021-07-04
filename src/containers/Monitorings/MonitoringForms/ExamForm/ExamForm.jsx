@@ -34,6 +34,8 @@ const schema = Joi.object({
   nonTrepTestVDRL: Joi.string().required(),
   nonTrepTestTitration: Joi.string().required(),
   nonTrepTestDate: Joi.string().required(),
+  nonTrepOtherTest: Joi.string().allow(''),
+  nonTrepOtherTestDate: Joi.string().allow(''), //Branco se o anterior estiver em branco
   refObservations: Joi.string().allow(''),
 });
 
@@ -222,6 +224,29 @@ export default function ExamForm() {
               }
             >
               {errorMessage('nonTrepTestDate')}
+            </Input>
+            <Input
+              label="Teste alternativo"
+              type="text"
+              name="nonTrepOtherTest"
+              placeholder="Insira outro tipo de teste"
+              value={examInformation.nonTrepOtherTest}
+              change={(event) =>
+                handleChange('nonTrepOtherTest', event.currentTarget.value)
+              }
+            >
+              {errorMessage('nonTrepOtherTest')}
+            </Input>
+            <Input
+              label="Data do teste alternativo"
+              type="date"
+              name="nonTrepOtherTestDate"
+              value={examInformation.nonTrepOtherTestDate}
+              change={(event) =>
+                handleChange('nonTrepOtherTestDate', event.currentTarget.value)
+              }
+            >
+              {errorMessage('nonTrepOtherTestDate')}
             </Input>
             <Textarea
               label="Observações de referência e contra-referência"
