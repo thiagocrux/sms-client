@@ -1,12 +1,13 @@
 .gridContainer {
   display: grid;
   grid-template-columns: repeat(6, 1fr);
-  grid-template-rows: repeat(4, auto);
+  grid-template-rows: repeat(5, auto);
   column-gap: 2rem;
   grid-template-areas:
     'name name name name cpf cpf'
+    'professionalRegistration professionalRegistration professionalRegistration councilRegistration councilRegistration councilRegistration'
     'role role role workLocation workLocation workLocation'
-    'email email email password password password'
+    'phone phone email email password password'
     'admin admin admin admin admin admin';
 }
 
@@ -19,21 +20,33 @@
 }
 
 .gridContainer > *:nth-child(3) {
-  grid-area: role;
+  grid-area: professionalRegistration;
 }
 
 .gridContainer > *:nth-child(4) {
-  grid-area: workLocation;
+  grid-area: councilRegistration;
 }
 
 .gridContainer > *:nth-child(5) {
-  grid-area: email;
+  grid-area: role;
 }
 
 .gridContainer > *:nth-child(6) {
-  grid-area: password;
+  grid-area: workLocation;
 }
 
 .gridContainer > *:nth-child(7) {
+  grid-area: phone;
+}
+
+.gridContainer > *:nth-child(8) {
+  grid-area: email;
+}
+
+.gridContainer > *:nth-child(9) {
+  grid-area: password;
+}
+
+.gridContainer > *:nth-child(10) {
   grid-area: admin;
 }

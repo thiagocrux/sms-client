@@ -44,14 +44,17 @@
   display: grid;
   column-gap: 2rem;
   row-gap: 2.2rem;
-  grid-template-columns: repeat(8, 1fr);
-  grid-template-rows: repeat(5, auto);
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: repeat(8, auto);
   grid-template-areas:
-    'trepTestHeading trepTestHeading trepTestHeading trepTestHeading trepTestHeading trepTestHeading trepTestHeading trepTestHeading'
-    'trepTestType trepTestType trepTestResult trepTestResult trepTestLocation trepTestLocation trepTestDate trepTestDate'
-    'nonTrepTestHeading nonTrepTestHeading nonTrepTestHeading nonTrepTestHeading nonTrepTestHeading nonTrepTestHeading nonTrepTestHeading nonTrepTestHeading'
-    'nonTrepTestVDRL nonTrepTestVDRL nonTrepTestTitration nonTrepTestTitration onTreatment onTreatment onObservation onObservation'
-    'nonTrepTestDate nonTrepTestDate refObservations refObservations refObservations refObservations refObservations refObservations';
+    'trepTestHeading trepTestHeading'
+    'trepTestType trepTestResult'
+    'trepTestLocation trepTestDate'
+    'nonTrepTestHeading nonTrepTestHeading'
+    'nonTrepTestVDRL nonTrepTestTitration'
+    'nonTrepTestDate nonTrepTestDate'
+    'nonTrepOtherTest nonTrepOtherTestDate'
+    'refObservations refObservations';
 }
 
 .infoContainer > *:nth-child(1) {
@@ -91,15 +94,15 @@
 }
 
 .infoContainer > *:nth-child(10) {
-  grid-area: refObservations;
+  grid-area: nonTrepOtherTest;
 }
 
 .infoContainer > *:nth-child(11) {
-  grid-area: onTreatment;
+  grid-area: nonTrepOtherTestDate;
 }
 
 .infoContainer > *:nth-child(12) {
-  grid-area: onObservation;
+  grid-area: refObservations;
 }
 
 .infoContainer > * > p {
