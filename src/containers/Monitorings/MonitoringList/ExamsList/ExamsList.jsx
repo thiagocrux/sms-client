@@ -65,6 +65,18 @@ export default function ExamsList({ exams }) {
                   <p>{formatDate(exam.nonTrepTestDate)}</p>
                 </div>
                 <div className={style.info}>
+                  <span>Teste alternativo</span>
+                  <p>{exam.nonTrepOtherTest ? exam.nonTrepOtherTest : '-'}</p>
+                </div>
+                <div className={style.info}>
+                  <span>Data do teste alternativo</span>
+                  <p>
+                    {exam.nonTrepOtherTestDate
+                      ? formatDate(exam.nonTrepOtherTestDate)
+                      : '-'}
+                  </p>
+                </div>
+                <div className={style.info}>
                   <span>Observações de referência e contra-referência</span>
                   <p>
                     {exam.refObservations
