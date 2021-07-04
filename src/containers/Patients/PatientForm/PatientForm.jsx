@@ -24,6 +24,7 @@ import SubmitContainer from '@components/Layout/Form/SubmitContainer/SubmitConta
 import ThematicBreak from '@components/Common/ThematicBreak/ThematicBreak';
 
 import style from './PatientForm.module.css';
+import { stateOptions } from '../../../utils/formData';
 
 export default function PatientForm() {
   const [isCreationForm, setIsCreationForm] = useState('create');
@@ -135,7 +136,7 @@ export default function PatientForm() {
               label="Nome social"
               type="text"
               name="socialName"
-              placeholder="Insira o CPF do paciente"
+              placeholder="Insira o nome social do paciente"
               value={patientInformation.socialName}
               change={(event) =>
                 handleChange('socialName', event.currentTarget.value)
@@ -252,17 +253,16 @@ export default function PatientForm() {
               label="CEP"
               type="text"
               name="zipCode"
-              placeholder="Insira o CEP do paciente"
+              placeholder="Insira o CEP da residência"
               value={patientInformation.zipCode}
               change={(event) =>
                 handleChange('zipCode', event.currentTarget.value)
               }
             />
-            <Input
+            <Select
               label="Estado"
-              type="text"
               name="state"
-              placeholder="Insira o estado de residência"
+              options={stateOptions}
               value={patientInformation.state}
               change={(event) =>
                 handleChange('state', event.currentTarget.value)
@@ -299,7 +299,7 @@ export default function PatientForm() {
               }
             />
             <Input
-              label="Número da residência"
+              label="Número"
               type="text"
               name="houseNumber"
               placeholder="Insira o número da residência"
