@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import api from '@utils/api';
 
+import LoadingAnimation from '@components/Common/LoadingAnimation/LoadingAnimation';
 import PatientList from '../../Patients/PatientList/PatientList';
 import PatientSearchForm from '../../Patients/PatientSearchForm/PatientSearchForm';
 
@@ -13,11 +14,13 @@ export default function MonitoringPage() {
     criterion: 'susCardNumber',
     inputValue: '',
   });
+  const [loading, setIsLoading] = useState(true);
 
   useEffect(() => {
     api.get('/patients/').then((response) => {
       setPatients(response.data.patients);
     });
+    setIsLoading(false);
   }, []);
 
   useEffect(() => {
@@ -53,7 +56,11 @@ export default function MonitoringPage() {
         search={search}
         setSearch={setSearch}
       />
-      <PatientList filteredResult={filteredPatients} />
+      {loading ? (
+        <LoadingAnimation />
+      ) : (
+        <PatientList filteredResult={filteredPatients} />
+      )}
     </div>
   );
 }
