@@ -16,6 +16,8 @@ import ObservationForm from '../containers/Monitorings/MonitoringForms/Observati
 import TreatmentForm from '../containers/Monitorings/MonitoringForms/TreatmentForm/TreatmentForm';
 import ExamForm from '../containers/Monitorings/MonitoringForms/ExamForm/ExamForm';
 
+import ReportsPage from '../containers/Reports/ReportsPage/ReportsPage';
+
 import UserPage from '../containers/Users/UserPage/UserPage';
 import UserForm from '../containers/Users/UserForm/UserForm';
 import UserFullInfo from '../containers/Users/UserFullInfo/UserFullInfo';
@@ -120,6 +122,10 @@ function Routes() {
       <Route exact path="/users/:userID/edit" component={UserForm} />
 
       <Route exact path="/users/:userID/info" component={UserFullInfo} />
+
+      {/* REPORT ROUTES */}
+
+      <Route exact path="/reports" component={ReportsPage} />
 
       <Route component={PageNotFound} />
     </Switch>
