@@ -37,101 +37,82 @@ export default function FilteredStats({ stats, selectFilter }) {
         />
         <div>
           <div className={style.grid}>
-            <Info
-              class="regular"
-              label="Total de pacientes cadastrados"
-              info={stats && stats.numberOfPatients}
-            />
-            <Info
-              class="regular"
-              label="Pacientes do sexo feminino"
-              info={stats && stats.numberOfFemalePatient}
-            />
-            <Info
-              class="regular"
-              label="Pacientes do sexo masculino"
-              info={stats && stats.numberOfMalePatients}
-            />
-            <Info
-              class="regular"
-              label="Pacientes intersexuais"
-              info={stats && stats.numberOfIntersexPatients}
-            />
-            <Info
-              class="regular"
-              label="Casos de sífilis adquirida"
-              info={stats && stats.acquiredSyphilisOcurrences}
-            />
-            <Info
-              class="regular"
-              label="Casos de sífilis congênita"
-              info={stats && stats.congenitalSyphilisOcurrences}
-            />
-            <Info
-              class="regular"
-              label="Casos de sífilis em gestante"
-              info={stats && stats.gestationalSyphilisOcurrences}
-            />
-            <Info
-              class="regular"
-              label="Total de exames cadastrados"
-              info={stats && stats.numberOfExams}
-            />
-            <Info
-              class="regular"
-              label="Nº de testes rápidos"
-              info={stats && stats.numberOfQuickTests}
-            />
-            <Info
-              class="regular"
-              label="Nº de FTA-ABS IgMs"
-              info={stats && stats.numberOfIgMTests}
-            />
-            <Info
-              class="regular"
-              label="Nº de FTA-ABS IgGs"
-              info={stats && stats.numberOfIgGTests}
-            />
-            <Info
-              class="regular"
-              label="Nº de resultados reagentes"
-              info={stats && stats.numberOfReagentResults}
-            />
-            <Info
-              class="regular"
-              label="Nº de resultados não-reagentes"
-              info={stats && stats.numberOfNonReagentResults}
-            />
-            <Info
-              class="regular"
-              label="Total de notificações"
-              info={stats && stats.numberOfNotifications}
-            />
-            <Info
-              class="regular"
-              label="Total de observações cadastradas"
-              info={stats && stats.numberOfObservations}
-            />
-            <Info
-              class="regular"
-              label="Total de tratamentos cadastrados"
-              info={stats && stats.numberOfTreatments}
-            />
-            <Info
-              class="regular"
-              label="Tratamentos usando penicilina"
-              info={stats && stats.numberOfTreatmentsUsingPenilicillin}
-            />
-            <Info
-              class="regular"
-              label="Tratamentos usando doxiciclina"
-              info={stats && stats.numberOfTreatmentsUsingDoxycycline}
-            />
-            <Info
-              class="regular"
-              label="Tratamentos usando ceftriaxona"
-              info={stats && stats.numberOfTreatmentsUsingCeftriaxone}
-            />
+            <div>
+              <span>Pacientes cadastrados</span>
+              <p>{stats && stats.numberOfPatients}</p>
+            </div>
+            <div>
+              <span>Pacientes do sexo feminino</span>
+              <p>{stats && stats.numberOfFemalePatients}</p>
+            </div>
+            <div>
+              <span>Pacientes do sexo Masculino</span>
+              <p>{stats && stats.numberOfMalePatients}</p>
+            </div>
+            <div>
+              <span>Pacientes intersexuais</span>
+              <p>{stats && stats.numberOfIntersexPatients}</p>
+            </div>
+            <div>
+              <span>Casos de sífilis adquirida</span>
+              <p>{stats && stats.acquiredSyphilisOcurrences}</p>
+            </div>
+            <div>
+              <span>Casos de sífilis congênita</span>
+              <p>{stats && stats.congenitalSyphilisOcurrences}</p>
+            </div>
+            <div>
+              <span>Casos de sífilis em gestante</span>
+              <p>{stats && stats.gestationalSyphilisOcurrences}</p>
+            </div>
+            <div>
+              <span>Total de exames cadastrados</span>
+              <p>{stats && stats.numberOfExams}</p>
+            </div>
+            <div>
+              <span>Nº de testes rápidos</span>
+              <p>{stats && stats.numberOfQuickTests}</p>
+            </div>
+            <div>
+              <span>Nº de FTA-ABS IgMs</span>
+              <p>{stats && stats.numberOfIgMTests}</p>
+            </div>
+            <div>
+              <span>Nº de FTA-ABS IgGs</span>
+              <p>{stats && stats.numberOfIgGTests}</p>
+            </div>
+            <div>
+              <span>Nº de resultados reagentes</span>
+              <p>{stats && stats.numberOfReagentResults}</p>
+            </div>
+            <div>
+              <span>Nº de resultados não-reagentes</span>
+              <p>{stats && stats.numberOfNonReagentResults}</p>
+            </div>
+            <div>
+              <span>Total de notificações</span>
+              <p>{stats && stats.numberOfNotifications}</p>
+            </div>
+            <div>
+              <span>Total de observações cadastradas</span>
+              <p>{stats && stats.numberOfObservations}</p>
+            </div>
+            <div>
+              <span>Total de tratamentos cadastrados</span>
+              <p>{stats && stats.numberOfTreatments}</p>
+            </div>
+            <div>
+              <span>Tratamentos usando penicilina</span>
+              <p>{stats && stats.numberOfTreatmentsUsingPenilicillin}</p>
+            </div>
+            <div>
+              <span>Tratamentos usando doxiciclina</span>
+              <p>{stats && stats.numberOfTreatmentsUsingDoxycycline}</p>
+            </div>
+            <div>
+              <span>Tratamentos usando ceftriaxona</span>
+              <p>{stats && stats.numberOfTreatmentsUsingCeftriaxone}</p>
+            </div>
           </div>
         </div>
       </Card>

@@ -23,7 +23,7 @@ export default function GeneralStats({ stats }) {
           <Info
             class="regular"
             label="Pacientes do sexo feminino"
-            info={stats && stats.numberOfFemalePatient}
+            info={stats && stats.numberOfFemalePatients}
           />
           <Info
             class="regular"
