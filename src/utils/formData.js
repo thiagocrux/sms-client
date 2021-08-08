@@ -90,6 +90,30 @@ export const medicationOptions = ['Penicilina', 'Doxiciclina', 'Ceftriaxona'];
 
 export const nationalityOptions = ['Brasileira', 'Naturalizada', 'Outra'];
 
+export const raceOptions = [
+  'Parda',
+  'Branca',
+  'Preta',
+  'Indígena',
+  'Amarela',
+  'Não declarada',
+];
+
+export const schoolingOptions = [
+  'Analfabeto',
+  '1ª a 4ª série incompleta do EF (antigo primário ou 1º grau)',
+  '4ª série completa do EF (antigo primário ou 1º grau)',
+  '5ª a 8ª série incompleta do EF (antigo ginásio ou 1º grau)',
+  'Ensino fundamental completo (antigo ginásio ou 1º grau)',
+  'Ensino fundamental incompleto (antigo ginásio ou 1º grau)',
+  'Ensino médio incompleto (antigo colegial ou 2º grau)',
+  'Ensino médio completo (antigo colegial ou 2º grau)',
+  'Educação superior incompleta',
+  'Educação superior completa',
+  'Não se aplica',
+  'Não declarada',
+];
+
 export const sexOptions = [
   'Feminino',
   'Masculino',
