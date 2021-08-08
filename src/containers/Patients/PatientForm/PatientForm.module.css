@@ -7,11 +7,12 @@
 
 .upperGridContainer {
   grid-template-columns: repeat(12, 1fr);
-  grid-template-rows: repeat(5, auto);
+  grid-template-rows: repeat(6, auto);
   grid-template-areas:
     'susCardNumber susCardNumber susCardNumber susCardNumber name name name name name name name name'
     'cpf cpf cpf cpf socialName socialName socialName socialName socialName socialName socialName socialName'
     'birthDate birthDate birthDate birthDate phone phone phone phone email email email email'
+    'race race race race schooling schooling schooling schooling schooling schooling schooling schooling'
     'sex sex sex sex gender gender gender gender sexuality sexuality sexuality sexuality'
     'nationality nationality nationality nationality motherName motherName motherName motherName motherName motherName motherName motherName'
     'monitoringType monitoringType monitoringType monitoringType fatherName fatherName fatherName fatherName fatherName fatherName fatherName fatherName'
@@ -47,34 +48,42 @@
 }
 
 .upperGridContainer > *:nth-child(8) {
-  grid-area: sex;
+  grid-area: race;
 }
 
 .upperGridContainer > *:nth-child(9) {
-  grid-area: gender;
+  grid-area: schooling;
 }
 
 .upperGridContainer > *:nth-child(10) {
-  grid-area: sexuality;
+  grid-area: sex;
 }
 
 .upperGridContainer > *:nth-child(11) {
-  grid-area: nationality;
+  grid-area: gender;
 }
 
 .upperGridContainer > *:nth-child(12) {
-  grid-area: motherName;
+  grid-area: sexuality;
 }
 
 .upperGridContainer > *:nth-child(13) {
-  grid-area: monitoringType;
+  grid-area: nationality;
 }
 
 .upperGridContainer > *:nth-child(14) {
-  grid-area: fatherName;
+  grid-area: motherName;
 }
 
 .upperGridContainer > *:nth-child(15) {
+  grid-area: monitoringType;
+}
+
+.upperGridContainer > *:nth-child(16) {
+  grid-area: fatherName;
+}
+
+.upperGridContainer > *:nth-child(17) {
   grid-area: isDeceased;
 }
 
