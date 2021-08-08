@@ -24,7 +24,11 @@ import SubmitContainer from '@components/Layout/Form/SubmitContainer/SubmitConta
 import ThematicBreak from '@components/Common/ThematicBreak/ThematicBreak';
 
 import style from './PatientForm.module.css';
-import { stateOptions } from '../../../utils/formData';
+import {
+  raceOptions,
+  schoolingOptions,
+  stateOptions,
+} from '../../../utils/formData';
 
 export default function PatientForm() {
   const [isCreationForm, setIsCreationForm] = useState('create');
@@ -169,6 +173,24 @@ export default function PatientForm() {
               value={patientInformation.email}
               change={(event) =>
                 handleChange('email', event.currentTarget.value)
+              }
+            />
+            <Select
+              label="Raça/cor"
+              name="race"
+              options={raceOptions}
+              value={patientInformation.race}
+              change={(event) =>
+                handleChange('race', event.currentTarget.value)
+              }
+            />
+            <Select
+              label="Escolaridade"
+              name="schooling"
+              options={schoolingOptions}
+              value={patientInformation.schooling}
+              change={(event) =>
+                handleChange('schooling', event.currentTarget.value)
               }
             />
             <Select
