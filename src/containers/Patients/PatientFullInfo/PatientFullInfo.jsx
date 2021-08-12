@@ -71,6 +71,8 @@ export default function PatientFullInfo() {
             info={patient.phone && formatPhoneNumber(patient.phone)}
           />
           <Info class="regular" label="E-mail" info={patient.email} />
+          <Info class="regular" label="Raça/cor" info={patient.race} />
+          <Info class="regular" label="Escolaridade" info={patient.schooling} />
           <Info class="regular" label="Sexo" info={patient.sex} />
           <Info class="regular" label="Gênero" info={patient.gender} />
           <Info class="regular" label="Sexualidade" info={patient.sexuality} />
@@ -87,7 +89,7 @@ export default function PatientFullInfo() {
           />
           <Info
             class="regular"
-            label="Tipo de notificação"
+            label="Tipo de monitoramento"
             info={patient.monitoringType}
           />
           <Info
