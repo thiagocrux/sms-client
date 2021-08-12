@@ -1,12 +1,14 @@
 .personalInfoContainer {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  grid-template-rows: repeat(4, auto);
+  grid-template-rows: repeat(6, auto);
   grid-template-areas:
     'susCardNumber cpf name'
-    'birthDate nationality socialName'
+    'birthDate socialName race'
     'sex gender sexuality'
-    'phone email motherName';
+    'schooling nationality motherName'
+    'phone email fatherName'
+    'monitoringType isDeceased isDeceased';
   column-gap: 2rem;
   row-gap: 1.8rem;
   margin-bottom: 3.2rem;
@@ -25,11 +27,11 @@
 }
 
 .personalInfoContainer > *:nth-child(4) {
-  grid-area: socialName;
+  grid-area: birthDate;
 }
 
 .personalInfoContainer > *:nth-child(5) {
-  grid-area: birthDate;
+  grid-area: socialName;
 }
 
 .personalInfoContainer > *:nth-child(6) {
@@ -41,23 +43,43 @@
 }
 
 .personalInfoContainer > *:nth-child(8) {
-  grid-area: sex;
+  grid-area: race;
 }
 
 .personalInfoContainer > *:nth-child(9) {
-  grid-area: gender;
+  grid-area: schooling;
 }
 
 .personalInfoContainer > *:nth-child(10) {
-  grid-area: sexuality;
+  grid-area: sex;
 }
 
 .personalInfoContainer > *:nth-child(11) {
-  grid-area: nationality;
+  grid-area: gender;
 }
 
 .personalInfoContainer > *:nth-child(12) {
+  grid-area: sexuality;
+}
+
+.personalInfoContainer > *:nth-child(13) {
+  grid-area: nationality;
+}
+
+.personalInfoContainer > *:nth-child(14) {
   grid-area: motherName;
+}
+
+.personalInfoContainer > *:nth-child(15) {
+  grid-area: fatherName;
+}
+
+.personalInfoContainer > *:nth-child(16) {
+  grid-area: monitoringType;
+}
+
+.personalInfoContainer > *:nth-child(17) {
+  grid-area: isDeceased;
 }
 
 .addressInfoContainer {
