@@ -103,11 +103,10 @@ export const raceOptions = [
 
 export const schoolingOptions = [
   'Analfabeto',
-  '1ª a 4ª série incompleta do EF (antigo primário ou 1º grau)',
-  '4ª série completa do EF (antigo primário ou 1º grau)',
-  '5ª a 8ª série incompleta do EF (antigo ginásio ou 1º grau)',
+  '1ª a 4ª série incompleta do ensino fundamental (antigo primário ou 1º grau)',
+  '4ª série completa do ensino fundamental (antigo primário ou 1º grau)',
+  '5ª a 8ª série incompleta do ensino fundamental (antigo ginásio ou 1º grau)',
   'Ensino fundamental completo (antigo ginásio ou 1º grau)',
-  'Ensino fundamental incompleto (antigo ginásio ou 1º grau)',
   'Ensino médio incompleto (antigo colegial ou 2º grau)',
   'Ensino médio completo (antigo colegial ou 2º grau)',
   'Educação superior incompleta',
