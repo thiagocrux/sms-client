@@ -124,7 +124,7 @@ export default function FilteredStats({ stats, selectFilter }) {
               <p className={style.stats}>{stats && stats.whitePatients}</p>
             </div>
             <div>
-              <span className={style.field}>Pacientes de preta</span>
+              <span className={style.field}>Pacientes de cor preta</span>
               <p className={style.stats}>{stats && stats.blackPatients}</p>
             </div>
             <div>
@@ -132,7 +132,7 @@ export default function FilteredStats({ stats, selectFilter }) {
               <p className={style.stats}>{stats && stats.indigenousPatients}</p>
             </div>
             <div>
-              <span className={style.field}>Pacientes de amarela</span>
+              <span className={style.field}>Pacientes de cor amarela</span>
               <p className={style.stats}>{stats && stats.yellowPatients}</p>
             </div>
           </div>
