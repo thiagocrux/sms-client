@@ -1,6 +1,6 @@
 import React from 'react';
-import { Gear, PersonCircle } from 'react-bootstrap-icons';
-import { Link } from 'react-router-dom';
+// import { Gear, PersonCircle } from 'react-bootstrap-icons';
+// import { Link } from 'react-router-dom';
 
 import Navigation from '../Navigation/Navigation';
 
@@ -12,9 +12,9 @@ export default function Header() {
       <div className={style['brand-session-bar']}>
         <div className={style['flex-container']}>
           <p className={style.brand}>
-            Sistema de Monitoramento de Sífilis de Petrolina
+            Sistema de Gerenciamento de Casos de Sífilis
           </p>
-          <ul className={style['session-info']}>
+          {/* <ul className={style['session-info']}>
             <li>
               <Link to="/login">
                 <PersonCircle />
@@ -23,7 +23,7 @@ export default function Header() {
             <li>
               <Gear />
             </li>
-          </ul>
+          </ul> */}
         </div>
       </div>
       <Navigation />

@@ -1,0 +1,17 @@
+.homePage {
+  max-width: 90rem;
+  margin: 0 auto;
+}
+
+.homePage span {
+  text-decoration: underline;
+}
+
+.paragraph {
+  font-size: 1.8rem;
+  text-align: justify;
+}
+
+.firstParagraph {
+  margin-bottom: 3rem;
+}
