@@ -4,14 +4,40 @@
 }
 
 .homePage span {
-  text-decoration: underline;
+  /* text-decoration: underline; */
+  font-weight: 600;
 }
 
 .paragraph {
-  font-size: 1.8rem;
+  font-size: 1.7rem;
   text-align: justify;
+  margin-bottom: 2rem;
 }
 
-.firstParagraph {
+.flex {
+  display: flex;
+  justify-content: space-between;
   margin-bottom: 3rem;
+}
+
+.flexInnerContainer1 {
+  width: 45%;
+}
+
+.flexInnerContainer1 img {
+  width: 100%;
+  height: auto;
+  box-shadow: 1px 1px 8px -4px #757575;
+  --webkit-box-shadow: 2px 1px 8px -4px #757575;
+}
+
+.imageSource {
+  font-size: 1.4rem;
+  font-weight: 600;
+  text-align: justify;
+  line-height: 1.6rem;
+}
+
+.flexInnerContainer2 {
+  width: 46%;
 }
